@@ -14,7 +14,7 @@
       <div class="text-xl font-bold">ADORN SIA</div>
      
       <div class="space-x-4 flex items-center">
-        <a href="#" class="text-gray-700">Login / Register</a>
+        <a href="login.php" class="text-gray-700">Login / Register</a>
         <a href="#" class="text-gray-700">❤️</a>
         <a href="#" class="text-gray-700">🛒</a>
       </div>

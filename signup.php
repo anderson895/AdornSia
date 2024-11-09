@@ -1,20 +1,21 @@
-<?php include "header.php"?>
+<?php include "header.php" ?>
 
 <div class="bg-gray-100 flex items-center justify-center min-h-screen">
-
+  
   <!-- Registration Area -->
   <div class="w-full max-w-md bg-white p-8 rounded-lg shadow-lg relative">
-    <!-- Spinner -->
-    <div id="spinner" class="hidden absolute inset-0 bg-white bg-opacity-75 flex items-center justify-center">
-      <div class="w-10 h-10 border-4 border-indigo-500 border-t-transparent rounded-full animate-spin"></div>
-    </div>
-
-
     
+    <!-- Spinner -->
+     <div id="spinner" style="display:none;">
+        <div class=" absolute inset-0 bg-white bg-opacity-75 flex items-center justify-center">
+          <div class="w-10 h-10 border-4 border-indigo-500 border-t-transparent rounded-full animate-spin"></div>
+        </div>
+     </div>
+   
 
     <h2 class="text-2xl font-bold text-center text-gray-800 mb-6">Register with ADORN SIA</h2>
     
-    <form id="FrmRegister" class="space-y-6" >
+    <form id="FrmRegister" class="space-y-6">
       <div>
         <label for="name" class="block text-sm font-medium text-gray-700">Full Name</label>
         <input type="text" id="name" name="name" class="w-full mt-1 px-3 py-2 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:border-indigo-500" required>
@@ -49,6 +50,5 @@
   </div>
 
 </div>
-
 
 <?php include "footer.php";?>

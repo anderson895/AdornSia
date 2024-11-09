@@ -5,7 +5,6 @@ $(document).ready(function () {
 
     $('#spinner').show();
     $('#btnRegister').prop('disabled', true);
-
     
     var formData = $(this).serializeArray(); 
     formData.push({ name: 'requestType', value: 'Signup' });
@@ -17,22 +16,19 @@ $(document).ready(function () {
       url: "backend/end-points/signup.php",
       data: serializedData,  
       success: function (response) {
-        $('#spinner').hide();
-        $('#btnRegister').prop('disabled', false);
-
         var data = JSON.parse(response);
 
         if (data.status === "success") {
-          
-          
           sendWelcomeEmail(data.id);  
+        } else if(data.status==="EmailAlreadyExists"){
+          alertify.error(data.message);
 
-          alertify.success('Registration successful!');
+          $('#spinner').hide();
+          $('#btnRegister').prop('disabled', false);
 
-          setTimeout(function () {
-            window.location.href = "verification.php"; 
-          }, 1000);
-        } else {
+        }else {
+          $('#spinner').hide();
+          $('#btnRegister').prop('disabled', false);
           console.error(response); 
           alertify.error('Registration failed, please try again.');
         }
@@ -45,24 +41,28 @@ $(document).ready(function () {
     });
   });
 
-
   function sendWelcomeEmail(userId) {
     $.ajax({
       type: "POST",
-      url: "backend/end-points/mailer.php",
+      url: "mailer.php",
       data: { user_id: userId },  
       success: function (emailResponse) {
-        console.log(emailResponse);
-        
-        
         if (emailResponse === "OTPSentSuccessfully") {
-          alertify.success('Welcome email has been sent!');
+
+          alertify.success('Email has been sent successfully!');
+
+          setTimeout(function () {
+            window.location.href = "verification.php"; 
+          }, 1000);
         } else {
           alertify.error('Failed to send the welcome email.');
         }
+        $('#spinner').hide();
+        $('#btnRegister').prop('disabled', false);
       },
       error: function () {
-        console.error("Failed to send email.");
+        $('#spinner').hide();
+        $('#btnRegister').prop('disabled', false);
         alertify.error('An error occurred while sending the email.');
       }
     });

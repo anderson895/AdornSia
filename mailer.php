@@ -35,7 +35,7 @@ class Mailer extends db_connect
 
             // Check if any account is found
             if ($result->num_rows == 0) {
-                echo json_encode(["error" => "Account not found"]);
+                echo "Error: Account not found.";
                 exit;
             }
 
@@ -61,7 +61,6 @@ class Mailer extends db_connect
             $mail->addAddress($Email, $Fullname); // Use $Email and $Fullname
             $mail->addReplyTo('no-reply@yourdomain.com', 'No Reply'); // Correcting the reply-to email
 
-
             // Email content
             $mail->isHTML(true);
             $mail->Subject = 'Adorn Sia';
@@ -76,7 +75,6 @@ class Mailer extends db_connect
                 <script src='https://cdn.tailwindcss.com'></script> <!-- Include Tailwind CSS -->
             </head>
             <body class='bg-white font-sans'>
-
                 <div class='w-full bg-gray-200 py-8'>
                     <div class='max-w-2xl mx-auto bg-white p-8 rounded-lg shadow-lg'>
                         <h1 class='text-2xl font-semibold mb-4'>Hello, $Fullname</h1>
@@ -84,12 +82,11 @@ class Mailer extends db_connect
                         <p class='text-gray-700 mb-4'>Please use this link to verify your account:</p>
                         <p class='text-gray-700 mb-6'>This link will expire in 5 minutes.</p>
                         
-                        <a href='verification.php?userId=$userId' class='inline-block bg-blue-600 text-white py-2 px-4 rounded hover:bg-blue-700 transition duration-300'>
+                        <a href='http://localhost/Client/Adorn_sia/verification.php?userId=$userId' class='inline-block bg-blue-600 text-white py-2 px-4 rounded hover:bg-blue-700 transition duration-300'>
                             Verify your account
                         </a>
                     </div>
                 </div>
-
             </body>
             </html>";
 
@@ -99,12 +96,12 @@ class Mailer extends db_connect
 
             // Send the email
             if ($mail->send()) {
-                echo json_encode(["success" => "OTPSentSuccessfully"]);
+                echo "OTPSentSuccessfully";
             } else {
-                echo json_encode(["error" => "Mailer Error: {$mail->ErrorInfo}"]);
+                echo "Mailer Error: {$mail->ErrorInfo}";
             }
         } catch (Exception $e) {
-            echo json_encode(["error" => "Message could not be sent. Mailer Error: {$e->getMessage()}"]);
+            echo "Message could not be sent. Mailer Error: {$e->getMessage()}";
         }
     }
 }

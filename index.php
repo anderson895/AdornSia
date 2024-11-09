@@ -12,13 +12,7 @@
   <header class="bg-white shadow">
     <div class="container mx-auto px-4 py-4 flex justify-between items-center">
       <div class="text-xl font-bold">ADORN SIA</div>
-      <nav class="space-x-4">
-        <a href="#" class="text-gray-700">Women</a>
-        <a href="#" class="text-gray-700">Men</a>
-        <a href="#" class="text-gray-700">Kids</a>
-        <a href="#" class="text-gray-700">Beauty</a>
-        <a href="#" class="text-gray-700">Home & Lifestyle</a>
-      </nav>
+     
       <div class="space-x-4 flex items-center">
         <a href="#" class="text-gray-700">Login / Register</a>
         <a href="#" class="text-gray-700">❤️</a>

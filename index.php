@@ -8,18 +8,8 @@
 </head>
 <body class="bg-gray-50">
 
-  <!-- Header -->
-  <header class="bg-white shadow">
-    <div class="container mx-auto px-4 py-4 flex justify-between items-center">
-      <div class="text-xl font-bold">ADORN SIA</div>
-     
-      <div class="space-x-4 flex items-center">
-        <a href="login.php" class="text-gray-700">Login / Register</a>
-        <a href="#" class="text-gray-700">❤️</a>
-        <a href="#" class="text-gray-700">🛒</a>
-      </div>
-    </div>
-  </header>
+<?php include "header.php"?>
+
 
   <div class="container mx-auto px-4 py-6 flex">
 

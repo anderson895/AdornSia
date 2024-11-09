@@ -6,7 +6,13 @@
   <title>Customer Registration</title>
   <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.0.0/dist/tailwind.min.css" rel="stylesheet">
 </head>
-<body class="bg-gray-100 flex items-center justify-center min-h-screen">
+
+<body class="bg-gray-50">
+
+<?php include "header.php"?>
+
+
+<div class="bg-gray-100 flex items-center justify-center min-h-screen">
 
   <!-- Registration Area -->
   <div class="w-full max-w-md bg-white p-8 rounded-lg shadow-lg">
@@ -42,8 +48,11 @@
     </form>
 
     <p class="mt-6 text-center text-sm text-gray-600">
-      Already have an account? <a href="#" class="text-indigo-600 hover:text-indigo-500">Log in</a>
+      Already have an account? <a href="login.php" class="text-indigo-600 hover:text-indigo-500">Log in</a>
     </p>
+  </div>
+  
+
   </div>
 
 </body>

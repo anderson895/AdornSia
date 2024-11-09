@@ -6,7 +6,15 @@
   <title>Login Page</title>
   <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.0.0/dist/tailwind.min.css" rel="stylesheet">
 </head>
-<body class="bg-gray-100 flex items-center justify-center min-h-screen">
+
+<body class="bg-gray-50">
+
+
+<?php include "header.php"?>
+
+
+
+<div class="bg-gray-100 flex items-center justify-center min-h-screen">
 
   <!-- Login Area -->
   <div class="w-full max-w-md bg-white p-8 rounded-lg shadow-lg">
@@ -38,6 +46,6 @@
       Don't have an account? <a href="signup.php" class="text-indigo-600 hover:text-indigo-500">Sign up</a>
     </p>
   </div>
-
+</div>
 </body>
 </html>

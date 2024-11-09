@@ -1,0 +1,18 @@
+.orders-tr td {
+  padding: 20px 0px;
+  text-align: center;
+}
+
+.show-only-when-767px-sc-width {
+  display: none;
+}
+
+@media only screen and (max-width: 767px) {
+  .remove-when-767px-sc-width {
+    display: none;
+  }
+
+  .show-only-when-767px-sc-width {
+    display: block;
+  }
+}

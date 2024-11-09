@@ -1,0 +1,32 @@
+* {
+    box-sizing: border-box;
+}
+
+.img-zoom-container {
+    position: relative;
+    display: inline-block; /* Optional: makes sure the container fits the image */
+}
+
+.img-zoom-lens {
+    position: absolute;
+    border: 1px solid #d4d4d4;
+    /* Set the size of the lens */
+    width: 60px;  /* Increased size for better usability */
+    height: 60px; /* Increased size for better usability */
+    opacity: 0.5; /* Slightly transparent lens */
+    background-color: rgba(255, 255, 255, 0.5); /* Light background for visibility */
+    cursor: zoom-in; /* Change cursor to indicate zoom */
+}
+
+.img-zoom-result {
+    border: 1px solid #d4d4d4;
+    /* Set the size of the result div */
+    width: 300px;
+    height: 300px;
+    position: absolute; /* Necessary for proper placement */
+    top: 0; /* Adjust top position */
+    left: 120%; /* Position it to the right of the image */
+    background-repeat: no-repeat; /* No repeat for the zoomed image */
+}
+
+

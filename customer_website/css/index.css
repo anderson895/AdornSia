@@ -1,0 +1,79 @@
+/* Best Sellers */
+.best-sellers-container {
+  overflow-x: auto;
+  overflow-y: hidden;
+}
+
+.product-container {
+  height: 250px;
+  width: 200px;
+  position: relative;
+  border: none;
+  background-color: rgba(255, 255, 255, 0);
+  transition: all 0.3s;
+}
+
+.product-container:hover {
+  transform: scale(1.1);
+}
+
+.product-image {
+  height: 160px;
+  width: 198px;
+  border: 1px solid rgb(192, 192, 192);
+}
+
+.product-contents-container {
+  height: 88px;
+  width: 198px;
+  text-align: center;
+}
+
+.product-name {
+  font-size: 15px;
+  margin: 0;
+  width: 100%;
+  overflow-x: auto;
+}
+
+.txt-out-of-stock {
+  font-size: 12px;
+  position: absolute;
+  padding: 3px 7px;
+  border-bottom-right-radius: 5px;
+  background-color: white;
+}
+
+.product-price {
+  font-size: 12px;
+}
+
+/* Search */
+.search-product-container {
+  position: sticky;
+  top: 0 !important;
+  z-index: 100;
+  background-color: white;
+}
+
+.searchbar-container {
+  position: relative;
+  width: 300px;
+}
+
+.search-product-button {
+  position: absolute;
+  top: 0;
+  right: 0;
+  border-bottom-left-radius: 0;
+  border-top-left-radius: 0;
+}
+
+.select-product-category {
+  width: 130px;
+}
+
+/* View Product */
+#viewProductDescription {
+    height: 300px;
+}

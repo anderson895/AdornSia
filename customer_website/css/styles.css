@@ -1,0 +1,146 @@
+/* Top Nav */
+.maroon{
+  background-color: rgb(131, 0, 0);
+}
+
+
+
+.top-nav {
+  height: 70px;
+}
+
+.btn-toggle-side-bar {
+  border: none;
+  background-color: rgba(255, 255, 255, 0);
+  color: white;
+  font-size: 30px;
+  margin-right: 20px;
+  display: none;
+}
+
+.logo-a img {
+  height: 50px;
+}
+
+.btn-profile {
+  border-radius: 50%;
+  height: 40px;
+  width: 40px;
+  border: none;
+  background-color: rgba(255, 255, 255, 0.856);
+  font-size: 25px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  cursor: pointer;
+}
+
+
+#dropDownItems {
+    position: absolute;
+    transform: translateX(-70%);
+}
+
+/* Side Nav */
+.side-nav {
+  width: 250px;
+  height: calc(100vh - 70px);
+  box-shadow: 1px 1px 5px rgb(160, 160, 160);
+  background-color: white;
+  transition: all 0.5s;
+}
+
+.side-nav ul li {
+  position: relative;
+  margin: 3px;
+  margin-top: 5px;
+  height: 40px;
+}
+
+.side-nav ul li a {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  padding-left: 10px;
+  color: black;
+  text-decoration: none;
+  font-size: 16px;
+  border-radius: 5px;
+  font-weight: 500;
+}
+
+.nav-active {
+  background-color: rgba(0, 0, 0, 0.623);
+  color: white !important;
+}
+
+.side-nav ul li a i {
+  margin-right: 10px;
+}
+
+.side-nav ul li a:hover {
+  background-color: rgba(0, 0, 0, 0.623);
+  color: white;
+}
+
+/* Main Contents*/
+main {
+  position: absolute;
+  right: 0;
+  top: 70px;
+  width: calc(100% - 250px);
+  height: calc(100vh - 70px);
+  overflow-y: auto;
+}
+
+/* Input Container Label on Top */
+.input-container-label-top {
+  position: relative;
+}
+
+.input-container-label-top label {
+  position: absolute;
+  background-color: white;
+  font-size: 11px;
+  font-weight: 600;
+  top: -8px;
+  left: 10px;
+  padding: 0px 10px;
+}
+
+.input-container-label-top input,
+.input-container-label-top textarea {
+  padding-top: 10px;
+  font-size: 14px;
+}
+
+/* Alert */
+.alert {
+  position: absolute;
+  top: 20px;
+  z-index: 10000;
+  margin-left: 50%;
+  transform: translateX(-50%);
+  pointer-events: none;
+  opacity: 0;
+}
+
+@media only screen and (max-width: 800px) {
+  .btn-toggle-side-bar {
+    display: block;
+  }
+
+  main {
+    width: 100%;
+    z-index: 1;
+  }
+
+  .side-nav {
+    position: relative;
+    transform: translateX(-100%);
+    z-index: 10 !important;
+  }
+}

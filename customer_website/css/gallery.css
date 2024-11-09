@@ -1,0 +1,21 @@
+.overflow-auto {
+  white-space: nowrap;
+}
+
+.img-thumbnail {
+  max-width: 100px; /* Adjust this value as needed */
+  height: auto;
+}
+
+
+.fixed-size-img {
+  width: 150px;
+  height: 150px;
+  object-fit: cover; /* Ensures the image covers the area without stretching */
+}
+
+
+
+
+
+

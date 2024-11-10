@@ -1,7 +1,8 @@
 <?php
-
-include('backend/db.php'); // Include db.php once
 require 'vendor/autoload.php';
+include('backend/class.php');
+$db = new global_class();
+
 date_default_timezone_set('Asia/Manila');
 
 use PHPMailer\PHPMailer\PHPMailer;
@@ -9,7 +10,10 @@ use PHPMailer\PHPMailer\SMTP;
 use PHPMailer\PHPMailer\Exception;
 
 // $userId = $_POST["userId"];
-$userId = $_POST['user_id']; // Assuming user ID is 14 for testing
+$userId = $_POST['user_id']; 
+
+// Get the verification key
+$verificationKey = $db->update_verificationKey($userId);
 
 class Mailer extends db_connect
 {
@@ -18,7 +22,7 @@ class Mailer extends db_connect
         $this->connect();
     }
 
-    public function sendVerificationEmail($userId)
+    public function sendVerificationEmail($userId, $verificationKey)
     {
         try {
             // Prepare statement to fetch account details
@@ -82,7 +86,7 @@ class Mailer extends db_connect
                         <p class='text-gray-700 mb-4'>Please use this link to verify your account:</p>
                         <p class='text-gray-700 mb-6'>This link will expire in 5 minutes.</p>
                         
-                        <a href='http://localhost/Client/Adorn_sia/verification.php?userId=$userId' class='inline-block bg-blue-600 text-white py-2 px-4 rounded hover:bg-blue-700 transition duration-300'>
+                        <a href='http://localhost/Client/Adorn_sia/verification.php?userId=$userId&verificationKey=$verificationKey' class='inline-block bg-blue-600 text-white py-2 px-4 rounded hover:bg-blue-700 transition duration-300'>
                             Verify your account
                         </a>
                     </div>
@@ -92,7 +96,7 @@ class Mailer extends db_connect
 
             // Plain text body for non-HTML mail clients
             $mail->AltBody = "Hello $Fullname, please use the link below to verify your account. The link will expire in 5 minutes.\n\n";
-            $mail->AltBody .= "Verification link: verification.php?userId=$userId";
+            $mail->AltBody .= "Verification link: verification.php?userId=$userId&verificationKey=$verificationKey";
 
             // Send the email
             if ($mail->send()) {
@@ -106,8 +110,7 @@ class Mailer extends db_connect
     }
 }
 
-// Create Mailer object and send the email
+// Create Mailer object and send the email with the verificationKey
 $mailer = new Mailer();
-$mailer->sendVerificationEmail($userId);
-
+$mailer->sendVerificationEmail($userId, $verificationKey);
 ?>

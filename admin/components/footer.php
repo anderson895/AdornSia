@@ -6,17 +6,16 @@
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
+
+
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
-<script src="https://cdn.jsdelivr.net/npm/simple-datatables@9.0.3"></script>
+<script src="https://cdn.datatables.net/2.1.8/js/dataTables.min.js"></script>
 
 
 <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
 
-<script src="js/daily_sales.js"></script>
-<script src="js/weekly_sales.js"></script>
-<script src="js/monthly_sales.js"></script>
-
+<script src="js/datatable.js"></script>
 
 
 <script>

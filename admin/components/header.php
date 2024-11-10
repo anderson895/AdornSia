@@ -7,6 +7,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>ADMIN</title>
   <link rel="icon" type="image/png" href="assets/logo1.png">
+  
   <script src="https://cdn.tailwindcss.com"></script>
   
  
@@ -25,16 +26,21 @@
 
 
   <nav class="space-y-4 text-left lg:text-left">
-      <a href="{{ url_for('admin_dashboard') }}" class="flex items-center lg:justify-start space-x-3 text-gray-600 hover:text-blue-500 hover:bg-gray-100 px-4 py-2 rounded-md transition-all duration-300">
+      <a href="dashboard.php" class="flex items-center lg:justify-start space-x-3 text-gray-600 hover:text-blue-500 hover:bg-gray-100 px-4 py-2 rounded-md transition-all duration-300">
           <span class="material-icons">dashboard</span>
           <span>Dashboard</span>
       </a>
+
+      <a href="customer.php" class="flex items-center lg:justify-start space-x-3 text-gray-600 hover:text-blue-500 hover:bg-gray-100 px-4 py-2 rounded-md transition-all duration-300">
+          <span class="material-icons">local_shipping</span>
+          <span>Orders</span>
+      </a>
       
-      <a href="{{url_for('admin_attendance')}}" class="flex items-center lg:justify-start space-x-3 text-gray-600 hover:text-blue-500 hover:bg-gray-100 px-4 py-2 rounded-md transition-all duration-300">
+      <a href="customer.php" class="flex items-center lg:justify-start space-x-3 text-gray-600 hover:text-blue-500 hover:bg-gray-100 px-4 py-2 rounded-md transition-all duration-300">
           <span class="material-icons">group</span>
           <span>Customers</span>
       </a>
-      <a href="{{url_for('admin_student_progress')}}" class="flex items-center lg:justify-start  space-x-3 text-gray-600 hover:text-blue-500 hover:bg-gray-100 px-4 py-2 rounded-md transition-all duration-300">
+      <a href="product.php" class="flex items-center lg:justify-start  space-x-3 text-gray-600 hover:text-blue-500 hover:bg-gray-100 px-4 py-2 rounded-md transition-all duration-300">
           <span class="material-icons">store</span>
           <span>Products</span>
       </a>

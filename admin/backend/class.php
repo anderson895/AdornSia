@@ -41,7 +41,24 @@ class global_class extends db_connect
         }
     }
 
+    public function fetch_all_customers(){
+        $query = $this->conn->prepare("SELECT * FROM `user`");
 
+        if ($query->execute()) {
+            $result = $query->get_result();
+            return $result;
+        }
+    }
+
+
+    public function fetch_all_product(){
+        $query = $this->conn->prepare("SELECT * FROM `product`");
+
+        if ($query->execute()) {
+            $result = $query->get_result();
+            return $result;
+        }
+    }
             
     
 

@@ -1,0 +1,418 @@
+/* Side Panel */
+.side-panel {
+    position: absolute;
+    top: 57px; /* Below the header */
+    left: 0px;
+    width: 280px;
+    height: 100%;
+    background-color: #000000;
+    padding: 20px;
+    border-radius: 0px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    z-index: 10;
+}
+
+.side-panel .add-category-btn {
+    background-color: #fff;
+    color: #080807;
+    font-size: 16px;
+    padding: 10px 20px;
+    border: 2px solid #060606;
+    border-radius: 10px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: all 0.3s ease;
+}
+
+.side-panel .add-category-btn:hover {
+    background-color: #0d0c0a;
+    color: #fff;
+}
+
+/* Category Form */
+.category-form {
+    margin-top: 20px;
+    padding: 15px;
+    background-color: #fff;
+    border-radius: 5px;
+    display: none;
+}
+
+.category-form label {
+    font-weight: bold;
+    margin-bottom: 5px;
+    display: block;
+}
+
+.category-form input {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+.category-form button {
+    background-color: #080808;
+    color: white;
+    border: none;
+    padding: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    width: 100%;
+    transition: background-color 0.3s;
+}
+
+.category-form button:hover {
+    background-color: #070707;
+}
+
+/* Categories List */
+.categories-list {
+    margin-top: 20px;
+}
+
+.categories-list h3 {
+    color: #fff;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.categories-list div {
+    background-color: #fff;
+    color: #333;
+    margin-top: 10px;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+    font-size: 16px;
+}
+
+.categories-list div:hover {
+    background-color: #f1f1f1;
+}
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+
+    .side-panel {
+        width: 100%;
+        position: relative;
+        top: 80px;
+    }
+
+    .categories-list {
+        margin-top: 15px;
+    }
+}
+
+/* Categories List */
+.categories-list {
+    padding-left: 10px;
+}
+
+/* Delete Button */
+.delete-btn {
+    color: #0c0706; /* Red color for delete icon */
+    font-size: 20px;
+    text-decoration: none;
+    cursor: pointer;
+    transition: color 0.3s ease;
+    float: right; /* Align to the right */
+    margin-left: 10px;
+}
+
+.delete-btn:hover {
+    color: #0e0b0b; /* Darker red on hover */
+}
+
+.delete-btn:focus {
+    outline: none;
+}
+
+/* Category Item */
+.categories-list div {
+    display: flex;
+    justify-content: space-between; /* Make sure content is spaced between */
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.product-details {
+    margin-left: 270px; /* Make space for the side panel */
+    padding: 20px;
+    padding-top: 5%;
+    background-color: white;
+    width: calc(100% - 270px); /* Ensure it takes up the remaining width */
+    position: relative;
+}
+
+/* Header for product details */
+.product-details .header-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.product-details .header-container .product-details-title {
+    font-size: 24px;
+    text-align: center;
+    flex-grow: 1;
+}
+
+.product-details .header-container .add-product-btn {
+    background-color: #28a745;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+}
+
+.product-details .product-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.product-details .product-table th, .product-details .product-table td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+.product-details .product-table th {
+    background-color: #f2f2f2;
+}
+
+.product-details .product-table img {
+    width: 50px;
+    height: 50px;
+    object-fit: cover;
+}
+
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.4);
+    padding-top: 60px;
+}
+
+.modal-content {
+    background-color: white;
+    margin: 5% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+    max-width: 500px;
+}
+
+.close-btn {
+    color: #aaa;
+    font-size: 28px;
+    font-weight: bold;
+    position: absolute;
+    top: 10px;
+    right: 25px;
+    cursor: pointer;
+}
+
+.close-btn:hover,
+.close-btn:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+/* + Product button styling */
+button.add-product-btn {
+    background-color: #100f0e !important; /* Orange background */
+    border: 2px solid #000000 !important; /* Orange border */
+    color: white !important; /* White text */
+    padding: 10px 20px; /* Adjust padding for button size */
+    font-size: 16px; /* Adjust font size */
+    border-radius: 5px; /* Rounded corners */
+    cursor: pointer; /* Change cursor on hover */
+    transition: background-color 0.3s, border-color 0.3s; /* Smooth transition for hover */
+}
+
+button.add-product-btn:hover {
+    background-color: #080706 !important; /* Darker orange background on hover */
+    border-color: #fbfbfb !important; /* Darker border on hover */
+}
+.header-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+}
+
+/* Product details title styling */
+.product-details-title {
+    font-size: 24px;
+    font-weight: bold;
+    color: #333;
+}
+
+/* Modal content container styling */
+.modal-content {
+    background-color: white;
+    padding: 30px;
+    border-radius: 10px;
+    width: 450px;
+    max-width: 100%;
+    position: relative;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+    transition: all 0.3s ease-in-out;
+    text-align: center; /* Center align text */
+}
+
+/* Close button (X) styling */
+.close-btn {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    font-size: 30px;
+    font-weight: bold;
+    cursor: pointer;
+    color: #050301;
+    transition: color 0.3s ease;
+}
+
+.close-btn:hover {
+    color: #000000; /* Darker orange on hover */
+}
+
+/* Modal title "Add New Product" */
+h2 {
+    margin-bottom: 20px; /* Reduced margin to close the title to the form */
+    font-size: 24px;
+    color: #060504; /* Orange color for the title */
+    font-weight: bold;
+}
+
+/* Modal form styling */
+.modal-content form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px; /* Reduced gap for closer spacing */
+}
+
+/* Form input fields styling */
+input[type="file"],
+input[type="text"],
+select {
+    padding: 8px 15px; /* Reduced padding */
+    font-size: 14px;
+    border: 2px solid #ccc;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+}
+
+input[type="file"]:hover,
+input[type="text"]:hover,
+select:hover {
+    border-color: #0a0908; /* Orange border on hover */
+    box-shadow: 0 0 5px rgba(255, 102, 0, 0.5); /* Orange glow effect on hover */
+}
+
+/* New Item button styling */
+button[type="submit"] {
+    background-color: #050404;
+    border: 2px solid #000000;
+    color: white;
+    padding: 12px 24px;
+    font-size: 16px;
+    font-weight: bold;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s, border-color 0.3s, transform 0.2s ease-in-out;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+button[type="submit"]:hover {
+    background-color: #0f0c09;
+    border-color: #080706;
+    transform: translateY(-3px); /* Lift effect on hover */
+}
+
+button[type="submit"]:active {
+    background-color: #110e0d;
+    border-color: #040403;
+    transform: translateY(1px); /* Button "pressed" effect */
+}
+
+/* Cancel button styling */
+.cancel-btn {
+    background-color: transparent;
+    border: 2px solid #0d0b09; /* Orange border */
+    color: #070504; /* Orange text */
+    padding: 12px 24px;
+    font-size: 16px;
+    font-weight: bold;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.cancel-btn:hover {
+    background-color: #070605; /* Orange background on hover */
+    color: white; /* White text on hover */
+    transform: translateY(-3px); /* Lift effect on hover */
+}
+
+.cancel-btn:active {
+    background-color: #151311; /* Darker orange when pressed */
+    color: white;
+    transform: translateY(1px); /* Button "pressed" effect */
+}
+/* General Button Styling */
+.edt-button,.dlt-button {
+    background-color: transparent;
+    border: 2px solid #0d0c0b; /* Orange border */
+    color: #060403; /* Orange text */
+    padding: 10px 20px; /* Uniform padding */
+    font-size: 14px;
+    font-weight: bold;
+    border-radius: 6px; /* Rounded corners */
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+    margin-right: 10px; /* Space between buttons */
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    width: 100px; /* Set a fixed width to make buttons the same size */
+    text-align: center;
+}
+
+/* Hover Effect */
+button:hover {
+    background-color: #0b0a09; /* Orange background on hover */
+    color: white; /* White text on hover */
+    transform: translateY(-3px); /* Lift effect on hover */
+}
+
+/* Active (Pressed) Effect */
+button:active {
+    background-color: #0d0c0b; /* Darker orange when pressed */
+    color: white;
+    transform: translateY(1px); /* Button "pressed" effect */
+}
+
+/* Specific Styles for Edit and Delete Buttons */
+.edt-button {
+    border-color: #050403;
+    color: #110e0c;
+}
+
+.dlt-button {
+    border-color: #080706;
+    color: #070605;
+}

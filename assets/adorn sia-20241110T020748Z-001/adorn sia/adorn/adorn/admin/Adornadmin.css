@@ -1,0 +1,476 @@
+@font-face {
+    font-family: 'Onest';
+    src: url('Onest-VariableFont_wght.ttf') format('truetype');
+}
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Onest', sans-serif;
+}
+
+:root{
+    /* ===== Colors ===== */
+    --body-color: #F2EFE8;
+    --sidebar-color: #FFF;
+    --primary-color: #0a0400;
+    --primary-color-light: #f2efe8;
+    --toggle-color: #DDD;
+    --text-color: #1e1e1e;
+
+    /* ====== Transition ====== */
+    --tran-03: all 0.2s ease;
+    --tran-03: all 0.3s ease;
+    --tran-04: all 0.3s ease;
+    --tran-05: all 0.3s ease;
+
+}
+
+body{
+    min-height: 100vh;
+    background-color: var(--body-color);
+    transition: var(--tran-05);
+}
+
+::selection{
+    background-color: var(--primary-color);
+    color: #fff;
+}
+
+/* ===== Sidebar ===== */
+.sidebar{
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 250px;
+    padding: 10px 10px;
+    background: var(--sidebar-color);
+    transition: var(--tran-05);
+    z-index: 100;  
+}
+
+.sidebar.close{
+    width: 80px;
+}
+
+.sidebar li{
+    height: 50px;
+    list-style: none;
+    display: flex;
+    align-items: center;
+    margin-top: 10px;
+}
+
+.sidebar section .image {
+    min-width: 12px;
+    border-radius: 50px;
+}
+
+.sidebar .icon{
+    min-width: 60px;
+    border-radius: 6px;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+}
+
+.sidebar .text,
+.sidebar .icon{
+    color: var(--text-color);
+    transition: var(--tran-03);
+}
+
+.sidebar .active {
+    background-color: var(--primary-color);
+    color: var(--sidebar-color);
+    transition: var(--tran-03);
+    border-radius: 6px;
+}
+
+.sidebar .active .text,
+.sidebar .active .icon {
+    color: var(--sidebar-color);
+    font-weight: 600;
+}
+
+.sidebar .text{
+    font-size: 16px;
+    font-weight: 500;
+    white-space: nowrap;
+    opacity: 1;
+}
+
+.sidebar.close .text{
+    opacity: 0;
+}
+
+.sidebar header,
+.sidebar section{
+    position: relative;
+}
+
+.sidebar header .image-text,
+.sidebar section .image-text{
+    display: flex;
+    align-items: center;
+}
+
+.sidebar header .logo-text,
+.sidebar section .logo-text {
+    display: flex;
+    flex-direction: column;
+}
+
+header .image-text .name,
+section .image-text .name {
+    margin-top: 2px;
+    font-size: 18px;
+    font-weight: 600;
+}
+
+.sidebar header .image,
+.sidebar section .image {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.sidebar header .image img {
+    width: 100px;
+    border-radius: 6px;
+}
+
+.sidebar section .image img{
+    width: 100px;
+    border-radius: 100px;
+}
+
+.sidebar header .toggle,
+.sidebar section .toggle{
+    position: absolute;
+    top: 50%;
+    right: -25px;
+    transform: translateY(-50%) rotate(180deg);
+    height: 25px;
+    width: 25px;
+    background-color: var(--primary-color);
+    color: var(--sidebar-color);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 22px;
+    cursor: pointer;
+    transition: var(--tran-05);
+}
+
+.sidebar.close .toggle{
+    transform: translateY(-50%) rotate(0deg);
+}
+
+.sidebar .menu{
+    margin-top: 40px;
+}
+
+.sidebar li a{
+    list-style: none;
+    height: 100%;
+    background-color: transparent;
+    display: flex;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+    border-radius: 6px;
+    text-decoration: none;
+    transition: var(--tran-03);
+}
+
+.sidebar li a:hover{
+    background-color: var(--primary-color-light);
+}
+
+.sidebar li a:hover .icon,
+.sidebar li a:hover .text{
+    color: var(--text-color);
+}
+
+.sidebar .menu-bar{
+    height: calc(100% - 55px);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    overflow-y: scroll;
+}
+
+.menu-bar::-webkit-scrollbar{
+    display: none;
+}
+
+.sidebar .menu-bar .profile{
+    background-color: transparent; 
+    border-radius: 6px;
+    border: 1px solid var(--primary-color-light);
+    box-shadow: rgba(0, 0, 0, 1) 0px 25px 20px -20px;
+    position: relative;
+    transition: var(--tran-05);
+}
+
+.menu-bar .bottom-content {
+    cursor: pointer;
+}
+
+.menu-bar .bottom-content .container{
+    position: absolute;
+    margin: 0;
+    height: 100%;
+    min-width: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 6px;
+}
+
+.menu-bar .bottom-content .container img {
+    height: 40px;
+    width: 40px;
+    margin: 0;
+    border-radius: 100px;
+}
+
+.menu-bar .bottom-content .profile .text,
+.menu-bar .bottom-content .profile i {
+    margin-left: 65px;
+    cursor: pointer;
+}
+
+/* === content === */
+
+.home{
+    position: absolute;
+    top: 5;
+    left: 250px;
+    height: 100vh;
+    width: calc(100% - 250px);
+    background-color: var(--body-color);
+    transition: var(--tran-05);
+}
+
+.home .text{
+    font-size: 30px;
+    font-weight: 500;
+    color: #000000;
+    padding: 20px 60px;
+}
+
+.sidebar.close ~ .home{
+    left: 78px;
+    height: 100vh;
+    width: calc(100% - 78px);
+}
+
+section .content {
+    background-color: transparent;
+    width: 95%;
+    margin: auto;
+    padding: 0 23px;
+}
+
+/* === tables === */
+#search-user {
+    background-image: url('/css/searchicon.png');
+    background-position: 10px 10px;
+    background-repeat: no-repeat;
+    width: 100%;
+    font-size: 16px;
+    padding: 12px 20px 12px 40px;
+    border: 1px solid #ddd;
+    margin-bottom: 12px;
+}
+
+#user-table,
+#admin-table {
+    border-collapse: collapse;
+    width: 100%;
+    border: 1px solid #ddd;
+    font-size: 18px;
+}
+
+#user-table tr,
+#admin-table tr {
+    border-bottom: 1px solid #ddd;
+}
+
+#user-table tr.header, #user-table tr:hover,
+#admin-table tr.header, #admin-table tr:hover {
+    background-color: #f1f1f1;
+}
+
+.header {
+    cursor: pointer;
+}
+
+#user-table th, #user-table td,
+#admin-table th, #admin-table td {
+    text-align: left;
+    padding: 12px;
+}
+
+
+/* ===== breadcrumb =====*/
+ul.breadcrumb {
+    padding: 10px 16px;
+    list-style: none;
+    background-color: #eee;
+  }
+  
+  /* Display list items side by side */
+  ul.breadcrumb li {
+    display: inline;
+    font-size: 18px;
+  }
+  
+  /* Add a slash symbol (/) before/behind each list item */
+  ul.breadcrumb li+li:before {
+    padding: 8px;
+    color: black;
+    content: "/\00a0";
+  }
+  
+  /* Add a color to all links inside the list */
+  ul.breadcrumb li a {
+    color: #0275d8;
+    text-decoration: none;
+  }
+  
+  /* Add a color on mouse-over */
+  ul.breadcrumb li a:hover {
+    color: #01447e;
+    text-decoration: underline;
+  }
+
+  .id {
+    width: 500px;
+    height: auto;
+  }
+
+/* Container styles */
+.verify-user {
+    display: flex;
+    justify-content: space-between; /* Space between the two columns */
+    align-items: flex-start; /* Align items to the top */
+    gap: 20px; /* Space between columns */
+}
+
+/* Info column styling */
+.info-column {
+    flex: 1; /* Take up available space */
+    max-width: 45%; /* Limit max width */
+}
+
+/* Image column styling */
+.image-column {
+    flex: 1; /* Take up available space */
+    max-width: 45%; /* Limit max width */
+}
+
+/* Image styling */
+.id {
+    display: block; /* Make images take their own line */
+    margin-bottom: 10px; /* Space between images */
+    width: 100%; /* Make sure images fit their container */
+    max-width: 300px; /* Set a max width for images */
+    height: auto; /* Maintain aspect ratio */
+}
+
+/* Optional label styling */
+label {
+    font-weight: bold;
+    margin-top: 10px;
+    display: block; /* Ensure labels are on their own line */
+}
+
+/* Main container */
+.user-container {
+    display: flex; /* Use flexbox for layout */
+    justify-content: space-between; /* Space between items */
+    height: 100vh; /* Full viewport height */
+    margin-top: 20px;
+}
+
+/* Info Card styling */
+.info-card {
+    position: sticky;
+    width: 75%; /* Take up 70% of the width */
+    top: 40px;
+    overflow-y: auto; /* Enable vertical scrolling */
+    height: calc(100vh - 160px); /* Full height */
+}
+
+/* Profile Card styling */
+.profile-card {
+    background-color: var(--sidebar-color);/* White background */
+    border: 1px solid #ddd; /* Light gray border */
+    border-radius: 10px; /* Rounded corners */
+    padding: 20px; /* Padding inside the card */
+    width: 24%; /* Fixed width for profile card */
+    position: sticky; /* Fix position on the right */
+    left: 0; /* Distance from the right edge */
+    top: 40px; /* Distance from the top edge */
+    height: fit-content;
+    text-align: center;
+}
+
+/* Profile Image Styling */
+.profile-image {
+    width: 200px; /* Set a consistent size */
+    height: 200px; /* Height */
+    object-fit: cover; /* Ensure the image covers the area */
+    border-radius: 50%; /* Make the image circular */
+    border: 3px solid var(--primary-color); 
+    margin-bottom: 10px; /* Space below the image */
+}
+
+/* Username styling */
+.name {
+    font-size: 1.5em; /* Increase font size */
+    color: #333; /* Dark color for text */
+}
+
+.details {
+    font-size: 1em;
+    color: #555;
+    margin-bottom: 15px;
+}
+
+.personal-info,
+.contact-info,
+.orders-info {
+    background-color: #fff; /* White background */
+    border: 1px solid #ddd; /* Light gray border */
+    border-radius: 10px; /* Rounded corners */
+    padding: 20px; /* Padding inside the card */
+    margin-bottom: 15px;
+}
+/* Info row styling */
+.info-row {
+    display: flex; /* Use flexbox for alignment */
+    justify-content: space-between; /* Space between label and data */
+    margin: 10px 0; /* Space above and below each row */
+}
+
+/* Strong (bold) elements */
+.info-row strong {
+    width: 30%; /* Set width for the label */
+    color: #555; /* Dark gray for better contrast */
+}
+
+.info-row span {
+    width: 65%; /* Set width for the data */
+    text-align: left; /* Align data to the right */
+    color: #333; /* Darker color for data */
+}
+

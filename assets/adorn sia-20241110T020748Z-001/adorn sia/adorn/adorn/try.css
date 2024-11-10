@@ -1,0 +1,138 @@
+/*--- navbar ---*/
+
+.navbar {
+    padding: 10px 30px;
+    margin-top: 0;
+    transition: all 0.5s;
+}
+
+.navbar-scrolled {
+    background-color: #fff;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.15);
+}
+
+.navbar-brand {
+    margin-right: 1em !important;
+    position: sticky;
+}
+
+.nav-item a,
+.dropdown {
+    color: black;
+    font-size: 18px;
+}
+
+.nav-item a:hover,
+.dropdown:hover {
+    color: #330F0A;
+}
+
+.nav-link {
+    color: black;
+    cursor: pointer;
+    margin-left: 1em !important;
+}
+
+.dropdown-menu a:hover {
+    color: black;
+    background-color: #F5F5DC;
+}
+
+.menu {
+    margin-top: 12px;
+    margin-left: 1em !important;
+    font-size: 30px;
+    cursor: pointer;
+}
+
+.navbar-collapse {
+    justify-content: flex-end;
+}
+
+.dropdown:hover>.dropdown-menu {
+    display: block;
+}
+
+.dropdown>.dropdown-toggle:active {
+    pointer-events: none;
+}
+
+
+/*--- menu on mobile ---*/
+
+.overlay {
+    height: 0%;
+    width: 100%;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    background-color: rgb(0, 0, 0);
+    background-color: rgba(0, 0, 0, 1);
+    overflow-y: hidden;
+    transition: 0.5s;
+}
+
+.overlay-content {
+    position: relative;
+    top: 15%;
+    width: 100%;
+    text-align: center;
+    margin-top: 10px;
+}
+
+.overlay a,
+.dropdown-btn {
+    padding: 5px;
+    text-decoration: none;
+    font-size: 16px;
+    color: #818181;
+    display: block;
+    transition: 0.3s;
+    display: block;
+    border: none;
+    background: none;
+    width: 100%;
+    text-align: center;
+    cursor: pointer;
+    outline: none;
+}
+
+.overlay a:hover,
+.overlay a:focus,
+.dropdown-btn:hover {
+    color: #f1f1f1;
+}
+
+.dropdown-container {
+    display: none;
+    background-color: #262626;
+}
+
+.fa-caret-down {
+    float: right;
+    padding-right: 8px;
+}
+
+.closebtn {
+    width: 50px;
+    cursor: pointer;
+    all: unset;
+    color: #818181;
+}
+
+.active {
+    background-color: #330F0A;
+    color: white;
+}
+
+.closebtn:hover {
+    color: #f1f1f1;
+}
+
+.overlay .closebtn {
+    position: absolute;
+    top: 20px;
+    right: 45px;
+    font-size: 60px;
+}

@@ -68,6 +68,7 @@
 </div>
 
 <?php include "components/footer.php";?>
+
 <script src="js/daily_sales.js"></script>
 <script src="js/weekly_sales.js"></script>
 <script src="js/monthly_sales.js"></script>

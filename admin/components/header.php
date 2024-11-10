@@ -31,7 +31,7 @@
           <span>Dashboard</span>
       </a>
 
-      <a href="customer.php" class="flex items-center lg:justify-start space-x-3 text-gray-600 hover:text-blue-500 hover:bg-gray-100 px-4 py-2 rounded-md transition-all duration-300">
+      <a href="orderlist.php" class="flex items-center lg:justify-start space-x-3 text-gray-600 hover:text-blue-500 hover:bg-gray-100 px-4 py-2 rounded-md transition-all duration-300">
           <span class="material-icons">local_shipping</span>
           <span>Orders</span>
       </a>

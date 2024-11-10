@@ -51,12 +51,12 @@
           <span>User Role</span>
       </a>
 
-      <form action="{{ url_for('admin_logout') }}" method="post">
+      <a href="logout.php">
           <button type="submit" class="flex items-center lg:justify-start  space-x-3 text-gray-600 hover:text-red-500 hover:bg-gray-100 px-4 py-2 rounded-md transition-all duration-300">
               <span class="material-icons">logout</span>
               <span>Logout</span>
           </button>
-      </form>
+        </a>
   </nav>
 </aside>
 

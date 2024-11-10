@@ -20,15 +20,6 @@ var options = {
             }
         }
     },
-    title: {
-        text: 'Weekly Sales Overview',
-        align: 'center',
-        style: {
-            fontSize: '20px',
-            fontWeight: 'bold',
-            color: '#333'
-        }
-    },
     colors: ['#2e93f9'],  // Blue color for bars
     grid: {
         show: true,

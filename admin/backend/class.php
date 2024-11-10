@@ -29,6 +29,7 @@ class global_class extends db_connect
                 $user = $result->fetch_assoc();
 
                 session_start();
+                $_SESSION['admin_username'] = $user['admin_username'];
                 $_SESSION['admin_id'] = $user['admin_id'];
 
                 return $user;

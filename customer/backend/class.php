@@ -65,6 +65,72 @@ class global_class extends db_connect
         }
     }
     
+
+
+
+
+
+
+    public function UpdateAddress($address_id)
+    { 
+        session_start();
+        $user_id = $_SESSION['user_id'];
+    
+        // Update all previous addresses to '0'
+        $resetStatusQuery = "UPDATE `address_user` SET `ad_status` = '0' WHERE `ad_user_id` = '$user_id'";
+        if ($this->conn->query($resetStatusQuery)) {
+            // Update the current address to '1'
+            $updateStatusQuery = "UPDATE `address_user` SET `ad_status` = '1' WHERE ad_id='$address_id' AND `ad_user_id` = '$user_id'";
+            if ($this->conn->query($updateStatusQuery)) {
+                return 200;
+            }
+        }
+        return 400;
+    }
+    
+
+    
+    public function AddAddress($street_name, $barangay, $complete_address_add)
+{
+    session_start();
+    $user_id = $_SESSION['user_id'];
+
+    // Check if the address already exists
+    $checkQuery = "SELECT * FROM `address_user` WHERE `ad_user_id` = '$user_id' AND `ad_address_code` = '$barangay' AND `ad_complete_address` = '$complete_address_add'";
+    $result = $this->conn->query($checkQuery);
+
+    if ($result->num_rows > 0) {
+        return 409; // Address already exists
+    } else {
+        // Set all ad_status to 0 for this user
+        $resetStatusQuery = "UPDATE `address_user` SET `ad_status` = '0' WHERE `ad_user_id` = '$user_id'";
+        $this->conn->query($resetStatusQuery);
+
+        // Insert new address with ad_status set to 1
+        $query = "INSERT INTO `address_user` (`ad_user_id`, `ad_address_code`, `ad_complete_address`, `ad_status`) 
+                  VALUES ('$user_id', '$barangay', '$complete_address_add', '1')";
+
+        if ($this->conn->query($query)) {
+            return 200; // Success
+        } else {
+            return 400; // Error
+        }
+    }
+}
+
+
+    public function getUserActiveAddress()
+    {
+        $user_id = $_SESSION['user_id'];
+
+        $query = $this->conn->prepare("SELECT * FROM `address_user` WHERE `ad_user_id` = '$user_id'");
+            if ($query->execute()) {
+                $result = $query->get_result();
+                return $result;
+            }
+        
+    }
+    
     
 
 
@@ -111,6 +177,10 @@ class global_class extends db_connect
             return 400;
         }
     }
+
+
+
+    
 
 
         public function MinusToCart($userId, $productId, $prodSize)

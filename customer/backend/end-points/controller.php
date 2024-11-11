@@ -31,12 +31,32 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         
         // I-echo ang response upang ma-access ito sa frontend
         echo json_encode(['status' => $response]);
+    }else if ($_POST['requestType']=="SaveAddress") {
+
+        $street_name = $_POST['street_name'];
+        $barangay = $_POST['barangay'];
+        $complete_address_add=$_POST['complete_address_add'];
+        
+        // Kunin ang response mula sa AddToCart method
+        $response = $db->AddAddress($street_name, $barangay,$complete_address_add);
+        
+        // I-echo ang response upang ma-access ito sa frontend
+        echo json_encode(['status' => $response]);
+    }else if ($_POST['requestType']=="UpdateAddress") {
+
+        $address_id = $_POST['address_id'];
+        
+        // Kunin ang response mula sa AddToCart method
+        $response = $db->UpdateAddress($address_id);
+        
+        // I-echo ang response upang ma-access ito sa frontend
+        echo json_encode(['status' => $response]);
     }
     
 }
 
 
- 
+
  
  ?>
      

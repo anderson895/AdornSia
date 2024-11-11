@@ -19,75 +19,34 @@ $db = new global_class();
                 <h2 class="text-lg font-semibold text-gray-900 flex items-center">
                     <span class="material-icons text-red-500 mr-2">location_on</span> Delivery Address
                 </h2>
-                <p class="text-sm text-gray-600 mt-2">Login/Register to add an address or view saved addresses.</p>
-                <button class="mt-4 w-full bg-blue-500 text-white py-2 rounded-lg font-semibold hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500">Add Address</button>
+                <?php $fetch_address = $db->getUserActiveAddress(); ?>
+            <div class="mt-4">
+                <label for="addressSelect" class="block text-sm text-gray-600">Current Address</label>
+                <select id="addressSelect" class="mt-2 w-full px-4 py-2 border border-gray-300 rounded-lg bg-white text-gray-600 focus:outline-none focus:ring-2 focus:ring-blue-500">
+                    <option value="" disabled selected>Select an address</option>
+                    <?php foreach ($fetch_address as $address): ?>
+                        <option data-address_id="<?= $address['ad_id']; ?>" <?php if($address['ad_status'] == '1'){ echo "selected"; } ?> value="<?= $address['ad_complete_address']; ?>">
+                            <?= $address['ad_complete_address']; ?>
+                        </option>
+                    <?php endforeach; ?>
+                </select>
+            </div>
+
+              
+                <button id="setAddressModal" class="mt-4 w-full bg-blue-500 text-white py-2 rounded-lg font-semibold hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500" >Add Address</button>
+            
             </div>
 
             <!-- Product List -->
             <div class="p-6 bg-white rounded-xl shadow-lg space-y-6">
             <?php 
             $userId = $_SESSION['user_id'];
-            $getCartlist = $db->getCartlist($userId);  // Fetch all products
+            $getCartlist = $db->getCartlist($userId);
 
             $subTotal = 0;
             $totalSavings = 0;
             ?>
-            <h3 class="text-lg font-semibold mb-4 text-gray-900 flex items-center">
-                <input type="checkbox" class="mr-2"> All (<?= count($getCartlist) ?> items)
-            </h3>
-
-            <?php 
-            foreach ($getCartlist as $cart):
-                $promo_rate_percentage = $cart['promo_rate'] * 100; // Assuming promo_rate is a decimal (e.g., 0.20 for 20%)
-                $discount_amount = $cart['prod_currprice'] * $cart['promo_rate']; // Calculate the discount amount
-                $discounted_price = $cart['prod_currprice'] - $discount_amount;
-                
-                // Compute subtotal and savings
-                if ($cart['prod_promo_id']) {
-                    $totalSavings += ($cart['prod_currprice'] - $discounted_price) * $cart['cart_Qty'];
-                    $subTotal += $discounted_price * $cart['cart_Qty'];
-                } else {
-                    $subTotal += $cart['prod_currprice'] * $cart['cart_Qty'];
-                }
-            ?>
-            <!-- Product Item -->
-            <div class="flex items-center border-t border-gray-200 pt-6">
-                <input type="checkbox" class="mr-4 text-red-500">
-                <img src="../upload/<?=$cart['prod_image']?>" alt="Product Image" class="w-20 h-20 object-cover rounded-md shadow-lg mr-6">
-                <div class="flex-grow">
-                    <h4 class="font-semibold text-gray-900"><?=$cart['prod_name']?></h4>
-                    <p class="text-sm text-gray-600"><?= substr($cart['prod_description'], 0, 50) ?></p>
-                    <p class="text-sm text-gray-600">Size: <?=$cart['cart_prod_size']?></p>
-
-                    <!-- Quantity Input with Buttons -->
-                    <div class="flex items-center space-x-2 mt-2">
-                        <button class="togglerMinus w-8 h-8 bg-gray-200 text-gray-800 rounded-md flex items-center justify-center hover:bg-gray-300 focus:outline-none"
-                        data-user_id='<?=$cart['cart_user_id']?>'
-                        data-product_id='<?=$cart['cart_prod_id']?>'
-                        data-cart_prod_size='<?=$cart['cart_prod_size']?>'
-                        >
-                            <span class="material-icons text-sm">remove</span>
-                        </button>
-                        <input type="number" value="<?=$cart['cart_Qty']?>" class="w-16 h-8 text-center border border-gray-300 rounded-md px-2 py-1 text-sm" placeholder="Qty: 1" min="1" />
-                        <button class="togglerAdd w-8 h-8 bg-gray-200 text-gray-800 rounded-md flex items-center justify-center hover:bg-gray-300 focus:outline-none"
-                        data-user_id='<?=$cart['cart_user_id']?>'
-                        data-product_id='<?=$cart['cart_prod_id']?>'
-                        data-cart_prod_size='<?=$cart['cart_prod_size']?>'
-                        >
-                            <span class="material-icons text-sm">add</span>
-                        </button>
-                    </div>
-                </div>
-                <div class="text-right">
-                <?php if ($cart['prod_promo_id']): ?>
-                    <p class="text-red-600 font-semibold">Php <?=number_format(($cart['prod_currprice'] - ($cart['prod_currprice'] - $discounted_price)) * $cart['cart_Qty'], 2)?></p>
-                    <p class="text-xs line-through text-gray-400">Php <?=number_format($cart['prod_currprice'] * $cart['cart_Qty'], 2)?> - <?=($cart['promo_rate'] * 100)?>%</p>
-                <?php else: ?>
-                    <p class="text-red-600 font-semibold">Php <?=number_format($cart['prod_currprice'] * $cart['cart_Qty'], 2)?></p>
-                <?php endif; ?>
-                </div>
-            </div>
-            <?php endforeach; ?>
+            <?php include "backend/end-points/cart_list.php"; ?>
             </div>
         </div>
 
@@ -121,3 +80,6 @@ $db = new global_class();
 </div>
 
 <?php include "component/footer.php"; ?>
+
+
+<script src="js/setAddress.js"></script>

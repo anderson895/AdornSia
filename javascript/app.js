@@ -138,6 +138,9 @@ console.log(response);
         data: { user_id: userId },  
         success: function(response) {
             // Hide loading spinner
+
+            console.log(response);
+
             $('#loadingSpinner').addClass('hidden');
             
             // Enable the resend button after request completes
@@ -160,12 +163,12 @@ console.log(response);
         }
     });
 });
+
+
+
+
+
 });
-
-
-
-
-
 
 
 

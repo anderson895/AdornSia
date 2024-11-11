@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 10, 2024 at 03:47 PM
+-- Generation Time: Nov 11, 2024 at 04:20 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -133,6 +133,7 @@ CREATE TABLE `user` (
   `Phone` varchar(60) NOT NULL,
   `Password` varchar(255) NOT NULL,
   `status` int(11) NOT NULL DEFAULT 0 COMMENT '0=Not Verified,1=Verified',
+  `verificationKey` varchar(255) DEFAULT NULL,
   `link_expiration` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -140,8 +141,8 @@ CREATE TABLE `user` (
 -- Dumping data for table `user`
 --
 
-INSERT INTO `user` (`user_id`, `Fullname`, `Email`, `Phone`, `Password`, `status`, `link_expiration`) VALUES
-(47, 'joshua anderson', 'andersonandy046@gmail.com', '09454454744', 'andersonandy046@gmail.com', 0, '2024-11-10 10:51:04');
+INSERT INTO `user` (`user_id`, `Fullname`, `Email`, `Phone`, `Password`, `status`, `verificationKey`, `link_expiration`) VALUES
+(64, 'joshua padilla', 'andersonandy046@gmail.com', '09454454744', 'andersonandy046@gmail.com', 1, NULL, '2024-11-11 11:24:29');
 
 --
 -- Indexes for dumped tables
@@ -209,7 +210,7 @@ ALTER TABLE `promo`
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=48;
+  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=65;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

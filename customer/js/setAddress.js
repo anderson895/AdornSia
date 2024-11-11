@@ -67,6 +67,8 @@ $('#addressSelect').change(function(event) {
       $('.loadingSpinner').show();  // Use .loadingSpinner if it’s a class
       $('#btnSaveAddress').prop('disabled', true);
 
+
+      var StreetName=$('#StreetName').val();
       // Get the form data
       var complete_address_add = $('#complete_address_add').val();
       var streetName = $('#StreetName').val();
@@ -78,7 +80,7 @@ $('#addressSelect').change(function(event) {
           data: {
               barangay: barangay,
               street_name: streetName,
-              complete_address_add: complete_address_add,
+              complete_address_add: complete_address_add+' '+StreetName,
               requestType: 'SaveAddress'
           },
           dataType: 'json',

@@ -71,7 +71,7 @@ $db = new global_class();
                     <p>Total</p>
                     <p>Php <span id="total"><?= number_format($subTotal + ($subTotal * 0.12) - $totalSavings, 2) ?></span></p>
                 </div>
-                <button class="w-full bg-red-500 text-white py-3 rounded-lg font-semibold hover:bg-red-600 mt-6 focus:outline-none focus:ring-2 focus:ring-red-500">Checkout</button>
+                <button class="btnCheckOut w-full bg-red-500 text-white py-3 rounded-lg font-semibold hover:bg-red-600 mt-6 focus:outline-none focus:ring-2 focus:ring-red-500">Checkout</button>
             </div>
         </div>
 

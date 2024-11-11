@@ -98,6 +98,32 @@ $(document).ready(function() {
         });
     });
 
+    $('.TogglerRemoveItem').click(function() {
+        // Sample data, replace with actual values from your PHP/Backend
+        let cart_id = $(this).data('cart_id');
+       
+        
+        $.ajax({
+            type: "POST",
+            url: "backend/end-points/controller.php",
+            data: { 
+                cart_id: cart_id,
+                requestType: "RemoveItem" // Corrected here
+            },
+            // dataType: 'json', // Corrected the syntax here
+            success: function(response) {
+                // Hide loading spinner
+                console.log(response)
+                location.reload();
+            },
+            error: function() {
+                alertify.error('Error occurred during the request!');
+            }
+        });
+    });
+
+    
+
 });
 
 

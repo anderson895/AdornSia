@@ -67,6 +67,17 @@ class global_class extends db_connect
     
 
 
+    public function RemoveItem($cart_id)
+    { 
+        session_start();
+        $user_id = $_SESSION['user_id'];
+        
+            $updateStatusQuery = "DELETE FROM `cart` WHERE cart_user_id = $user_id AND cart_prod_id=$cart_id";
+            if ($this->conn->query($updateStatusQuery)) {
+                return 200;
+            }
+    }
+    
 
 
 

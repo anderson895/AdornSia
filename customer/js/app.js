@@ -86,9 +86,10 @@ $(document).ready(function() {
                 cart_prod_size: cart_prod_size,
                 requestType: "MinusToCart" // Corrected here
             },
-            dataType: 'json', // Corrected the syntax here
+            // dataType: 'json', // Corrected the syntax here
             success: function(response) {
                 // Hide loading spinner
+                console.log(response)
                 location.reload();
             },
             error: function() {

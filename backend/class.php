@@ -202,10 +202,7 @@ class global_class extends db_connect
 }
 
     
-    
-    
 
-    
     
      
 

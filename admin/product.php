@@ -56,18 +56,16 @@ $db = new global_class();
 
 
 
-
-
 <!-- Modal -->
 <div id="AddproductModal" class="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center" style="display:none;">
     <div class="bg-white p-6 rounded-lg shadow-lg w-full sm:max-w-3xl max-h-[90vh] overflow-y-auto flex flex-col justify-between">
 
-     <!-- Spinner -->
-  <div class="spinner" style="display:none;">
-        <div class=" absolute inset-0 bg-white bg-opacity-75 flex items-center justify-center">
-          <div class="w-10 h-10 border-4 border-indigo-500 border-t-transparent rounded-full animate-spin"></div>
+        <!-- Spinner -->
+        <div class="spinner" style="display:none;">
+            <div class=" absolute inset-0 bg-white bg-opacity-75 flex items-center justify-center">
+                <div class="w-10 h-10 border-4 border-indigo-500 border-t-transparent rounded-full animate-spin"></div>
+            </div>
         </div>
-     </div>
 
         <h2 class="text-2xl font-semibold text-gray-700 mb-4">Add New Product</h2>
         <!-- Modal Form for Adding Product -->
@@ -135,10 +133,18 @@ $db = new global_class();
                     <input type="file" id="productImage" name="product_Image" class="w-full p-2 border border-gray-300 rounded-md" accept="image/*" required>
                 </div>
 
-
                 <div class="mb-4">
                     <label for="productStocks" class="block text-gray-700">Stocks</label>
                     <input type="number" id="productStocks" name="product_Stocks" class="w-full p-2 border border-gray-300 rounded-md" required>
+                </div>
+
+                <!-- Sizes Section -->
+                <div class="mb-4" id="sizeContainer">
+                    <label for="productSizes" class="block text-gray-700">Sizes</label>
+                    <div id="sizesList">
+                        <input type="text" name="product_Sizes[]" class="w-full p-2 border border-gray-300 rounded-md mb-2" placeholder="Enter size">
+                    </div>
+                    <button type="button" id="addSizeButton" class="mt-2 px-4 py-2 bg-green-500 text-white rounded-md hover:bg-green-600">Add Size</button>
                 </div>
             </div>
 
@@ -149,6 +155,20 @@ $db = new global_class();
         </form>
     </div>
 </div>
+
+<script>
+    // Add Size Button functionality
+    document.getElementById('addSizeButton').addEventListener('click', function() {
+        const sizeContainer = document.getElementById('sizesList');
+        const newSizeInput = document.createElement('input');
+        newSizeInput.type = 'text';
+        newSizeInput.name = 'product_Sizes[]';
+        newSizeInput.classList.add('w-full', 'p-2', 'border', 'border-gray-300', 'rounded-md', 'mb-2');
+        newSizeInput.placeholder = 'Enter size';
+        sizeContainer.appendChild(newSizeInput);
+    });
+</script>
+
 
 
 

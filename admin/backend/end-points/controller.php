@@ -25,6 +25,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         // Handle the uploaded image
         $product_Image = $_FILES['product_Image'];
         
+        // Capture sizes (it's an array)
+        $product_Sizes = isset($_POST['product_Sizes']) ? $_POST['product_Sizes'] : [];
+        
         // Check if the image was uploaded without errors
         if ($product_Image['error'] === UPLOAD_ERR_OK) {
             // Set the upload directory
@@ -41,8 +44,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         
             // Move the uploaded image to the specified directory
             if (move_uploaded_file($product_Image['tmp_name'], $uploadFilePath)) {
-                // Image upload successful, now add the product to the database
-                $user = $db->addProduct(
+                // Add the product and get the product ID
+                $prod_id = $db->addProduct(
                     $product_Code,
                     $product_Name,
                     $product_Price,
@@ -54,9 +57,21 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     $product_Stocks
                 );
         
-                // Check if the product was successfully added
-                if ($user === 'success') {
-                    echo 200;
+                // Check if the product was successfully added (prod_id will be returned on success)
+                if ($prod_id) {
+                    // Now handle sizes if they exist
+                    if (!empty($product_Sizes)) {
+                        // Insert each size into the database (assuming a 'product_sizes' table exists)
+                        foreach ($product_Sizes as $size) {
+                            $size = trim($size); // Remove any leading/trailing spaces
+                            if (!empty($size)) {
+                                // Add the size to the 'product_sizes' table using the product's ID
+                                $db->addProductSize($prod_id, $size); // Use the prod_id here
+                            }
+                        }
+                    }
+        
+                    echo 200; // Success response
                 } else {
                     echo 'Failed to add product to the database.';
                 }
@@ -66,6 +81,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         } else {
             echo 'No image uploaded or there was an error with the image.';
         }
+        
+
         
     } else if ($_POST['requestType'] == 'UpdateProduct') {
         
@@ -168,7 +185,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         } else {
             echo 'Failed to update product in the database.';
         }
-    }else {
+    }else{
         echo 'Invalid request type.';
     }
 }

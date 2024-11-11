@@ -29,7 +29,7 @@ class global_class extends db_connect
         // Prepare the SQL query with placeholders for bound parameters
         $query = $this->conn->prepare("INSERT INTO `product` (`prod_code`, `prod_name`, `prod_currprice`, `prod_category_id`, `prod_critical`, `prod_description`, `prod_promo_id`, `prod_image`, `prod_added`, `prod_status`, `product_stocks`) 
         VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, '1', ?)");
-    
+        
         // Bind the parameters
         $query->bind_param("ssssssssss", 
             $product_Code, 
@@ -43,14 +43,30 @@ class global_class extends db_connect
             $getDateToday, 
             $product_Stocks
         );
-    
+        
         // Execute the query
         if ($query->execute()) {
-            return "success";
+            // Get the product ID of the last inserted product
+            $prod_id = $this->conn->insert_id; // Get the last inserted product ID
+            return $prod_id; // Return the product ID to use in adding sizes
         } else {
-            return false; 
+            return false; // Return false if insertion fails
         }
     }
+    
+
+
+    public function addProductSize($prod_id, $size) {
+        $stmt = $this->conn->prepare("INSERT INTO product_sizes (size_prod_id, size_name) VALUES (?, ?)");
+        $stmt->bind_param("ss", $prod_id, $size); // Use product ID and size
+        return $stmt->execute();
+    }
+
+
+    public function UpdateSizes($prod_id) {
+
+    }
+    
 
 
 

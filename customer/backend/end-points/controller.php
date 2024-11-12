@@ -54,14 +54,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }else if ($_POST['requestType']=="RemoveItem") {
 
         $cart_id = $_POST['cart_id'];
-        
-        // Kunin ang response mula sa AddToCart method
         $response = $db->RemoveItem($cart_id);
-        
-        // I-echo ang response upang ma-access ito sa frontend
         echo json_encode(['status' => $response]);
     }
     
+}else if ($_SERVER['REQUEST_METHOD'] === 'GET') {
+
+    $response = $db->getPaymentQr();
+    echo json_encode(['status' => $response]);
 }
 
 

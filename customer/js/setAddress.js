@@ -115,7 +115,7 @@ $('#addressSelect').change(function(event) {
   });
 
   // Close modal
-  $('#closeModal').click(function() {
+  $('.closeModal').click(function() {
       $('#addressModal').fadeOut();
   });
 });

@@ -77,8 +77,23 @@ class global_class extends db_connect
                 return 200;
             }
     }
-    
 
+
+    public function getPaymentQr($cart_id)
+    { 
+        session_start();
+        $user_id = $_SESSION['user_id'];
+        
+            $updateStatusQuery = "DELETE FROM `cart` WHERE cart_user_id = $user_id AND cart_prod_id=$cart_id";
+            if ($this->conn->query($updateStatusQuery)) {
+                return 200;
+            }
+    }
+
+
+   
+    
+    
 
 
 
@@ -141,10 +156,20 @@ class global_class extends db_connect
             }
         
     }
+    public function getAllEwallet()
+    {
+
+        $query = $this->conn->prepare("SELECT * FROM ewallet where e_wallet_status='1'");
+            if ($query->execute()) {
+                $result = $query->get_result();
+                return $result;
+            }
+        
+    }
     
     
 
-
+    
 
     public function getOrderStatusCounts($userID)
     {

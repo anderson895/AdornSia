@@ -78,6 +78,13 @@ $db = new global_class();
     </div>
 </div>
 
+
+
+
+
+
+
+
 <?php include "component/footer.php"; ?>
 
 <script src="js/cart.js"></script>

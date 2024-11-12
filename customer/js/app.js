@@ -1,5 +1,12 @@
 $(document).ready(function() {
-    // When the Add to Cart button is clicked
+
+
+
+   
+      
+      
+
+
     $('.btnAddToCart').click(function() {
         // Sample data, replace with actual values from your PHP/Backend
         let cart_user_id = $(this).data('user_id');

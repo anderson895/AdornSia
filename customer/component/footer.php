@@ -73,7 +73,8 @@
     <!-- Proof of Payment Upload Section -->
     <div id="proofOfPaymentSection" class="mt-4">
         <label for="proofOfPayment" class="block text-sm font-medium text-gray-700">Upload Proof of Payment</label>
-        <input type="file" id="proofOfPayment" name="proofOfPayment" class="mt-2 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm" />
+        <input type="file" id="proofOfPayment" name="proofOfPayment" class="mt-2 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm" accept="image/*" />
+
     </div>
     </div>
 

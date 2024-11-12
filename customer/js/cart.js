@@ -6,7 +6,12 @@ $(document).ready(function() {
         let total = 0;
 
         $('.product-checkbox:checked').each(function() {
+
+            const productId = parseFloat($(this).data('product-id'));
+            
+
             const price = parseFloat($(this).data('price'));
+            
             const qty = parseInt($(this).data('qty'));
             const discountRate = parseFloat($(this).data('discount'));
             const hasPromo = $(this).data('has-promo');
@@ -98,9 +103,12 @@ $(document).ready(function() {
         $('#btnConfirmCheckout').click(function (e) {
             e.preventDefault();
         
-            const selectedPaymentMethod = $("#paymentMethod").val(); // Get the selected payment method
-            var fileInput = $('#proofOfPayment')[0]; // Get the raw DOM element of file input
-            var selectedFile = fileInput.files[0]; // Get the first selected file
+            // Get the selected payment method
+            const selectedPaymentMethod = $("#paymentMethod").val();
+        
+            // Get the file input and check if a file is selected
+            var fileInput = $('#proofOfPayment')[0];
+            var selectedFile = fileInput.files[0];
         
             // Check if payment method is not 'cod' and no file has been selected
             if (selectedPaymentMethod !== "cod" && selectedFile == undefined) {
@@ -108,12 +116,64 @@ $(document).ready(function() {
                 return; // Exit the function if the condition is met
             }
         
-            alertify.success('Order Request sent successfully.');
+            // Validate if the file is an image and its size is below 10MB
+            if (selectedFile) {
+                const fileSize = selectedFile.size; // File size in bytes
+                const fileType = selectedFile.type; // File MIME type
+        
+                // Check if the file is an image
+                if (!fileType.startsWith('image/')) {
+                    alertify.error('Please upload a valid image file.');
+                    return;
+                }
+        
+                // Check if the file size is greater than 10MB (10MB = 10 * 1024 * 1024 bytes)
+                if (fileSize > 10 * 1024 * 1024) {
+                    alertify.error('The image file size should not exceed 10MB.');
+                    return;
+                }
+            }
         
             // Get the selected address
             var selectedAddress = $("#addressSelect").val();
             console.log("Selected address: " + selectedAddress);
+        
+            // Collect the product data from the checked checkboxes
+            var selectedProducts = [];
+            $('.product-checkbox:checked').each(function() {
+                const productId = $(this).data('product-id');
+                const price = $(this).data('price');
+                const size = $(this).data('size');
+                const qty = $(this).data('qty');
+                const discount = $(this).data('discount');
+                const hasPromo = $(this).data('has-promo');
+        
+                // Create an object with all the data for each selected product
+                selectedProducts.push({
+                    productId: productId,
+                    price: price,
+                    size: size,
+                    qty: qty,
+                    discount: discount,
+                    hasPromo: hasPromo
+                });
+            });
+        
+            // Check if at least one product is selected
+            if (selectedProducts.length === 0) {
+                alertify.error('Please select at least one product.');
+                return; // Exit the function if no product is selected
+            }
+        
+            // Log the selected products array (you can send this data to your backend or use it as needed)
+            console.log("Selected Products: ", selectedProducts);
+        
+            alertify.success('Order Request sent successfully.');
+            $("#checkoutModal").fadeOut();
         });
+        
+        
+        
         
         
         

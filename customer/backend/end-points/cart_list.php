@@ -38,12 +38,12 @@ $totalSavings = 0;
                     <span class="material-icons">close</span>
                 </button>
 
-                <input type="checkbox" class="product-checkbox mr-4 text-red-500" data-product-id="<?=$cart['cart_prod_id']?>" data-price="<?=$cart['prod_currprice']?>" data-qty="<?=$cart['cart_Qty']?>" data-discount="<?=$cart['promo_rate']?>" data-has-promo="<?=$cart['prod_promo_id']?>">
+                <input type="checkbox" class="product-checkbox mr-4 text-red-500" data-product-id="<?=$cart['cart_prod_id']?>" data-price="<?=$cart['prod_currprice']?>" data-size="<?=$cart['cart_prod_size']?>" data-qty="<?=$cart['cart_Qty']?>" data-discount="<?=$cart['promo_rate']?>" data-has-promo="<?=$cart['prod_promo_id']?>">
                 <img src="../upload/<?=$cart['prod_image']?>" alt="Product Image" class="w-20 h-20 object-cover rounded-md shadow-lg mr-6">
                 <div class="flex-grow">
                     <h4 class="font-semibold text-gray-900"><?=$cart['prod_name']?></h4>
                     <p class="text-sm text-gray-600"><?= substr($cart['prod_description'], 0, 50) ?></p>
-                    <p class="text-sm text-gray-600">Size: <?=$cart['cart_prod_size']?></p>
+                    <p class="text-sm text-gray-600 ">Size: <?=$cart['cart_prod_size']?></p>
 
                     <!-- Quantity Input with Buttons -->
                     <div class="flex items-center space-x-2 mt-2">

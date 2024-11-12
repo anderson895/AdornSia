@@ -3,6 +3,8 @@ session_start();
 
 // Check if the user is logged in
 $is_logged_in = isset($_SESSION['user_id']); // Assuming user ID is stored in session after login
+
+
 ?>
 
 <!DOCTYPE html>
@@ -46,3 +48,4 @@ $is_logged_in = isset($_SESSION['user_id']); // Assuming user ID is stored in se
     </div>
   </div>
 </header>
+

@@ -14,7 +14,7 @@
         <a href="login.php">
             <img src="upload/<?=$product['prod_image']?>" alt="Product Image" class="w-full rounded mb-4 transition-transform hover:scale-105">
             <h2 class="font-semibold text-lg transition-colors hover:text-blue-500"><?=$product['prod_name']?></h2>
-            <p class="text-gray-600 transition-colors hover:text-gray-800"><?= substr($product['prod_description'], 0, 40) . (strlen($product['prod_description']) > 40 ? '...' : '') ?></p>
+            <p class="text-gray-600 transition-colors hover:text-gray-800"><?= substr($product['prod_description'], 0, 20) . (strlen($product['prod_description']) > 20 ? '...' : '') ?></p>
 
             <?php if ($product['prod_promo_id']): ?>
                 <p class="text-lg font-bold text-red-600">PHP <?=number_format($discounted_price, 2);?></p>

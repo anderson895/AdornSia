@@ -145,6 +145,66 @@ class global_class extends db_connect
 }
 
 
+public function OrderRequest($address, $paymentMethod, $proofOfPayment, $fileName, $subtotal, $vat, $total)
+{
+    session_start();
+
+    $user_id = $_SESSION['user_id'];
+    $order_date = date('Y-m-d H:i:s'); // Current timestamp
+    $status = 'Pending'; // Default status
+
+    // Sanitize each input (real_escape_string is now unnecessary if using prepared statements)
+    $user_id = $this->conn->real_escape_string($user_id);
+    $paymentMethod = $this->conn->real_escape_string($paymentMethod);
+    $subtotal = $this->conn->real_escape_string($subtotal);
+    $vat = $this->conn->real_escape_string($vat);
+    $total = $this->conn->real_escape_string($total);
+    $address = $this->conn->real_escape_string($address);
+
+    $uniqueOrderCode = strtoupper(substr(uniqid(), -8)); 
+
+    // If proofOfPayment is empty, set it to NULL for the database
+    $proofOfPayment = (empty($proofOfPayment)) ? NULL : $proofOfPayment;
+
+    // Prepare the SQL query with placeholders
+    $query = "INSERT INTO `orders` 
+                (`order_code`, `order_user_id`, `mode_of_payment`, `proof_of_payment`, `subtotal`, `vat`, `total`, `delivery_address`, `order_date`, `status`) 
+              VALUES 
+                (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+
+    // Prepare the statement
+    if ($stmt = $this->conn->prepare($query)) {
+
+        // Bind parameters (s = string, d = double, i = integer)
+        $stmt->bind_param('ssssdddsis', 
+            $uniqueOrderCode, 
+            $user_id, 
+            $paymentMethod, 
+            $proofOfPayment, 
+            $subtotal, 
+            $vat, 
+            $total, 
+            $address, 
+            $order_date, 
+            $status
+        );
+
+        // Execute the query
+        if ($stmt->execute()) {
+            return ['status' => 'success', 'order_id' => $this->conn->insert_id];
+        } else {
+            return ['status' => 'error', 'message' => 'Failed to create order: ' . $this->conn->error];
+        }
+
+    } else {
+        return ['status' => 'error', 'message' => 'Failed to prepare statement: ' . $this->conn->error];
+    }
+}
+
+
+
+
+
     public function getUserActiveAddress()
     {
         $user_id = $_SESSION['user_id'];

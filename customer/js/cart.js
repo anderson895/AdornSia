@@ -103,74 +103,116 @@ $(document).ready(function() {
         $('#btnConfirmCheckout').click(function (e) {
             e.preventDefault();
         
-            // Get the selected payment method
-            const selectedPaymentMethod = $("#paymentMethod").val();
+            // Retrieve values for subtotal, VAT, and total
+            var subtotal = $('#sub-total').text();
+            var vat = $('#vat').text();
+            var total = $('#total').text();
         
-            // Get the file input and check if a file is selected
+            // Retrieve selected payment method and file input
+            var selectedPaymentMethod = $("#paymentMethod option:selected").data('ename');
+
             var fileInput = $('#proofOfPayment')[0];
             var selectedFile = fileInput.files[0];
         
-            // Check if payment method is not 'cod' and no file has been selected
+            console.log(selectedPaymentMethod)
+            // If payment method is not 'COD' and no file is selected, show error
             if (selectedPaymentMethod !== "cod" && selectedFile == undefined) {
                 alertify.error('You are required to upload a proof of payment.');
-                return; // Exit the function if the condition is met
+                return;
             }
         
-            // Validate if the file is an image and its size is below 10MB
+            // Validate file type and size if a file is selected
             if (selectedFile) {
-                const fileSize = selectedFile.size; // File size in bytes
-                const fileType = selectedFile.type; // File MIME type
+                const fileSizeLimit = 10 * 1024 * 1024; // 10MB limit
+                const fileSize = selectedFile.size;
+                const fileType = selectedFile.type;
         
-                // Check if the file is an image
                 if (!fileType.startsWith('image/')) {
                     alertify.error('Please upload a valid image file.');
                     return;
                 }
-        
-                // Check if the file size is greater than 10MB (10MB = 10 * 1024 * 1024 bytes)
-                if (fileSize > 10 * 1024 * 1024) {
+                if (fileSize > fileSizeLimit) {
                     alertify.error('The image file size should not exceed 10MB.');
                     return;
                 }
             }
         
-            // Get the selected address
+            // Check if a valid address is selected
             var selectedAddress = $("#addressSelect").val();
-            console.log("Selected address: " + selectedAddress);
+            if (selectedAddress === null) {
+                alertify.error('Please set an address first.');
+                return;
+            }
+
         
-            // Collect the product data from the checked checkboxes
+            // Collect selected products' data from checkboxes
             var selectedProducts = [];
             $('.product-checkbox:checked').each(function() {
-                const productId = $(this).data('product-id');
-                const price = $(this).data('price');
-                const size = $(this).data('size');
-                const qty = $(this).data('qty');
-                const discount = $(this).data('discount');
-                const hasPromo = $(this).data('has-promo');
-        
-                // Create an object with all the data for each selected product
                 selectedProducts.push({
-                    productId: productId,
-                    price: price,
-                    size: size,
-                    qty: qty,
-                    discount: discount,
-                    hasPromo: hasPromo
+                    productId: $(this).data('product-id'),
+                    price: $(this).data('price'),
+                    size: $(this).data('size'),
+                    qty: $(this).data('qty'),
+                    discount: $(this).data('discount'),
+                    hasPromo: $(this).data('has-promo')
                 });
             });
         
-            // Check if at least one product is selected
+            // Ensure at least one product is selected
             if (selectedProducts.length === 0) {
                 alertify.error('Please select at least one product.');
-                return; // Exit the function if no product is selected
+                return;
             }
         
-            // Log the selected products array (you can send this data to your backend or use it as needed)
-            console.log("Selected Products: ", selectedProducts);
+            // Prepare form data for AJAX
+            var formData = new FormData();
+            formData.append("selectedAddress", selectedAddress);
+            formData.append("selectedPaymentMethod", selectedPaymentMethod);
+            if (selectedFile) formData.append("selectedFile", selectedFile); // Only if file is selected
+            formData.append("subtotal", subtotal);
+            formData.append("vat", vat);
+            formData.append("total", total);
+            formData.append("selectedProducts", JSON.stringify(selectedProducts));
+            formData.append("requestType", "OrderRequest");
         
-            alertify.success('Order Request sent successfully.');
-            $("#checkoutModal").fadeOut();
+            $.ajax({
+                type: "POST",
+                url: "backend/end-points/controller.php",
+                data: formData,
+                processData: false, // Prevent jQuery from processing the data
+                contentType: false, // Prevent jQuery from setting content type
+                beforeSend: function() {
+                    $("#loadingSpinner").fadeIn();
+                },
+                success: function(response) {
+
+                    console.log(response);
+
+                    if(response.status=='success'){
+                        $("#loadingSpinner").fadeOut();
+                    
+                        try {
+                            const jsonResponse = JSON.parse(response);
+                            console.log(jsonResponse);
+                            alertify.success('Order Request sent successfully.');
+                        } catch (e) {
+                            console.log(response);
+                            alertify.error('Unexpected response format.');
+                        }
+                        
+                        $("#checkoutModal").fadeOut();
+                    }else if(response.status='error'){
+                        alertify.error('Order Request Failed.');
+                    }
+                   
+                },
+                error: function() {
+                    $("#loadingSpinner").fadeOut();
+                    alertify.error('Error occurred during the request!');
+                }
+            });
         });
+        
         
         
         

@@ -19,7 +19,7 @@
             <h2 class="font-semibold text-lg transition-colors hover:text-blue-500"><?=$product['prod_name']?></h2>
 
             <!-- Hover effect for Product Description -->
-            <p class="text-gray-600 transition-colors hover:text-gray-800"><?= substr($product['prod_description'], 0, 40) . (strlen($product['prod_description']) > 40 ? '...' : '') ?></p>
+            <p class="text-gray-600 transition-colors hover:text-gray-800"><?= substr($product['prod_description'], 0, 20) . (strlen($product['prod_description']) > 20 ? '...' : '') ?></p>
 
             <?php if ($product['prod_promo_id']): ?>
                 <!-- Hover effect for Price -->

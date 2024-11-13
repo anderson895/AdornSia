@@ -56,8 +56,68 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $cart_id = $_POST['cart_id'];
         $response = $db->RemoveItem($cart_id);
         echo json_encode(['status' => $response]);
+    }else if ($_POST['requestType']=="OrderRequest") {
+
+     // Retrieve basic fields from POST
+$selectedAddress = $_POST['selectedAddress'];
+$selectedPaymentMethod = $_POST['selectedPaymentMethod'];
+$subtotal = $_POST['subtotal'];
+$vat = $_POST['vat'];
+$total = $_POST['total'];
+
+// Handle file upload if a file was provided
+$selectedFilePath = null;
+$uniqueFileName = null;  // Initialize uniqueFileName to null by default
+$fileTmpPath = null; // Initialize the fileTmpPath to null
+
+if (isset($_FILES['selectedFile']) && $_FILES['selectedFile']['error'] == UPLOAD_ERR_OK) {
+    $fileTmpPath = $_FILES['selectedFile']['tmp_name'];
+    $fileName = $_FILES['selectedFile']['name'];
+    $uploadDir = '../proofPayment/';
+
+    // Generate a unique filename to prevent overwriting
+    $fileExtension = pathinfo($fileName, PATHINFO_EXTENSION);
+    $uniqueFileName = uniqid('proof_', true) . '.' . $fileExtension;
+
+    // Set the full path for the file in the uploads directory
+    $selectedFilePath = $uploadDir . $uniqueFileName;
+} else {
+    // No file uploaded, set both proof_of_payment and filename to null
+    $uniqueFileName = null;
+    $selectedFilePath = null;
+}
+
+// Process the order request in the database
+$response = $db->OrderRequest($selectedAddress, $selectedPaymentMethod, $uniqueFileName, $selectedFilePath, $subtotal, $vat, $total);
+
+if ($response['status'] === 'success') {
+    // Create the directory if it doesn't exist
+    if ($selectedFilePath && !is_dir($uploadDir)) {
+        mkdir($uploadDir, 0777, true);
     }
-    
+
+    // Only proceed if a file was uploaded
+    if ($selectedFilePath && isset($fileTmpPath) && is_uploaded_file($fileTmpPath)) {
+        // Move the uploaded file to the uploads directory
+        if (move_uploaded_file($fileTmpPath, $selectedFilePath)) {
+            echo json_encode(['status' => 'success', 'message' => 'Order processed and file saved successfully.']);
+        } else {
+            echo json_encode(['status' => 'error', 'message' => 'Order processed but file upload failed.']);
+        }
+    } else {
+        // If no file was uploaded, send success message for order processing
+        echo json_encode(['status' => 'success', 'message' => 'Order processed without file upload.']);
+    }
+} else {
+    echo json_encode(['status' => 'error', 'message' => 'Order request failed.']);
+}
+
+
+
+
+
+    }
+
 }else if ($_SERVER['REQUEST_METHOD'] === 'GET') {
 
     $response = $db->getPaymentQr();

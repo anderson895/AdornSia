@@ -16,7 +16,7 @@ $totalSavings = 0;
             <p class="text-lg text-center text-gray-500">Your cart is empty. Add some items to get started!</p>
         <?php else: ?>
             <h3 class="text-lg font-semibold mb-4 text-gray-900 flex items-center">
-                <input type="checkbox" id="check-all" class="mr-2"> All 
+                <input type="checkbox" id="check-all" class="mr-2"> <label for="check-all">All</label>
             </h3>
             <?php 
             foreach ($getCartlist as $cart):

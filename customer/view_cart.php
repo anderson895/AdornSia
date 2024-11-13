@@ -66,6 +66,8 @@ $db = new global_class();
                         <p>Vat (12%)</p>
                         <p>Php <span id="vat"><?= number_format($subTotal * 0.12, 2) ?></span></p>
                     </div>
+
+
                 </div>
                 <div class="grandTotal border-t border-gray-200 mt-6 pt-4 flex justify-between text-lg font-bold text-gray-900">
                     <p>Total</p>

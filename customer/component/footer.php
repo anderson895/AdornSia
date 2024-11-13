@@ -49,18 +49,20 @@
 
     <!-- Payment Method Section -->
     <div class="mb-6">
-      <label for="paymentMethod" class="block text-sm font-medium text-gray-700">Select Payment Method</label>
-        <select id="paymentMethod" class="mt-2 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500">
-            <option value="cod">Cash on Delivery</option>
-            <?php 
-                $getAllEwallet = $db->getAllEwallet(); 
-                foreach ($getAllEwallet as $mop):
-                echo '<option value="'.$mop['e_id'].'" data-img="'.$mop['e_img'].'">'.$mop['e_wallet_name'].'</option>';
-                endforeach; 
-            ?>
-        </select>
+    <label for="paymentMethod" class="block text-sm font-medium text-gray-700">Select Payment Method</label>
+    <select id="paymentMethod" name="paymentMethod" class="mt-2 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500">
+        <option value="cod" data-ename="cod">Cash on Delivery</option>
+        <?php 
+            $getAllEwallet = $db->getAllEwallet(); 
+            foreach ($getAllEwallet as $mop):
+                echo '<option value="'.$mop['e_id'].'" data-img="'.$mop['e_img'].'" data-ename="'.$mop['e_wallet_name'].'">';
+                echo $mop['e_wallet_name'];
+                echo '</option>';
+            endforeach; 
+        ?>
+    </select>
+</div>
 
-    </div>
 
     <!-- Payment Method Instructions -->
     <div id="paymentDetails" class="hidden">

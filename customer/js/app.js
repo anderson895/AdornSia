@@ -108,6 +108,7 @@ $(document).ready(function() {
     $('.TogglerRemoveItem').click(function() {
         // Sample data, replace with actual values from your PHP/Backend
         let cart_id = $(this).data('cart_id');
+        let size = $(this).data('size');
        
         
         $.ajax({
@@ -115,6 +116,7 @@ $(document).ready(function() {
             url: "backend/end-points/controller.php",
             data: { 
                 cart_id: cart_id,
+                size:size,
                 requestType: "RemoveItem" // Corrected here
             },
             // dataType: 'json', // Corrected the syntax here

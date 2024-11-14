@@ -144,7 +144,7 @@ $(document).ready(function() {
                 return;
             }
 
-        
+         
             // Collect selected products' data from checkboxes
             var selectedProducts = [];
             $('.product-checkbox:checked').each(function() {
@@ -153,9 +153,12 @@ $(document).ready(function() {
                     price: $(this).data('price'),
                     size: $(this).data('size'),
                     qty: $(this).data('qty'),
-                    discount: $(this).data('discount'),
-                    hasPromo: $(this).data('has-promo')
+                    promoName: $(this).attr('data-promoName'),
+                    promoRate: $(this).attr('data-promoRate')
+                   
                 });
+
+               
             });
         
             // Ensure at least one product is selected
@@ -181,36 +184,31 @@ $(document).ready(function() {
                 data: formData,
                 processData: false, // Prevent jQuery from processing the data
                 contentType: false, // Prevent jQuery from setting content type
+                dataType: "json", // Set data type to JSON
                 beforeSend: function() {
-                    $("#loadingSpinner").fadeIn();
+                    $(".loadingSpinner").fadeIn();
                 },
+                
                 success: function(response) {
-
                     console.log(response);
-
-                    if(response.status=='success'){
-                        $("#loadingSpinner").fadeOut();
-                    
-                        try {
-                            const jsonResponse = JSON.parse(response);
-                            console.log(jsonResponse);
-                            alertify.success('Order Request sent successfully.');
-                        } catch (e) {
-                            console.log(response);
-                            alertify.error('Unexpected response format.');
-                        }
-                        
+                
+                    if (response.status == 'success') {
+                        $(".loadingSpinner").fadeOut();
+                        console.log(response); // Response is already parsed as JSON
+                        alertify.success('Order Request sent successfully.');
+                        location.reload();
                         $("#checkoutModal").fadeOut();
-                    }else if(response.status='error'){
+                    } else if (response.status == 'error') { // Use '==' for comparison
                         alertify.error('Order Request Failed.');
                     }
-                   
                 },
+                
                 error: function() {
-                    $("#loadingSpinner").fadeOut();
+                    $(".loadingSpinner").fadeOut();
                     alertify.error('Error occurred during the request!');
                 }
             });
+            
         });
         
         

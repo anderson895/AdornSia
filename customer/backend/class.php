@@ -67,12 +67,11 @@ class global_class extends db_connect
     
 
 
-    public function RemoveItem($cart_id)
+    public function RemoveItem($user_id,$cart_id,$size)
     { 
-        session_start();
-        $user_id = $_SESSION['user_id'];
         
-            $updateStatusQuery = "DELETE FROM `cart` WHERE cart_user_id = $user_id AND cart_prod_id=$cart_id";
+        
+            $updateStatusQuery = "DELETE FROM `cart` WHERE cart_user_id = $user_id AND cart_prod_id=$cart_id AND cart_prod_size='$size'";
             if ($this->conn->query($updateStatusQuery)) {
                 return 200;
             }
@@ -144,7 +143,7 @@ class global_class extends db_connect
     }
 }
 
-
+// Function to handle order creation
 public function OrderRequest($address, $paymentMethod, $proofOfPayment, $fileName, $subtotal, $vat, $total)
 {
     session_start();
@@ -153,7 +152,7 @@ public function OrderRequest($address, $paymentMethod, $proofOfPayment, $fileNam
     $order_date = date('Y-m-d H:i:s'); // Current timestamp
     $status = 'Pending'; // Default status
 
-    // Sanitize each input (real_escape_string is now unnecessary if using prepared statements)
+    // Sanitize each input
     $user_id = $this->conn->real_escape_string($user_id);
     $paymentMethod = $this->conn->real_escape_string($paymentMethod);
     $subtotal = $this->conn->real_escape_string($subtotal);
@@ -176,7 +175,7 @@ public function OrderRequest($address, $paymentMethod, $proofOfPayment, $fileNam
     if ($stmt = $this->conn->prepare($query)) {
 
         // Bind parameters (s = string, d = double, i = integer)
-        $stmt->bind_param('ssssdddsis', 
+        $stmt->bind_param('ssssdddsss', 
             $uniqueOrderCode, 
             $user_id, 
             $paymentMethod, 
@@ -191,6 +190,7 @@ public function OrderRequest($address, $paymentMethod, $proofOfPayment, $fileNam
 
         // Execute the query
         if ($stmt->execute()) {
+            // Return the order ID upon success
             return ['status' => 'success', 'order_id' => $this->conn->insert_id];
         } else {
             return ['status' => 'error', 'message' => 'Failed to create order: ' . $this->conn->error];
@@ -200,6 +200,7 @@ public function OrderRequest($address, $paymentMethod, $proofOfPayment, $fileNam
         return ['status' => 'error', 'message' => 'Failed to prepare statement: ' . $this->conn->error];
     }
 }
+
 
 
 

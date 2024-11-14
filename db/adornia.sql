@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 13, 2024 at 01:23 AM
+-- Generation Time: Nov 14, 2024 at 05:30 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -40,12 +40,8 @@ CREATE TABLE `address_user` (
 --
 
 INSERT INTO `address_user` (`ad_id`, `ad_user_id`, `ad_address_code`, `ad_complete_address`, `ad_status`) VALUES
-(20, 64, '031411014', 'Region III (Central Luzon) Bulacan Marilao Santa Rosa II', 0),
-(21, 64, '012809029', 'Region I (Ilocos Region) Ilocos Norte Dingras San Francisco (Surrate)', 0),
-(22, 64, '042105064', 'Region IV-A (CALABARZON) Cavite Cavite City Barangay 10-B (Kingfisher-B)', 1),
-(23, 64, '031411001', 'Region III (Central Luzon) Bulacan Marilao Abangan Norte cornbeef', 0),
-(24, 66, '031411014', 'Region III (Central Luzon) Bulacan Marilao Santa Rosa II tibagan', 1),
-(25, 66, '031411004', 'Region III (Central Luzon) Bulacan Marilao Lambakin ilang ilang street', 0);
+(26, 64, '012801001', 'Region I (Ilocos Region) Ilocos Norte Adams Adams (Pob.) tibagan', 1),
+(27, 64, '012802008', 'Region I (Ilocos Region) Ilocos Norte Bacarra Casilian dddd', 0);
 
 -- --------------------------------------------------------
 
@@ -81,19 +77,6 @@ CREATE TABLE `cart` (
   `cart_prod_size` varchar(60) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
---
--- Dumping data for table `cart`
---
-
-INSERT INTO `cart` (`cart_id`, `cart_user_id`, `cart_prod_id`, `cart_Qty`, `cart_prod_size`) VALUES
-(12, 0, 0, 1, ''),
-(16, 64, 10, 4, 'Not Selected'),
-(17, 64, 5, 8, 'Not Selected'),
-(18, 64, 7, 1, 'Not Selected'),
-(22, 66, 14, 12, '5 feet'),
-(23, 66, 14, 1, '10 feet'),
-(24, 66, 14, 1, '2 feet');
-
 -- --------------------------------------------------------
 
 --
@@ -115,7 +98,8 @@ INSERT INTO `category` (`category_id`, `category_name`, `category_description`, 
 (1, 'accessories', 'ACCESSORY is an object or device that is not essential in it', 1),
 (2, 'hoodies', 'Hoodies & Sweatshirts at Nike.com. Free delivery and returns on select orders.', 1),
 (3, 'short', 'sell (stocks or other securities or commodities) in advance of acquiring them, with the aim of making a profit when the price falls.', 1),
-(4, 'sweater', 'wadawd', 1);
+(4, 'sweater', 'A sweater (North American English) or pullover, also called a jersey or jumper (British English and Australian English), is a piece of clothing, typically with long sleeves, made of knitted or crocheted material that covers the upper part of the body.', 1),
+(5, 'tees', 'A T-shirt (also spelled tee shirt, or tee for short) is a style of fabric shirt named after the T shape of its body and sleeves. Traditionally, it has short sleeves and a round neckline, known as a crew neck, which lacks a collar.', 1);
 
 -- --------------------------------------------------------
 
@@ -148,18 +132,52 @@ CREATE TABLE `orders` (
   `order_id` int(11) NOT NULL,
   `order_code` varchar(255) NOT NULL,
   `order_user_id` int(11) NOT NULL,
-  `order_mode_of_payment` varchar(255) NOT NULL,
-  `proof of payment` varchar(255) NOT NULL,
-  `subtotal` decimal(10,3) NOT NULL,
+  `mode_of_payment` varchar(255) NOT NULL,
+  `proof_of_payment` varchar(255) DEFAULT NULL,
+  `subtotal` decimal(10,2) NOT NULL,
   `vat` float NOT NULL,
-  `sf` int(11) NOT NULL,
-  `total` decimal(10,3) NOT NULL,
-  `order_date` decimal(10,3) NOT NULL,
-  `delivered_date` decimal(10,3) NOT NULL,
-  `status` int(11) NOT NULL,
-  `reject_reason` varchar(255) NOT NULL,
-  `proof_of_del` varchar(255) NOT NULL
+  `sf` decimal(10,2) DEFAULT NULL,
+  `total` decimal(10,2) NOT NULL,
+  `delivery_address` varchar(255) NOT NULL,
+  `order_date` datetime NOT NULL,
+  `delivered_date` decimal(10,2) DEFAULT NULL,
+  `status` varchar(60) NOT NULL,
+  `reject_reason` varchar(255) DEFAULT NULL,
+  `proof_of_del` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `orders`
+--
+
+INSERT INTO `orders` (`order_id`, `order_code`, `order_user_id`, `mode_of_payment`, `proof_of_payment`, `subtotal`, `vat`, `sf`, `total`, `delivery_address`, `order_date`, `delivered_date`, `status`, `reject_reason`, `proof_of_del`) VALUES
+(113, 'CD829B0E', 64, 'Gcash', 'proof_67357cd829a362.58065406.jpeg', 127.00, 15.24, NULL, 142.24, 'Region I (Ilocos Region) Ilocos Norte Adams Adams (Pob.) tibagan', '2024-11-14 12:30:16', NULL, 'Pending', NULL, NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `orders_item`
+--
+
+CREATE TABLE `orders_item` (
+  `item_id` int(11) NOT NULL,
+  `item_order_id` int(11) NOT NULL,
+  `item_product_id` int(11) NOT NULL,
+  `item_size` varchar(60) DEFAULT NULL,
+  `item_qty` int(11) NOT NULL,
+  `item_product_price` decimal(10,0) NOT NULL,
+  `promo_discount` varchar(255) DEFAULT NULL,
+  `item_total` decimal(10,0) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `orders_item`
+--
+
+INSERT INTO `orders_item` (`item_id`, `item_order_id`, `item_product_id`, `item_size`, `item_qty`, `item_product_price`, `promo_discount`, `item_total`) VALUES
+(162, 113, 15, 'Not Selected', 1, 125, '{\"promoName\":\"Christmas bonus\",\"promoRate\":\"0.5\"}', 125),
+(163, 113, 21, 'L', 1, 1, '{\"promoName\":\"Christmas bonus\",\"promoRate\":\"0.5\"}', 1),
+(164, 113, 21, 'SM', 1, 1, '{\"promoName\":\"Christmas bonus\",\"promoRate\":\"0.5\"}', 1);
 
 -- --------------------------------------------------------
 
@@ -187,16 +205,20 @@ CREATE TABLE `product` (
 --
 
 INSERT INTO `product` (`prod_id`, `prod_code`, `prod_name`, `prod_currprice`, `prod_category_id`, `prod_critical`, `prod_description`, `prod_promo_id`, `prod_image`, `prod_added`, `prod_status`, `product_stocks`) VALUES
-(4, '00001', 'Shades', 300.00, 1, 1000, 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolore recusandae consequuntur numquam assumenda at, voluptates rem ad. Ducimus et aspernatur eligendi in ipsa adipisci eaque, dicta consequatur harum eveniet. Totam corrupti, perspiciatis, nobis beatae autem assumenda architecto non illum consectetur a eveniet hic. Eius officiis dignissimos aliquid est labore nesciunt quidem deserunt reiciendis dolores consequuntur laboriosam qui porro nulla assumenda sunt fuga cumque fugiat, numquam, quae voluptatem soluta. Ipsam, nulla? Itaque velit, fugiat illo reprehenderit nulla veritatis alias similique! Sit voluptatibus mollitia quasi temporibus dicta voluptas nemo quis?', 1, 'product_6730aa5fab2941.49463037.png', '2024-11-12 19:40:54', 1, 50),
-(5, '0002', 'product 88', 400.00, 2, 19, 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolore recusandae consequuntur numquam assumenda at, voluptates rem ad. Ducimus et aspernatur eligendi in ipsa adipisci eaque, dicta consequatur harum eveniet. Totam corrupti, perspiciatis, nobis beatae autem assumenda architecto non illum consectetur a eveniet hic. Eius officiis dignissimos aliquid est labore nesciunt quidem deserunt reiciendis dolores consequuntur laboriosam qui porro nulla assumenda sunt fuga cumque fugiat, numquam, quae voluptatem soluta. Ipsam, nulla? Itaque velit, fugiat illo reprehenderit nulla veritatis alias similique! Sit voluptatibus mollitia quasi temporibus dicta voluptas nemo quis?', NULL, 'product_6730aa7cf16c52.90921138.png', '2024-11-11 13:24:40', 1, 10),
-(6, '00003', 'Bag', 150.00, 2, 10, 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolore recusandae consequuntur numquam assumenda at, voluptates rem ad. Ducimus et aspernatur eligendi in ipsa adipisci eaque, dicta consequatur harum eveniet. Totam corrupti, perspiciatis, nobis beatae autem assumenda architecto non illum consectetur a eveniet hic. Eius officiis dignissimos aliquid est labore nesciunt quidem deserunt reiciendis dolores consequuntur laboriosam qui porro nulla assumenda sunt fuga cumque fugiat, numquam, quae voluptatem soluta. Ipsam, nulla? Itaque velit, fugiat illo reprehenderit nulla veritatis alias similique! Sit voluptatibus mollitia quasi temporibus dicta voluptas nemo quis?', NULL, 'product_6730c69b798d70.40938167.png', '2024-11-12 19:40:56', 1, 8),
-(7, '00005', 'Collection 1', 500.00, 2, 20, 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolore recusandae consequuntur numquam assumenda at, voluptates rem ad. Ducimus et aspernatur eligendi in ipsa adipisci eaque, dicta consequatur harum eveniet. Totam corrupti, perspiciatis, nobis beatae autem assumenda architecto non illum consectetur a eveniet hic. Eius officiis dignissimos aliquid est labore nesciunt quidem deserunt reiciendis dolores consequuntur laboriosam qui porro nulla assumenda sunt fuga cumque fugiat, numquam, quae voluptatem soluta. Ipsam, nulla? Itaque velit, fugiat illo reprehenderit nulla veritatis alias similique! Sit voluptatibus mollitia quasi temporibus dicta voluptas nemo quis?', 1, 'product_6730ab28d9f315.89349768.png', '2024-11-11 13:24:46', 1, 58),
-(8, '0006', 'Tshirt', 1500.00, 4, 44, 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolore recusandae consequuntur numquam assumenda at, voluptates rem ad. Ducimus et aspernatur eligendi in ipsa adipisci eaque, dicta consequatur harum eveniet. Totam corrupti, perspiciatis, nobis beatae autem assumenda architecto non illum consectetur a eveniet hic. Eius officiis dignissimos aliquid est labore nesciunt quidem deserunt reiciendis dolores consequuntur laboriosam qui porro nulla assumenda sunt fuga cumque fugiat, numquam, quae voluptatem soluta. Ipsam, nulla? Itaque velit, fugiat illo reprehenderit nulla veritatis alias similique! Sit voluptatibus mollitia quasi temporibus dicta voluptas nemo quis?', 1, 'product_6730abcc3bce93.50677965.png', '2024-11-12 19:41:06', 1, 10),
-(9, '00006', 'Tshirt 1', 50.00, 3, 10, 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolore recusandae consequuntur numquam assumenda at, voluptates rem ad. Ducimus et aspernatur eligendi in ipsa adipisci eaque, dicta consequatur harum eveniet. Totam corrupti, perspiciatis, nobis beatae autem assumenda architecto non illum consectetur a eveniet hic. Eius officiis dignissimos aliquid est labore nesciunt quidem deserunt reiciendis dolores consequuntur laboriosam qui porro nulla assumenda sunt fuga cumque fugiat, numquam, quae voluptatem soluta. Ipsam, nulla? Itaque velit, fugiat illo reprehenderit nulla veritatis alias similique! Sit voluptatibus mollitia quasi temporibus dicta voluptas nemo quis?', 2, 'product_6730ac31bacc99.31214733.png', '2024-11-11 13:24:52', 1, 5),
-(10, '000042', 'produc 505', 100.00, 3, 5, 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolore recusandae consequuntur numquam assumenda at, voluptates rem ad. Ducimus et aspernatur eligendi in ipsa adipisci eaque, dicta consequatur harum eveniet. Totam corrupti, perspiciatis, nobis beatae autem assumenda architecto non illum consectetur a eveniet hic. Eius officiis dignissimos aliquid est labore nesciunt quidem deserunt reiciendis dolores consequuntur laboriosam qui porro nulla assumenda sunt fuga cumque fugiat, numquam, quae voluptatem soluta. Ipsam, nulla? Itaque velit, fugiat illo reprehenderit nulla veritatis alias similique! Sit voluptatibus mollitia quasi temporibus dicta voluptas nemo quis?', NULL, 'product_6730c6bfd551a4.36366372.png', '2024-11-11 13:24:55', 1, 70),
-(12, '00006', 'Boxer Shorts', 150.00, 3, 10, 'The world\'s largest selection of products at your fingertips. ... Order before 12NN and get your package on the same day in select stores. ... Have your items ...', 2, 'product_67319bd1054c89.00751699.png', '2024-11-11 13:53:21', 1, 50),
-(13, 'test', 'test', 234.00, 1, 234, 'test', 1, 'product_6731a82c6f2047.42594182.png', '2024-11-11 14:46:04', 1, 234),
-(14, '050505', 'HAZEL', 500.00, 2, 10, 'gdzrkjhggdzrkjhggdzrkjhggdzrkjhggdzrkjhggdzrkjhggdzrkjhggdzrkjhggdzrkjhggdzrkjhggdzrkjhggdzrkjhggdzrkjhggdzrkjhggdzrkjhggdzrkjhggdzrkjhggdzrkjhggdzrkjhggdzrkjhggdzrkjhggdzrkjhggdzrkjhggdzrkjhg', 1, 'product_67333fcdd53c37.86791080.jpg', '2024-11-12 19:45:17', 1, 50);
+(15, '0001', 'shades', 250.00, 1, 10, 'Shades Accessories · Sunglasses Chain Diy, Glasses Frames Trendy, Festival Sunglasses, Sunglasses Chain, Fashion Eye · Kacamata Fashion, Celebrity Casual', 1, 'product_67356084abb416.35727954.png', '2024-11-14 10:29:24', 1, 5),
+(16, '0002', 'Bag 1', 300.00, 1, 50, 'Purse accessories are fashion accessories that are made specifically for handbags, to enhance their functionality or appearance.', 1, 'product_673560e2e77e51.22127315.png', '2024-11-14 10:30:58', 1, 100),
+(17, '0003', 'Bag 2', 300.00, 1, 10, 'Purse accessories are fashion accessories that are made specifically for handbags, to enhance their functionality or appearance.', NULL, 'product_67356121cfe654.79399269.png', '2024-11-14 10:32:01', 1, 10),
+(18, '0004', 'Bag 4', 300.00, 1, 15, 'Purse accessories are fashion accessories that are made specifically for handbags, to enhance their functionality or appearance.', 1, 'product_6735615876d684.97140108.png', '2024-11-14 10:32:56', 1, 15),
+(19, '0005', 'White Bags', 400.00, 1, 10, 'Purse accessories are fashion accessories that are made specifically for handbags, to enhance their functionality or appearance.', 2, 'product_6735618f606390.62713720.png', '2024-11-14 10:33:51', 1, 50),
+(20, '0006', 'The Accent Bag', 1500.00, 2, 10, 'Purse accessories are fashion accessories that are made specifically for handbags, to enhance their functionality or appearance.', 1, 'product_673561bd2c3605.83231922.png', '2024-11-14 10:34:37', 1, 50),
+(21, '0007', 'Hood 1', 3500.00, 2, 10, 'Purse accessories are fashion accessories that are made specifically for handbags, to enhance their functionality or appearance.', 1, 'product_673561ef5a2965.37814696.png', '2024-11-14 10:35:27', 1, 99),
+(22, '0008', 'Hood 2', 4500.00, 2, 10, 'Purse accessories are fashion accessories that are made specifically for handbags, to enhance their functionality or appearance.', NULL, 'product_6735622c58f638.21901723.png', '2024-11-14 10:36:28', 1, 10),
+(23, '0009', 'White Hoodies', 5000.00, 2, 10, 'Purse accessories are fashion accessories that are made specifically for handbags, to enhance their functionality or appearance.', 1, 'product_6735625fddc5a1.20092356.png', '2024-11-14 10:37:19', 1, 100),
+(24, '0010', 'Short 1', 150.00, 3, 10, 'Purse accessories are fashion accessories that are made specifically for handbags, to enhance their functionality or appearance.', NULL, 'product_67356292281fc9.44794739.png', '2024-11-14 10:38:10', 1, 10),
+(25, '0011', 'short 2', 160.00, 3, 10, 'Purse accessories are fashion accessories that are made specifically for handbags, to enhance their functionality or appearance.', NULL, 'product_673562b7399d94.75187942.png', '2024-11-14 10:38:47', 1, 66),
+(26, '0012', 'Sweeter 1', 3000.00, 4, 50, '', 1, 'product_673562de1eb309.51891056.png', '2024-11-14 10:39:26', 1, 100),
+(27, '0013', 'Tees 1', 1300.00, 5, 50, 'Purse accessories are fashion accessories that are made specifically for handbags, to enhance their functionality or appearance.', 1, 'product_67356306c468c5.02306630.png', '2024-11-14 10:40:06', 1, 15),
+(28, '0014', 'Black Tees', 2500.00, 5, 10, 'Purse accessories are fashion accessories that are made specifically for handbags, to enhance their functionality or appearance.', 2, 'product_6735633bc0b540.00223420.png', '2024-11-14 10:40:59', 1, 15);
 
 -- --------------------------------------------------------
 
@@ -216,12 +238,30 @@ CREATE TABLE `product_sizes` (
 --
 
 INSERT INTO `product_sizes` (`size_id`, `size_name`, `size_prod_id`, `size_status`) VALUES
-(1, 'XL', 12, 1),
-(2, 'S', 12, 1),
-(3, 'SM', 12, 1),
-(4, '10 feet', 14, 1),
-(5, '2 feet', 14, 1),
-(6, '5 feet', 14, 1);
+(7, 'SM', 16, 1),
+(8, 'L', 16, 1),
+(9, 'XL', 16, 1),
+(10, 'SM', 17, 1),
+(11, 'M', 17, 1),
+(12, 'L', 17, 1),
+(13, 'XL', 17, 1),
+(14, 'SM', 18, 1),
+(15, 'S', 19, 1),
+(16, 'L', 19, 1),
+(17, 'XL', 20, 1),
+(18, 'SM', 21, 1),
+(19, 'L', 21, 1),
+(20, 'SM', 22, 1),
+(21, 'L', 22, 1),
+(22, 'M', 22, 1),
+(23, 'XL', 22, 1),
+(24, 'S', 23, 1),
+(25, 'M', 23, 1),
+(26, 'L', 23, 1),
+(27, 'XL', 23, 1),
+(28, 'SM', 24, 1),
+(29, 'M', 24, 1),
+(30, 'SM', 27, 1);
 
 -- --------------------------------------------------------
 
@@ -243,8 +283,8 @@ CREATE TABLE `promo` (
 --
 
 INSERT INTO `promo` (`promo_id`, `promo_name`, `promo_description`, `promo_rate`, `promo_status`, `promo_expiration`) VALUES
-(1, 'Christmas bonus', ' Christmas Bonus constitutes additional compensation provided to employees by their employer. The management holds complete discretion in determining the ', 0.5, 1, '2024-11-09'),
-(2, 'Valentines Day', '', 0.2, 1, '2024-11-12');
+(1, 'Christmas bonus', ' Christmas Bonus constitutes additional compensation provided to employees by their employer. The management holds complete discretion in determining the ', 0.5, 1, '2024-12-09'),
+(2, 'Valentines Day', '', 0.2, 1, '2024-12-12');
 
 -- --------------------------------------------------------
 
@@ -292,7 +332,9 @@ ALTER TABLE `admin`
 -- Indexes for table `cart`
 --
 ALTER TABLE `cart`
-  ADD PRIMARY KEY (`cart_id`);
+  ADD PRIMARY KEY (`cart_id`),
+  ADD KEY `cart_prod_id` (`cart_prod_id`),
+  ADD KEY `cart_user_id` (`cart_user_id`);
 
 --
 -- Indexes for table `category`
@@ -310,7 +352,15 @@ ALTER TABLE `ewallet`
 -- Indexes for table `orders`
 --
 ALTER TABLE `orders`
-  ADD PRIMARY KEY (`proof of payment`);
+  ADD PRIMARY KEY (`order_id`);
+
+--
+-- Indexes for table `orders_item`
+--
+ALTER TABLE `orders_item`
+  ADD PRIMARY KEY (`item_id`),
+  ADD KEY `item_order_id` (`item_order_id`),
+  ADD KEY `item_product_id` (`item_product_id`);
 
 --
 -- Indexes for table `product`
@@ -345,7 +395,7 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT for table `address_user`
 --
 ALTER TABLE `address_user`
-  MODIFY `ad_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
+  MODIFY `ad_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
 
 --
 -- AUTO_INCREMENT for table `admin`
@@ -357,13 +407,13 @@ ALTER TABLE `admin`
 -- AUTO_INCREMENT for table `cart`
 --
 ALTER TABLE `cart`
-  MODIFY `cart_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
+  MODIFY `cart_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=71;
 
 --
 -- AUTO_INCREMENT for table `category`
 --
 ALTER TABLE `category`
-  MODIFY `category_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `category_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `ewallet`
@@ -372,16 +422,28 @@ ALTER TABLE `ewallet`
   MODIFY `e_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
+-- AUTO_INCREMENT for table `orders`
+--
+ALTER TABLE `orders`
+  MODIFY `order_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=114;
+
+--
+-- AUTO_INCREMENT for table `orders_item`
+--
+ALTER TABLE `orders_item`
+  MODIFY `item_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=165;
+
+--
 -- AUTO_INCREMENT for table `product`
 --
 ALTER TABLE `product`
-  MODIFY `prod_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `prod_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
 
 --
 -- AUTO_INCREMENT for table `product_sizes`
 --
 ALTER TABLE `product_sizes`
-  MODIFY `size_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `size_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
 
 --
 -- AUTO_INCREMENT for table `promo`
@@ -404,6 +466,20 @@ ALTER TABLE `user`
 --
 ALTER TABLE `address_user`
   ADD CONSTRAINT `address_user_ibfk_1` FOREIGN KEY (`ad_user_id`) REFERENCES `user` (`user_id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `cart`
+--
+ALTER TABLE `cart`
+  ADD CONSTRAINT `cart_ibfk_1` FOREIGN KEY (`cart_prod_id`) REFERENCES `product` (`prod_id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `cart_ibfk_2` FOREIGN KEY (`cart_user_id`) REFERENCES `user` (`user_id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `orders_item`
+--
+ALTER TABLE `orders_item`
+  ADD CONSTRAINT `orders_item_ibfk_1` FOREIGN KEY (`item_order_id`) REFERENCES `orders` (`order_id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `orders_item_ibfk_2` FOREIGN KEY (`item_product_id`) REFERENCES `product` (`prod_id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `product_sizes`

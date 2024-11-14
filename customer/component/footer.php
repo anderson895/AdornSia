@@ -85,6 +85,12 @@
       <button class="closeModal mr-4 px-4 py-2 bg-gray-300 text-gray-700 rounded hover:bg-gray-400">Cancel</button>
       <button id="btnConfirmCheckout" class=" px-4 py-2 bg-red-500 text-white rounded hover:bg-red-600">Confirm</button>
     </div>
+    <div class="loadingSpinner" style="display:none;">
+        <div class=" absolute inset-0 bg-white bg-opacity-75 flex items-center justify-center">
+          <div class="w-10 h-10 border-4 border-indigo-500 border-t-transparent rounded-full animate-spin"></div>
+        </div>
+     </div>
+     
   </div>
 </div>
 

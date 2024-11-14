@@ -28,17 +28,29 @@ $totalSavings = 0;
                 if ($cart['prod_promo_id']) {
                     $totalSavings += ($cart['prod_currprice'] - $discounted_price) * $cart['cart_Qty'];
                 }
+
+
+                if ($cart['prod_promo_id']) {
+                    $price = number_format($cart['prod_currprice'] * $cart['cart_Qty'] * (1 - $cart['promo_rate']), 2) . " - " . ($cart['promo_rate'] * 100) . "%";
+                } else {
+                    $price = number_format($cart['prod_currprice'] * $cart['cart_Qty'], 2);
+                }
+
+
+                
+
             ?>
             <!-- Product Item -->
             <div class="flex items-center border-t border-gray-200 pt-6 relative">
                 <!-- Delete Button (X) -->
                 <button class="absolute top-0 right-0 text-red-600 text-lg p-1 hover:bg-gray-200 rounded-full TogglerRemoveItem" 
                         data-cart_id=<?=$cart['cart_prod_id']?>
+                        data-size=<?=$cart['cart_prod_size']?>
                         >
                     <span class="material-icons">close</span>
                 </button>
 
-                <input type="checkbox" class="product-checkbox mr-4 text-red-500" data-product-id="<?=$cart['cart_prod_id']?>" data-price="<?=$cart['prod_currprice']?>" data-size="<?=$cart['cart_prod_size']?>" data-qty="<?=$cart['cart_Qty']?>" data-discount="<?=$cart['promo_rate']?>" data-has-promo="<?=$cart['prod_promo_id']?>">
+                <input type="checkbox" class="product-checkbox mr-4 text-red-500" data-product-id="<?=$cart['cart_prod_id']?>" data-price=<?=$price?> data-size="<?=$cart['cart_prod_size']?>" data-qty="<?=$cart['cart_Qty']?>" data-promoName="<?=$cart['promo_name']?>" data-promoRate="<?=$cart['promo_rate']?>">
                 <img src="../upload/<?=$cart['prod_image']?>" alt="Product Image" class="w-20 h-20 object-cover rounded-md shadow-lg mr-6">
                 <div class="flex-grow">
                     <h4 class="font-semibold text-gray-900"><?=$cart['prod_name']?></h4>
@@ -64,10 +76,10 @@ $totalSavings = 0;
                 </div>
                 <div class="text-right">
                     <?php if ($cart['prod_promo_id']): ?>
-                        <p class="text-red-600 font-semibold">Php <?=number_format(($cart['prod_currprice']-($cart['prod_currprice']-$discounted_price))*$cart['cart_Qty'])?></p>
+                        <p class="text-red-600 font-semibold ">Php <span class='itemPrice'></span><?=number_format(($cart['prod_currprice']-($cart['prod_currprice']-$discounted_price))*$cart['cart_Qty'])?></p>
                         <p class="text-xs line-through text-gray-400">Php <?=number_format($cart['prod_currprice']*$cart['cart_Qty'])?> - <?=($cart['promo_rate']*100)?>%</p>
                     <?php else: ?>
-                        <p class="text-red-600 font-semibold">Php <?=number_format($cart['prod_currprice']*$cart['cart_Qty'], 2)?></p>
+                        <p class="text-red-600 font-semibold itemPrice">Php <?=number_format($cart['prod_currprice']*$cart['cart_Qty'], 2)?></p>
                     <?php endif; ?>
                 </div>
             </div>

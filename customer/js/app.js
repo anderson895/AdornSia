@@ -11,11 +11,11 @@ $(document).ready(function() {
       // Sample data, replace with actual values from your PHP/Backend
         let cart_user_id = $(this).data('user_id');
         let cart_prod_id = $(this).attr('data-product_id'); 
-        let cart_prod_size = $('.size-btn.bg-blue-600').data('size') || "Not Selected"; // Size from selected button
+        let cart_prod_size = $('.size-btn.bg-blue-600').data('size') || "N/A"; // Size from selected button
 
         var size = $('.size-btn').text(); // Check if size button has text
 
-        if (size && cart_prod_size == "Not Selected") { 
+        if (size && cart_prod_size == "N/A") { 
             alertify.error('Select Size is Required!');
             return;
         }

@@ -9,7 +9,7 @@ $(document).ready(function() {
 function AutoRefresh() {
     setInterval(function() {
         fetchOrders();
-    }, 10000);
+    }, 2000);
 }
 
 
@@ -52,19 +52,28 @@ function fetchOrders() {
 
 
 function displayOrders(orders) {
+    // Get the step from the URL
+    const urlParams = new URLSearchParams(window.location.search);
+    const currentStep = urlParams.get('step') || 'Pending'; // Default to 'Pending' if no step is provided
+
     let tableBody = $('#recordTable tbody');
     tableBody.empty();
-    orders.forEach(function(orderItem) { 
+
+    // Filter orders based on the current step
+    const filteredOrders = orders.filter(function(orderItem) {
+        return orderItem.order_status === currentStep;
+    });
+
+    // Display the filtered orders
+    filteredOrders.forEach(function(orderItem) { 
         var orderDate = new Date(orderItem.order_date);
-
-
         var formattedDate = orderDate.toLocaleString('en-US', { 
-          month: 'long', 
-          day: 'numeric', 
-          year: 'numeric', 
-          hour: 'numeric', 
-          minute: 'numeric', 
-          hour12: true 
+            month: 'long', 
+            day: 'numeric', 
+            year: 'numeric', 
+            hour: 'numeric', 
+            minute: 'numeric', 
+            hour12: true 
         });
 
         let orderRow = `
@@ -77,7 +86,7 @@ function displayOrders(orders) {
                 <td class="px-4 py-2 text-sm text-gray-600">${orderItem.vat}</td>
                 <td class="px-4 py-2 text-sm text-gray-600">${orderItem.total}</td>
                 <td class="px-4 py-2 text-sm text-gray-600">${orderItem.delivery_address}</td>
-                  <td class="px-4 py-2 text-sm text-gray-600">${orderItem.order_status}</td>
+                <td class="px-4 py-2 text-sm text-gray-600">${orderItem.order_status}</td>
                 <td class="px-4 py-2 text-sm text-gray-600">
                     <button class="bg-green-600 hover:bg-gray-300 text-white font-semibold py-2 px-4 rounded-md focus:outline-none focus:ring-2 focus:ring-gray-400">
                         Update
@@ -88,4 +97,5 @@ function displayOrders(orders) {
         tableBody.append(orderRow);
     });
 }
+
 

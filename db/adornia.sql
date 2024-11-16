@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 14, 2024 at 05:30 AM
+-- Generation Time: Nov 16, 2024 at 08:12 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -141,7 +141,7 @@ CREATE TABLE `orders` (
   `delivery_address` varchar(255) NOT NULL,
   `order_date` datetime NOT NULL,
   `delivered_date` decimal(10,2) DEFAULT NULL,
-  `status` varchar(60) NOT NULL,
+  `order_status` varchar(60) NOT NULL,
   `reject_reason` varchar(255) DEFAULT NULL,
   `proof_of_del` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
@@ -150,8 +150,9 @@ CREATE TABLE `orders` (
 -- Dumping data for table `orders`
 --
 
-INSERT INTO `orders` (`order_id`, `order_code`, `order_user_id`, `mode_of_payment`, `proof_of_payment`, `subtotal`, `vat`, `sf`, `total`, `delivery_address`, `order_date`, `delivered_date`, `status`, `reject_reason`, `proof_of_del`) VALUES
-(113, 'CD829B0E', 64, 'Gcash', 'proof_67357cd829a362.58065406.jpeg', 127.00, 15.24, NULL, 142.24, 'Region I (Ilocos Region) Ilocos Norte Adams Adams (Pob.) tibagan', '2024-11-14 12:30:16', NULL, 'Pending', NULL, NULL);
+INSERT INTO `orders` (`order_id`, `order_code`, `order_user_id`, `mode_of_payment`, `proof_of_payment`, `subtotal`, `vat`, `sf`, `total`, `delivery_address`, `order_date`, `delivered_date`, `order_status`, `reject_reason`, `proof_of_del`) VALUES
+(114, '39FBA927', 64, 'Gcash', 'proof_6738139fb960b1.66859655.jpeg', 470.00, 56.4, NULL, 526.40, 'Region I (Ilocos Region) Ilocos Norte Adams Adams (Pob.) tibagan', '2024-11-16 11:38:07', NULL, 'Accept', NULL, NULL),
+(115, '99CD5031', 64, 'cod', NULL, 651.00, 78.12, NULL, 729.12, 'Region I (Ilocos Region) Ilocos Norte Adams Adams (Pob.) tibagan', '2024-11-16 13:11:56', NULL, 'Pending', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -175,9 +176,11 @@ CREATE TABLE `orders_item` (
 --
 
 INSERT INTO `orders_item` (`item_id`, `item_order_id`, `item_product_id`, `item_size`, `item_qty`, `item_product_price`, `promo_discount`, `item_total`) VALUES
-(162, 113, 15, 'Not Selected', 1, 125, '{\"promoName\":\"Christmas bonus\",\"promoRate\":\"0.5\"}', 125),
-(163, 113, 21, 'L', 1, 1, '{\"promoName\":\"Christmas bonus\",\"promoRate\":\"0.5\"}', 1),
-(164, 113, 21, 'SM', 1, 1, '{\"promoName\":\"Christmas bonus\",\"promoRate\":\"0.5\"}', 1);
+(165, 114, 18, 'SM', 1, 150, '{\"promoName\":\"Christmas bonus\",\"promoRate\":\"0.5\"}', 150),
+(166, 114, 19, 'L', 1, 320, '{\"promoName\":\"Valentines Day\",\"promoRate\":\"0.2\"}', 320),
+(167, 115, 15, 'Not Selected', 2, 250, '{\"promoName\":\"Christmas bonus\",\"promoRate\":\"0.5\"}', 500),
+(168, 115, 18, 'SM', 1, 150, '{\"promoName\":\"Christmas bonus\",\"promoRate\":\"0.5\"}', 150),
+(169, 115, 26, 'Not Selected', 1, 1, '{\"promoName\":\"Christmas bonus\",\"promoRate\":\"0.5\"}', 1);
 
 -- --------------------------------------------------------
 
@@ -407,7 +410,7 @@ ALTER TABLE `admin`
 -- AUTO_INCREMENT for table `cart`
 --
 ALTER TABLE `cart`
-  MODIFY `cart_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=71;
+  MODIFY `cart_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=82;
 
 --
 -- AUTO_INCREMENT for table `category`
@@ -425,13 +428,13 @@ ALTER TABLE `ewallet`
 -- AUTO_INCREMENT for table `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `order_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=114;
+  MODIFY `order_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=116;
 
 --
 -- AUTO_INCREMENT for table `orders_item`
 --
 ALTER TABLE `orders_item`
-  MODIFY `item_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=165;
+  MODIFY `item_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=170;
 
 --
 -- AUTO_INCREMENT for table `product`

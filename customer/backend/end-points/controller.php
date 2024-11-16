@@ -52,6 +52,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         // I-echo ang response upang ma-access ito sa frontend
         echo json_encode(['status' => $response]);
     }else if ($_POST['requestType']=="RemoveItem") {
+        echo "<pre>";
+        print_r($_POST);
+        echo "</pre>";
         session_start();
         $user_id = $_SESSION['user_id'];
         $cart_id = $_POST['cart_id'];

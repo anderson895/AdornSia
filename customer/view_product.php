@@ -62,7 +62,7 @@ endforeach;
                         <p><?=$product['prod_description']?></p>
                     </div>
                 </div>
-               <?php 
+<?php 
     $result = $db->getAllProductSize($product_id);
     $prod_size = $result->fetch_all(MYSQLI_ASSOC);
     if (!empty($prod_size)): 

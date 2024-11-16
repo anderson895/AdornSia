@@ -45,7 +45,7 @@ $totalSavings = 0;
                 <!-- Delete Button (X) -->
                 <button class="absolute top-0 right-0 text-red-600 text-lg p-1 hover:bg-gray-200 rounded-full TogglerRemoveItem" 
                         data-cart_id=<?=$cart['cart_prod_id']?>
-                        data-size=<?=$cart['cart_prod_size']?>
+                        data-size='<?=$cart['cart_prod_size']?>'
                         >
                     <span class="material-icons">close</span>
                 </button>

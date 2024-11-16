@@ -66,6 +66,58 @@ class global_class extends db_connect
         $stmt = $this->conn->prepare("UPDATE `orders` SET `order_status` = '$newStatus' WHERE `orders`.`order_id` = '$orderId'");
         return $stmt->execute();
     }
+
+
+    public function stockout($orderId, $newStatus) {
+        // Start transaction
+        mysqli_query($this->conn, "START TRANSACTION");
+    
+        try {
+            // Step 1: Fetch order items
+            $orderItemsQuery = "SELECT item_product_id, item_qty FROM orders_item WHERE item_order_id = '$orderId'";
+            $orderItemsResult = mysqli_query($this->conn, $orderItemsQuery);
+    
+            if (!$orderItemsResult || mysqli_num_rows($orderItemsResult) === 0) {
+                throw new Exception("No items found for order ID: $orderId.");
+            }
+    
+            // Step 2: Deduct stock for each item
+            while ($item = mysqli_fetch_assoc($orderItemsResult)) {
+                $productId = $item['item_product_id'];
+                $itemQty = $item['item_qty'];
+    
+                // Deduct stock with validation to prevent negative stocks
+                $updateStockQuery = "
+                    UPDATE product 
+                    SET product_stocks = product_stocks - $itemQty 
+                    WHERE prod_id = $productId AND product_stocks >= $itemQty
+                ";
+                $updateResult = mysqli_query($this->conn, $updateStockQuery);
+    
+                if (!$updateResult || mysqli_affected_rows($this->conn) === 0) {
+                    throw new Exception("Insufficient stock for product ID: $productId.");
+                }
+            }
+    
+            // Step 3: Update order status
+            $updateOrderStatusQuery = "UPDATE orders SET order_status = '$newStatus' WHERE order_id = '$orderId'";
+            $updateOrderResult = mysqli_query($this->conn, $updateOrderStatusQuery);
+    
+            if (!$updateOrderResult || mysqli_affected_rows($this->conn) === 0) {
+                throw new Exception("Failed to update order status for order ID: $orderId.");
+            }
+    
+            // Commit transaction
+            mysqli_query($this->conn, "COMMIT");
+            return true;
+        } catch (Exception $e) {
+            // Rollback transaction on error
+            mysqli_query($this->conn, "ROLLBACK");
+            error_log("Stockout failed: " . $e->getMessage());
+            return false;
+        }
+    }
+    
     
 
     public function GetAllOrders()

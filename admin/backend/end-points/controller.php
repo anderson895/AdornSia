@@ -190,9 +190,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $orderId = $_POST['orderId'];         // Get order ID
         $orderStatus = $_POST['orderStatus']; // Get the new order status
         
+
+        if($orderStatus=="Accept"){
+            $updateStocks = $db->stockout($orderId, $orderStatus);
+        }
+
         // Assuming the method updateOrderStatus accepts $orderId and $orderStatus
         $order = $db->updateOrderStatus($orderId, $orderStatus);
         
+        echo $order;
         // Check if the product was successfully updated
         if ($order === 'success') {
             echo 200;  // Success response

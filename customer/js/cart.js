@@ -8,28 +8,26 @@ $(document).ready(function() {
         $('.product-checkbox:checked').each(function() {
 
             const productId = parseFloat($(this).data('product-id'));
+            const priceString = $(this).data('price'); // Halimbawa: '1,000'
+            const price = parseFloat(priceString.replace(/,/g, ''));
             
 
-            const price = parseFloat($(this).data('price'));
+            const originalprice = parseFloat($(this).data('originalprice'));
             
             const qty = parseInt($(this).data('qty'));
             const discountRate = parseFloat($(this).data('discount'));
-            const hasPromo = $(this).data('has-promo');
 
-            const productTotal = price * qty;
+            const productTotal = price;
             subTotal += productTotal;
 
-            if (hasPromo) {
-                const discountAmount = productTotal * discountRate;
-                totalSavings += discountAmount;
-            }
+         
+            console.log(price);
         });
 
         vat = subTotal * 0.12; 
-        total = subTotal + vat - totalSavings;
+        total = subTotal + vat;
 
         $('#sub-total').text(subTotal.toFixed(2));
-        $('#total-savings').text(totalSavings.toFixed(2));
         $('#vat').text(vat.toFixed(2));
         $('#total').text(total.toFixed(2));
     }
@@ -102,6 +100,8 @@ $(document).ready(function() {
 
         $('#btnConfirmCheckout').click(function (e) {
             e.preventDefault();
+
+           
         
             // Retrieve values for subtotal, VAT, and total
             var subtotal = $('#sub-total').text();
@@ -150,17 +150,18 @@ $(document).ready(function() {
             $('.product-checkbox:checked').each(function() {
                 selectedProducts.push({
                     productId: $(this).data('product-id'),
+                    originalPrice: $(this).data('originalprice'),  // Use $(this) to get data for the current checkbox
                     price: $(this).data('price'),
                     size: $(this).data('size'),
                     qty: $(this).data('qty'),
-                    promoName: $(this).attr('data-promoName'),
-                    promoRate: $(this).attr('data-promoRate')
-                   
+                    promoName: $(this).data('promoname'),
+                    promoRate: $(this).data('promorate')
                 });
-
-               
+            
+                // Log the 'originalprice' for the current checkbox
+                console.log($(this).data('originalprice'));  // Logs the 'data-originalprice' value of the selected checkbox
             });
-        
+            
             // Ensure at least one product is selected
             if (selectedProducts.length === 0) {
                 alertify.error('Please select at least one product.');

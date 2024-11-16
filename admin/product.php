@@ -244,7 +244,7 @@ $db = new global_class();
                 <div class="mb-4">
                     <label for="product_Promo_update" class="block text-sm font-medium text-gray-700">Choose Promo</label>
                     <select id="product_Promo_update" name="product_Promo_update" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
-                        <option value="" disabled selected>Select a Promo</option>
+                        <option value="">Remove Promo</option>
                         <?php $fetch_all_promo = $db->fetch_all_promo();
                             if ($fetch_all_promo): 
                                 foreach ($fetch_all_promo as $promo): ?>

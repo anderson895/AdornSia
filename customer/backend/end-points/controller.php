@@ -52,9 +52,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         // I-echo ang response upang ma-access ito sa frontend
         echo json_encode(['status' => $response]);
     }else if ($_POST['requestType']=="RemoveItem") {
-        echo "<pre>";
-        print_r($_POST);
-        echo "</pre>";
+       
         session_start();
         $user_id = $_SESSION['user_id'];
         $cart_id = $_POST['cart_id'];
@@ -125,8 +123,8 @@ if ($response['status'] === 'success') {
         foreach ($selectedProductsArray as $product) {
             $itemProductId = $product['productId'];
             $itemQty = intval($product['qty']);  // Converts to integer
-            $itemPrice = floatval($product['price']);  // Converts to float
-            
+            $itemTotalPrice = floatval($product['price']);  // Converts to float
+            $originalPrice = floatval($product['originalPrice']);
             $itemSize = $product['size'];
         
             // Encode promo details as JSON
@@ -135,7 +133,6 @@ if ($response['status'] === 'success') {
                 'promoRate' => $product['promoRate']
             ]);
         
-            $itemTotal = $itemQty * $itemPrice; // Calculate the total price for each product
             
             // Prepare the SQL query to insert each product into orders_item
             $insertQuery = "INSERT INTO orders_item (item_order_id, item_product_id, item_size, item_qty, item_product_price, promo_discount, item_total) 
@@ -143,7 +140,7 @@ if ($response['status'] === 'success') {
             $stmt = $db->conn->prepare($insertQuery);
             
             // Bind parameters with correct data types
-            $stmt->bind_param("iisissd", $orderId, $itemProductId, $itemSize, $itemQty, $itemPrice, $itemDiscountDetails, $itemTotal);
+            $stmt->bind_param("iisissd", $orderId, $itemProductId, $itemSize, $itemQty, $originalPrice, $itemDiscountDetails, $itemTotalPrice);
             
             $user_id = $_SESSION['user_id'];
 

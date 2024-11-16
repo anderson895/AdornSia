@@ -128,7 +128,7 @@ $(document).ready(function() {
             success: function(response) {
                 // Hide loading spinner
                 console.log(response)
-              //  location.reload();
+               location.reload();
             },
             error: function() {
                 alertify.error('Error occurred during the request!');

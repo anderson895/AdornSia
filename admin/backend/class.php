@@ -9,7 +9,27 @@ class global_class extends db_connect
         $this->connect();
     }
 
-   
+    public function fetch_item_orders($orderId) {
+        $query = "
+            SELECT * FROM orders_item 
+            LEFT JOIN product
+            ON product.prod_id = orders_item.item_product_id
+            LEFT JOIN category
+            ON category.category_id = product.prod_category_id
+            LEFT JOIN orders
+            ON orders.order_id = orders_item.item_order_id 
+            WHERE item_order_id = '$orderId'
+        ";
+        $result = $this->conn->query($query);
+        $items = [];
+        if ($result) {
+            while ($row = $result->fetch_assoc()) {
+                $items[] = $row;
+            }
+        }
+        return $items;
+    }
+    
 
 
     public function addProduct(
@@ -54,6 +74,8 @@ class global_class extends db_connect
         }
     }
     
+
+  
 
 
     public function addProductSize($prod_id, $size) {

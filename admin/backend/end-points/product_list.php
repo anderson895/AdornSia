@@ -37,7 +37,7 @@ if (!empty($fetch_all_product)) {  // Check if the array is not empty
             data-prod_id="<?=$product['prod_id']?>"
             data-prod_name="<?=$product['prod_name']?>"
             >Stockin</button>
-            <button class="bg-gray-500 text-white py-1 px-3 rounded-md">Disable</button>
+            <button class="bg-gray-500 text-white py-1 px-3 rounded-md">Sizes</button>
             <button class="bg-red-500 text-white py-1 px-3 rounded-md">Remove</button>
         </div>
     </td>

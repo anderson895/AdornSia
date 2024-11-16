@@ -98,10 +98,12 @@ function displayOrders(orders) {
                         <option value="Delivered" ${orderItem.order_status == "Delivered" ? "selected" : ""}>Delivered</option>
                         <option value="Canceled" ${orderItem.order_status == "Canceled" ? "selected" : ""}>Canceled</option>
                     </select>
-                    <button 
-                        class="mt-2 w-full px-4 py-2 text-white bg-green-500 rounded-md shadow-sm hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-green-300 focus:ring-offset-1">
+                   <button 
+                        class="mt-2 w-full px-4 py-2 text-white bg-green-500 rounded-md shadow-sm hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-green-300 focus:ring-offset-1"
+                        onclick="location.href='view_orders.php?orderId=${orderItem.order_id}';">
                         View
                     </button>
+
                 </td>
 
 

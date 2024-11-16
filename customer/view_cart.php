@@ -57,10 +57,7 @@ $db = new global_class();
                     <p>Sub-total (<span id="total-items"><?= count($getCartlist) ?></span> items)</p>
                     <p>Php <span id="sub-total"><?= number_format($subTotal, 2) ?></span></p>
                 </div>
-                <div class="flex justify-between text-sm text-green-600 mb-2">
-                    <p>Total Saving</p>
-                    <p>- Php <span id="total-savings"><?= number_format($totalSavings, 2) ?></span></p>
-                </div>
+                
                 <div class="border-t border-gray-200 mt-6 pt-4">
                     <div class="flex justify-between text-sm text-gray-700">
                         <p>Vat (12%)</p>

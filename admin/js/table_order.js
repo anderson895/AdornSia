@@ -9,7 +9,7 @@ $(document).ready(function() {
 function AutoRefresh() {
     setInterval(function() {
         fetchOrders();
-    }, 4000);
+    }, 3000);
 }
 
 
@@ -87,11 +87,14 @@ function displayOrders(orders) {
                 <td class="px-4 py-2 text-sm text-gray-600">${orderItem.delivery_address}</td>
                 <td class="px-4 py-2 text-sm text-gray-600">
                    <select 
-                        class="UpdateOrderStatus w-full p-2 text-white bg-green-500 border border-blue-500 rounded-md shadow-sm appearance-none cursor-pointer focus:outline-none focus:ring-2 focus:ring-blue-300 focus:border-blue-300" 
+                        class="UpdateOrderStatus w-full p-2 text-white bg-blue-500 border border-blue-500 rounded-md shadow-sm appearance-none cursor-pointer focus:outline-none focus:ring-2 focus:ring-blue-300 focus:border-blue-300" 
                         data-orderId="${orderItem.order_id}" 
                         data-initial-status="${orderItem.order_status}">
-                        <option value="Pending" ${orderItem.order_status == "Pending" ? "selected" : ""}>Pending</option>
+                        ${orderItem.order_status == "Pending" ? 
+                            '<option value="" selected>Pending</option>' : ''
+                        }
                         <option value="Accept" ${orderItem.order_status == "Accept" ? "selected" : ""}>Accept</option>
+                        <option value="Shipped" ${orderItem.order_status == "Shipped" ? "selected" : ""}>Shipped</option>
                         <option value="Delivered" ${orderItem.order_status == "Delivered" ? "selected" : ""}>Delivered</option>
                         <option value="Canceled" ${orderItem.order_status == "Canceled" ? "selected" : ""}>Canceled</option>
                     </select>

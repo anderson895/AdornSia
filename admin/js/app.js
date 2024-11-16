@@ -9,6 +9,11 @@ $(document).on("change", ".UpdateOrderStatus", function () {
   const newStatus = $select.val(); 
 
   console.log(newStatus)
+
+  if(newStatus==""){
+    console.log("select new status"); 
+    return;
+  }
   if (newStatus === initialStatus) {
       console.log("No changes made to the order status."); 
       return; 

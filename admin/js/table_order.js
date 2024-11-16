@@ -57,16 +57,6 @@ function displayOrders(orders) {
     orders.forEach(function(orderItem) { 
         var orderDate = new Date(orderItem.order_date);
 
-        $('#statusOrder').text(orderItem.order_status);
-
-        // Check if the order status is "pending" and apply the red color class
-        if (orderItem.order_status.toLowerCase() === 'pending') {
-            $('#statusOrder').addClass('text-red-600');
-        } else {
-            // Optionally, set the text color for other statuses (e.g., green for completed)
-            $('#statusOrder').removeClass('text-red-600').addClass('text-green-600');
-        }
-        
 
         var formattedDate = orderDate.toLocaleString('en-US', { 
           month: 'long', 
@@ -87,6 +77,7 @@ function displayOrders(orders) {
                 <td class="px-4 py-2 text-sm text-gray-600">${orderItem.vat}</td>
                 <td class="px-4 py-2 text-sm text-gray-600">${orderItem.total}</td>
                 <td class="px-4 py-2 text-sm text-gray-600">${orderItem.delivery_address}</td>
+                  <td class="px-4 py-2 text-sm text-gray-600">${orderItem.order_status}</td>
                 <td class="px-4 py-2 text-sm text-gray-600">
                     <button class="bg-green-600 hover:bg-gray-300 text-white font-semibold py-2 px-4 rounded-md focus:outline-none focus:ring-2 focus:ring-gray-400">
                         Update

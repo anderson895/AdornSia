@@ -29,12 +29,10 @@ $(document).ready(function() {
                 cart_user_id: cart_user_id,
                 cart_prod_id: cart_prod_id,
                 cart_prod_size: cart_prod_size,
-                requestType: "AddToCart" // Corrected here
+                requestType: "AddToCart" 
             },
-            dataType: 'json', // Corrected the syntax here
+            dataType: 'json', 
             success: function(response) {
-                // Hide loading spinner
-                console.log(response);
                 
                 if(response.status == "Added To Cart!") {
                     alertify.success('Item successfully added to the cart!');

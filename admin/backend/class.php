@@ -62,8 +62,11 @@ class global_class extends db_connect
         return $stmt->execute();
     }
 
-
-   
+    public function updateOrderStatus($orderId,$newStatus) {
+        $stmt = $this->conn->prepare("UPDATE `orders` SET `order_status` = '$newStatus' WHERE `orders`.`order_id` = '$orderId'");
+        return $stmt->execute();
+    }
+    
 
     public function GetAllOrders()
     {

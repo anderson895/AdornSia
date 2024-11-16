@@ -9,7 +9,7 @@ $(document).ready(function() {
 function AutoRefresh() {
     setInterval(function() {
         fetchOrders();
-    }, 2000);
+    }, 4000);
 }
 
 
@@ -38,7 +38,6 @@ function fetchOrders() {
         success: function(response) {
             // console.log(response);
             if (response.status === 'success') {
-                console.log(response.data);
                 displayOrders(response.data);
             } else {
                 console.log(response.message);
@@ -86,16 +85,26 @@ function displayOrders(orders) {
                 <td class="px-4 py-2 text-sm text-gray-600">${orderItem.vat}</td>
                 <td class="px-4 py-2 text-sm text-gray-600">${orderItem.total}</td>
                 <td class="px-4 py-2 text-sm text-gray-600">${orderItem.delivery_address}</td>
-                <td class="px-4 py-2 text-sm text-gray-600">${orderItem.order_status}</td>
                 <td class="px-4 py-2 text-sm text-gray-600">
-                    <button class="bg-green-600 hover:bg-gray-300 text-white font-semibold py-2 px-4 rounded-md focus:outline-none focus:ring-2 focus:ring-gray-400">
-                        Update
-                    </button>
+                   <select 
+                        class="UpdateOrderStatus w-full p-2 text-white bg-green-500 border border-blue-500 rounded-md shadow-sm appearance-none cursor-pointer focus:outline-none focus:ring-2 focus:ring-blue-300 focus:border-blue-300" 
+                        data-orderId="${orderItem.order_id}" 
+                        data-initial-status="${orderItem.order_status}">
+                        <option value="Pending" ${orderItem.order_status == "Pending" ? "selected" : ""}>Pending</option>
+                        <option value="Accept" ${orderItem.order_status == "Accept" ? "selected" : ""}>Accept</option>
+                        <option value="Delivered" ${orderItem.order_status == "Delivered" ? "selected" : ""}>Delivered</option>
+                        <option value="Canceled" ${orderItem.order_status == "Canceled" ? "selected" : ""}>Canceled</option>
+                    </select>
+
                 </td>
+
+
+
             </tr>
         `;
         tableBody.append(orderRow);
     });
 }
+
 
 

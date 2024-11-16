@@ -1,5 +1,50 @@
 $(document).ready(function () {
 
+
+
+$(document).on("change", ".UpdateOrderStatus", function () {
+  const $select = $(this); 
+  const orderId = $select.data("orderid");
+  const initialStatus = $select.data("initial-status"); 
+  const newStatus = $select.val(); 
+
+  console.log(newStatus)
+  if (newStatus === initialStatus) {
+      console.log("No changes made to the order status."); 
+      return; 
+  }
+
+  $select.prop("disabled", true);
+
+  $.ajax({
+      url: "backend/end-points/controller.php",
+      method: "POST",
+      data: {
+          orderId: orderId,
+          orderStatus: newStatus,
+          requestType: 'UpdateOrderStatus'
+      },
+      success: function (response) {
+          console.log(response);
+          console.log("Order status updated successfully.");
+          $select.data("initial-status", newStatus);
+      },
+      error: function (xhr, status, error) {
+          console.error("Error updating order status:", error);
+          console.error(xhr.responseText); 
+          console.log("Failed to update the order status. Please try again.");
+      },
+      complete: function () {
+          $select.prop("disabled", false);
+      }
+  });
+});
+
+
+
+
+
+
     $("#frmLogin").submit(function (e) {
       e.preventDefault();
   

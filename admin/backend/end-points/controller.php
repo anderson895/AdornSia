@@ -185,6 +185,21 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         } else {
             echo 'Failed to update product in the database.';
         }
+    }else if($_POST['requestType'] =='UpdateOrderStatus'){
+
+        $orderId = $_POST['orderId'];         // Get order ID
+        $orderStatus = $_POST['orderStatus']; // Get the new order status
+        
+        // Assuming the method updateOrderStatus accepts $orderId and $orderStatus
+        $order = $db->updateOrderStatus($orderId, $orderStatus);
+        
+        // Check if the product was successfully updated
+        if ($order === 'success') {
+            echo 200;  // Success response
+        } else {
+            echo 'Failed to update order in the database.';
+        }
+        
     }else{
         echo 'Invalid request type.';
     }

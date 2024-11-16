@@ -167,7 +167,7 @@ public function OrderRequest($address, $paymentMethod, $proofOfPayment, $fileNam
 
     // Prepare the SQL query with placeholders
     $query = "INSERT INTO `orders` 
-                (`order_code`, `order_user_id`, `mode_of_payment`, `proof_of_payment`, `subtotal`, `vat`, `total`, `delivery_address`, `order_date`, `status`) 
+                (`order_code`, `order_user_id`, `mode_of_payment`, `proof_of_payment`, `subtotal`, `vat`, `total`, `delivery_address`, `order_date`, `order_status`) 
               VALUES 
                 (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 

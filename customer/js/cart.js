@@ -203,10 +203,13 @@ $(document).ready(function() {
                     }
                 },
                 
-                error: function() {
+                error: function(xhr, status, error) {
                     $(".loadingSpinner").fadeOut();
+                    console.log('Status:', status);
+                    console.log('Error:', error);
                     alertify.error('Error occurred during the request!');
                 }
+                
             });
             
         });

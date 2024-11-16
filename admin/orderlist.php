@@ -16,13 +16,11 @@ $db = new global_class();
 </div>
 
 <div class="overflow-x-auto bg-white shadow-md rounded-lg p-6" id="recordTable">
-    <h2 class="text-xl font-semibold text-gray-700 mb-4">Orders Record For <span id="statusOrder"></span></h2>
+    <h2 class="text-xl font-semibold text-gray-700 mb-4" id="statusOrder"></h2>
 
     <div class="flex justify-between items-center mb-4">
         <input type="text" id="searchInput" placeholder="Search..." class="w-1/4 p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 placeholder-gray-500 text-sm">
-        <button class="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400">
-            Add New Order
-        </button>
+      
     </div>
 
     <table class="min-w-full table-auto">

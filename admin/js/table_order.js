@@ -58,7 +58,16 @@ function displayOrders(orders) {
         var orderDate = new Date(orderItem.order_date);
 
         $('#statusOrder').text(orderItem.order_status);
+
+        // Check if the order status is "pending" and apply the red color class
+        if (orderItem.order_status.toLowerCase() === 'pending') {
+            $('#statusOrder').addClass('text-red-600');
+        } else {
+            // Optionally, set the text color for other statuses (e.g., green for completed)
+            $('#statusOrder').removeClass('text-red-600').addClass('text-green-600');
+        }
         
+
         var formattedDate = orderDate.toLocaleString('en-US', { 
           month: 'long', 
           day: 'numeric', 

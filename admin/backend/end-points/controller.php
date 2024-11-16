@@ -188,5 +188,19 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }else{
         echo 'Invalid request type.';
     }
+}if ($_SERVER['REQUEST_METHOD'] === 'GET') {
+    
+        if ($_GET['requestType'] == 'GetAllOrders') {
+            // Fetch the cars from the database
+            $orders = $db->GetAllOrders();
+        
+            // Check if cars data exists
+            if ($orders !== false) {
+                // Return the cars data as JSON
+                echo json_encode(['status' => 'success', 'data' => $orders]);
+            } else {
+                echo json_encode(['status' => 'error', 'message' => 'No cars found or error retrieving data.']);
+            }
+        }
 }
 ?>

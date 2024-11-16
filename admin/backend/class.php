@@ -63,8 +63,37 @@ class global_class extends db_connect
     }
 
 
-    public function UpdateSizes($prod_id) {
+   
 
+    public function GetAllOrders()
+    {
+        // Prepare the query
+        $query = "Select * from orders
+        LEFT JOIN user
+        ON user.user_id = orders.order_user_id
+        ";
+    
+        // Execute the query
+        $result = $this->conn->query($query);
+    
+        // Check if the query was successful
+        if ($result === false) {
+            // Log or handle the error
+            error_log("Query execution failed: " . $this->conn->error);
+            return false;
+        }
+    
+        // Check if there are any results
+        if ($result->num_rows > 0) {
+            // Fetch the results and return them as an associative array
+            $order = [];
+            while ($row = $result->fetch_assoc()) {
+                $order[] = $row;
+            }
+            return $order;
+        } else {
+            return false;
+        }
     }
     
 

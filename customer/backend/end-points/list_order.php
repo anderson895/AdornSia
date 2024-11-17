@@ -24,7 +24,7 @@
       ?>
       <div class="bg-white shadow-lg rounded-lg p-6 transition-all duration-300 hover:shadow-xl order-card <?=$orderStatusClass?>">
         <div class="flex flex-wrap items-center gap-6">
-          <img src="https://via.placeholder.com/80" alt="Product Image" class="w-20 h-20 object-cover rounded-md shadow-sm">
+         
           <div>
             <p class="text-sm text-gray-600 mb-3">Order Date: <?=$order['order_date']?></p>
             <p class="font-bold text-xl text-gray-900"># <?=$order['order_code']?></p>

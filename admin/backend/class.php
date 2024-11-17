@@ -144,15 +144,13 @@ class global_class extends db_connect
 
     public function GetAllOrders()
     {
-        // Prepare the query
-        $query = "Select * from orders
-        LEFT JOIN user
-        ON user.user_id = orders.order_user_id
-        ";
+        // Prepare the query with sorting by order_date in descending order
+        $query = "SELECT * FROM orders
+                  LEFT JOIN user ON user.user_id = orders.order_user_id
+                  ORDER BY orders.order_date DESC"; 
     
-        // Execute the query
         $result = $this->conn->query($query);
-    
+        
         // Check if the query was successful
         if ($result === false) {
             // Log or handle the error
@@ -172,6 +170,7 @@ class global_class extends db_connect
             return false;
         }
     }
+    
     
 
 

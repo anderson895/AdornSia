@@ -229,13 +229,13 @@ public function OrderRequest($address, $paymentMethod, $proofOfPayment, $fileNam
     }
 
     public function fetch_order($userID){
-        $query = $this->conn->prepare("SELECT * FROM orders where orders.order_user_id = '$userID'
-        ");
+        $query = $this->conn->prepare("SELECT * FROM orders WHERE orders.order_user_id = '$userID' ORDER BY order_date DESC");
         if ($query->execute()) {
             $result = $query->get_result();
             return $result;
         }
     }
+    
 
 
 

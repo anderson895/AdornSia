@@ -236,6 +236,15 @@ public function OrderRequest($address, $paymentMethod, $proofOfPayment, $fileNam
             return $result;
         }
     }
+
+
+    public function fetch_user_info($userID){
+        $query = $this->conn->prepare("SELECT * FROM user where user_id = '$userID'");
+        if ($query->execute()) {
+            $result = $query->get_result();
+            return $result;
+        }
+    }
     
     
     public function fetch_order_item($userID,$order_id){

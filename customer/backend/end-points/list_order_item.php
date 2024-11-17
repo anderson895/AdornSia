@@ -39,10 +39,23 @@
         <div class="flex flex-wrap justify-between items-center mt-4 gap-2">
           <p class="text-sm text-gray-600">Cancelled automatically by Shopee's system</p>
        
-          <button class="bg-red-500 text-white px-4 py-2 rounded btnAddToCart"
-          data-product_id="<?=$order['item_product_id']?>"
-          data-user_id="<?=$userID?>"
-          >Buy Again</button>
+          <div class="flex space-x-4 mt-4">
+          
+
+            <!-- Return/Refund Button (conditionally displayed) -->
+            <?php if($order['order_status'] == "Delivered") { ?>
+                <button class="bg-red-500 text-white px-4 py-2 rounded btnAddToCart"
+                    data-product_id="<?=$order['item_product_id']?>"
+                    data-user_id="<?=$userID?>">
+                    Buy Again
+                </button>
+
+                <button class="bg-gray-500 text-white px-6 py-2 rounded-lg hover:bg-gray-600 transition-colors duration-300">
+                Return/Refund
+                </button>
+            <?php } ?>
+            </div>
+
         </div>
       </div>
       <?php endforeach; ?>

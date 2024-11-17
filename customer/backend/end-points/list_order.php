@@ -39,9 +39,6 @@
           <div class="flex space-x-4 mt-4">
           <button class="bg-red-500 text-white px-6 py-2 rounded-lg hover:bg-red-600 transition-colors duration-300" onclick="location.href='view_order_details.php?order_id=<?=$order['order_id']?>'">View Details</button>
 
-          <?php if($order['order_status'] == "Delivered") { ?>
-            <button class="bg-gray-500 text-white px-6 py-2 rounded-lg hover:bg-gray-600 transition-colors duration-300">Return/Refund</button>
-          <?php } ?>
         </div>
 
         </div>

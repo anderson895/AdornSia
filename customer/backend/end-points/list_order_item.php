@@ -53,7 +53,11 @@
           <!-- Return/Refund Button (conditionally displayed) -->
           <?php if ($order['order_status'] == "Delivered") { ?>
             <div class="flex flex-col sm:flex-row sm:space-x-4 space-y-2 sm:space-y-0 w-full items-center justify-center">
-              <button class="bg-red-500 text-white px-6 py-3 rounded-lg shadow-md hover:bg-red-600 transition-colors duration-300 w-full sm:w-auto">
+              <button class="bg-red-500 text-white px-6 py-3 rounded-lg shadow-md hover:bg-red-600 transition-colors duration-300 w-full sm:w-auto 
+              btnAddToCart"
+              data-product_id="<?=$order['item_product_id']?>"
+              data-user_id="<?=$userID?>"
+              >
                 Buy Again
               </button>
               <button class="bg-gray-500 text-white px-6 py-3 rounded-lg shadow-md hover:bg-gray-600 transition-colors duration-300 w-full sm:w-auto">

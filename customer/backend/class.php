@@ -227,9 +227,32 @@ public function OrderRequest($address, $paymentMethod, $proofOfPayment, $fileNam
             }
         
     }
-    
-    
 
+    public function fetch_order($userID){
+        $query = $this->conn->prepare("SELECT * FROM orders where orders.order_user_id = '$userID'
+        ");
+        if ($query->execute()) {
+            $result = $query->get_result();
+            return $result;
+        }
+    }
+    
+    
+    public function fetch_order_item($userID,$order_id){
+        $query = $this->conn->prepare("SELECT * FROM orders
+        LEFT JOIN orders_item
+        ON orders.order_id = orders_item.item_order_id
+        LEFT JOIN product
+        ON product.prod_id = orders_item.item_product_id
+        LEFT JOIN category
+        ON category.category_id = product.prod_category_id
+        where orders.order_user_id = '$userID' AND orders_item.item_order_id ='$order_id'
+        ");
+        if ($query->execute()) {
+            $result = $query->get_result();
+            return $result;
+        }
+    }
     
 
     public function getOrderStatusCounts($userID)

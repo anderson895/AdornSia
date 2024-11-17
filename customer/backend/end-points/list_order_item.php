@@ -38,13 +38,7 @@
         </div>
         <div class="flex flex-wrap justify-between items-center mt-4 gap-2">
           <p class="text-sm text-gray-600">Cancelled automatically by Shopee's system</p>
-          <!-- <button 
-                        class="flex-1 bg-blue-600 text-white py-3 rounded-lg hover:bg-blue-700 transition btnAddToCart"
-                        data-product_id="<?=$order['item_product_id']?>"
-                        data-user_id="<?=$userID?>"
-                    >
-                        Add to Cart
-                    </button> -->
+       
           <button class="bg-red-500 text-white px-4 py-2 rounded btnAddToCart"
           data-product_id="<?=$order['item_product_id']?>"
           data-user_id="<?=$userID?>"

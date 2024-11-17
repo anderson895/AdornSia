@@ -136,8 +136,43 @@ $(document).ready(function() {
         });
     });
 
-    
 
+
+
+
+
+
+
+
+
+
+
+
+
+    $('#userProfileFrm').on('submit', function(e) {
+        e.preventDefault(); 
+    
+        var formData = new FormData(this);
+        
+    
+        $.ajax({
+          url: 'backend/end-points/controller.php', 
+          type: 'POST',
+          data: formData,
+          contentType: false,  
+          processData: false,  
+          success: function(response) {
+            console.log(response);
+            alert('Profile updated successfully!');
+          },
+          error: function(xhr, status, error) {
+            // Handle errors (e.g., show error message)
+            alert('An error occurred: ' + error);
+          }
+        });
+      });
+
+   
 });
 
 

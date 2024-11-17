@@ -238,6 +238,57 @@ public function OrderRequest($address, $paymentMethod, $proofOfPayment, $fileNam
     }
 
 
+
+    public function fetch_user_profile_image($userID) {
+        // Prepare the query to fetch the profile image
+        $query = $this->conn->prepare("SELECT `Profile_images` FROM `user` WHERE `user_id` = ?");
+        
+        // Bind the parameter
+        $query->bind_param("i", $userID);
+        
+        // Execute the query
+        $query->execute();
+        
+        // Fetch the result
+        $result = $query->get_result();
+        
+        if ($result && $result->num_rows > 0) {
+            // Fetch the profile image path
+            $row = $result->fetch_assoc();
+            return $row['Profile_images']; // Return the profile image path
+        } else {
+            return null; // Return null if no record is found
+        }
+    }
+    
+
+
+
+    public function update_user_info($userID, $fullname, $email, $phone, $profileImage) {
+        // Prepare the query with placeholders
+        $query = $this->conn->prepare("
+            UPDATE `user` 
+            SET 
+                `Fullname` = ?, 
+                `Email` = ?, 
+                `Phone` = ?, 
+                `Profile_images` = ? 
+            WHERE `user_id` = ?
+        ");
+    
+        // Bind the parameters to the query
+        $query->bind_param("ssssi", $fullname, $email, $phone, $profileImage, $userID);
+    
+        // Execute the query and return the result
+        if ($query->execute()) {
+            return true; // Return true on success
+        } else {
+            return false; // Return false on failure
+        }
+    }
+
+    
+
     public function fetch_user_info($userID){
         $query = $this->conn->prepare("SELECT * FROM user where user_id = '$userID'");
         if ($query->execute()) {

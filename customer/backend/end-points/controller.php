@@ -9,9 +9,56 @@ include('../class.php');
 $db = new global_class();
 
 
-
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    if ($_POST['requestType']=="AddToCart") {
+
+    if ($_POST['requestType']=="UpdateUserProfile") {
+    $userID = $_POST['userID'];
+    $fullname = $_POST['user_fullname'];
+    $email = $_POST['user_email'];
+    $phone = $_POST['user_phone'];
+
+    $db = new global_class();
+
+    $oldImage = $db->fetch_user_profile_image($userID); 
+
+    $profileImage = '';
+    // Handle file upload with a unique filename
+    if (isset($_FILES['profileimage']) && $_FILES['profileimage']['error'] == 0) {
+        $uploadDir = '../../../upload/';
+        $fileExtension = pathinfo($_FILES['profileimage']['name'], PATHINFO_EXTENSION);
+        $uniqueFileName = uniqid('profile_', true) . '.' . $fileExtension;
+        $profileImage = $uploadDir . $uniqueFileName;
+
+        // Move the uploaded file to the designated folder
+        if (move_uploaded_file($_FILES['profileimage']['tmp_name'], $profileImage)) {
+            // Only delete the old image if the upload is successful
+            if ($oldImage && file_exists($oldImage)) {
+                unlink($oldImage); // Delete the old image
+            }
+        } else {
+            echo json_encode(['status' => 'error', 'message' => 'Failed to upload new profile image']);
+            exit;
+        }
+    } else {
+        // Use the old image if no new file is uploaded
+        $profileImage = $oldImage;
+    }
+
+    // Update user information in the database
+    $updateSuccess = $db->update_user_info($userID, $fullname, $email, $phone, $uniqueFileName);
+
+    if ($updateSuccess) {
+        echo json_encode(['status' => 'success', 'message' => 'Profile updated successfully']);
+    } else {
+        // If the update fails, retain the old image
+        if ($profileImage !== $oldImage && file_exists($profileImage)) {
+            unlink($profileImage); // Delete the newly uploaded image
+        }
+        echo json_encode(['status' => 'error', 'message' => 'Failed to update profile']);
+    }
+
+
+    }else if ($_POST['requestType']=="AddToCart") {
         $userId = $_POST['cart_user_id'];
         $productId = $_POST['cart_prod_id'];
         $prodSize = $_POST['cart_prod_size'];

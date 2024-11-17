@@ -28,6 +28,7 @@ $userID=$_SESSION['user_id'];
       opacity: 0;
       pointer-events: none;
       transition: opacity 0.3s ease;
+      z-index: 50; /* Ensure the dropdown appears above other elements */
     }
   </style>
 </head>

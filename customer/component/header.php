@@ -33,7 +33,6 @@ $is_logged_in = isset($_SESSION['user_id']); // Assuming user ID is stored in se
       <?php if ($is_logged_in): ?>
         <!-- Show these if user is logged in -->
         <a href="orders.php" class="text-gray-700 hover:text-blue-600 transition">Orders</a>
-        <a href="profile.php" class="text-gray-700 hover:text-blue-600 transition">Profile</a>
         <a href="logout.php" class="text-gray-700 hover:text-blue-600 transition">Logout</a>
       <?php else: ?>
         <!-- Show these if user is not logged in -->

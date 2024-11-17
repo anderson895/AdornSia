@@ -2,14 +2,15 @@
   <!-- Main Content -->
   <main class="flex-1 p-6 bg-gray-50 rounded-lg shadow-lg">
     <!-- Tabs -->
-    <div class="flex flex-wrap justify-center space-x-0 space-y-2 md:space-y-0 md:space-x-4 border-b mb-6">
-      <a href="#" class="py-2 px-4 border-b-2 border-transparent text-gray-600 hover:text-red-500 hover:border-red-500 font-semibold transition-all duration-200" data-status="all">All</a>
-      <a href="#" class="py-2 px-4 text-gray-600 hover:text-red-500 font-semibold transition-all duration-200" data-status="pending">Pending</a>
-      <a href="#" class="py-2 px-4 text-gray-600 hover:text-red-500 font-semibold transition-all duration-200" data-status="accept">To Ship</a>
-      <a href="#" class="py-2 px-4 text-gray-600 hover:text-red-500 font-semibold transition-all duration-200" data-status="shipped">To Receive</a>
-      <a href="#" class="py-2 px-4 text-gray-600 hover:text-red-500 font-semibold transition-all duration-200" data-status="delivered">Completed</a>
-      <a href="#" class="py-2 px-4 text-gray-600 hover:text-red-500 font-semibold transition-all duration-200" data-status="canceled">Cancelled</a>
-    </div>
+    <div class="flex justify-center space-x-4 space-y-2 md:space-y-0 md:space-x-4 border-b mb-6 overflow-x-auto whitespace-nowrap">
+  <a href="#" class="py-2 px-4 border-b-2 border-transparent text-gray-600 hover:text-red-500 hover:border-red-500 font-semibold transition-all duration-200" data-status="all">All</a>
+  <a href="#" class="py-2 px-4 text-gray-600 hover:text-red-500 font-semibold transition-all duration-200" data-status="pending">Pending</a>
+  <a href="#" class="py-2 px-4 text-gray-600 hover:text-red-500 font-semibold transition-all duration-200" data-status="accept">To Ship</a>
+  <a href="#" class="py-2 px-4 text-gray-600 hover:text-red-500 font-semibold transition-all duration-200" data-status="shipped">To Receive</a>
+  <a href="#" class="py-2 px-4 text-gray-600 hover:text-red-500 font-semibold transition-all duration-200" data-status="delivered">Completed</a>
+  <a href="#" class="py-2 px-4 text-gray-600 hover:text-red-500 font-semibold transition-all duration-200" data-status="canceled">Cancelled</a>
+</div>
+
 
 
     <!-- Order Cards -->

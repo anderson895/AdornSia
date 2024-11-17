@@ -3,16 +3,16 @@
   <main class="flex-1 p-6 bg-gray-50 rounded-lg shadow-lg">
     <!-- Tabs -->
     <div class="flex flex-wrap space-x-0 space-y-2 md:space-y-0 md:space-x-4 border-b mb-6">
-      <a href="#" class="py-2 px-4 border-b-2 border-red-500 text-red-500 font-semibold" data-status="all">All</a>
-      <a href="#" class="py-2 px-4 text-gray-600 hover:text-red-500 font-semibold" data-status="pending">Pending</a>
-      <a href="#" class="py-2 px-4 text-gray-600 hover:text-red-500 font-semibold" data-status="accept">To Ship</a>
-      <a href="#" class="py-2 px-4 text-gray-600 hover:text-red-500 font-semibold" data-status="shipped">To Receive</a>
-      <a href="#" class="py-2 px-4 text-gray-600 hover:text-red-500 font-semibold" data-status="delivered">Completed</a>
-      <a href="#" class="py-2 px-4 text-gray-600 hover:text-red-500 font-semibold" data-status="canceled">Cancelled</a>
+      <a href="#" class="py-2 px-4 border-b-2 border-transparent text-gray-600 hover:text-red-500 hover:border-red-500 font-semibold transition-all duration-200" data-status="all">All</a>
+      <a href="#" class="py-2 px-4 text-gray-600 hover:text-red-500 font-semibold transition-all duration-200" data-status="pending">Pending</a>
+      <a href="#" class="py-2 px-4 text-gray-600 hover:text-red-500 font-semibold transition-all duration-200" data-status="accept">To Ship</a>
+      <a href="#" class="py-2 px-4 text-gray-600 hover:text-red-500 font-semibold transition-all duration-200" data-status="shipped">To Receive</a>
+      <a href="#" class="py-2 px-4 text-gray-600 hover:text-red-500 font-semibold transition-all duration-200" data-status="delivered">Completed</a>
+      <a href="#" class="py-2 px-4 text-gray-600 hover:text-red-500 font-semibold transition-all duration-200" data-status="canceled">Cancelled</a>
     </div>
 
     <!-- Order Cards -->
-    <div class="space-y-4">
+    <div class="space-y-6">
       <!-- Order 1 -->
       <?php 
       $fetch_orders = $db->fetch_order($userID);  
@@ -20,7 +20,7 @@
         // Create a class based on the order status
         $orderStatusClass = strtolower(str_replace(' ', '-', $order['order_status']));
       ?>
-      <div class="bg-white shadow-md rounded-lg p-6 order-card <?=$orderStatusClass?>">
+      <div class="bg-white shadow-lg rounded-lg p-6 transition-all duration-300 hover:shadow-xl order-card <?=$orderStatusClass?>">
         <div class="flex flex-wrap items-center gap-6">
           <img src="https://via.placeholder.com/80" alt="Product Image" class="w-20 h-20 object-cover rounded-md shadow-sm">
           <div>
@@ -35,13 +35,22 @@
 
         <div class="flex flex-wrap justify-between items-center mt-4 gap-4">
           <p class="text-sm text-gray-600"><?=$order['delivery_address']?></p>
+         
+          <div class="flex space-x-4 mt-4">
           <button class="bg-red-500 text-white px-6 py-2 rounded-lg hover:bg-red-600 transition-colors duration-300" onclick="location.href='view_order_details.php?order_id=<?=$order['order_id']?>'">View Details</button>
+
+          <?php if($order['order_status'] == "Delivered") { ?>
+            <button class="bg-gray-500 text-white px-6 py-2 rounded-lg hover:bg-gray-600 transition-colors duration-300">Return/Refund</button>
+          <?php } ?>
+        </div>
+
         </div>
       </div>
       <?php endforeach; ?>
     </div>
   </main>
 </div>
+
 
 <script>
   $(document).ready(function() {

@@ -56,6 +56,7 @@ $userID=$_SESSION['user_id'];
           <!-- Dropdown Menu -->
           <div class="absolute right-0 mt-2 w-48 bg-white border border-gray-200 rounded-lg shadow-lg dropdown-menu">
             <a href="profile.php" class="block px-4 py-2 text-gray-700 hover:bg-blue-100 hover:text-blue-600 transition">Profile</a>
+            <a href="password_setting.php" class="block px-4 py-2 text-gray-700 hover:bg-blue-100 hover:text-blue-600 transition">Password</a>
             <a href="logout.php" class="block px-4 py-2 text-gray-700 hover:bg-blue-100 hover:text-blue-600 transition">Logout</a>
           </div>
         </div>

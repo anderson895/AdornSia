@@ -260,8 +260,8 @@ public function OrderRequest($address, $paymentMethod, $proofOfPayment, $fileNam
             return null; // Return null if no record is found
         }
     }
-    
 
+  
 
 
     public function update_user_info($userID, $fullname, $email, $phone, $profileImage) {
@@ -286,6 +286,90 @@ public function OrderRequest($address, $paymentMethod, $proofOfPayment, $fileNam
             return false; // Return false on failure
         }
     }
+
+
+    public function update_user_password($userID, $user_NewPassword, $user_CurrentPassword) {
+        // Step 1: Verify if the current password matches the stored password
+        $query = "
+            SELECT `Password` 
+            FROM `user` 
+            WHERE `user_id` = ?
+        ";
+        
+        // Prepare the query
+        if ($stmt = $this->conn->prepare($query)) {
+            $stmt->bind_param("i", $userID); // Bind userID as integer
+            $stmt->execute();
+            $stmt->store_result();
+            
+            // Check if user exists and fetch the password
+            if ($stmt->num_rows > 0) {
+                $stmt->bind_result($storedPassword);
+                $stmt->fetch();
+                
+                // Verify current password (no hashing here, just plain text match)
+                if ($user_CurrentPassword !== $storedPassword) {
+                    $stmt->close();
+                    return [
+                        'success' => false,
+                        'message' => 'Incorrect current password.'
+                    ];
+                }
+            } else {
+                $stmt->close();
+                return [
+                    'success' => false,
+                    'message' => 'User not found.'
+                ];
+            }
+    
+            // Step 2: Update the password (without hashing)
+            $updateQuery = "
+                UPDATE `user` 
+                SET `Password` = ? 
+                WHERE `user_id` = ?
+            ";
+            
+            // Prepare the update statement
+            if ($updateStmt = $this->conn->prepare($updateQuery)) {
+                $updateStmt->bind_param("si", $user_NewPassword, $userID);
+                
+                if ($updateStmt->execute()) {
+                    $updateStmt->close();
+                    $stmt->close();
+                    return [
+                        'success' => true,
+                        'message' => 'Password updated successfully.'
+                    ];
+                } else {
+                    $updateStmt->close();
+                    $stmt->close();
+                    return [
+                        'success' => false,
+                        'message' => 'Failed to update password.'
+                    ];
+                }
+            } else {
+                $stmt->close();
+                return [
+                    'success' => false,
+                    'message' => 'SQL error while updating password.'
+                ];
+            }
+        } else {
+            return [
+                'success' => false,
+                'message' => 'SQL error while verifying password.'
+            ];
+        }
+    }
+    
+    
+    
+    
+    
+    
+    
 
     
 

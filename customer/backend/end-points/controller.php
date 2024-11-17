@@ -11,7 +11,23 @@ $db = new global_class();
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
-    if ($_POST['requestType']=="UpdateUserProfile") {
+    if ($_POST['requestType']=="UpdateUserPassword") {
+       // Get input data from POST request
+        $userID = $_POST['userID'];
+        $user_NewPassword = $_POST['user_NewPassword'];
+        $user_CurrentPassword = $_POST['user_CurrentPassword'];
+
+    
+            // Call the function
+        $response = $db->update_user_password($userID, $user_NewPassword, $user_CurrentPassword);
+
+        // Echo JSON encoded response
+        echo json_encode($response);
+
+
+
+
+    }else if ($_POST['requestType']=="UpdateUserProfile") {
     $userID = $_POST['userID'];
     $fullname = $_POST['user_fullname'];
     $email = $_POST['user_email'];

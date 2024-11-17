@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 16, 2024 at 08:12 AM
+-- Generation Time: Nov 17, 2024 at 12:22 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -151,8 +151,8 @@ CREATE TABLE `orders` (
 --
 
 INSERT INTO `orders` (`order_id`, `order_code`, `order_user_id`, `mode_of_payment`, `proof_of_payment`, `subtotal`, `vat`, `sf`, `total`, `delivery_address`, `order_date`, `delivered_date`, `order_status`, `reject_reason`, `proof_of_del`) VALUES
-(114, '39FBA927', 64, 'Gcash', 'proof_6738139fb960b1.66859655.jpeg', 470.00, 56.4, NULL, 526.40, 'Region I (Ilocos Region) Ilocos Norte Adams Adams (Pob.) tibagan', '2024-11-16 11:38:07', NULL, 'Accept', NULL, NULL),
-(115, '99CD5031', 64, 'cod', NULL, 651.00, 78.12, NULL, 729.12, 'Region I (Ilocos Region) Ilocos Norte Adams Adams (Pob.) tibagan', '2024-11-16 13:11:56', NULL, 'Pending', NULL, NULL);
+(132, '58C14987', 64, 'cod', NULL, 1770.00, 212.4, NULL, 1982.40, 'Region I (Ilocos Region) Ilocos Norte Adams Adams (Pob.) tibagan', '2024-11-17 02:33:48', NULL, 'Delivered', NULL, NULL),
+(133, 'C06DFA89', 64, 'cod', NULL, 950.00, 114, NULL, 1064.00, 'Region I (Ilocos Region) Ilocos Norte Adams Adams (Pob.) tibagan', '2024-11-17 16:40:38', NULL, 'Pending', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -176,11 +176,13 @@ CREATE TABLE `orders_item` (
 --
 
 INSERT INTO `orders_item` (`item_id`, `item_order_id`, `item_product_id`, `item_size`, `item_qty`, `item_product_price`, `promo_discount`, `item_total`) VALUES
-(165, 114, 18, 'SM', 1, 150, '{\"promoName\":\"Christmas bonus\",\"promoRate\":\"0.5\"}', 150),
-(166, 114, 19, 'L', 1, 320, '{\"promoName\":\"Valentines Day\",\"promoRate\":\"0.2\"}', 320),
-(167, 115, 15, 'Not Selected', 2, 250, '{\"promoName\":\"Christmas bonus\",\"promoRate\":\"0.5\"}', 500),
-(168, 115, 18, 'SM', 1, 150, '{\"promoName\":\"Christmas bonus\",\"promoRate\":\"0.5\"}', 150),
-(169, 115, 26, 'Not Selected', 1, 1, '{\"promoName\":\"Christmas bonus\",\"promoRate\":\"0.5\"}', 1);
+(186, 132, 15, 'N/A', 1, 250, '{\"promoName\":\"\",\"promoRate\":\"\"}', 250),
+(187, 132, 16, 'L', 1, 300, '{\"promoName\":\"Christmas bonus\",\"promoRate\":0.5}', 150),
+(188, 132, 17, 'M', 1, 300, '{\"promoName\":\"\",\"promoRate\":\"\"}', 300),
+(189, 132, 20, 'XL', 1, 1500, '{\"promoName\":\"Christmas bonus\",\"promoRate\":0.5}', 750),
+(190, 132, 19, 'L', 1, 400, '{\"promoName\":\"Valentines Day\",\"promoRate\":0.2}', 320),
+(191, 133, 16, 'L', 3, 300, '{\"promoName\":\"Christmas bonus\",\"promoRate\":0.5}', 450),
+(192, 133, 22, 'XL', 1, 500, '{\"promoName\":\"\",\"promoRate\":\"\"}', 500);
 
 -- --------------------------------------------------------
 
@@ -208,18 +210,18 @@ CREATE TABLE `product` (
 --
 
 INSERT INTO `product` (`prod_id`, `prod_code`, `prod_name`, `prod_currprice`, `prod_category_id`, `prod_critical`, `prod_description`, `prod_promo_id`, `prod_image`, `prod_added`, `prod_status`, `product_stocks`) VALUES
-(15, '0001', 'shades', 250.00, 1, 10, 'Shades Accessories · Sunglasses Chain Diy, Glasses Frames Trendy, Festival Sunglasses, Sunglasses Chain, Fashion Eye · Kacamata Fashion, Celebrity Casual', 1, 'product_67356084abb416.35727954.png', '2024-11-14 10:29:24', 1, 5),
-(16, '0002', 'Bag 1', 300.00, 1, 50, 'Purse accessories are fashion accessories that are made specifically for handbags, to enhance their functionality or appearance.', 1, 'product_673560e2e77e51.22127315.png', '2024-11-14 10:30:58', 1, 100),
-(17, '0003', 'Bag 2', 300.00, 1, 10, 'Purse accessories are fashion accessories that are made specifically for handbags, to enhance their functionality or appearance.', NULL, 'product_67356121cfe654.79399269.png', '2024-11-14 10:32:01', 1, 10),
-(18, '0004', 'Bag 4', 300.00, 1, 15, 'Purse accessories are fashion accessories that are made specifically for handbags, to enhance their functionality or appearance.', 1, 'product_6735615876d684.97140108.png', '2024-11-14 10:32:56', 1, 15),
-(19, '0005', 'White Bags', 400.00, 1, 10, 'Purse accessories are fashion accessories that are made specifically for handbags, to enhance their functionality or appearance.', 2, 'product_6735618f606390.62713720.png', '2024-11-14 10:33:51', 1, 50),
-(20, '0006', 'The Accent Bag', 1500.00, 2, 10, 'Purse accessories are fashion accessories that are made specifically for handbags, to enhance their functionality or appearance.', 1, 'product_673561bd2c3605.83231922.png', '2024-11-14 10:34:37', 1, 50),
+(15, '0001', 'shades', 250.00, 1, 10, 'Shades Accessories · Sunglasses Chain Diy, Glasses Frames Trendy, Festival Sunglasses, Sunglasses Chain, Fashion Eye · Kacamata Fashion, Celebrity Casual', NULL, 'product_67356084abb416.35727954.png', '2024-11-17 00:30:22', 1, 96),
+(16, '0002', 'Bag 1', 300.00, 1, 50, 'Purse accessories are fashion accessories that are made specifically for handbags, to enhance their functionality or appearance.', 1, 'product_673560e2e77e51.22127315.png', '2024-11-14 10:30:58', 1, 99),
+(17, '0003', 'Bag 2', 300.00, 1, 10, 'Purse accessories are fashion accessories that are made specifically for handbags, to enhance their functionality or appearance.', NULL, 'product_67356121cfe654.79399269.png', '2024-11-14 10:32:01', 1, 9),
+(18, '0004', 'Bag 4', 300.00, 1, 15, 'Purse accessories are fashion accessories that are made specifically for handbags, to enhance their functionality or appearance.', 1, 'product_6735615876d684.97140108.png', '2024-11-14 10:32:56', 1, 13),
+(19, '0005', 'White Bags', 400.00, 1, 10, 'Purse accessories are fashion accessories that are made specifically for handbags, to enhance their functionality or appearance.', 2, 'product_6735618f606390.62713720.png', '2024-11-14 10:33:51', 1, 48),
+(20, '0006', 'The Accent Bag', 1500.00, 2, 10, 'Purse accessories are fashion accessories that are made specifically for handbags, to enhance their functionality or appearance.', 1, 'product_673561bd2c3605.83231922.png', '2024-11-14 10:34:37', 1, 49),
 (21, '0007', 'Hood 1', 3500.00, 2, 10, 'Purse accessories are fashion accessories that are made specifically for handbags, to enhance their functionality or appearance.', 1, 'product_673561ef5a2965.37814696.png', '2024-11-14 10:35:27', 1, 99),
-(22, '0008', 'Hood 2', 4500.00, 2, 10, 'Purse accessories are fashion accessories that are made specifically for handbags, to enhance their functionality or appearance.', NULL, 'product_6735622c58f638.21901723.png', '2024-11-14 10:36:28', 1, 10),
+(22, '0008', 'Hood 2', 500.00, 2, 10, 'Purse accessories are fashion accessories that are made specifically for handbags, to enhance their functionality or appearance.', NULL, 'product_6735622c58f638.21901723.png', '2024-11-14 10:36:28', 1, 10),
 (23, '0009', 'White Hoodies', 5000.00, 2, 10, 'Purse accessories are fashion accessories that are made specifically for handbags, to enhance their functionality or appearance.', 1, 'product_6735625fddc5a1.20092356.png', '2024-11-14 10:37:19', 1, 100),
 (24, '0010', 'Short 1', 150.00, 3, 10, 'Purse accessories are fashion accessories that are made specifically for handbags, to enhance their functionality or appearance.', NULL, 'product_67356292281fc9.44794739.png', '2024-11-14 10:38:10', 1, 10),
 (25, '0011', 'short 2', 160.00, 3, 10, 'Purse accessories are fashion accessories that are made specifically for handbags, to enhance their functionality or appearance.', NULL, 'product_673562b7399d94.75187942.png', '2024-11-14 10:38:47', 1, 66),
-(26, '0012', 'Sweeter 1', 3000.00, 4, 50, '', 1, 'product_673562de1eb309.51891056.png', '2024-11-14 10:39:26', 1, 100),
+(26, '0012', 'Sweeter 1', 3000.00, 4, 50, '', 1, 'product_673562de1eb309.51891056.png', '2024-11-14 10:39:26', 1, 98),
 (27, '0013', 'Tees 1', 1300.00, 5, 50, 'Purse accessories are fashion accessories that are made specifically for handbags, to enhance their functionality or appearance.', 1, 'product_67356306c468c5.02306630.png', '2024-11-14 10:40:06', 1, 15),
 (28, '0014', 'Black Tees', 2500.00, 5, 10, 'Purse accessories are fashion accessories that are made specifically for handbags, to enhance their functionality or appearance.', 2, 'product_6735633bc0b540.00223420.png', '2024-11-14 10:40:59', 1, 15);
 
@@ -301,6 +303,7 @@ CREATE TABLE `user` (
   `Email` varchar(60) NOT NULL,
   `Phone` varchar(60) NOT NULL,
   `Password` varchar(255) NOT NULL,
+  `Profile_images` varchar(255) DEFAULT NULL,
   `status` int(11) NOT NULL DEFAULT 0 COMMENT '0=Not Verified,1=Verified',
   `verificationKey` varchar(255) DEFAULT NULL,
   `link_expiration` datetime NOT NULL
@@ -310,9 +313,9 @@ CREATE TABLE `user` (
 -- Dumping data for table `user`
 --
 
-INSERT INTO `user` (`user_id`, `Fullname`, `Email`, `Phone`, `Password`, `status`, `verificationKey`, `link_expiration`) VALUES
-(64, 'joshua padilla', 'andersonandy046@gmail.com', '09454454744', 'andersonandy046@gmail.com', 1, NULL, '2024-11-11 11:24:29'),
-(66, 'joshua padilla', 'joshuaandersonpadilla8@gmail.com', '09454454744', 'joshuaandersonpadilla8@gmail.com', 1, NULL, '2024-11-12 19:37:50');
+INSERT INTO `user` (`user_id`, `Fullname`, `Email`, `Phone`, `Password`, `Profile_images`, `status`, `verificationKey`, `link_expiration`) VALUES
+(64, 'joshua papillsssss', 'andersonandy046@gmail.com', '09454454745', 'andersonandy046@gmail.com', 'profile_6739d1d381e665.99358925.jpg', 1, NULL, '2024-11-11 11:24:29'),
+(66, 'joshua padilla', 'joshuaandersonpadilla8@gmail.com', '09454454744', 'joshuaandersonpadilla8@gmail.com', '', 1, NULL, '2024-11-12 19:37:50');
 
 --
 -- Indexes for dumped tables
@@ -355,7 +358,8 @@ ALTER TABLE `ewallet`
 -- Indexes for table `orders`
 --
 ALTER TABLE `orders`
-  ADD PRIMARY KEY (`order_id`);
+  ADD PRIMARY KEY (`order_id`),
+  ADD KEY `order_user_id` (`order_user_id`);
 
 --
 -- Indexes for table `orders_item`
@@ -410,7 +414,7 @@ ALTER TABLE `admin`
 -- AUTO_INCREMENT for table `cart`
 --
 ALTER TABLE `cart`
-  MODIFY `cart_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=82;
+  MODIFY `cart_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=123;
 
 --
 -- AUTO_INCREMENT for table `category`
@@ -428,13 +432,13 @@ ALTER TABLE `ewallet`
 -- AUTO_INCREMENT for table `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `order_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=116;
+  MODIFY `order_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=134;
 
 --
 -- AUTO_INCREMENT for table `orders_item`
 --
 ALTER TABLE `orders_item`
-  MODIFY `item_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=170;
+  MODIFY `item_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=193;
 
 --
 -- AUTO_INCREMENT for table `product`
@@ -476,6 +480,12 @@ ALTER TABLE `address_user`
 ALTER TABLE `cart`
   ADD CONSTRAINT `cart_ibfk_1` FOREIGN KEY (`cart_prod_id`) REFERENCES `product` (`prod_id`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `cart_ibfk_2` FOREIGN KEY (`cart_user_id`) REFERENCES `user` (`user_id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `orders`
+--
+ALTER TABLE `orders`
+  ADD CONSTRAINT `orders_ibfk_1` FOREIGN KEY (`order_user_id`) REFERENCES `user` (`user_id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `orders_item`

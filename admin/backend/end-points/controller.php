@@ -189,22 +189,51 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         $orderId = $_POST['orderId'];         // Get order ID
         $orderStatus = $_POST['orderStatus']; // Get the new order status
-        
 
-        if($orderStatus=="Accept"){
+        if ($orderStatus === "Canceled") {
+            // Directly update the status to "Canceled"
+            $order = $db->updateOrderStatus($orderId, $orderStatus);
+
+            if ($order === 'success') {
+                echo 200;  // Success response
+            } else {
+                echo 'Failed to update order in the database.';
+            }
+        } elseif ($orderStatus === "Accept") {
+            // Perform stockout for "Accept" status
             $updateStocks = $db->stockout($orderId, $orderStatus);
+
+            // Update order status only if stockout was successful
+            if ($updateStocks) {
+                $order = $db->updateOrderStatus($orderId, $orderStatus);
+
+                if ($order === 'success') {
+                    echo 200;  // Success response
+                } else {
+                    echo 'Failed to update order in the database.';
+                }
+            } else {
+                echo 'Insufficient stock. Order status not updated.';
+            }
+        } else {
+            // For all other statuses, validate stock sufficiency
+            $stockSufficient = $db->validateStockSufficiency($orderId);
+
+            if ($stockSufficient) {
+                // Update order status only if stock is sufficient
+                $order = $db->updateOrderStatus($orderId, $orderStatus);
+
+                if ($order === 'success') {
+                    echo 200;  // Success response
+                } else {
+                    echo 'Failed to update order in the database.';
+                }
+            } else {
+                echo 'Insufficient stock. Order status not updated.';
+            }
         }
 
-        // Assuming the method updateOrderStatus accepts $orderId and $orderStatus
-        $order = $db->updateOrderStatus($orderId, $orderStatus);
         
-        echo $order;
-        // Check if the product was successfully updated
-        if ($order === 'success') {
-            echo 200;  // Success response
-        } else {
-            echo 'Failed to update order in the database.';
-        }
         
     }else{
         echo 'Invalid request type.';

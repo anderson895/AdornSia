@@ -140,6 +140,28 @@ class global_class extends db_connect
         }
     }
     
+    public function validateStockSufficiency($orderId) {
+        $orderItemsQuery = "SELECT item_product_id, item_qty FROM orders_item WHERE item_order_id = '$orderId'";
+        $orderItemsResult = mysqli_query($this->conn, $orderItemsQuery);
+    
+        if (!$orderItemsResult || mysqli_num_rows($orderItemsResult) === 0) {
+            return false; // No items found
+        }
+    
+        while ($item = mysqli_fetch_assoc($orderItemsResult)) {
+            $productId = $item['item_product_id'];
+            $itemQty = $item['item_qty'];
+    
+            $checkStockQuery = "SELECT product_stocks FROM product WHERE prod_id = $productId";
+            $stockResult = mysqli_query($this->conn, $checkStockQuery);
+            $stock = mysqli_fetch_assoc($stockResult);
+    
+            if (!$stock || $stock['product_stocks'] < $itemQty) {
+                return false; // Insufficient stock for one of the items
+            }
+        }
+        return true; // All items have sufficient stock
+    }
     
 
     public function GetAllOrders()

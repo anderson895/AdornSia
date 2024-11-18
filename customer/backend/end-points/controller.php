@@ -11,7 +11,20 @@ $db = new global_class();
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
-    if ($_POST['requestType']=="UpdateUserPassword") {
+    if ($_POST['requestType']=="RefundProduct") {
+
+        echo "<pre>";
+        print_r($_POST);
+        echo "</pre>";
+        $userId =$_POST['user_id'];
+        $productId = $_POST['prod_id'];
+        $RefundReason = $_POST['RefundReason'];
+
+        $response = $db->RefundProduct($userId, $productId,$RefundReason);
+
+        echo json_encode(['status' => $response]);
+        
+    }else if ($_POST['requestType']=="UpdateUserPassword") {
        // Get input data from POST request
         $userID = $_POST['userID'];
         $user_NewPassword = $_POST['user_NewPassword'];
@@ -78,12 +91,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $userId = $_POST['cart_user_id'];
         $productId = $_POST['cart_prod_id'];
         $prodSize = $_POST['cart_prod_size'];
-        
-        // Kunin ang response mula sa AddToCart method
+
         $response = $db->AddToCart($userId, $productId,$prodSize);
-        
-        // I-echo ang response upang ma-access ito sa frontend
+
         echo json_encode(['status' => $response]);
+
     }else if ($_POST['requestType']=="MinusToCart") {
         $userId = $_POST['cart_user_id'];
         $productId = $_POST['cart_prod_id'];

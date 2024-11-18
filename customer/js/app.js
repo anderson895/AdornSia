@@ -1,6 +1,56 @@
 $(document).ready(function() {
 
 
+    $('.btnRefundItem').click(function() {
+        $('#prod_id_refund').val($(this).attr('data-product_id'));
+        $('#user_id_refund').val($(this).attr('data-user_id'));
+
+
+        $('#RefundItemModal').fadeIn();
+    });
+
+    $('.closeModalBtn').click(function() {
+        $('#RefundItemModal').fadeOut();
+    });
+  
+    
+
+    $(document).ready(function() {
+        $("#frmRefund").on("submit", function(e) {
+          e.preventDefault(); 
+      
+          var formData = $(this).serialize(); 
+      
+          // Send data via AJAX
+          $.ajax({
+            url: 'backend/end-points/controller.php',
+            type: "POST",
+            data: formData,
+            success: function(response) {
+                console.log(response);
+                $("#RefundItemModal").hide();
+                alertify.success("Refund request submitted successfully.");
+                
+                // Add a 2-second delay before reloading the page
+                setTimeout(function() {
+                    location.reload();  // Reload the page after 2 seconds
+                }, 1000);  // Delay in milliseconds (2000ms = 2 seconds)
+            },
+            error: function(xhr, status, error) {
+                console.error("Error:", status, error);
+                alert("An error occurred while submitting the request.");
+            }
+        });
+        
+
+        });
+
+
+        $(".closeModalBtn").on("click", function() {
+          $("#RefundItemModal").hide();
+        });
+      });
+      
 
    
       
@@ -140,11 +190,7 @@ $(document).ready(function() {
 
 
 
-
-
-
-
-
+    
 
 
 

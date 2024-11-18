@@ -1,6 +1,62 @@
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
 
+
+<!-- Start refund Modal -->
+<div style="display:none;" id="RefundItemModal" class="fixed inset-0 bg-gray-500 bg-opacity-50 flex justify-center items-center z-50">
+  <div class="bg-white rounded-lg shadow-lg w-full max-w-lg">
+    <div class="px-6 py-4 border-b flex items-center justify-between">
+      <h5 class="text-xl font-semibold text-gray-800" id="cancelModalLabel">Refund Order</h5>
+      <button type="button" class="text-gray-500 hover:text-gray-700 closeModalBtn" aria-label="Close">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+        </svg>
+      </button>
+    </div>
+    <form id="frmRefund">
+      <div class="px-6 py-5 space-y-4">
+
+        <input hidden type="text" name="requestType" value="RefundProduct">
+        <input hidden type="text" name="prod_id" id="prod_id_refund" value="RefundProduct">
+        <input hidden type="text" name="user_id" id="user_id_refund" value="RefundProduct">
+
+        <label for="RefundReason" class="block text-sm font-medium text-gray-700">Reason for Refund</label>
+        <select name="RefundReason" id="RefundReason" class="w-full border-gray-300 rounded-md shadow-sm focus:ring-2 focus:ring-blue-500 py-2 px-3 text-gray-700">
+          <option value="" disabled selected>Select a reason</option>
+          <option value="Product was damaged upon arrival">Product was damaged upon arrival</option>
+          <option value="Item did not meet expectations">Item did not meet expectations</option>
+          <option value="Wrong item received">Wrong item received</option>
+          <option value="Order canceled before shipment">Order canceled before shipment</option>
+          <option value="Other">Other</option>
+        </select>
+      </div>
+
+      <div class="px-6 py-4 border-t flex justify-end space-x-4">
+        <button type="button" class="bg-gray-300 hover:bg-gray-400 text-black rounded-md px-6 py-2 font-medium">Cancel</button>
+        <button type="submit" id="btnCancelOrder" class="bg-red-500 hover:bg-red-600 text-white rounded-md px-6 py-2 font-medium">Confirm</button>
+      </div>
+    </form>
+  </div>
+</div>
+<!-- End refund Modal -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 <!-- Modal -->
 <div style="display:none;" id="addressModal" class="fixed inset-0 bg-gray-500 bg-opacity-50 flex justify-center items-center">
   <div class="bg-white rounded-lg shadow-lg p-6 w-full sm:w-96 max-w-sm">

@@ -207,6 +207,21 @@ public function OrderRequest($address, $paymentMethod, $proofOfPayment, $fileNam
 
 
 
+    public function RefundProduct($userId, $productId, $RefundReason)
+    {
+        $dateToday = date('Y-m-d H:i:s');
+        $query = $this->conn->prepare("INSERT INTO `refund` (`ref_prod_id`, `ref_user_id`, `ref_reason`, `ref_date`) VALUES (?, ?, ?, ?)");
+        $query->bind_param('iiss', $productId, $userId, $RefundReason, $dateToday);
+        if ($query->execute()) {
+            return true; 
+        } else {
+            return false; 
+        }
+    }
+
+
+
+
     public function getUserActiveAddress()
     {
         $user_id = $_SESSION['user_id'];

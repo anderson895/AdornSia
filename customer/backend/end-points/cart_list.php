@@ -70,6 +70,7 @@ $totalSavings = 0;
                     <p class="text-sm text-gray-600"><?= substr($cart['prod_description'], 0, 50) ?></p>
                     <p class="text-sm text-gray-600 ">Size: <?=$cart['cart_prod_size']?></p>
                     <p class="text-sm text-gray-600 ">Original price: <?=$cart['prod_currprice']?></p>
+                    <p class="text-sm text-gray-600 ">Avilable stocks: <?=$cart['product_stocks']?></p>
 
                     <!-- Quantity Input with Buttons -->
                     <div class="flex items-center space-x-2 mt-2">

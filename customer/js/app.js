@@ -119,9 +119,16 @@ $(document).ready(function() {
             dataType: 'json', // Corrected the syntax here
             success: function(response) {
                 // Hide loading spinner
+
                 console.log(response);
+
+               if(response.status=="Notenoughstock"){
+                alertify.error('Not Enough Stocks');
+               }else{
+                 location.reload();
+               }
                 
-                location.reload();
+               
             },
             error: function() {
                 alertify.error('Error occurred during the request!');

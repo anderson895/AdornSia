@@ -160,7 +160,7 @@ $(document).ready(function() {
           processData: false,  
           success: function(response) {
             console.log(response);
-            alert('Profile updated successfully!');
+            alertify.success('Profile updated successfully!');
           },
           error: function(xhr, status, error) {
             // Handle errors (e.g., show error message)

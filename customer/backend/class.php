@@ -266,19 +266,25 @@ public function OrderRequest($address, $paymentMethod, $proofOfPayment, $fileNam
 
 
     public function update_user_info($userID, $fullname, $email, $phone, $profileImage) {
-        // Prepare the query with placeholders
-        $query = $this->conn->prepare("
-            UPDATE `user` 
-            SET 
-                `Fullname` = ?, 
-                `Email` = ?, 
-                `Phone` = ?, 
-                `Profile_images` = ? 
-            WHERE `user_id` = ?
-        ");
+        // Start building the query
+        $queryStr = "UPDATE `user` SET `Fullname` = ?, `Email` = ?, `Phone` = ?";
     
-        // Bind the parameters to the query
-        $query->bind_param("ssssi", $fullname, $email, $phone, $profileImage, $userID);
+        // Add profile image conditionally to the query
+        if (!empty($profileImage)) {
+            $queryStr .= ", `Profile_images` = ?";
+        }
+    
+        $queryStr .= " WHERE `user_id` = ?";
+    
+        // Prepare the query
+        $query = $this->conn->prepare($queryStr);
+    
+        // Bind parameters based on the condition for profile image
+        if (!empty($profileImage)) {
+            $query->bind_param("ssssi", $fullname, $email, $phone, $profileImage, $userID);
+        } else {
+            $query->bind_param("sssi", $fullname, $email, $phone, $userID);
+        }
     
         // Execute the query and return the result
         if ($query->execute()) {
@@ -287,6 +293,7 @@ public function OrderRequest($address, $paymentMethod, $proofOfPayment, $fileNam
             return false; // Return false on failure
         }
     }
+    
 
 
     public function update_user_password($userID, $user_NewPassword, $user_CurrentPassword) {

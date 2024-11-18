@@ -413,6 +413,8 @@ public function OrderRequest($address, $paymentMethod, $proofOfPayment, $fileNam
         ON product.prod_id = orders_item.item_product_id
         LEFT JOIN category
         ON category.category_id = product.prod_category_id
+        LEFT JOIN refund
+        ON refund.ref_prod_id = product.prod_id
         where orders.order_user_id = '$userID' AND orders_item.item_order_id ='$order_id'
         ");
         if ($query->execute()) {

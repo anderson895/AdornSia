@@ -189,49 +189,51 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         $orderId = $_POST['orderId'];         // Get order ID
         $orderStatus = $_POST['orderStatus']; // Get the new order status
-
+        
         if ($orderStatus === "Canceled") {
             // Directly update the status to "Canceled"
             $order = $db->updateOrderStatus($orderId, $orderStatus);
-
-            if ($order === 'success') {
+        
+            if ($order) {
                 echo 200;  // Success response
             } else {
                 echo 'Failed to update order in the database.';
             }
         } elseif ($orderStatus === "Accept") {
-            // Perform stockout for "Accept" status
-            $updateStocks = $db->stockout($orderId, $orderStatus);
-
-            // Update order status only if stockout was successful
-            if ($updateStocks) {
+            $insufficientStockProducts = $db->validateStockSufficiency($orderId);
+        
+            // If stock is sufficient
+            if ($insufficientStockProducts === true) {
                 $order = $db->updateOrderStatus($orderId, $orderStatus);
-
-                if ($order === 'success') {
+        
+                if ($order) {
                     echo 200;  // Success response
                 } else {
                     echo 'Failed to update order in the database.';
                 }
             } else {
-                echo 'Insufficient stock. Order status not updated.';
+                // Return the list of products with insufficient stock
+                echo 'Insufficient stock for the following products: ' . implode(", ", $insufficientStockProducts);
             }
+        
         } else {
             // For all other statuses, validate stock sufficiency
             $stockSufficient = $db->validateStockSufficiency($orderId);
-
-            if ($stockSufficient) {
+        
+            if ($stockSufficient === true) {
                 // Update order status only if stock is sufficient
                 $order = $db->updateOrderStatus($orderId, $orderStatus);
-
-                if ($order === 'success') {
+        
+                if ($order) {
                     echo 200;  // Success response
                 } else {
                     echo 'Failed to update order in the database.';
                 }
             } else {
-                echo 'Insufficient stock. Order status not updated.';
+                echo 'Insufficient stock for the following products: ' . implode(", ", $stockSufficient);
             }
         }
+        
 
         
         

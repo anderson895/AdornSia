@@ -8,7 +8,6 @@ $(document).on("change", ".UpdateOrderStatus", function () {
   const initialStatus = $select.data("initial-status"); 
   const newStatus = $select.val(); 
 
-  console.log(newStatus)
 
   if(newStatus==""){
     console.log("select new status"); 
@@ -30,9 +29,14 @@ $(document).on("change", ".UpdateOrderStatus", function () {
           requestType: 'UpdateOrderStatus'
       },
       success: function (response) {
-          console.log(response);
-          console.log("Order status updated successfully.");
-          $select.data("initial-status", newStatus);
+        console.log(response)
+        if(response=="200"){
+          alertify.success("Order Status Updated Successfully");
+        }else{
+          alertify.error(response);
+        }
+         
+         
       },
       error: function (xhr, status, error) {
           console.error("Error updating order status:", error);
@@ -93,24 +97,6 @@ $(document).on("change", ".UpdateOrderStatus", function () {
     });
 
 
-
-  
-    // const getOrdersCount = () => {
-    //       $.ajax({
-    //         url: 'backend/end-points/select_category.php', 
-    //         type: 'GET',
-    //         success: function(response) {
-    //           console.log(response); 
-              
-            
-    //         },
-    //         error: function(xhr, status, error) {
-    //             console.error("Error fetching order status counts:", error);
-    //         }
-    //     });
-    //   };
-
-    //   getOrdersCount();
 
     $(document).ready(function() {
       $('#frmAddProduct').on('submit', function(e) {

@@ -1,4 +1,8 @@
 <?php
+include('backend/class.php');
+$db = new global_class();
+
+
 session_start();
 
 // Check if the user is logged in
@@ -8,6 +12,16 @@ $Fullname = $_SESSION['Fullname'];
 $name_parts = explode(" ", $Fullname);
 $firstname = $name_parts[0];
 $userID=$_SESSION['user_id'];
+
+
+$fetch_user_info = $db->fetch_user_info($userID); 
+foreach ($fetch_user_info as $user):
+    $user_fullname=$user['Fullname'];
+    $user_email=$user['Email'];
+    $user_phone=$user['Phone'];
+    $user_profileImages=$user['Profile_images'];
+endforeach;
+
 ?>
 
 <!DOCTYPE html>
@@ -49,8 +63,18 @@ $userID=$_SESSION['user_id'];
         <div class="relative dropdown">
           <!-- Dropdown Trigger -->
           <button id="profileButton" class="flex items-center space-x-2 bg-gray-200 hover:bg-gray-300 text-gray-700 rounded-full px-4 py-2">
-            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="inline-block h-6 w-6"><path d="M21.649 19.875c-1.428-2.468-3.628-4.239-6.196-5.078a6.75 6.75 0 10-6.906 0c-2.568.839-4.768 2.609-6.196 5.078a.75.75 0 101.299.75C5.416 17.573 8.538 15.75 12 15.75c3.462 0 6.584 1.823 8.35 4.875a.751.751 0 101.299-.75zM6.75 9a5.25 5.25 0 1110.5 0 5.25 5.25 0 01-10.5 0z" fill="#000" class="fill-grey-100"></path></svg>
-            <span><?= ucfirst($firstname) ?></span>
+          <?php
+              if($user_profileImages){
+                echo "<img src='../upload/$user_profileImages' class='h-6 w-6'>"; // Set image size to icon size (h-6 w-6)
+              } else {
+                echo ' 
+                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="inline-block h-6 w-6">
+                  <path d="M21.649 19.875c-1.428-2.468-3.628-4.239-6.196-5.078a6.75 6.75 0 10-6.906 0c-2.568.839-4.768 2.609-6.196 5.078a.75.75 0 101.299.75C5.416 17.573 8.538 15.75 12 15.75c3.462 0 6.584 1.823 8.35 4.875a.751.751 0 101.299-.75zM6.75 9a5.25 5.25 0 1110.5 0 5.25 5.25 0 01-10.5 0z" fill="#000" class="fill-grey-100"></path>
+                </svg>';
+              }
+            ?>
+
+             <span><?= ucfirst($firstname) ?></span>
           </button>
 
           <!-- Dropdown Menu -->

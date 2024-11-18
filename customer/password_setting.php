@@ -1,8 +1,5 @@
 <?php
 include "component/header.php";
-include('backend/class.php');
-
-$db = new global_class();
 
 $fetch_user_info = $db->fetch_user_info($userID); 
 foreach ($fetch_user_info as $user):

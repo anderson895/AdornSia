@@ -83,13 +83,14 @@ $(document).ready(function() {
             },
             dataType: 'json', 
             success: function(response) {
+                console.log(response);
                 
                 if(response.status == "Added To Cart!") {
                     alertify.success('Item successfully added to the cart!');
                 } else if(response.status == "Cart Updated!") {
                     alertify.success('Cart updated successfully!');
                 } else {
-                    alertify.error('Something went wrong, please try again.');
+                    alertify.error(response.status);
                 }
             },
             error: function() {
@@ -120,13 +121,13 @@ $(document).ready(function() {
             success: function(response) {
                 // Hide loading spinner
 
-                console.log(response);
-
-               if(response.status=="Notenoughstock"){
-                alertify.error('Not Enough Stocks');
-               }else{
-                 location.reload();
-               }
+                if(response.status == "Added To Cart!") {
+                    alertify.success('Item successfully added to the cart!');
+                } else if(response.status == "Cart Updated!") {
+                    alertify.success('Cart updated successfully!');
+                } else {
+                    alertify.error(response.status);
+                }
                 
                
             },

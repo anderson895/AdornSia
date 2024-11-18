@@ -448,62 +448,69 @@ public function OrderRequest($address, $paymentMethod, $proofOfPayment, $fileNam
     }
 
 
+    
+    // public function AddToCart($userId, $productId, $prodSize)
+    // {
+    //     $checkProductInCart = $this->checkProductInCart($userId, $productId, $prodSize);
+        
+    //     if ($checkProductInCart->num_rows > 0) {
+    //         // Update the quantity if the product already exists in the cart
+    //         $query = $this->conn->prepare("UPDATE `cart` SET `cart_Qty` = `cart_Qty` + 1 WHERE `cart_user_id` = '$userId' AND `cart_prod_id` = '$productId' AND `cart_prod_size` = '$prodSize'");
+    //         $response = 'Cart Updated!';
+    //     } else {
+    //         // Insert the product into the cart if it does not exist
+    //         $query = $this->conn->prepare("INSERT INTO `cart` (`cart_prod_id`, `cart_Qty`, `cart_user_id`, `cart_prod_size`) VALUES ('$productId', 1, '$userId', '$prodSize')");
+    //         $response = 'Added To Cart!';
+    //     }
+
+    //     if ($query->execute()) {
+    //         return $response;
+    //     } else {
+    //         return 400;
+    //     }
+    // }
+
     public function AddToCart($userId, $productId, $prodSize)
 {
-    // Step 1: Get current stock for the product
-    $stockQuery = $this->conn->prepare("SELECT `product_stocks` FROM `product` WHERE `prod_id` = ?");
-    $stockQuery->bind_param("i", $productId);
-    $stockQuery->execute();
-    $stockResult = $stockQuery->get_result();
-    $product = $stockResult->fetch_assoc();
-    
-    // If no product is found, return an error (optional)
-    if (!$product) {
-        return 404; // Product not found
+    // Escaping user input to prevent SQL injection
+    $userId = mysqli_real_escape_string($this->conn, $userId);
+    $productId = mysqli_real_escape_string($this->conn, $productId);
+    $prodSize = mysqli_real_escape_string($this->conn, $prodSize);
+
+    // Fetch product info
+    $productInfoResult = $this->conn->query("SELECT * FROM product WHERE prod_id='$productId'");
+    $productInfo = $productInfoResult->fetch_assoc();
+
+    // Fetch cart info
+    $cartInfoResult = $this->conn->query("SELECT * FROM cart WHERE cart_user_id='$userId' AND cart_prod_id='$productId'");
+    $cartInfo = $cartInfoResult->fetch_assoc();
+
+   
+    // Check if cart quantity exceeds product stock
+    if (isset($cartInfo['cart_Qty']) && $cartInfo['cart_Qty'] >= $productInfo['product_stocks']) {
+        return "MaximumExceed";
     }
 
-    $availableStock = $product['product_stocks'];
+    // Check if the product is already in the cart
+    $checkProductInCart = $this->conn->query("SELECT * FROM cart WHERE cart_user_id='$userId' AND cart_prod_id='$productId' AND cart_prod_size='$prodSize'");
 
-    // Step 2: Check if the product is already in the cart
-    $checkProductInCart = $this->checkProductInCart($userId, $productId, $prodSize);
-    
-    // If product is already in the cart
     if ($checkProductInCart->num_rows > 0) {
-        // Get the current quantity in the cart
-        $cartProduct = $checkProductInCart->fetch_assoc();
-        $currentCartQty = $cartProduct['cart_Qty'];
-
-        // If adding 1 more exceeds available stock, reject the addition
-        if ($currentCartQty + 1 > $availableStock) {
-            return 'Notenoughstock';
-        }
-
-        // Update the quantity in the cart
-        $query = $this->conn->prepare("UPDATE `cart` SET `cart_Qty` = `cart_Qty` + 1 WHERE `cart_user_id` = ? AND `cart_prod_id` = ? AND `cart_prod_size` = ?");
-        $query->bind_param("iii", $userId, $productId, $prodSize);
-        $response = 'CartUpdated!';
+        // Update the quantity if the product already exists in the cart
+        $query = "UPDATE `cart` SET `cart_Qty` = `cart_Qty` + 1 WHERE `cart_user_id` = '$userId' AND `cart_prod_id` = '$productId' AND `cart_prod_size` = '$prodSize'";
+        $response = 'Cart Updated!';
     } else {
-        // If the product is not in the cart, check if there's enough stock to add it
-        if (1 > $availableStock) {  // 1 is the default quantity being added
-            return 'Notenoughstock';
-        }
-
-        // Insert the product into the cart
-        $query = $this->conn->prepare("INSERT INTO `cart` (`cart_prod_id`, `cart_Qty`, `cart_user_id`, `cart_prod_size`) VALUES (?, 1, ?, ?)");
-        $query->bind_param("iii", $productId, $userId, $prodSize);
+        // Insert the product into the cart if it does not exist
+        $query = "INSERT INTO `cart` (`cart_prod_id`, `cart_Qty`, `cart_user_id`, `cart_prod_size`) VALUES ('$productId', 1, '$userId', '$prodSize')";
         $response = 'Added To Cart!';
     }
 
-    // Execute the query and return response
-    if ($query->execute()) {
+    // Execute the query and return the response
+    if ($this->conn->query($query)) {
         return $response;
     } else {
-        return 400; // Error executing the query
+        return 400;  // Error code if query fails
     }
 }
-
-
-
 
     
 

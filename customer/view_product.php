@@ -1,9 +1,5 @@
 <?php
 include "component/header.php";
-include('backend/class.php');
-
-$db = new global_class();
-
 $userID=$_SESSION['user_id'];
 $product_id=$_GET['product_id'];
 $category=$_GET['category'];

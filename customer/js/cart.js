@@ -4,6 +4,7 @@ $(document).ready(function() {
         let totalSavings = 0;
         let vat = 0;
         let total = 0;
+        var sf = 0;
 
         $('.product-checkbox:checked').each(function() {
 
@@ -17,16 +18,20 @@ $(document).ready(function() {
             const qty = parseInt($(this).data('qty'));
             const discountRate = parseFloat($(this).data('discount'));
 
+        
             const productTotal = price;
             subTotal += productTotal;
 
+
+            sf = 50;
+            vat = subTotal * 0.12; 
+            total = subTotal + vat + sf;
          
-            console.log(price);
         });
 
-        vat = subTotal * 0.12; 
-        total = subTotal + vat;
-
+        
+        
+        $('#shipping-fee').text(sf.toFixed(2));
         $('#sub-total').text(subTotal.toFixed(2));
         $('#vat').text(vat.toFixed(2));
         $('#total').text(total.toFixed(2));
@@ -102,7 +107,7 @@ $(document).ready(function() {
             e.preventDefault();
 
            
-        
+            var sf = $('#shipping-fee').text();
             // Retrieve values for subtotal, VAT, and total
             var subtotal = $('#sub-total').text();
             var vat = $('#vat').text();
@@ -174,6 +179,7 @@ $(document).ready(function() {
             formData.append("selectedPaymentMethod", selectedPaymentMethod);
             if (selectedFile) formData.append("selectedFile", selectedFile); // Only if file is selected
             formData.append("subtotal", subtotal);
+            formData.append("sf", sf);
             formData.append("vat", vat);
             formData.append("total", total);
             formData.append("selectedProducts", JSON.stringify(selectedProducts));

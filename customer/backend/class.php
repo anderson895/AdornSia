@@ -144,7 +144,7 @@ class global_class extends db_connect
 }
 
 // Function to handle order creation
-public function OrderRequest($address, $paymentMethod, $proofOfPayment, $fileName, $subtotal, $vat, $total)
+public function OrderRequest($address, $paymentMethod, $proofOfPayment, $fileName, $subtotal, $vat,$sf, $total)
 {
     session_start();
 
@@ -167,21 +167,22 @@ public function OrderRequest($address, $paymentMethod, $proofOfPayment, $fileNam
 
     // Prepare the SQL query with placeholders
     $query = "INSERT INTO `orders` 
-                (`order_code`, `order_user_id`, `mode_of_payment`, `proof_of_payment`, `subtotal`, `vat`, `total`, `delivery_address`, `order_date`, `order_status`) 
+                (`order_code`, `order_user_id`, `mode_of_payment`, `proof_of_payment`, `subtotal`, `vat`,`sf`, `total`, `delivery_address`, `order_date`, `order_status`) 
               VALUES 
-                (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+                (?, ?, ?, ?, ?, ?, ?, ?, ?,?, ?)";
 
     // Prepare the statement
     if ($stmt = $this->conn->prepare($query)) {
 
         // Bind parameters (s = string, d = double, i = integer)
-        $stmt->bind_param('ssssdddsss', 
+        $stmt->bind_param('ssssddddsss', 
             $uniqueOrderCode, 
             $user_id, 
             $paymentMethod, 
             $proofOfPayment, 
             $subtotal, 
-            $vat, 
+            $vat,
+            $sf,
             $total, 
             $address, 
             $order_date, 

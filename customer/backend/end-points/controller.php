@@ -130,6 +130,7 @@ $selectedPaymentMethod = $_POST['selectedPaymentMethod'];
 $subtotal = $_POST['subtotal'];
 $vat = $_POST['vat'];
 $total = $_POST['total'];
+$sf = $_POST['sf'];
 
 // Retrieve selectedProducts from POST
 $selectedProducts = $_POST['selectedProducts'] ?? null;
@@ -175,7 +176,7 @@ if (isset($_FILES['selectedFile']) && $_FILES['selectedFile']['error'] == UPLOAD
 }
 
 // Process the order request in the database
-$response = $db->OrderRequest($selectedAddress, $selectedPaymentMethod, $uniqueFileName, $selectedFilePath, $subtotal, $vat, $total);
+$response = $db->OrderRequest($selectedAddress, $selectedPaymentMethod, $uniqueFileName, $selectedFilePath, $subtotal, $vat,$sf, $total);
 
 if ($response['status'] === 'success') {
     

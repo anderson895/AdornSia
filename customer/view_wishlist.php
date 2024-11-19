@@ -31,7 +31,7 @@ $userID = $_SESSION['user_id'];
     <!-- Main Product Container -->
     <div class="relative max-w-5xl mx-auto bg-white p-6 rounded-lg shadow-lg mb-8">
     <!-- Close Button -->
-    <button class="absolute top-2 right-2 text-gray-500 hover:text-gray-800 text-2xl" data-wish_id="<?=$wish_id?>">
+    <button class="absolute top-2 right-2 text-gray-500 hover:text-gray-800 text-2xl removeFromWish" data-wish_id="<?=$wish_id?>">
         &times;
     </button>
 

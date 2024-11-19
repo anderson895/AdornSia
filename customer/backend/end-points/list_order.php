@@ -3,28 +3,28 @@
   <main class="flex-1 p-6 bg-gray-50 rounded-lg shadow-lg">
     <!-- Tabs -->
     <div class="flex justify-center space-x-4 space-y-2 md:space-y-0 md:space-x-4 border-b mb-6 overflow-x-auto whitespace-nowrap">
-  <a href="#" class="py-2 px-4 border-b-2 border-transparent text-gray-600 hover:text-red-500 hover:border-red-500 font-semibold transition-all duration-200" data-status="all">All</a>
-  <a href="#" class="py-2 px-4 text-gray-600 hover:text-red-500 font-semibold transition-all duration-200" data-status="pending">Pending</a>
-  <a href="#" class="py-2 px-4 text-gray-600 hover:text-red-500 font-semibold transition-all duration-200" data-status="accept">To Ship</a>
-  <a href="#" class="py-2 px-4 text-gray-600 hover:text-red-500 font-semibold transition-all duration-200" data-status="shipped">To Receive</a>
-  <a href="#" class="py-2 px-4 text-gray-600 hover:text-red-500 font-semibold transition-all duration-200" data-status="delivered">Completed</a>
-  <a href="#" class="py-2 px-4 text-gray-600 hover:text-red-500 font-semibold transition-all duration-200" data-status="canceled">Cancelled</a>
-</div>
-
-
+      <a href="#" class="py-2 px-4 border-b-2 border-transparent text-gray-600 hover:text-red-500 hover:border-red-500 font-semibold transition-all duration-200" data-status="all">All</a>
+      <a href="#" class="py-2 px-4 text-gray-600 hover:text-red-500 font-semibold transition-all duration-200" data-status="pending">Pending</a>
+      <a href="#" class="py-2 px-4 text-gray-600 hover:text-red-500 font-semibold transition-all duration-200" data-status="accept">To Ship</a>
+      <a href="#" class="py-2 px-4 text-gray-600 hover:text-red-500 font-semibold transition-all duration-200" data-status="shipped">To Receive</a>
+      <a href="#" class="py-2 px-4 text-gray-600 hover:text-red-500 font-semibold transition-all duration-200" data-status="delivered">Completed</a>
+      <a href="#" class="py-2 px-4 text-gray-600 hover:text-red-500 font-semibold transition-all duration-200" data-status="canceled">Cancelled</a>
+    </div>
 
     <!-- Order Cards -->
     <div class="space-y-6">
-      <!-- Order 1 -->
       <?php 
-      $fetch_orders = $db->fetch_order($userID);  
-      foreach ($fetch_orders as $order):
-        // Create a class based on the order status
-        $orderStatusClass = strtolower(str_replace(' ', '-', $order['order_status']));
+      // Fetch the orders
+      $fetch_orders = $db->fetch_order($userID);
+      
+      // Check if there are any orders
+      if ($fetch_orders->num_rows > 0): 
+        while ($order = $fetch_orders->fetch_assoc()):
+          // Create a class based on the order status
+          $orderStatusClass = strtolower(str_replace(' ', '-', $order['order_status']));
       ?>
       <div class="bg-white shadow-lg rounded-lg p-6 transition-all duration-300 hover:shadow-xl order-card <?=$orderStatusClass?>">
         <div class="flex flex-wrap items-center gap-6">
-         
           <div>
             <p class="text-sm text-gray-600 mb-3">Order Date: <?=$order['order_date']?></p>
             <p class="font-bold text-xl text-gray-900"># <?=$order['order_code']?></p>
@@ -39,17 +39,21 @@
           <p class="text-sm text-gray-600"><?=$order['delivery_address']?></p>
          
           <div class="flex space-x-4 mt-4">
-          <button class="bg-red-500 text-white px-6 py-2 rounded-lg hover:bg-red-600 transition-colors duration-300" onclick="location.href='view_order_details.php?order_id=<?=$order['order_id']?>'">View Details</button>
-
-        </div>
-
+            <button class="bg-red-500 text-white px-6 py-2 rounded-lg hover:bg-red-600 transition-colors duration-300" onclick="location.href='view_order_details.php?order_id=<?=$order['order_id']?>'">View Details</button>
+          </div>
         </div>
       </div>
-      <?php endforeach; ?>
+      <?php endwhile; ?>
+      <?php else: ?>
+      <!-- No Order History Message -->
+      <div class="bg-white shadow-lg rounded-lg p-6 text-center text-gray-600">
+        <p class="text-xl font-semibold">No Order History</p>
+        <p class="mt-4 text-sm">You haven't placed any orders yet. Browse products and start shopping!</p>
+      </div>
+      <?php endif; ?>
     </div>
   </main>
 </div>
-
 
 <script>
   $(document).ready(function() {

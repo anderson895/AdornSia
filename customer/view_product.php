@@ -1,5 +1,8 @@
 <?php
 include "component/header.php";
+
+
+
 $userID=$_SESSION['user_id'];
 $product_id=$_GET['product_id'];
 $category=$_GET['category'];
@@ -97,7 +100,10 @@ endforeach;
                     >
                         Add to Cart
                     </button>
-                    <button class="flex-1 border border-gray-300 text-gray-700 py-3 rounded-lg hover:bg-gray-100 transition btnAddToCart">
+                    <button class="flex-1 border border-gray-300 text-gray-700 py-3 rounded-lg hover:bg-gray-100 transition btnAddToWishlist"
+                     data-product_id="<?=$product_id?>"
+                        data-user_id="<?=$userID?>"
+                    >
                         Add to Wishlist
                     </button>
                 </div>

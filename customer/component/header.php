@@ -79,12 +79,25 @@ endforeach;
 
           <!-- Dropdown Menu -->
           <div class="absolute right-0 mt-2 w-48 bg-white border border-gray-200 rounded-lg shadow-lg dropdown-menu">
-
-            <a href="orders.php" class="block px-4 py-2 text-gray-700 hover:bg-blue-100 hover:text-blue-600 transition">My Purchase</a>
-            <a href="profile.php" class="block px-4 py-2 text-gray-700 hover:bg-blue-100 hover:text-blue-600 transition">Profile</a>
-            <a href="password_setting.php" class="block px-4 py-2 text-gray-700 hover:bg-blue-100 hover:text-blue-600 transition">Password</a>
-            <a href="logout.php" class="block px-4 py-2 text-gray-700 hover:bg-blue-100 hover:text-blue-600 transition">Logout</a>
+              <a href="orders.php" class="block px-4 py-2 text-gray-700 hover:bg-blue-100 hover:text-blue-600 transition">
+                  <span class="material-icons align-middle mr-2">shopping_cart</span>
+                  My Purchase
+              </a>
+              <a href="profile.php" class="block px-4 py-2 text-gray-700 hover:bg-blue-100 hover:text-blue-600 transition">
+                  <span class="material-icons align-middle mr-2">account_circle</span>
+                  Profile
+              </a>
+              <a href="password_setting.php" class="block px-4 py-2 text-gray-700 hover:bg-blue-100 hover:text-blue-600 transition">
+                  <span class="material-icons align-middle mr-2">lock</span>
+                  Password
+              </a>
+              <a href="logout.php" class="block px-4 py-2 text-gray-700 hover:bg-blue-100 hover:text-blue-600 transition">
+                  <span class="material-icons align-middle mr-2">exit_to_app</span>
+                  Logout
+              </a>
           </div>
+
+
         </div>
 
       <?php else: ?>
@@ -96,8 +109,13 @@ endforeach;
       
       <a href="view_cart.php" class="relative text-gray-700 hover:text-blue-600 transition text-xl">
           🛒
-          <span class="absolute top-0 right-0 inline-block w-5 h-5 text-xs font-semibold text-white bg-red-500 rounded-full text-center cartCount"></span>
+          <span class="absolute top-0 right-0 inline-block w-5 h-5 text-xs font-semibold text-white bg-red-500 rounded-full text-center hidden cartCount"></span>
       </a>
+      <a href="view_wishlist.php" class="relative text-gray-700 hover:text-blue-600 transition text-xl">
+          <span class="material-icons align-middle mr-2">favorite_border</span>
+          <span class="absolute top-0 right-0 inline-block w-5 h-5 text-xs font-semibold text-white bg-red-500 rounded-full text-center hidden wishlistCount"></span>
+      </a>
+
 
     </div>
   </div>

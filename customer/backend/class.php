@@ -59,6 +59,36 @@ class global_class extends db_connect
         "    
     );
 
+    
+        if ($query->execute()) {
+            $result = $query->get_result();
+            return $result;
+        }
+    }
+
+
+
+
+    public function fetch_product_on_wish($userID){
+        $query = $this->conn->prepare("SELECT 
+                product.*, 
+                category.*, 
+                promo.*, 
+                wishlist.*, 
+                CASE 
+                    WHEN promo.promo_expiration < NOW() THEN NULL
+                    ELSE product.prod_promo_id
+                END AS prod_promo_id
+            FROM product
+            LEFT JOIN category
+                ON product.prod_category_id = category.category_id
+            LEFT JOIN promo
+                ON promo.promo_id = product.prod_promo_id
+            LEFT JOIN wishlist
+                ON wishlist.wish_prod_id = product.prod_id 
+            where wishlist.wish_user_id ='$userID'
+        "    
+    );
         if ($query->execute()) {
             $result = $query->get_result();
             return $result;
@@ -77,6 +107,16 @@ class global_class extends db_connect
             }
     }
 
+    public function RemoveFromWish($wish_id)
+    { 
+        
+        
+            $updateStatusQuery = "DELETE FROM `wishlist` WHERE wish_id ='$wish_id'";
+            if ($this->conn->query($updateStatusQuery)) {
+                return 200;
+            }
+    }
+    
 
     public function getPaymentQr($cart_id)
     { 
@@ -426,16 +466,24 @@ public function OrderRequest($address, $paymentMethod, $proofOfPayment, $fileNam
 
     public function getOrderStatusCounts($userID)
     {
-    
-        $query = $this->conn->prepare(" SELECT COUNT(*) AS cartCount FROM `cart` where cart_user_id='$userID'");
-    
-        if ($query->execute()) {
-            $result = $query->get_result()->fetch_assoc();
-            // Return the result as JSON
-            echo json_encode($result);
-            return;
+        $query = " 
+            SELECT 
+                (SELECT COUNT(*) FROM `cart` WHERE cart_user_id = $userID) AS cartCount,
+                (SELECT COUNT(*) FROM `wishlist` WHERE wish_user_id = $userID) AS wishlistCount
+        ";
+
+        $result = $this->conn->query($query);
+        
+        if ($result) {
+            $row = $result->fetch_assoc();
+            
+            echo json_encode($row);
+        } else {
+            echo json_encode(['error' => 'Failed to retrieve counts']);
         }
     }
+
+    
 
     // cart
     public function checkProductInCart($userId, $productId,$prodSize)
@@ -512,7 +560,32 @@ public function OrderRequest($address, $paymentMethod, $proofOfPayment, $fileNam
     }
 }
 
-    
+public function AddToWish($userId, $productId)
+{
+
+    // Fetch product info
+    $productInfoResult = $this->conn->query("SELECT * FROM product WHERE prod_id='$productId'");
+    $productInfo = $productInfoResult->fetch_assoc();
+
+   
+    $checkProductInWIsh = $this->conn->query("SELECT * FROM wishlist WHERE wish_user_id ='$userId' AND wish_prod_id ='$productId'");
+
+    if ($checkProductInWIsh->num_rows > 0) {
+        return "Product is Already On Wishlist";
+    } else {
+        // Insert the product into the cart if it does not exist
+        $query = "INSERT INTO `wishlist` (`wish_user_id`,`wish_prod_id`) VALUES ('$userId','$productId')";
+        $response = 'Added To Wishlist!';
+    }
+
+    // Execute the query and return the response
+    if ($this->conn->query($query)) {
+        return $response;
+    } else {
+        return 400;  // Error code if query fails
+    }
+}
+
 
 
         public function MinusToCart($userId, $productId, $prodSize)

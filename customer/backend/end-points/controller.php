@@ -93,6 +93,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         echo json_encode(['status' => $response]);
 
+    }else if ($_POST['requestType']=="AddToWishlist") {
+        $userId = $_POST['cart_user_id'];
+        $productId = $_POST['cart_prod_id'];
+
+        $response = $db->AddToWish($userId, $productId);
+
+        echo json_encode(['status' => $response]);
+
     }else if ($_POST['requestType']=="MinusToCart") {
         $userId = $_POST['cart_user_id'];
         $productId = $_POST['cart_prod_id'];
@@ -130,6 +138,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $cart_id = $_POST['cart_id'];
         $size = $_POST['size'];
         $response = $db->RemoveItem($user_id,$cart_id,$size);
+        echo json_encode(['status' => $response]);
+    }else if ($_POST['requestType']=="RemoveFromWish") {
+       
+        $wish_id = $_POST['wish_id'];
+
+        $response = $db->RemoveFromWish($wish_id);
         echo json_encode(['status' => $response]);
     }else if ($_POST['requestType']=="OrderRequest") {
 

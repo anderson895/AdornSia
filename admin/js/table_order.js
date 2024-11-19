@@ -91,9 +91,12 @@ function displayOrders(orders) {
                         data-orderId="${orderItem.order_id}" 
                         data-initial-status="${orderItem.order_status}">
                         ${orderItem.order_status == "Pending" ? 
-                            '<option value="" selected>Pending</option>' : ''
+                            '<option value="" selected>Pending</option> <option value="Accept">Accept</option>' : ''
                         }
-                        <option value="Accept" ${orderItem.order_status == "Accept" ? "selected" : ""}>Accept</option>
+
+                        ${orderItem.order_status == "Accept" ? 
+                            '<option value="Accept" selected>Accept</option>' : ''
+                        }
                         <option value="Shipped" ${orderItem.order_status == "Shipped" ? "selected" : ""}>Shipped</option>
                         <option value="Delivered" ${orderItem.order_status == "Delivered" ? "selected" : ""}>Delivered</option>
                         <option value="Canceled" ${orderItem.order_status == "Canceled" ? "selected" : ""}>Canceled</option>

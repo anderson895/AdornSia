@@ -26,7 +26,7 @@
       <div class="bg-white shadow-lg rounded-lg p-6 transition-all duration-300 hover:shadow-xl order-card <?=$orderStatusClass?>">
         <div class="flex flex-wrap items-center gap-6">
           <div>
-            <p class="text-sm text-gray-600 mb-3">Order Date: <?=$order['order_date']?></p>
+            <p class="text-sm text-gray-600 mb-3">Order Date: <?= date('F j, Y g:i A', strtotime($order['order_date'])) ?></p>
             <p class="font-bold text-xl text-gray-900"># <?=$order['order_code']?></p>
             <p class="text-sm text-gray-600 mt-1">Subtotal: <?=$order['subtotal']?></p>
             <p class="text-sm text-gray-600 mt-1">Vat: <?=$order['vat']?></p>

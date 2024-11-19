@@ -1,3 +1,26 @@
+<?php
+session_start();
+include('backend/class.php');
+
+$db = new global_class();
+
+if (isset($_SESSION['admin_id'])) {
+    $admin_id = intval($_SESSION['admin_id']); // I-sanitize ang admin_id
+
+    // Gamitin ang check_account method
+    $result = $db->check_account($admin_id);
+
+    if (!empty($result)) {
+      
+    } else {
+       header('location: index.php');
+    }
+} else {
+   header('location: index.php');
+}
+?>
+
+
 
 
 <!DOCTYPE html>

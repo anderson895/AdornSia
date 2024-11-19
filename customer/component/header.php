@@ -2,13 +2,20 @@
 include('backend/class.php');
 $db = new global_class();
 
-
 session_start();
+$is_logged_in = isset($_SESSION['user_id']);
+if (isset($_SESSION['user_id'])) {
+  $user_id = intval($_SESSION['user_id']); 
+  $result = $db->check_account($user_id);
 
-// Check if the user is logged in
-$is_logged_in = isset($_SESSION['user_id']); // Assuming user ID is stored in session after login
-
-
+  if (!empty($result)) {
+    
+  } else {
+     header('location: ../login.php');
+  }
+} else {
+ header('location: ../login.php');
+}
 $userID=$_SESSION['user_id'];
 
 
@@ -63,6 +70,8 @@ $firstname = $name_parts[0];
       <?php if ($is_logged_in): ?>
         <!-- Show these if user is logged in -->
         <a href="index.php" class="text-gray-700 hover:text-blue-600 transition">Orders</a>
+
+        
         <div class="relative dropdown">
           <!-- Dropdown Trigger -->
           <button id="profileButton" class="flex items-center space-x-2 bg-gray-200 hover:bg-gray-300 text-gray-700 rounded-full px-4 py-2">

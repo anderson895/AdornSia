@@ -1,9 +1,6 @@
 <?php 
-session_start();
-include "components/header.php";
-include('backend/class.php');
 
-$db = new global_class();
+include "components/header.php";
 
 // Set the default step as "Pending" if not set
 $defaultStep = 'Pending'; // Default value

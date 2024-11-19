@@ -1,9 +1,6 @@
 <?php 
-session_start();
 include "components/header.php";
-include('backend/class.php');
 
-$db = new global_class();
 ?>
 
 <div class="flex justify-between items-center bg-white p-4 mb-6 rounded-md shadow-md">

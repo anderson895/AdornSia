@@ -1,5 +1,5 @@
 <?php 
-$db = new global_class();
+
 $orderId = $_GET['orderId'];
 $fetch_item_orders = $db->fetch_item_orders($orderId);
 
@@ -7,9 +7,7 @@ if ($fetch_item_orders):
     // Format the order date
     $orderDate = new DateTime($fetch_item_orders[0]['order_date']);
     $formattedDate = $orderDate->format('F j, Y g:i A');  // MONTH DAY YEAR Time format
-?>
-    <?php 
-$db = new global_class();
+
 $orderId = $_GET['orderId'];
 $fetch_item_orders = $db->fetch_item_orders($orderId);
 

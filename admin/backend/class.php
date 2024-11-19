@@ -9,6 +9,28 @@ class global_class extends db_connect
         $this->connect();
     }
 
+
+    public function check_account($admin_id) {
+        // I-sanitize ang admin_id para maiwasan ang SQL injection
+        $admin_id = intval($admin_id);
+    
+        // SQL query para hanapin ang admin_id sa table
+        $query = "SELECT * FROM admin WHERE admin_id = $admin_id";
+    
+        $result = $this->conn->query($query);
+    
+        // Prepare ang array para sa result
+        $items = [];
+        if ($result && $result->num_rows > 0) {
+            while ($row = $result->fetch_assoc()) {
+                $items[] = $row;
+            }
+        }
+        return $items; // Ibabalik ang array ng results o empty array kung walang nahanap
+    }
+    
+
+
     public function fetch_item_orders($orderId) {
         $query = "
             SELECT * FROM orders_item 

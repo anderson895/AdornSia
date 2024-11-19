@@ -10,6 +10,26 @@ class global_class extends db_connect
     }
 
 
+    public function check_account($user_id ) {
+        // I-sanitize ang admin_id para maiwasan ang SQL injection
+        $user_id  = intval($user_id);
+    
+        // SQL query para hanapin ang admin_id sa table
+        $query = "SELECT * FROM user WHERE user_id  = $user_id";
+    
+        $result = $this->conn->query($query);
+    
+        // Prepare ang array para sa result
+        $items = [];
+        if ($result && $result->num_rows > 0) {
+            while ($row = $result->fetch_assoc()) {
+                $items[] = $row;
+            }
+        }
+        return $items; // Ibabalik ang array ng results o empty array kung walang nahanap
+    }
+
+
     public function getCartlist($userID)
     {
         // Directly insert the userID into the query (no prepared statements)

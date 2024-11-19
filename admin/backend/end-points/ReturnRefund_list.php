@@ -1,7 +1,4 @@
 <?php 
-include('backend/class.php');
-
-$db = new global_class();
 
 $fetch_all_refund = $db->fetch_all_refund();
 

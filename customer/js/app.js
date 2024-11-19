@@ -270,13 +270,13 @@ $(document).ready(function() {
           success: function(response) {
             console.log(response);
             alertify.success('Profile updated successfully!');
+            setTimeout(function() {
+              location.reload();
+            }, 1000);  // 1000 milliseconds = 1 second
           },
-          error: function(xhr, status, error) {
-            // Handle errors (e.g., show error message)
-            alert('An error occurred: ' + error);
-          }
         });
       });
+      
 
 
       $('#userPasswordFrm').on('submit', function(e) {

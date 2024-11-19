@@ -1,6 +1,4 @@
-<?php 
- session_start();
-?>
+
 <?php include "components/header.php";?>
 <!-- Top bar with user profile -->
 <div class="flex justify-between items-center bg-white p-4 mb-6 rounded-md shadow-md">

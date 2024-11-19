@@ -1,7 +1,4 @@
 <?php 
-include('backend/class.php');
-
-$db = new global_class();
 
 $fetch_all_students = $db->fetch_all_customers();
 

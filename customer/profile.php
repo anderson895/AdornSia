@@ -23,16 +23,16 @@ endforeach;
     <input hidden type="text" name="requestType" value="UpdateUserProfile">
     <input hidden type="text" name="userID" value="<?=$userID?>">
       <label class="block text-sm font-medium text-gray-700 mt-4">Name</label>
-      <input type="text" name="user_fullname" value="<?=$user_fullname?>" class="mt-2 bg-gray-100 p-4 w-full border border-gray-300 rounded-md focus:ring-2 focus:ring-orange-500 focus:border-orange-500 transition ease-in-out">
+      <input type="text" name="user_fullname" value="<?=$user_fullname?>" class="mt-2 bg-gray-100 p-4 w-full border border-gray-300 rounded-md focus:ring-2 focus:ring-gray-500 focus:border-orange-500 transition ease-in-out">
 
       <label class="block text-sm font-medium text-gray-700 mt-6">Email</label>
       <div class="flex items-center border-b border-gray-300 pb-2">
-        <input type="email" name="user_email" value="<?=$user_email?>" class="mt-2 p-4 w-full bg-gray-100 border-0 rounded-md focus:ring-2 focus:ring-orange-500 focus:border-orange-500 transition ease-in-out">
+        <input type="email" name="user_email" value="<?=$user_email?>" class="mt-2 p-4 w-full bg-gray-100 border-0 rounded-md focus:ring-2 focus:ring-gray-500 focus:border-orange-500 transition ease-in-out">
       </div>
       
       <label class="block text-sm font-medium text-gray-700 mt-6">Phone Number</label>
       <div class="flex items-center border-b border-gray-300 pb-2">
-        <input type="text" name="user_phone" value="<?=$user_phone?>" class="mt-2 p-4 w-full bg-gray-100 border-0 rounded-md focus:ring-2 focus:ring-orange-500 focus:border-orange-500 transition ease-in-out" >
+        <input type="text" name="user_phone" value="<?=$user_phone?>" class="mt-2 p-4 w-full bg-gray-100 border-0 rounded-md focus:ring-2 focus:ring-gray-500 focus:border-orange-500 transition ease-in-out" >
       </div>
     </div>
 

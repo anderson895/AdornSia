@@ -30,14 +30,19 @@ if ($fetch_item_orders):
                     <?php if ($fetch_item_orders[0]['order_status'] == "Pending"){ ?>
                             <option <?= $fetch_item_orders[0]['order_status'] == "Pending" ? "selected" : "" ?> value="Pending">Pending</option>
                             <option <?= $fetch_item_orders[0]['order_status'] == "Accept" ? "selected" : "" ?> value="Accept">Accept</option>
-                            
+
                     <?php } else if ($fetch_item_orders[0]['order_status'] == "Accept"){ ?>
                             <option <?= $fetch_item_orders[0]['order_status'] == "Accept" ? "selected" : "" ?> value="Accept">Accept</option>
+                            <option value="Shipped" <?= $fetch_item_orders[0]['order_status'] == "Shipped" ? "selected" : "" ?>>Shipped</option>
+                            <option value="Delivered" <?= $fetch_item_orders[0]['order_status'] == "Delivered" ? "selected" : "" ?>>Delivered</option>
+                            <option value="Canceled" <?= $fetch_item_orders[0]['order_status'] == "Canceled" ? "selected" : "" ?>>Canceled</option>
+                    <?php }else{ ?>
+                            <option value="Shipped" <?= $fetch_item_orders[0]['order_status'] == "Shipped" ? "selected" : "" ?>>Shipped</option>
+                            <option value="Delivered" <?= $fetch_item_orders[0]['order_status'] == "Delivered" ? "selected" : "" ?>>Delivered</option>
+                            <option value="Canceled" <?= $fetch_item_orders[0]['order_status'] == "Canceled" ? "selected" : "" ?>>Canceled</option>
                     <?php } ?>
                     
-                    <option value="Shipped" <?= $fetch_item_orders[0]['order_status'] == "Shipped" ? "selected" : "" ?>>Shipped</option>
-                    <option value="Delivered" <?= $fetch_item_orders[0]['order_status'] == "Delivered" ? "selected" : "" ?>>Delivered</option>
-                    <option value="Canceled" <?= $fetch_item_orders[0]['order_status'] == "Canceled" ? "selected" : "" ?>>Canceled</option>
+                   
                 </select>
             </div>
         </div>

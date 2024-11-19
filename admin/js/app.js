@@ -69,20 +69,18 @@ $(document).on("change", ".UpdateOrderStatus", function () {
           requestType: 'UpdateOrderStatus'
       },
       success: function (response) {
-        console.log(response)
-        if(response=="200"){
-          alertify.success("Order Status Updated Successfully");
-        }else{
-          alertify.error(response);
+        console.log(response);
+        if (response == "200") {
+            alertify.success("Order Status Updated Successfully");
+    
+            // Delay the reload by 1 second (1000 milliseconds)
+            setTimeout(function() {
+                location.reload();
+            }, 1000);
+        } else {
+            alertify.error(response);
         }
-         
-         
-      },
-      error: function (xhr, status, error) {
-          console.error("Error updating order status:", error);
-          console.error(xhr.responseText); 
-          console.log("Failed to update the order status. Please try again.");
-      },
+    },
       complete: function () {
           $select.prop("disabled", false);
       }

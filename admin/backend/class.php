@@ -10,6 +10,134 @@ class global_class extends db_connect
     }
 
 
+
+
+
+    
+    public function getDataAnalytics()
+    {
+        // Query to get user count, orders count, and total sales for delivered orders
+        $query = " 
+            SELECT 
+                (SELECT COUNT(*) FROM `user`) AS userCount,
+                (SELECT COUNT(*) FROM `orders`) AS wishlistCount,
+                (SELECT SUM(`total`) FROM `orders` WHERE `order_status` = 'Delivered') AS totalSales
+        ";
+    
+        // Execute the query
+        $result = $this->conn->query($query);
+        
+        if ($result) {
+            // Fetch the result and return as JSON
+            $row = $result->fetch_assoc();
+            echo json_encode($row);
+        } else {
+            // Error handling if query fails
+            echo json_encode(['error' => 'Failed to retrieve counts']);
+        }
+    }
+
+
+    public function getMonthlySalesData()
+    {
+        $query = "
+            SELECT 
+                MONTH(`order_date`) AS `order_month`,
+                SUM(`total`) AS `monthly_sales`
+            FROM `orders`
+            WHERE `order_status` = 'Delivered' 
+            AND YEAR(`order_date`) = YEAR(CURDATE()) 
+            GROUP BY MONTH(`order_date`) 
+            ORDER BY `order_month`
+        ";
+    
+        $result = $this->conn->query($query);
+    
+        if ($result) {
+            $salesData = [];
+            while ($row = $result->fetch_assoc()) {
+                $salesData[] = [
+                    'month' => date('F', mktime(0, 0, 0, $row['order_month'], 10)),
+                    'sales' => $row['monthly_sales']
+                ];
+            }
+            echo json_encode($salesData);
+        } else {
+            // Log the error for debugging
+            error_log('Database query failed: ' . $this->conn->error);
+            echo json_encode(['error' => 'Failed to retrieve monthly sales data']);
+        }
+    }
+    
+    
+
+    
+  public function getWeeklySalesData()
+    {
+        $query = "
+            SELECT 
+                WEEK(`order_date`, 1) AS `order_week`,  -- `1` means the week starts on Monday
+                SUM(`total`) AS `weekly_sales`
+            FROM `orders`
+            WHERE `order_status` = 'Delivered' 
+            AND YEAR(`order_date`) = YEAR(CURDATE())  -- Filter for current year
+            GROUP BY WEEK(`order_date`, 1)
+            ORDER BY `order_week`
+        ";
+    
+        $result = $this->conn->query($query);
+    
+        if ($result) {
+            $salesData = [];
+            while ($row = $result->fetch_assoc()) {
+                $salesData[] = [
+                    'week' => 'Week ' . $row['order_week'],
+                    'sales' => $row['weekly_sales']
+                ];
+            }
+            echo json_encode($salesData); // Return the sales data as JSON
+        } else {
+            echo json_encode(['error' => 'Failed to retrieve weekly sales data']);
+        }
+    }
+
+
+
+public function getDailySalesData()
+{
+    $query = "
+        SELECT 
+            DATE(`order_date`) AS `order_day`, 
+            SUM(`total`) AS `daily_sales`
+        FROM `orders`
+        WHERE `order_status` = 'Delivered' 
+        AND MONTH(`order_date`) = MONTH(CURDATE()) 
+        AND YEAR(`order_date`) = YEAR(CURDATE())
+        GROUP BY DATE(`order_date`)
+        ORDER BY `order_day`
+    ";
+
+    $result = $this->conn->query($query);
+
+    if ($result) {
+        $salesData = [];
+        while ($row = $result->fetch_assoc()) {
+            $salesData[] = [
+                'date' => $row['order_day'],
+                'sales' => $row['daily_sales']
+            ];
+        }
+        echo json_encode($salesData); // Return the sales data as JSON
+    } else {
+        echo json_encode(['error' => 'Failed to retrieve daily sales data']);
+    }
+}
+
+
+
+
+
+
     public function check_account($admin_id) {
         // I-sanitize ang admin_id para maiwasan ang SQL injection
         $admin_id = intval($admin_id);

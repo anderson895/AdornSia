@@ -348,12 +348,8 @@ const getOrdersCount = () => {
             $('.wishlistCount').hide();
         }
       },
-      error: function(xhr, status, error) {
-          console.error("Error fetching order status counts:", error);
-      }
     });
 };
-
 
 
 getOrdersCount();

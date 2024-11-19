@@ -17,21 +17,21 @@
     <div class="bg-white p-6 rounded-lg shadow-lg flex flex-col items-center">
         <img src="assets/service.png" alt="students icon" class="mb-4 w-12 max-w-full" />
         <h3 class="text-gray-700 font-semibold text-lg">Total Customer</h3>
-        <p class="text-blue-500 text-2xl font-bold" id="count_users">3</p>
+        <p class="text-blue-500 text-2xl font-bold count_users">3</p>
     </div>
 
     <!-- Card for Total Sales -->
     <div class="bg-white p-6 rounded-lg shadow-lg flex flex-col items-center">
         <img src="assets/sales.png" alt="students icon" class="mb-4 w-12 max-w-full" />
         <h3 class="text-gray-700 font-semibold text-lg">Total Sales</h3>
-        <p class="text-blue-500 text-2xl font-bold" id="count_daily_activity">0</p>
+        <p class="text-blue-500 text-2xl font-bold totalSales">0</p>
     </div>
 
     <!-- Card for No of Orders -->
     <div class="bg-white p-6 rounded-lg shadow-lg flex flex-col items-center">
          <img src="assets/cargo.png" alt="students icon" class="mb-4 w-12 max-w-full" />
         <h3 class="text-gray-700 font-semibold text-lg">No of Orders</h3>
-        <p class="text-blue-500 text-2xl font-bold" id="count_daily_activity">0</p>
+        <p class="text-blue-500 text-2xl font-bold numOrders" id="numOrders">0</p>
     </div>
 </div>
 
@@ -66,7 +66,7 @@
 </div>
 
 <?php include "components/footer.php";?>
-
+<script src="js/analytics.js"></script>
 <script src="js/daily_sales.js"></script>
 <script src="js/weekly_sales.js"></script>
 <script src="js/monthly_sales.js"></script>

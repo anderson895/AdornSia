@@ -30,9 +30,9 @@ $(document).ready(function() {
                 $("#RefundItemModal").hide();
                 alertify.success("Refund request submitted successfully.");
                 
-                // setTimeout(function() {
-                //     location.reload(); 
-                // }, 1000);  
+                setTimeout(function() {
+                    location.reload(); 
+                }, 1000);  
             },
             error: function(xhr, status, error) {
                 console.error("Error:", status, error);

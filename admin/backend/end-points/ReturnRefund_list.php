@@ -8,7 +8,7 @@ $fetch_all_refund = $db->fetch_all_refund();
 if ($fetch_all_refund): ?>
     <?php foreach ($fetch_all_refund as $refund): ?>
         <tr>
-            <td class="p-2"><?php echo htmlspecialchars($refund['prod_code']); ?></td>
+            <td class="p-2"><?php echo $refund['order_code']; ?></td>
             <td class="p-2"><?php echo ucfirst($refund['prod_name']); ?></td>
             <td class="p-2"><?php echo ucfirst($refund['Fullname']); ?></td>
             <td class="p-2"><?php echo htmlspecialchars($refund['ref_reason']); ?></td>

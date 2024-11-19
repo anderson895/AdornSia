@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 17, 2024 at 12:22 PM
+-- Generation Time: Nov 19, 2024 at 07:25 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -41,7 +41,8 @@ CREATE TABLE `address_user` (
 
 INSERT INTO `address_user` (`ad_id`, `ad_user_id`, `ad_address_code`, `ad_complete_address`, `ad_status`) VALUES
 (26, 64, '012801001', 'Region I (Ilocos Region) Ilocos Norte Adams Adams (Pob.) tibagan', 1),
-(27, 64, '012802008', 'Region I (Ilocos Region) Ilocos Norte Bacarra Casilian dddd', 0);
+(27, 64, '012802008', 'Region I (Ilocos Region) Ilocos Norte Bacarra Casilian dddd', 0),
+(28, 66, '031411011', 'Region III (Central Luzon) Bulacan Marilao Prenza I bayan bayanan street', 1);
 
 -- --------------------------------------------------------
 
@@ -76,6 +77,14 @@ CREATE TABLE `cart` (
   `cart_Qty` int(11) NOT NULL,
   `cart_prod_size` varchar(60) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `cart`
+--
+
+INSERT INTO `cart` (`cart_id`, `cart_user_id`, `cart_prod_id`, `cart_Qty`, `cart_prod_size`) VALUES
+(223, 64, 16, 3, 'XL'),
+(224, 64, 15, 1, 'N/A');
 
 -- --------------------------------------------------------
 
@@ -151,8 +160,10 @@ CREATE TABLE `orders` (
 --
 
 INSERT INTO `orders` (`order_id`, `order_code`, `order_user_id`, `mode_of_payment`, `proof_of_payment`, `subtotal`, `vat`, `sf`, `total`, `delivery_address`, `order_date`, `delivered_date`, `order_status`, `reject_reason`, `proof_of_del`) VALUES
-(132, '58C14987', 64, 'cod', NULL, 1770.00, 212.4, NULL, 1982.40, 'Region I (Ilocos Region) Ilocos Norte Adams Adams (Pob.) tibagan', '2024-11-17 02:33:48', NULL, 'Delivered', NULL, NULL),
-(133, 'C06DFA89', 64, 'cod', NULL, 950.00, 114, NULL, 1064.00, 'Region I (Ilocos Region) Ilocos Norte Adams Adams (Pob.) tibagan', '2024-11-17 16:40:38', NULL, 'Pending', NULL, NULL);
+(139, 'AC85766C', 64, 'cod', NULL, 1750.00, 210, 50.00, 2010.00, 'Region I (Ilocos Region) Ilocos Norte Adams Adams (Pob.) tibagan', '2024-11-18 22:10:16', NULL, 'Pending', NULL, NULL),
+(140, 'B08BB768', 64, 'Gcash', 'proof_673b4b08bb68f7.63464725.jpeg', 2000.00, 240, 50.00, 2290.00, 'Region I (Ilocos Region) Ilocos Norte Adams Adams (Pob.) tibagan', '2024-11-18 22:11:20', NULL, 'Pending', NULL, NULL),
+(141, 'EB1A03D6', 66, 'Gcash', 'proof_673c1eb1a02f89.62409363.jpeg', 650.00, 78, 50.00, 778.00, 'Region III (Central Luzon) Bulacan Marilao Prenza I bayan bayanan street', '2024-11-19 13:14:25', NULL, 'Pending', NULL, NULL),
+(142, 'C0066DD5', 66, 'cod', NULL, 1000.00, 120, 50.00, 1170.00, 'Region III (Central Luzon) Bulacan Marilao Prenza I bayan bayanan street', '2024-11-19 14:11:12', NULL, 'Pending', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -176,13 +187,14 @@ CREATE TABLE `orders_item` (
 --
 
 INSERT INTO `orders_item` (`item_id`, `item_order_id`, `item_product_id`, `item_size`, `item_qty`, `item_product_price`, `promo_discount`, `item_total`) VALUES
-(186, 132, 15, 'N/A', 1, 250, '{\"promoName\":\"\",\"promoRate\":\"\"}', 250),
-(187, 132, 16, 'L', 1, 300, '{\"promoName\":\"Christmas bonus\",\"promoRate\":0.5}', 150),
-(188, 132, 17, 'M', 1, 300, '{\"promoName\":\"\",\"promoRate\":\"\"}', 300),
-(189, 132, 20, 'XL', 1, 1500, '{\"promoName\":\"Christmas bonus\",\"promoRate\":0.5}', 750),
-(190, 132, 19, 'L', 1, 400, '{\"promoName\":\"Valentines Day\",\"promoRate\":0.2}', 320),
-(191, 133, 16, 'L', 3, 300, '{\"promoName\":\"Christmas bonus\",\"promoRate\":0.5}', 450),
-(192, 133, 22, 'XL', 1, 500, '{\"promoName\":\"\",\"promoRate\":\"\"}', 500);
+(204, 139, 15, 'N/A', 1, 250, '{\"promoName\":\"\",\"promoRate\":\"\"}', 250),
+(205, 139, 22, 'L', 3, 500, '{\"promoName\":\"\",\"promoRate\":\"\"}', 1),
+(206, 140, 22, 'L', 1, 500, '{\"promoName\":\"\",\"promoRate\":\"\"}', 500),
+(207, 140, 26, 'N/A', 1, 3000, '{\"promoName\":\"Christmas bonus\",\"promoRate\":0.5}', 1),
+(208, 141, 18, 'SM', 1, 300, '{\"promoName\":\"Christmas bonus\",\"promoRate\":0.5}', 150),
+(209, 141, 22, 'M', 1, 500, '{\"promoName\":\"\",\"promoRate\":\"\"}', 500),
+(210, 142, 15, 'N/A', 2, 250, '{\"promoName\":\"\",\"promoRate\":\"\"}', 500),
+(211, 142, 22, 'XL', 1, 500, '{\"promoName\":\"\",\"promoRate\":\"\"}', 500);
 
 -- --------------------------------------------------------
 
@@ -210,20 +222,20 @@ CREATE TABLE `product` (
 --
 
 INSERT INTO `product` (`prod_id`, `prod_code`, `prod_name`, `prod_currprice`, `prod_category_id`, `prod_critical`, `prod_description`, `prod_promo_id`, `prod_image`, `prod_added`, `prod_status`, `product_stocks`) VALUES
-(15, '0001', 'shades', 250.00, 1, 10, 'Shades Accessories · Sunglasses Chain Diy, Glasses Frames Trendy, Festival Sunglasses, Sunglasses Chain, Fashion Eye · Kacamata Fashion, Celebrity Casual', NULL, 'product_67356084abb416.35727954.png', '2024-11-17 00:30:22', 1, 96),
-(16, '0002', 'Bag 1', 300.00, 1, 50, 'Purse accessories are fashion accessories that are made specifically for handbags, to enhance their functionality or appearance.', 1, 'product_673560e2e77e51.22127315.png', '2024-11-14 10:30:58', 1, 99),
-(17, '0003', 'Bag 2', 300.00, 1, 10, 'Purse accessories are fashion accessories that are made specifically for handbags, to enhance their functionality or appearance.', NULL, 'product_67356121cfe654.79399269.png', '2024-11-14 10:32:01', 1, 9),
+(15, '0001', 'shades', 250.00, 1, 10, 'Shades Accessories · Sunglasses Chain Diy, Glasses Frames Trendy, Festival Sunglasses, Sunglasses Chain, Fashion Eye · Kacamata Fashion, Celebrity Casual', NULL, 'product_67356084abb416.35727954.png', '2024-11-17 00:30:22', 1, 79),
+(16, '0002', 'Bag 1', 300.00, 1, 50, 'Purse accessories are fashion accessories that are made specifically for handbags, to enhance their functionality or appearance.', 1, 'product_673560e2e77e51.22127315.png', '2024-11-14 10:30:58', 1, 91),
+(17, '0003', 'Bag 2', 300.00, 1, 10, 'Purse accessories are fashion accessories that are made specifically for handbags, to enhance their functionality or appearance.', NULL, 'product_67356121cfe654.79399269.png', '2024-11-14 10:32:01', 1, 6),
 (18, '0004', 'Bag 4', 300.00, 1, 15, 'Purse accessories are fashion accessories that are made specifically for handbags, to enhance their functionality or appearance.', 1, 'product_6735615876d684.97140108.png', '2024-11-14 10:32:56', 1, 13),
-(19, '0005', 'White Bags', 400.00, 1, 10, 'Purse accessories are fashion accessories that are made specifically for handbags, to enhance their functionality or appearance.', 2, 'product_6735618f606390.62713720.png', '2024-11-14 10:33:51', 1, 48),
-(20, '0006', 'The Accent Bag', 1500.00, 2, 10, 'Purse accessories are fashion accessories that are made specifically for handbags, to enhance their functionality or appearance.', 1, 'product_673561bd2c3605.83231922.png', '2024-11-14 10:34:37', 1, 49),
+(19, '0005', 'White Bags', 400.00, 1, 10, 'Purse accessories are fashion accessories that are made specifically for handbags, to enhance their functionality or appearance.', 2, 'product_6735618f606390.62713720.png', '2024-11-14 10:33:51', 1, 39),
+(20, '0006', 'The Accent Bag', 1500.00, 2, 10, 'Purse accessories are fashion accessories that are made specifically for handbags, to enhance their functionality or appearance.', 1, 'product_673561bd2c3605.83231922.png', '2024-11-14 10:34:37', 1, 46),
 (21, '0007', 'Hood 1', 3500.00, 2, 10, 'Purse accessories are fashion accessories that are made specifically for handbags, to enhance their functionality or appearance.', 1, 'product_673561ef5a2965.37814696.png', '2024-11-14 10:35:27', 1, 99),
-(22, '0008', 'Hood 2', 500.00, 2, 10, 'Purse accessories are fashion accessories that are made specifically for handbags, to enhance their functionality or appearance.', NULL, 'product_6735622c58f638.21901723.png', '2024-11-14 10:36:28', 1, 10),
+(22, '0008', 'Hood 2', 500.00, 2, 10, 'Purse accessories are fashion accessories that are made specifically for handbags, to enhance their functionality or appearance.', NULL, 'product_6735622c58f638.21901723.png', '2024-11-14 10:36:28', 1, 7),
 (23, '0009', 'White Hoodies', 5000.00, 2, 10, 'Purse accessories are fashion accessories that are made specifically for handbags, to enhance their functionality or appearance.', 1, 'product_6735625fddc5a1.20092356.png', '2024-11-14 10:37:19', 1, 100),
 (24, '0010', 'Short 1', 150.00, 3, 10, 'Purse accessories are fashion accessories that are made specifically for handbags, to enhance their functionality or appearance.', NULL, 'product_67356292281fc9.44794739.png', '2024-11-14 10:38:10', 1, 10),
 (25, '0011', 'short 2', 160.00, 3, 10, 'Purse accessories are fashion accessories that are made specifically for handbags, to enhance their functionality or appearance.', NULL, 'product_673562b7399d94.75187942.png', '2024-11-14 10:38:47', 1, 66),
 (26, '0012', 'Sweeter 1', 3000.00, 4, 50, '', 1, 'product_673562de1eb309.51891056.png', '2024-11-14 10:39:26', 1, 98),
 (27, '0013', 'Tees 1', 1300.00, 5, 50, 'Purse accessories are fashion accessories that are made specifically for handbags, to enhance their functionality or appearance.', 1, 'product_67356306c468c5.02306630.png', '2024-11-14 10:40:06', 1, 15),
-(28, '0014', 'Black Tees', 2500.00, 5, 10, 'Purse accessories are fashion accessories that are made specifically for handbags, to enhance their functionality or appearance.', 2, 'product_6735633bc0b540.00223420.png', '2024-11-14 10:40:59', 1, 15);
+(28, '0014', 'Black Tees', 2500.00, 5, 10, 'Purse accessories are fashion accessories that are made specifically for handbags, to enhance their functionality or appearance.', 2, 'product_6735633bc0b540.00223420.png', '2024-11-14 10:40:59', 1, 5);
 
 -- --------------------------------------------------------
 
@@ -294,6 +306,29 @@ INSERT INTO `promo` (`promo_id`, `promo_name`, `promo_description`, `promo_rate`
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `refund`
+--
+
+CREATE TABLE `refund` (
+  `ref_id` int(11) NOT NULL,
+  `ref_item_id` int(11) NOT NULL,
+  `ref_reason` varchar(60) NOT NULL,
+  `ref_date` datetime NOT NULL,
+  `ref_status` varchar(60) NOT NULL DEFAULT 'Pending'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `refund`
+--
+
+INSERT INTO `refund` (`ref_id`, `ref_item_id`, `ref_reason`, `ref_date`, `ref_status`) VALUES
+(9, 204, 'Wrong item received', '2024-11-19 10:59:33', 'Approve'),
+(10, 205, 'Wrong item received', '2024-11-19 11:07:39', 'Pending'),
+(11, 206, 'Product was damaged upon arrival', '2024-11-19 11:09:39', 'Pending');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `user`
 --
 
@@ -314,8 +349,27 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`user_id`, `Fullname`, `Email`, `Phone`, `Password`, `Profile_images`, `status`, `verificationKey`, `link_expiration`) VALUES
-(64, 'joshua papillsssss', 'andersonandy046@gmail.com', '09454454745', 'andersonandy046@gmail.com', 'profile_6739d1d381e665.99358925.jpg', 1, NULL, '2024-11-11 11:24:29'),
+(64, 'joshua padilla', 'andersonandy046@gmail.com', '09454454745', 'andersonandy046@gmail.com', 'profile_673b4ec959d706.86795795.png', 1, NULL, '2024-11-11 11:24:29'),
 (66, 'joshua padilla', 'joshuaandersonpadilla8@gmail.com', '09454454744', 'joshuaandersonpadilla8@gmail.com', '', 1, NULL, '2024-11-12 19:37:50');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `wishlist`
+--
+
+CREATE TABLE `wishlist` (
+  `wish_id` int(11) NOT NULL,
+  `wish_user_id` int(11) NOT NULL,
+  `wish_prod_id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `wishlist`
+--
+
+INSERT INTO `wishlist` (`wish_id`, `wish_user_id`, `wish_prod_id`) VALUES
+(9, 66, 15);
 
 --
 -- Indexes for dumped tables
@@ -389,10 +443,25 @@ ALTER TABLE `promo`
   ADD PRIMARY KEY (`promo_id`);
 
 --
+-- Indexes for table `refund`
+--
+ALTER TABLE `refund`
+  ADD PRIMARY KEY (`ref_id`),
+  ADD KEY `ref_item_id` (`ref_item_id`);
+
+--
 -- Indexes for table `user`
 --
 ALTER TABLE `user`
   ADD PRIMARY KEY (`user_id`);
+
+--
+-- Indexes for table `wishlist`
+--
+ALTER TABLE `wishlist`
+  ADD PRIMARY KEY (`wish_id`),
+  ADD KEY `wish_prod_id` (`wish_prod_id`),
+  ADD KEY `wish_user_id` (`wish_user_id`);
 
 --
 -- AUTO_INCREMENT for dumped tables
@@ -402,7 +471,7 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT for table `address_user`
 --
 ALTER TABLE `address_user`
-  MODIFY `ad_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
+  MODIFY `ad_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
 
 --
 -- AUTO_INCREMENT for table `admin`
@@ -414,7 +483,7 @@ ALTER TABLE `admin`
 -- AUTO_INCREMENT for table `cart`
 --
 ALTER TABLE `cart`
-  MODIFY `cart_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=123;
+  MODIFY `cart_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=229;
 
 --
 -- AUTO_INCREMENT for table `category`
@@ -432,13 +501,13 @@ ALTER TABLE `ewallet`
 -- AUTO_INCREMENT for table `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `order_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=134;
+  MODIFY `order_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=143;
 
 --
 -- AUTO_INCREMENT for table `orders_item`
 --
 ALTER TABLE `orders_item`
-  MODIFY `item_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=193;
+  MODIFY `item_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=212;
 
 --
 -- AUTO_INCREMENT for table `product`
@@ -459,10 +528,22 @@ ALTER TABLE `promo`
   MODIFY `promo_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
+-- AUTO_INCREMENT for table `refund`
+--
+ALTER TABLE `refund`
+  MODIFY `ref_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+
+--
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
   MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=67;
+
+--
+-- AUTO_INCREMENT for table `wishlist`
+--
+ALTER TABLE `wishlist`
+  MODIFY `wish_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- Constraints for dumped tables
@@ -499,6 +580,19 @@ ALTER TABLE `orders_item`
 --
 ALTER TABLE `product_sizes`
   ADD CONSTRAINT `product_sizes_ibfk_1` FOREIGN KEY (`size_prod_id`) REFERENCES `product` (`prod_id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `refund`
+--
+ALTER TABLE `refund`
+  ADD CONSTRAINT `refund_ibfk_1` FOREIGN KEY (`ref_item_id`) REFERENCES `orders_item` (`item_id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `wishlist`
+--
+ALTER TABLE `wishlist`
+  ADD CONSTRAINT `wishlist_ibfk_1` FOREIGN KEY (`wish_prod_id`) REFERENCES `product` (`prod_id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `wishlist_ibfk_2` FOREIGN KEY (`wish_user_id`) REFERENCES `user` (`user_id`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

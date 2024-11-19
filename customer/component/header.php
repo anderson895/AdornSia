@@ -8,9 +8,7 @@ session_start();
 // Check if the user is logged in
 $is_logged_in = isset($_SESSION['user_id']); // Assuming user ID is stored in session after login
 
-$Fullname = $_SESSION['Fullname'];
-$name_parts = explode(" ", $Fullname);
-$firstname = $name_parts[0];
+
 $userID=$_SESSION['user_id'];
 
 
@@ -21,6 +19,11 @@ foreach ($fetch_user_info as $user):
     $user_phone=$user['Phone'];
     $user_profileImages=$user['Profile_images'];
 endforeach;
+
+
+$Fullname =$user_fullname;
+$name_parts = explode(" ", $Fullname);
+$firstname = $name_parts[0];
 
 ?>
 

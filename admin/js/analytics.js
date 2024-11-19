@@ -5,15 +5,15 @@ const getDataAnalytics = () => {
       type: 'GET',
       dataType: 'json',
       success: function(response) {
-        //   console.log(response); 
+          console.log(response); 
           let userCount = response.userCount;
           let totalSales = response.totalSales;
-          let pendingCount = response.pendingCount;
+          let pendingOrders = response.pendingOrders;
         
             $('.count_users').text(userCount).show(); 
             $('.totalSales').text('₱' + totalSales.toLocaleString()).show();
 
-            $('.numOrders').text(pendingCount).show(); 
+            $('.numOrders').text(pendingOrders).show(); 
 
             
       },

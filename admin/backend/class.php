@@ -20,7 +20,7 @@ class global_class extends db_connect
         $query = " 
             SELECT 
                 (SELECT COUNT(*) FROM `user`) AS userCount,
-                (SELECT COUNT(*) FROM `orders`) AS wishlistCount,
+                (SELECT COUNT(*) FROM `orders` where order_status='Delivered') AS pendingOrders,
                 (SELECT SUM(`total`) FROM `orders` WHERE `order_status` = 'Delivered') AS totalSales
         ";
     

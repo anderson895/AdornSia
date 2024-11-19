@@ -2,11 +2,10 @@ $(document).ready(function() {
 
 
     $('.btnRefundItem').click(function() {
-        $('#prod_id_refund').val($(this).attr('data-product_id'));
-        $('#user_id_refund').val($(this).attr('data-user_id'));
 
-
+        $('#item_id_refund').val($(this).attr('data-item_id'));
         $('#RefundItemModal').fadeIn();
+
     });
 
     $('.closeModalBtn').click(function() {
@@ -31,10 +30,9 @@ $(document).ready(function() {
                 $("#RefundItemModal").hide();
                 alertify.success("Refund request submitted successfully.");
                 
-                // Add a 2-second delay before reloading the page
-                setTimeout(function() {
-                    location.reload();  // Reload the page after 2 seconds
-                }, 1000);  // Delay in milliseconds (2000ms = 2 seconds)
+                // setTimeout(function() {
+                //     location.reload(); 
+                // }, 1000);  
             },
             error: function(xhr, status, error) {
                 console.error("Error:", status, error);

@@ -385,6 +385,42 @@ class global_class extends db_connect
             return false;
         }
     }
+
+    public function updateRefundStatus($ref_id, $new_status) {
+        $query = $this->conn->prepare("UPDATE `refund` SET `ref_status` = ? WHERE `ref_id` = ?");
+        $query->bind_param("si", $new_status, $ref_id); 
+        if ($query->execute()) {
+            return 'success'; 
+        } else {
+            return false;
+        }
+    }
+
+
+    public function fetch_all_refund() {
+        $sql = "SELECT * FROM refund
+        LEFT JOIN orders_item
+        ON orders_item.item_id = refund.ref_item_id 
+        LEFT JOIN orders
+        ON orders.order_id  = orders_item.item_order_id  
+        LEFT JOIN product
+        ON product.prod_id = orders_item.item_product_id  
+        LEFT JOIN user
+        ON user.user_id = orders.order_user_id   
+        ";
+        $result = $this->conn->query($sql);
+    
+        if ($result) {
+            $refunds = [];
+            while ($row = $result->fetch_assoc()) {
+                $refunds[] = $row;
+            }
+            return $refunds; 
+        } else {
+            return false; 
+        }
+    }
+    
     
 
             

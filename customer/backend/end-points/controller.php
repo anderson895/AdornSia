@@ -13,14 +13,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     if ($_POST['requestType']=="RefundProduct") {
 
-        echo "<pre>";
         print_r($_POST);
-        echo "</pre>";
-        $userId =$_POST['user_id'];
-        $productId = $_POST['prod_id'];
+        $item_id =$_POST['item_id'];
         $RefundReason = $_POST['RefundReason'];
 
-        $response = $db->RefundProduct($userId, $productId,$RefundReason);
+        $response = $db->RefundProduct($item_id,$RefundReason);
 
         echo json_encode(['status' => $response]);
         

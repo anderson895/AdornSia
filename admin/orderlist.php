@@ -18,7 +18,7 @@ if (isset($_GET['step'])) {
 ?>
 
 <div class="flex justify-between items-center bg-white p-4 mb-6 rounded-md shadow-md">
-    <h2 class="text-lg font-semibold text-gray-700">List Of Orders</h2>
+    <h2 class="text-lg font-semibold text-gray-700">List of orders</h2>
     <div class="w-10 h-10 bg-gray-300 rounded-full flex items-center justify-center text-lg font-bold text-white">
         <?php
         echo substr(ucfirst($_SESSION['admin_username']), 0, 1);
@@ -28,63 +28,7 @@ if (isset($_GET['step'])) {
 
 <div class="overflow-x-auto bg-white shadow-md rounded-lg p-6" id="recordTable">
     <h2 class="text-xl font-semibold text-gray-700 mb-4"></h2>
-<?php
-/*
-    <!-- Centering the order status steps -->
-    <div class="flex justify-center items-center w-full max-w-4xl space-x-6 px-4 py-6 mx-auto">
-        <!-- Step 1: Pending -->
-        <a href="?step=Pending" class="flex items-center space-x-2 p-2 rounded-md <?= ($defaultStep == 'Pending' ? 'bg-gray-600' : 'bg-gray-300') ?> text-white hover:bg-gray-600 focus:outline-none">
-            <div class="w-8 h-8 bg-white text-gray-500 flex items-center justify-center rounded-full">
-                <span class="material-icons text-lg">pending_actions</span>
-            </div>
-            <span class="text-white font-medium text-sm">Pending</span>
-        </a>
 
-        <!-- Line -->
-        <div class="flex-1 border-t-2 border-gray-500"></div>
-
-        <!-- Step 2: Accept -->
-        <a href="?step=Accept" class="flex items-center space-x-2 p-2 rounded-md <?= ($defaultStep == 'Accept' ? 'bg-gray-600' : 'bg-gray-300') ?> text-white hover:bg-gray-600 focus:outline-none">
-            <div class="w-8 h-8 bg-white text-gray-500 flex items-center justify-center rounded-full">
-                <span class="material-icons text-lg">check</span>
-            </div>
-            <span class="text-white font-medium text-sm">Accept</span>
-        </a>
-
-        <!-- Line -->
-        <div class="flex-1 border-t-2 border-gray-500"></div>
-
-        <!-- Step 3: Shipped -->
-        <a href="?step=Shipped" class="flex items-center space-x-2 p-2 rounded-md <?= ($defaultStep == 'Shipped' ? 'bg-gray-600' : 'bg-gray-300') ?> text-white hover:bg-gray-600 focus:outline-none">
-            <div class="w-8 h-8 bg-white text-gray-500 flex items-center justify-center rounded-full">
-                <span class="material-icons text-lg">local_shipping</span>
-            </div>
-            <span class="text-white font-medium text-sm">Shipped</span>
-        </a>
-
-        <!-- Line -->
-        <div class="flex-1 border-t-2 border-gray-500"></div>
-
-        <!-- Step 4: Delivered -->
-        <a href="?step=Delivered" class="flex items-center space-x-2 p-2 rounded-md <?= ($defaultStep == 'Delivered' ? 'bg-gray-600' : 'bg-gray-300') ?> text-white hover:bg-gray-600 focus:outline-none">
-            <div class="w-8 h-8 bg-white text-gray-500 flex items-center justify-center rounded-full">
-                <span class="material-icons text-lg">handshake</span>
-            </div>
-            <span class="text-white font-medium text-sm">Delivered</span>
-        </a>
-
-        <!-- Line -->
-        <div class="flex-1 border-t-2 border-gray-500"></div>
-
-        <!-- Step 5: Canceled -->
-        <a href="?step=Canceled" class="flex items-center space-x-2 p-2 rounded-md <?= ($defaultStep == 'Canceled' ? 'bg-gray-600' : 'bg-gray-300') ?> text-white hover:bg-gray-600 focus:outline-none">
-            <div class="w-8 h-8 bg-white text-gray-500 flex items-center justify-center rounded-full">
-                <span class="material-icons text-lg">event_busy</span>
-            </div>
-            <span class="text-white font-medium text-sm">Canceled</span>
-        </a>
-    </div>
-   */ ?>
   <!-- Tabs -->
   <div class="flex justify-center items-center flex-wrap space-x-0 space-y-2 md:space-y-0 md:space-x-4 border-b mb-6">
       <a href="?step=Pending" class="py-2 px-4 text-gray-600 hover:text-red-500 <?= ($defaultStep == 'Pending' ? 'border-b-2 border-red-500 text-red-500' : '') ?>">Pending</a>

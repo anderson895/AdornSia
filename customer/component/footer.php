@@ -17,11 +17,10 @@
       <div class="px-6 py-5 space-y-4">
 
         <input hidden type="text" name="requestType" value="RefundProduct">
-        <input hidden type="text" name="prod_id" id="prod_id_refund" value="RefundProduct">
-        <input hidden type="text" name="user_id" id="user_id_refund" value="RefundProduct">
+        <input hidden type="text" name="item_id" id="item_id_refund">
 
         <label for="RefundReason" class="block text-sm font-medium text-gray-700">Reason for Refund</label>
-        <select name="RefundReason" id="RefundReason" class="w-full border-gray-300 rounded-md shadow-sm focus:ring-2 focus:ring-blue-500 py-2 px-3 text-gray-700">
+        <select name="RefundReason" id="RefundReason" class="w-full border-gray-300 rounded-md shadow-sm focus:ring-2 focus:ring-blue-500 py-2 px-3 text-gray-700" required>
           <option value="" disabled selected>Select a reason</option>
           <option value="Product was damaged upon arrival">Product was damaged upon arrival</option>
           <option value="Item did not meet expectations">Item did not meet expectations</option>

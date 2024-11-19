@@ -3,9 +3,6 @@ include('../class.php');
 
 $db = new global_class();
 
-// echo "<pre>";
-// print_r($_POST);
-// echo "</pre>";
 
 $product_Category = $product_Promo = "";
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -53,20 +50,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     $product_Category,
                     $product_Description,
                     $product_Promo,
-                    $uniqueFileName, // Pass only the unique file name
+                    $uniqueFileName, 
                     $product_Stocks
                 );
         
-                // Check if the product was successfully added (prod_id will be returned on success)
                 if ($prod_id) {
-                    // Now handle sizes if they exist
                     if (!empty($product_Sizes)) {
-                        // Insert each size into the database (assuming a 'product_sizes' table exists)
+                     
                         foreach ($product_Sizes as $size) {
-                            $size = trim($size); // Remove any leading/trailing spaces
+                            $size = trim($size); 
                             if (!empty($size)) {
-                                // Add the size to the 'product_sizes' table using the product's ID
-                                $db->addProductSize($prod_id, $size); // Use the prod_id here
+                                $db->addProductSize($prod_id, $size); 
                             }
                         }
                     }
@@ -92,37 +86,27 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $product_Price = $_POST['product_Price_update'];
         $critical_Level = $_POST['critical_Level_update'];
         
-        // Check if category and promo are empty, set them to NULL
         $product_Category = empty($_POST['product_Category_update']) ? NULL : $_POST['product_Category_update'];
         $product_Description = $_POST['product_Description_update'];
         $product_Promo = empty($_POST['product_Promo_update']) ? NULL : $_POST['product_Promo_update'];
         
-        // Handle the uploaded image
         $product_Image = $_FILES['product_Image_update'];
         
-        // Get the current image name from the database
-        $existingImageName = $db->getProductImageById($product_id_update);  // Assuming this function exists in your database class
+        $existingImageName = $db->getProductImageById($product_id_update); 
         
-        // If an image is uploaded, handle it
         if ($product_Image['error'] === UPLOAD_ERR_OK) {
-            // Set the upload directory
             $uploadDir = '../../../upload/';
         
-            // Delete the existing image if it exists
             if ($existingImageName && file_exists($uploadDir . $existingImageName)) {
-                unlink($uploadDir . $existingImageName);  // Delete the old image
+                unlink($uploadDir . $existingImageName);  
             }
         
-            // Get the file extension and generate a unique file name for the new image
             $fileExtension = pathinfo($product_Image['name'], PATHINFO_EXTENSION);
             $newFileName = uniqid('product_', true) . '.' . $fileExtension;
         
-            // Set the full upload file path
             $uploadFilePath = $uploadDir . $newFileName;
         
-            // Move the uploaded image to the specified directory
             if (move_uploaded_file($product_Image['tmp_name'], $uploadFilePath)) {
-                // Image upload successful, now update the product in the database
                 $user = $db->updateProduct(
                     $product_id_update,
                     $product_Code,
@@ -132,12 +116,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     $product_Category,
                     $product_Description,
                     $product_Promo,
-                    $newFileName  // Pass the new image file name
+                    $newFileName 
                 );
         
-                // Check if the product was successfully updated
                 if ($user === 'success') {
-                    echo 200;  // Success response
+                    echo 200; 
                 } else {
                     echo 'Failed to update product in the database.';
                 }
@@ -145,7 +128,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 echo 'Error uploading image. Please try again.';
             }
         } else {
-            // If no image was uploaded, update the product without changing the image
             $user = $db->updateProduct(
                 $product_id_update,
                 $product_Code,
@@ -155,12 +137,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 $product_Category,
                 $product_Description,
                 $product_Promo,
-                $existingImageName  // Retain the existing image file name
+                $existingImageName  
             );
         
-            // Check if the product was successfully updated
             if ($user === 'success') {
-                echo 200;  // Success response
+                echo 200;  
             } else {
                 echo 'Failed to update product in the database.';
             }
@@ -179,53 +160,47 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $product_id_stockin
         );
 
-        // Check if the product was successfully updated
         if ($user === 'success') {
-            echo 200;  // Success response
+            echo 200;
         } else {
             echo 'Failed to update product in the database.';
         }
     }else if($_POST['requestType'] =='UpdateOrderStatus'){
 
-        $orderId = $_POST['orderId'];         // Get order ID
-        $orderStatus = $_POST['orderStatus']; // Get the new order status
+        $orderId = $_POST['orderId'];
+        $orderStatus = $_POST['orderStatus']; 
         
         if ($orderStatus === "Canceled") {
-            // Directly update the status to "Canceled"
             $order = $db->updateOrderStatus($orderId, $orderStatus);
         
             if ($order) {
-                echo 200;  // Success response
+                echo 200; 
             } else {
                 echo 'Failed to update order in the database.';
             }
         } elseif ($orderStatus === "Accept") {
             $insufficientStockProducts = $db->validateStockSufficiency($orderId);
         
-            // If stock is sufficient
             if ($insufficientStockProducts === true) {
                 $order = $db->updateOrderStatus($orderId, $orderStatus);
         
                 if ($order) {
-                    echo 200;  // Success response
+                    echo 200; 
                 } else {
                     echo 'Failed to update order in the database.';
                 }
             } else {
-                // Return the list of products with insufficient stock
                 echo 'Insufficient stock for the following products: ' . implode(", ", $insufficientStockProducts);
             }
         
         } else {
-            // For all other statuses, validate stock sufficiency
             $stockSufficient = $db->validateStockSufficiency($orderId);
         
             if ($stockSufficient === true) {
-                // Update order status only if stock is sufficient
                 $order = $db->updateOrderStatus($orderId, $orderStatus);
         
                 if ($order) {
-                    echo 200;  // Success response
+                    echo 200;
                 } else {
                     echo 'Failed to update order in the database.';
                 }
@@ -237,18 +212,29 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         
         
+    }else if($_POST['requestType'] =='RefundProduct'){
+
+      
+        $ref_id=$_POST['ref_id'];
+        $new_status=$_POST['new_status'];
+
+        $order = $db->updateRefundStatus($ref_id, $new_status);
+
+        if ($order=="success") {
+            echo 200; 
+        } else {
+            echo 'Failed to update order in the database.';
+        }
+
+
     }else{
         echo 'Invalid request type.';
     }
-}if ($_SERVER['REQUEST_METHOD'] === 'GET') {
+}else if ($_SERVER['REQUEST_METHOD'] === 'GET') {
     
         if ($_GET['requestType'] == 'GetAllOrders') {
-            // Fetch the cars from the database
             $orders = $db->GetAllOrders();
-        
-            // Check if cars data exists
             if ($orders !== false) {
-                // Return the cars data as JSON
                 echo json_encode(['status' => 'success', 'data' => $orders]);
             } else {
                 echo json_encode(['status' => 'error', 'message' => 'No cars found or error retrieving data.']);

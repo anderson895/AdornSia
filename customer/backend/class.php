@@ -207,11 +207,11 @@ public function OrderRequest($address, $paymentMethod, $proofOfPayment, $fileNam
 
 
 
-    public function RefundProduct($userId, $productId, $RefundReason)
+    public function RefundProduct($item_id, $RefundReason)
     {
         $dateToday = date('Y-m-d H:i:s');
-        $query = $this->conn->prepare("INSERT INTO `refund` (`ref_prod_id`, `ref_user_id`, `ref_reason`, `ref_date`) VALUES (?, ?, ?, ?)");
-        $query->bind_param('iiss', $productId, $userId, $RefundReason, $dateToday);
+        $query = $this->conn->prepare("INSERT INTO `refund` (`ref_item_id`, `ref_reason`, `ref_date`) VALUES (?, ?, ?)");
+        $query->bind_param('iss', $item_id, $RefundReason, $dateToday);
         if ($query->execute()) {
             return true; 
         } else {
@@ -414,7 +414,7 @@ public function OrderRequest($address, $paymentMethod, $proofOfPayment, $fileNam
         LEFT JOIN category
         ON category.category_id = product.prod_category_id
         LEFT JOIN refund
-        ON refund.ref_prod_id = product.prod_id
+        ON refund.ref_item_id = orders_item.item_id
         where orders.order_user_id = '$userID' AND orders_item.item_order_id ='$order_id'
         ");
         if ($query->execute()) {

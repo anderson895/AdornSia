@@ -16,8 +16,6 @@
             $refundButton = ($order['ref_id']) 
     ? '<button 
           class="btnRefundItem bg-gray-500 text-white px-6 py-3 rounded-lg shadow-md cursor-not-allowed opacity-50 w-full sm:w-auto"
-          data-product_id="' . $order['item_product_id'] . '"
-          data-user_id="' . $userID . '"
           disabled
         >
           Return/Refund
@@ -26,6 +24,7 @@
           class="btnRefundItem bg-gray-500 text-white px-6 py-3 rounded-lg shadow-md hover:bg-gray-600 transition-colors duration-300 w-full sm:w-auto"
           data-product_id="' . $order['item_product_id'] . '"
           data-user_id="' . $userID . '"
+          data-item_id="' . $order['item_id']  . '"
         >
           Return/Refund
         </button>';
@@ -65,6 +64,28 @@
             <p class="text-lg font-semibold text-gray-700 mt-2">Total: 
               <span class="text-gray-600"><?= $order['item_total']; ?></span>
             </p>
+
+            <?php 
+              if ($order['ref_status'] == "Pending") { 
+                  echo '
+                  <p class="text-lg font-semibold text-gray-700 mt-2">Refund Status: 
+                      <span class="text-gray-600">Pending</span>
+                  </p>';
+              } else if ($order['ref_status'] == "Approve") { 
+                  echo '
+                  <p class="text-lg font-semibold text-gray-700 mt-2">Refund Status: 
+                      <span class="text-green-600">Approve</span>
+                  </p>';
+              } else if ($order['ref_status'] == "Canceled") { 
+                  echo '
+                  <p class="text-lg font-semibold text-gray-700 mt-2">Refund Status: 
+                      <span class="text-red-600">Canceled</span>
+                  </p>';
+              }else {
+              }
+              ?>
+
+            
           </div>
         </div>
 

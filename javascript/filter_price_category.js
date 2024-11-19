@@ -1,4 +1,3 @@
-// JavaScript for filtering by category and price
 
 // Function to filter products by category and price
 function applyFilters() {

@@ -2,13 +2,10 @@
 include "components/header.php";
 
 ?>
-
 <div class="flex justify-between items-center bg-white p-4 mb-6 rounded-md shadow-md">
     <h2 class="text-lg font-semibold text-gray-700">Customer</h2>
     <div class="w-10 h-10 bg-gray-300 rounded-full flex items-center justify-center text-lg font-bold text-white">
-        <?php
-        echo substr(ucfirst($_SESSION['admin_username']), 0, 1);
-        ?>
+        <?php echo substr(ucfirst($_SESSION['admin_username']), 0, 1); ?>
     </div>
 </div>
 
@@ -20,6 +17,16 @@ include "components/header.php";
         <button id="addProductButton" class="px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50">
             Add Product
         </button>
+    </div>
+
+    <!-- Search Bar -->
+    <div class="mb-4">
+        <input
+            type="text"
+            id="searchInput"
+            class="w-50 px-4 py-2 border rounded-md text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500"
+            placeholder="Search products..."
+        />
     </div>
 
     <!-- Table Wrapper for Responsiveness -->
@@ -39,13 +46,11 @@ include "components/header.php";
                 </tr>
             </thead>
             <tbody>
-                <?php include "backend/end-points/product_list.php"?>
-
+                <?php include "backend/end-points/product_list.php" ?>
             </tbody>
         </table>
     </div>
 </div>
-
 
 
 
@@ -154,7 +159,19 @@ include "components/header.php";
 </div>
 
 <script>
-    // Add Size Button functionality
+
+
+// jQuery for filtering the table based on search input
+    $(document).ready(function () {
+        $("#searchInput").on("keyup", function () {
+            var value = $(this).val().toLowerCase();
+            $("#userTable tbody tr").filter(function () {
+                $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1);
+            });
+        });
+    });
+
+
     document.getElementById('addSizeButton').addEventListener('click', function() {
         const sizeContainer = document.getElementById('sizesList');
         const newSizeInput = document.createElement('input');

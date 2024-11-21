@@ -25,7 +25,6 @@ $db = new global_class();
                 id="close-sidebar" 
                 class="lg:hidden p-2 text-gray-700 hover:text-gray-900 focus:outline-none"
             >
-                Close
             </button>
             <h2 class="font-semibold mb-4">Categories</h2>
             <ul id="category-list">
@@ -40,7 +39,7 @@ $db = new global_class();
                     echo ' 
                         <li>
                             <a href="#" class="block py-2 text-gray-700 hover:bg-gray-200 hover:text-gray-900 transition-colors duration-300 category-filter" data-category-id="'.$category['category_id'].'">
-                            '.$category['category_name'].' 
+                            '.ucfirst($category['category_name']).' 
                             </a>
                         </li>';
                 endforeach;

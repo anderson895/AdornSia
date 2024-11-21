@@ -5,14 +5,28 @@ include('backend/class.php');
 $db = new global_class();
 ?>
 <div class="container mx-auto px-4 py-6">
-    <!-- Toggle Button for Mobile -->
-    <button id="toggleSidebar" class="lg:hidden bg-blue-500 text-white px-4 py-2 rounded mb-4">
-        Toggle Filters
+    <!-- Hamburger Button -->
+    <button 
+        id="hamburger-btn" 
+        class="lg:hidden p-2 bg-gray-800 text-white rounded hover:bg-gray-700 focus:outline-none focus:ring"
+    >
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+        </svg>
     </button>
 
-    <div class="flex flex-col lg:flex-row gap-6">
+    <div class="flex">
         <!-- Sidebar Filters -->
-        <aside id="sidebar" class="hidden lg:block w-full lg:w-1/4 p-4 bg-white rounded shadow-lg lg:sticky top-4">
+        <aside 
+            id="sidebar" 
+            class="fixed top-0 left-0 w-64 h-full bg-white shadow-lg transform -translate-x-full lg:relative lg:translate-x-0 lg:w-1/4 lg:h-auto p-4 transition-transform duration-300 ease-in-out z-50"
+        >
+            <button 
+                id="close-sidebar" 
+                class="lg:hidden p-2 text-gray-700 hover:text-gray-900 focus:outline-none"
+            >
+                Close
+            </button>
             <h2 class="font-semibold mb-4">Categories</h2>
             <ul id="category-list">
                 <li>
@@ -21,8 +35,7 @@ $db = new global_class();
                     </a>
                 </li>
                 <?php 
-                // Fetch categories
-                $categories = $db->fetch_all_categories();
+                $categories = $db->fetch_all_categories(); 
                 foreach ($categories as $category):
                     echo ' 
                         <li>
@@ -48,27 +61,36 @@ $db = new global_class();
                     <input type="radio" name="price" class="mr-2 price-filter" data-price-range="2000-3000">
                     PHP 2000 - PHP 3000
                 </label>
-                <!-- Add more options as needed -->
             </div>
         </aside>
 
         <!-- Product Grid -->
-        <main class="w-full lg:w-3/4 p-4 bg-white rounded shadow-lg">
-            <?php include "backend/end-points/product_list.php"; ?>
+        <main class="w-full lg:w-3/4 p-4 ml-auto">
+            <?php include "backend/end-points/product_list.php";?>
         </main>
     </div>
 </div>
 
 <script>
-    // Toggle Sidebar Visibility
-    const toggleButton = document.getElementById('toggleSidebar');
-    const sidebar = document.getElementById('sidebar');
+    // JavaScript to toggle the sidebar
+    document.getElementById('hamburger-btn').addEventListener('click', function () {
+        document.getElementById('sidebar').classList.remove('-translate-x-full');
+    });
 
-    toggleButton.addEventListener('click', () => {
-        sidebar.classList.toggle('hidden'); // Show/hide the sidebar
-        sidebar.classList.toggle('block'); // Ensure block display when visible
+    document.getElementById('close-sidebar').addEventListener('click', function () {
+        document.getElementById('sidebar').classList.add('-translate-x-full');
+    });
+
+    // Close sidebar on overlay click (optional)
+    document.addEventListener('click', function (e) {
+        const sidebar = document.getElementById('sidebar');
+        const hamburger = document.getElementById('hamburger-btn');
+        if (!sidebar.contains(e.target) && !hamburger.contains(e.target)) {
+            sidebar.classList.add('-translate-x-full');
+        }
     });
 </script>
+
 
 <?php include "footer.php"; ?>
 

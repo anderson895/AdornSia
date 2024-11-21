@@ -29,39 +29,18 @@
     <h2 class="text-2xl font-bold text-center text-gray-800 mb-6">Admin Login</h2>
 
     <form id="frmLogin" class="space-y-6">
-    <div class="relative">
-  <input
-    type="text"
-    id="username"
-    name="username"
-    required
-    class="peer w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 placeholder-transparent"
-    placeholder="Username"
-  />
-  <label
-    for="username"
-    class="absolute left-4 top-2 text-sm text-gray-500 transition-all peer-placeholder-shown:top-4 peer-placeholder-shown:text-gray-400 peer-focus:top-2 peer-focus:text-sm peer-focus:text-blue-500"
-  >
-    Username
-  </label>
-</div>
+      <div>
+        <label for="username" class="block text-sm font-medium text-gray-700">Username</label>
+        <input type="text" id="username" name="username" required
+               class="mt-1 w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
+      </div>
 
-<div class="relative">
-  <input
-    type="password"
-    id="password"
-    name="password"
-    required
-    class="peer w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 placeholder-transparent"
-    placeholder="Password"
-  />
-  <label
-    for="password"
-    class="absolute left-4 top-2 text-sm text-gray-500 transition-all peer-placeholder-shown:top-4 peer-placeholder-shown:text-gray-400 peer-focus:top-2 peer-focus:text-sm peer-focus:text-blue-500"
-  >
-    Password
-  </label>
-</div>
+      <div>
+        <label for="password" class="block text-sm font-medium text-gray-700">Password</label>
+        <input type="password" id="password" name="password" required
+               class="mt-1 w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
+      </div>
+
       <div class="flex items-center justify-between">
         <div class="flex items-center">
           <input id="remember_me" name="remember_me" type="checkbox" 

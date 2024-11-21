@@ -22,21 +22,23 @@ if (isset($_GET['step'])) {
         ?>
     </div>
 </div>
+
 <div class="overflow-x-auto bg-white shadow-md rounded-lg p-6" id="recordTable">
     <h2 class="text-xl font-semibold text-gray-700 mb-4"></h2>
 
-    <!-- Tabs -->
-    <div class="flex justify-center items-center flex-wrap space-x-0 space-y-2 md:space-y-0 md:space-x-4 border-b mb-6">
-        <a href="?step=Pending" class="py-2 px-4 text-gray-600 hover:text-red-500 <?= ($defaultStep == 'Pending' ? 'border-b-2 border-red-500 text-red-500' : '') ?>">Pending</a>
-        <a href="?step=Accept" class="py-2 px-4 text-gray-600 hover:text-red-500 <?= ($defaultStep == 'Accept' ? 'border-b-2 border-red-500 text-red-500' : '') ?>">Accept</a>
-        <a href="?step=Shipped" class="py-2 px-4 text-gray-600 hover:text-red-500 <?= ($defaultStep == 'Shipped' ? 'border-b-2 border-red-500 text-red-500' : '') ?>">Shipped</a>
-        <a href="?step=Delivered" class="py-2 px-4 text-gray-600 hover:text-red-500 <?= ($defaultStep == 'Delivered' ? 'border-b-2 border-red-500 text-red-500' : '') ?>">Delivered</a>
-        <a href="?step=Canceled" class="py-2 px-4 text-gray-600 hover:text-red-500 <?= ($defaultStep == 'Canceled' ? 'border-b-2 border-red-500 text-red-500' : '') ?>">Cancelled</a>
+  <!-- Tabs -->
+  <div class="flex justify-center items-center flex-wrap space-x-0 space-y-2 md:space-y-0 md:space-x-4 border-b mb-6">
+      <a href="?step=Pending" class="py-2 px-4 text-gray-600 hover:text-red-500 <?= ($defaultStep == 'Pending' ? 'border-b-2 border-red-500 text-red-500' : '') ?>">Pending</a>
+      <a href="?step=Accept" class="py-2 px-4 text-gray-600 hover:text-red-500 <?= ($defaultStep == 'Accept' ? 'border-b-2 border-red-500 text-red-500' : '') ?>">Accept</a>
+      <a href="?step=Shipped" class="py-2 px-4 text-gray-600 hover:text-red-500 <?= ($defaultStep == 'Shipped' ? 'border-b-2 border-red-500 text-red-500' : '') ?>">Shipped</a>
+      <a href="?step=Delivered" class="py-2 px-4 text-gray-600 hover:text-red-500 <?= ($defaultStep == 'Delivered' ? 'border-b-2 border-red-500 text-red-500' : '') ?>">Delivered</a>
+      <a href="?step=Canceled" class="py-2 px-4 text-gray-600 hover:text-red-500 <?= ($defaultStep == 'Canceled' ? 'border-b-2 border-red-500 text-red-500' : '') ?>">Cancelled</a>
     </div>
 
+    <!-- border-b-2 border-red-500 text-red-500 -->
     <!-- Search Box and Table -->
-    <div class="flex justify-between items-center mb-4 flex-col md:flex-row">
-        <input type="text" id="searchInput" placeholder="Search..." class="w-full md:w-1/4 p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 placeholder-gray-500 text-sm mb-4 md:mb-0">
+    <div class="flex justify-between items-center mb-4">
+        <input type="text" id="searchInput" placeholder="Search..." class="w-1/4 p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 placeholder-gray-500 text-sm">
     </div>
 
     <table class="min-w-full table-auto">
@@ -57,7 +59,6 @@ if (isset($_GET['step'])) {
         </tbody>
     </table>
 </div>
-
 
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 

@@ -149,15 +149,17 @@ $(document).ready(function() {
             success: function(response) {
                 // Hide loading spinner
 
-                if(response.status == "Added To Cart!") {
-                    alertify.success('Item successfully added to the cart!');
-                    location.reload();
-                } else if(response.status == "Cart Updated!") {
-                    alertify.success('Cart updated successfully!');
-                    location.reload();
-                } else {
-                    alertify.error(response.status);
-                }
+
+                location.reload();
+                // if(response.status == "Added To Cart!") {
+                //     alertify.success('Item successfully added to the cart!');
+                    
+                // } else if(response.status == "Cart Updated!") {
+                //     alertify.success('Cart updated successfully!');
+                //     location.reload();
+                // } else {
+                //     alertify.error(response.status);
+                // }
                 
                
             },

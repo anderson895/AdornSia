@@ -17,7 +17,6 @@
       <img src="admin/assets/logo1.png" alt="ADORN SIA Logo" class="w-27 h-27 object-contain">
     </div>
 
-    <h2 class="text-2xl font-bold text-center text-gray-800 mb-6">ADORN</h2>
     
     <form id="frmLogin" class="space-y-6">
       <div>

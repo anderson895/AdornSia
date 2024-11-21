@@ -34,6 +34,7 @@ $firstname = $name_parts[0];
 
 ?>
 
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -59,78 +60,106 @@ $firstname = $name_parts[0];
 
 <body class="bg-gray-50">
  
- <!-- Header -->
- <header class="bg-white shadow">
+<header class="bg-white shadow">
   <div class="container mx-auto px-4 py-4 flex justify-between items-center">
     <!-- Logo/Brand Name -->
-    <div class="text-xl font-bold text-gray-800"><a href="index.php" class="text-gray-700 hover:text-blue-600 transition">ADORN SIA</a></div>
-    
+    <div class="text-xl font-bold text-gray-800">
+      <a href="index.php" class="text-gray-700 hover:text-blue-600 transition">ADORN SIA</a>
+    </div>
+
+    <!-- Hamburger Menu Button -->
+    <button 
+      id="hamburger-btn" 
+      class="lg:hidden p-2 text-gray-700 hover:text-gray-900 focus:outline-none focus:ring"
+    >
+      <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+      </svg>
+    </button>
+
     <!-- Navigation Links -->
-    <div class="flex items-center space-x-4">
+    <nav id="nav-menu" class="hidden lg:flex items-center space-x-4">
       <?php if ($is_logged_in): ?>
-        <!-- Show these if user is logged in -->
         <a href="index.php" class="text-gray-700 hover:text-blue-600 transition">Orders</a>
 
-        
+        <!-- Profile Dropdown -->
         <div class="relative dropdown">
-          <!-- Dropdown Trigger -->
           <button id="profileButton" class="flex items-center space-x-2 bg-gray-200 hover:bg-gray-300 text-gray-700 rounded-full px-4 py-2">
-          <?php
-          if ($user_profileImages) {
+            <?php
+            if ($user_profileImages) {
               echo "<img src='../upload/$user_profileImages' class='h-6 w-6 rounded-full'>";
-          } else {
+            } else {
               echo '
               <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="inline-block h-6 w-6 rounded-full">
                 <path d="M21.649 19.875c-1.428-2.468-3.628-4.239-6.196-5.078a6.75 6.75 0 10-6.906 0c-2.568.839-4.768 2.609-6.196 5.078a.75.75 0 101.299.75C5.416 17.573 8.538 15.75 12 15.75c3.462 0 6.584 1.823 8.35 4.875a.751.751 0 101.299-.75zM6.75 9a5.25 5.25 0 1110.5 0 5.25 5.25 0 01-10.5 0z" fill="#000" class="fill-grey-100"></path>
               </svg>';
-          }
-          ?>
-
-
-             <span><?= ucfirst($firstname) ?></span>
+            }
+            ?>
+            <span><?= ucfirst($firstname) ?></span>
           </button>
 
           <!-- Dropdown Menu -->
-          <div class="absolute right-0 mt-2 w-48 bg-white border border-gray-200 rounded-lg shadow-lg dropdown-menu">
-              <a href="orders.php" class="block px-4 py-2 text-gray-700 hover:bg-blue-100 hover:text-blue-600 transition">
-                  <span class="material-icons align-middle mr-2">shopping_cart</span>
-                  My Purchase
-              </a>
-              <a href="profile.php" class="block px-4 py-2 text-gray-700 hover:bg-blue-100 hover:text-blue-600 transition">
-                  <span class="material-icons align-middle mr-2">account_circle</span>
-                  Profile
-              </a>
-              <a href="password_setting.php" class="block px-4 py-2 text-gray-700 hover:bg-blue-100 hover:text-blue-600 transition">
-                  <span class="material-icons align-middle mr-2">lock</span>
-                  Password
-              </a>
-              <a href="logout.php" class="block px-4 py-2 text-gray-700 hover:bg-blue-100 hover:text-blue-600 transition">
-                  <span class="material-icons align-middle mr-2">exit_to_app</span>
-                  Logout
-              </a>
+          <div class="absolute right-0 mt-2 w-48 bg-white border border-gray-200 rounded-lg shadow-lg hidden dropdown-menu">
+            <a href="orders.php" class="block px-4 py-2 text-gray-700 hover:bg-blue-100 hover:text-blue-600 transition">
+              <span class="material-icons align-middle mr-2">shopping_cart</span>
+              My Purchase
+            </a>
+            <a href="profile.php" class="block px-4 py-2 text-gray-700 hover:bg-blue-100 hover:text-blue-600 transition">
+              <span class="material-icons align-middle mr-2">account_circle</span>
+              Profile
+            </a>
+            <a href="password_setting.php" class="block px-4 py-2 text-gray-700 hover:bg-blue-100 hover:text-blue-600 transition">
+              <span class="material-icons align-middle mr-2">lock</span>
+              Password
+            </a>
+            <a href="logout.php" class="block px-4 py-2 text-gray-700 hover:bg-blue-100 hover:text-blue-600 transition">
+              <span class="material-icons align-middle mr-2">exit_to_app</span>
+              Logout
+            </a>
           </div>
-
-
         </div>
-
       <?php else: ?>
-        <!-- Show these if user is not logged in -->
         <a href="login.php" class="text-gray-700 hover:text-blue-600 transition">Login</a>
         <span class="text-gray-500">/</span>
         <a href="signup.php" class="text-gray-700 hover:text-blue-600 transition">Register</a>
       <?php endif; ?>
-      
+
+      <!-- Cart and Wishlist -->
       <a href="view_cart.php" class="relative text-gray-700 hover:text-blue-600 transition text-xl">
-          🛒
-          <span class="absolute top-0 right-0 inline-block w-5 h-5 text-xs font-semibold text-white bg-red-500 rounded-full text-center hidden cartCount"></span>
+        🛒
+        <span class="absolute top-0 right-0 inline-block w-5 h-5 text-xs font-semibold text-white bg-red-500 rounded-full text-center hidden cartCount"></span>
       </a>
       <a href="view_wishlist.php" class="relative text-gray-700 hover:text-blue-600 transition text-xl">
-          <span class="material-icons align-middle mr-2">favorite_border</span>
-          <span class="absolute top-0 right-0 inline-block w-5 h-5 text-xs font-semibold text-white bg-red-500 rounded-full text-center hidden wishlistCount"></span>
+        <span class="material-icons align-middle mr-2">favorite_border</span>
+        <span class="absolute top-0 right-0 inline-block w-5 h-5 text-xs font-semibold text-white bg-red-500 rounded-full text-center hidden wishlistCount"></span>
       </a>
-
-
-    </div>
+    </nav>
   </div>
 </header>
+
+<script>
+  // Toggle Mobile Menu
+  const hamburger = document.getElementById('hamburger-btn');
+  const navMenu = document.getElementById('nav-menu');
+
+  hamburger.addEventListener('click', () => {
+    navMenu.classList.toggle('hidden');
+  });
+
+  // Profile Dropdown Menu
+  const profileButton = document.getElementById('profileButton');
+  const dropdownMenu = document.querySelector('.dropdown-menu');
+
+  profileButton.addEventListener('click', (e) => {
+    e.stopPropagation();
+    dropdownMenu.classList.toggle('hidden');
+  });
+
+  document.addEventListener('click', () => {
+    if (!dropdownMenu.classList.contains('hidden')) {
+      dropdownMenu.classList.add('hidden');
+    }
+  });
+</script>
+
 

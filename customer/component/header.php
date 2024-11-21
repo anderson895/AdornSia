@@ -77,11 +77,7 @@ $firstname = $name_parts[0];
     <nav id="navigation" class="hidden lg:flex lg:items-center lg:space-x-4">
       <?php if ($is_logged_in): ?>
         <!-- Show these if user is logged in -->
-        <a href="index.php" class="text-gray-700 hover:text-blue-600 transition flex items-center">
-          <span class="material-icons mr-2">shopping_bag</span>
-          Products
-        </a>
-
+        <a href="index.php" class="text-gray-700 hover:text-blue-600 transition">Products</a>
 
         <div class="relative dropdown">
           <!-- Dropdown Trigger -->

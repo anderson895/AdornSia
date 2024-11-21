@@ -77,7 +77,7 @@ $firstname = $name_parts[0];
     <nav id="navigation" class="hidden lg:flex lg:items-center lg:space-x-4">
       <?php if ($is_logged_in): ?>
         <!-- Show these if user is logged in -->
-        <a href="index.php" class="text-gray-700 hover:text-blue-600 transition">Products</a>
+        <a href="index.php" class="text-gray-700 hover:text-blue-600 transition"><span class="material-icons mr-2">home</span>Products</a>
 
         <div class="relative dropdown">
           <!-- Dropdown Trigger -->
@@ -141,7 +141,7 @@ $firstname = $name_parts[0];
     <?php if ($is_logged_in): ?>
       <a href="index.php" class="flex items-center text-gray-700 hover:text-blue-600 transition">
         <span class="material-icons mr-2">home</span>
-        Orders
+        Products
       </a>
       <a href="orders.php" class="flex items-center text-gray-700 hover:text-blue-600 transition">
         <span class="material-icons mr-2">shopping_cart</span>

@@ -42,8 +42,8 @@ endforeach;
         <label for="profile-image" class="block text-sm font-medium text-gray-700">Profile Image</label>
         <!-- Default Image or Uploaded Image -->
         <div class="mb-4">
-        <img id="preview-image" 
-     src="../upload/<?php echo empty($user_profileImages) ? $user_profileImages : 'data:image/svg+xml,%3Csvg%20viewBox%3D%220%200%2024%2024%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20class%3D%22inline-block%20h-6%20w-6%22%3E%3Cpath%20d%3D%22M21.649%2019.875c-1.428-2.468-3.628-4.239-6.196-5.078a6.75%206.75%200%2010-6.906%200c-2.568.839-4.768%202.609-6.196%205.078a.75.75%200%20101.299.75C5.416%2017.573%208.538%2015.75%2012%2015.75c3.462%200%206.584%201.823%208.35%204.875a.751.751%200%20101.299-.75zM6.75%209a5.25%205.25%200%201110.5%200%205.25%205.25%200%2001-10.5%200z%22%20fill%3D%22%23000%22%20class%3D%22fill-grey-100%22%3E%3C%2Fpath%3E%3C%2Fsvg%3E'; ?>" 
+       <img id="preview-image" 
+     src="../upload/<?php echo $user_profileImages !== "" ? $user_profileImages : 'data:image/svg+xml,%3Csvg%20viewBox%3D%220%200%2024%2024%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20class%3D%22inline-block%20h-6%20w-6%22%3E%3Cpath%20d%3D%22M21.649%2019.875c-1.428-2.468-3.628-4.239-6.196-5.078a6.75%206.75%200%2010-6.906%200c-2.568.839-4.768%202.609-6.196%205.078a.75.75%200%20101.299.75C5.416%2017.573%208.538%2015.75%2012%2015.75c3.462%200%206.584%201.823%208.35%204.875a.751.751%200%20101.299-.75zM6.75%209a5.25%205.25%200%201110.5%200%205.25%205.25%200%2001-10.5%200z%22%20fill%3D%22%23000%22%20class%3D%22fill-grey-100%22%3E%3C%2Fpath%3E%3C%2Fsvg%3E'; ?>" 
      alt="Profile Image" 
      class="w-32 h-32 rounded-full mx-auto object-cover">
 

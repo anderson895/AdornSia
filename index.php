@@ -5,15 +5,14 @@ include('backend/class.php');
 $db = new global_class();
 ?>
 <div class="container mx-auto px-4 py-6">
-    <!-- Toggle Button for Sidebar (Mobile View) -->
+    <!-- Toggle Button for Mobile -->
     <button id="toggleSidebar" class="lg:hidden bg-blue-500 text-white px-4 py-2 rounded mb-4">
-        Filters
+        Toggle Filters
     </button>
 
-    <!-- Main Layout -->
     <div class="flex flex-col lg:flex-row gap-6">
         <!-- Sidebar Filters -->
-        <aside id="sidebar" class="hidden lg:block w-full lg:w-1/4 p-4 bg-white rounded shadow-lg">
+        <aside id="sidebar" class="hidden lg:block w-full lg:w-1/4 p-4 bg-white rounded shadow-lg lg:sticky top-4">
             <h2 class="font-semibold mb-4">Categories</h2>
             <ul id="category-list">
                 <li>
@@ -49,23 +48,25 @@ $db = new global_class();
                     <input type="radio" name="price" class="mr-2 price-filter" data-price-range="2000-3000">
                     PHP 2000 - PHP 3000
                 </label>
+                <!-- Add more options as needed -->
             </div>
         </aside>
 
         <!-- Product Grid -->
         <main class="w-full lg:w-3/4 p-4 bg-white rounded shadow-lg">
-            <?php include "backend/end-points/product_list.php";?>
+            <?php include "backend/end-points/product_list.php"; ?>
         </main>
     </div>
 </div>
 
-<?php include "footer.php"; ?>
-
 <script>
-    // JavaScript for Toggling Sidebar
-    document.getElementById('toggleSidebar').addEventListener('click', function () {
-        const sidebar = document.getElementById('sidebar');
-        sidebar.classList.toggle('hidden');
+    // Toggle Sidebar Visibility
+    const toggleButton = document.getElementById('toggleSidebar');
+    const sidebar = document.getElementById('sidebar');
+
+    toggleButton.addEventListener('click', () => {
+        sidebar.classList.toggle('hidden'); // Show/hide the sidebar
+        sidebar.classList.toggle('block'); // Ensure block display when visible
     });
 </script>
 

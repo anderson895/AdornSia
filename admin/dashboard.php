@@ -35,6 +35,77 @@
     </div>
 </div>
 
+
+
+
+
+
+
+
+
+
+<!-- Horizontal Scrollable Cards for Product Categories -->
+<div class="mt-8 px-4">
+    <h3 class="text-gray-700 font-semibold text-lg mb-4">Product Categories</h3>
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        <!-- Top 5 Best Selling Products Card -->
+        <div class="bg-white p-6 rounded-lg shadow-lg">
+            <h3 class="text-gray-700 font-semibold text-lg mb-4">Top 5 Best Selling Products</h3>
+            <!-- Placeholder for products -->
+            <ul>
+                <li class="text-sm text-gray-600">Product 1</li>
+                <li class="text-sm text-gray-600">Product 2</li>
+                <li class="text-sm text-gray-600">Product 3</li>
+                <li class="text-sm text-gray-600">Product 4</li>
+                <li class="text-sm text-gray-600">Product 5</li>
+            </ul>
+        </div>
+
+        <!-- New Products Card -->
+        <div class="bg-white p-6 rounded-lg shadow-lg">
+            <h3 class="text-gray-700 font-semibold text-lg mb-4">New Products</h3>
+            <!-- Placeholder for products -->
+            <ul>
+                <li class="text-sm text-gray-600">Product A</li>
+                <li class="text-sm text-gray-600">Product B</li>
+                <li class="text-sm text-gray-600">Product C</li>
+                <li class="text-sm text-gray-600">Product D</li>
+                <li class="text-sm text-gray-600">Product E</li>
+            </ul>
+        </div>
+
+        <!-- Inventory Status Low Stock Card -->
+        <div class="bg-white p-6 rounded-lg shadow-lg">
+            <h3 class="text-gray-700 font-semibold text-lg mb-4">Inventory Status (Low Stock)</h3>
+            <!-- Placeholder for items -->
+            <ul>
+                <li class="text-sm text-gray-600">Item X</li>
+                <li class="text-sm text-gray-600">Item Y</li>
+                <li class="text-sm text-gray-600">Item Z</li>
+            </ul>
+        </div>
+
+        <!-- Out of Stock Products Card -->
+        <div class="bg-white p-6 rounded-lg shadow-lg">
+            <h3 class="text-gray-700 font-semibold text-lg mb-4">Out of Stock</h3>
+            <!-- Placeholder for items -->
+            <ul>
+                <li class="text-sm text-gray-600">Item 1</li>
+                <li class="text-sm text-gray-600">Item 2</li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+
 <!-- Sales Performance Cards -->
 <div class="grid grid-cols-1 sm:grid-cols-3 gap-6 mt-8">
     <!-- Daily Sales Performance Card -->
@@ -66,6 +137,7 @@
 </div>
 
 <?php include "components/footer.php";?>
+<script src="js/top5bestSelling.js"></script>
 <script src="js/analytics.js"></script>
 <script src="js/daily_sales.js"></script>
 <script src="js/weekly_sales.js"></script>

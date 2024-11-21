@@ -69,8 +69,23 @@ class global_class extends db_connect
         }
     }
     
+    // public function top5bestSelling()
+    // {
+    //     $query = "
+          
+    //     ";
     
-
+    //     $result = $this->conn->query($query);
+    
+    //     if ($result) {
+           
+    //         echo json_encode();
+    //     } else {
+    //         // Log the error for debugging
+    //         error_log('Database query failed: ' . $this->conn->error);
+    //         echo json_encode(['error' => 'Failed to retrieve  data']);
+    //     }
+    // }
     
   public function getWeeklySalesData()
     {

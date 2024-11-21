@@ -14,10 +14,10 @@
 
     <!-- Logo -->
     <div class="flex justify-center mb-6">
-      <img src="admin/assets/logo1.png" alt="ADORN SIA Logo" class="w-24 h-24 object-contain">
+      <img src="admin/assets/logo1.png" alt="ADORN SIA Logo" class="w-30 h-30 object-contain">
     </div>
 
-    <h2 class="text-2xl font-bold text-center text-gray-800 mb-6">Login to ADORN SIA</h2>
+    <h2 class="text-2xl font-bold text-center text-gray-800 mb-6">Login to <br> ADORN</h2>
     
     <form id="frmLogin" class="space-y-6">
       <div>

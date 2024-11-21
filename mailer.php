@@ -86,7 +86,7 @@ class Mailer extends db_connect
                         <p class='text-gray-700 mb-4'>Please use this link to verify your account:</p>
                         <p class='text-gray-700 mb-6'>This link will expire in 5 minutes.</p>
                         
-                        <a href='http://localhost/Client/Adorn_sia/verification.php?userId=$userId&verificationKey=$verificationKey' class='inline-block bg-blue-600 text-white py-2 px-4 rounded hover:bg-blue-700 transition duration-300'>
+                        <a href='https://adornsia.shop/verification.php?userId=$userId&verificationKey=$verificationKey' class='inline-block bg-blue-600 text-white py-2 px-4 rounded hover:bg-blue-700 transition duration-300'>
                             Verify your account
                         </a>
                     </div>

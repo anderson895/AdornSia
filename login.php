@@ -16,7 +16,7 @@
         </div>
      </div>
 
-     <img src="admin/assets/logo1.png" alt="Adornasia" class="w-30 h-30 object-contain">
+    <h2 class="text-2xl font-bold text-center text-gray-800 mb-6">Login</h2>
     
     <form id="frmLogin" class="space-y-6">
       <div>

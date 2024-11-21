@@ -13,7 +13,7 @@
      </div>
    
 
-    <h2 class="text-2xl font-bold text-center text-gray-800 mb-6">Register</h2>
+    <h2 class="text-2xl font-bold text-center text-gray-800 mb-6">Signup</h2>
     
     <form id="FrmRegister" class="space-y-6">
       <div>
@@ -41,7 +41,7 @@
         <input type="password" id="confirm-password" name="confirm-password" class="w-full mt-1 px-3 py-2 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:border-indigo-500" required>
       </div>
 
-      <button type="submit" class="w-full py-2 px-4 bg-indigo-600 text-white font-semibold rounded-lg shadow-md hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-opacity-75">Register</button>
+      <button type="submit" class="w-full py-2 px-4 bg-indigo-600 text-white font-semibold rounded-lg shadow-md hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-opacity-75">Create Account</button>
     </form>
 
     <p class="mt-6 text-center text-sm text-gray-600">

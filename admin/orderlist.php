@@ -23,7 +23,7 @@ if (isset($_GET['step'])) {
     </div>
 </div>
 
-<div class="overflow-x-auto bg-white shadow-md rounded-lg p-6" id="recordTable">
+<div class="overflow-x-auto bg-white shadow-md rounded-lg p-6" >
     <h2 class="text-xl font-semibold text-gray-700 mb-4"></h2>
 
   <!-- Tabs -->
@@ -55,7 +55,7 @@ if (isset($_GET['step'])) {
                 <th class="px-6 py-3 text-left text-sm font-semibold text-gray-600">Status</th>
             </tr>
         </thead>
-        <tbody>
+        <tbody id="recordTable">
         </tbody>
     </table>
 </div>

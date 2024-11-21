@@ -137,19 +137,41 @@ $firstname = $name_parts[0];
 
   <!-- Mobile Menu -->
   <div id="mobileMenu" class="hidden lg:hidden bg-white border-t border-gray-200">
-    <nav class="flex flex-col space-y-2 p-4">
-      <?php if ($is_logged_in): ?>
-        <a href="index.php" class="text-gray-700 hover:text-blue-600 transition">Orders</a>
-        <a href="orders.php" class="text-gray-700 hover:text-blue-600 transition">My Purchase</a>
-        <a href="profile.php" class="text-gray-700 hover:text-blue-600 transition">Profile</a>
-        <a href="password_setting.php" class="text-gray-700 hover:text-blue-600 transition">Password</a>
-        <a href="logout.php" class="text-gray-700 hover:text-blue-600 transition">Logout</a>
-      <?php else: ?>
-        <a href="login.php" class="text-gray-700 hover:text-blue-600 transition">Login</a>
-        <a href="signup.php" class="text-gray-700 hover:text-blue-600 transition">Register</a>
-      <?php endif; ?>
-    </nav>
-  </div>
+  <nav class="flex flex-col space-y-2 p-4">
+    <?php if ($is_logged_in): ?>
+      <a href="index.php" class="flex items-center text-gray-700 hover:text-blue-600 transition">
+        <span class="material-icons mr-2">home</span>
+        Orders
+      </a>
+      <a href="orders.php" class="flex items-center text-gray-700 hover:text-blue-600 transition">
+        <span class="material-icons mr-2">shopping_cart</span>
+        My Purchase
+      </a>
+      <a href="profile.php" class="flex items-center text-gray-700 hover:text-blue-600 transition">
+        <span class="material-icons mr-2">account_circle</span>
+        Profile
+      </a>
+      <a href="password_setting.php" class="flex items-center text-gray-700 hover:text-blue-600 transition">
+        <span class="material-icons mr-2">lock</span>
+        Password
+      </a>
+      <a href="logout.php" class="flex items-center text-gray-700 hover:text-blue-600 transition">
+        <span class="material-icons mr-2">exit_to_app</span>
+        Logout
+      </a>
+    <?php else: ?>
+      <a href="login.php" class="flex items-center text-gray-700 hover:text-blue-600 transition">
+        <span class="material-icons mr-2">login</span>
+        Login
+      </a>
+      <a href="signup.php" class="flex items-center text-gray-700 hover:text-blue-600 transition">
+        <span class="material-icons mr-2">person_add</span>
+        Register
+      </a>
+    <?php endif; ?>
+  </nav>
+</div>
+
 </header>
 
 <script>

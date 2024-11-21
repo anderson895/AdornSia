@@ -16,7 +16,7 @@
         </div>
      </div>
 
-    <h2 class="text-2xl font-bold text-center text-gray-800 mb-6">Login to ADORN SIA</h2>
+    <h2 class="text-2xl font-bold text-center text-gray-800 mb-6">Login to <br>ADORN</h2>
     
     <form id="frmLogin" class="space-y-6">
       <div>

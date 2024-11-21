@@ -18,7 +18,7 @@
  <header class="bg-white shadow">
   <div class="container mx-auto px-4 py-4 flex justify-between items-center">
     <!-- Logo/Brand Name -->
-    <div class="text-xl font-bold text-gray-800"><a href="index.php" class="text-gray-700 hover:text-blue-600 transition">ADORN SIA</a></div>
+    <div class="text-xl font-bold text-gray-800"><a href="index.php" class="text-gray-700 hover:text-blue-600 transition">ADORN</a></div>
     
     <!-- Navigation Links -->
     <div class="flex items-center space-x-4">

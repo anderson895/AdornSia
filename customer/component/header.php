@@ -63,7 +63,7 @@ $firstname = $name_parts[0];
   <div class="container mx-auto px-4 py-4 flex justify-between items-center">
     <!-- Logo/Brand Name -->
     <div class="text-xl font-bold text-gray-800">
-      <a href="index.php" class="text-gray-700 hover:text-blue-600 transition">ADORN SIA</a>
+      <a href="index.php" class="text-gray-700 hover:text-blue-600 transition">ADORN</a>
     </div>
     
     <!-- Mobile Menu Button -->

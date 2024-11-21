@@ -4,11 +4,9 @@ include('backend/class.php');
 
 $db = new global_class();
 ?>
-
-<div class="container mx-auto px-4 py-6 flex">
-
+<div class="container mx-auto px-4 py-6 flex flex-col lg:flex-row gap-6">
     <!-- Sidebar Filters -->
-    <aside class="w-1/4 p-4 bg-white rounded shadow-lg">
+    <aside class="w-full lg:w-1/4 p-4 bg-white rounded shadow-lg lg:sticky top-4">
         <h2 class="font-semibold mb-4">Categories</h2>
         <ul id="category-list">
             <li>
@@ -18,7 +16,7 @@ $db = new global_class();
             </li>
             <?php 
             // Fetch categories
-            $categories = $db->fetch_all_categories(); // Assuming a method to get all categories
+            $categories = $db->fetch_all_categories();
             foreach ($categories as $category):
                 echo ' 
                     <li>
@@ -49,10 +47,11 @@ $db = new global_class();
     </aside>
 
     <!-- Product Grid -->
-    <main class="w-3/4 p-4">
+    <main class="w-full lg:w-3/4 p-4 bg-white rounded shadow-lg">
         <?php include "backend/end-points/product_list.php";?>
     </main>
 </div>
+
 
 <?php include "footer.php"; ?>
 

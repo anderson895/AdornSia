@@ -55,7 +55,7 @@ function displayOrders(orders) {
     const urlParams = new URLSearchParams(window.location.search);
     const currentStep = urlParams.get('step') || 'Pending'; // Default to 'Pending' if no step is provided
 
-    let tableBody = $('#recordTable');
+    let tableBody = $('#recordTable tbody');
     tableBody.empty();
 
     // Filter orders based on the current step

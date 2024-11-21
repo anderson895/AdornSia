@@ -23,19 +23,17 @@ if (isset($_GET['step'])) {
     </div>
 </div>
 
- <!-- Tabs -->
- <div class="flex justify-center items-center flex-wrap space-x-0 space-y-2 md:space-y-0 md:space-x-4 border-b mb-6">
+<div class="overflow-x-auto bg-white shadow-md rounded-lg p-6" id="recordTable">
+    <h2 class="text-xl font-semibold text-gray-700 mb-4"></h2>
+
+  <!-- Tabs -->
+  <div class="flex justify-center items-center flex-wrap space-x-0 space-y-2 md:space-y-0 md:space-x-4 border-b mb-6">
       <a href="?step=Pending" class="py-2 px-4 text-gray-600 hover:text-red-500 <?= ($defaultStep == 'Pending' ? 'border-b-2 border-red-500 text-red-500' : '') ?>">Pending</a>
       <a href="?step=Accept" class="py-2 px-4 text-gray-600 hover:text-red-500 <?= ($defaultStep == 'Accept' ? 'border-b-2 border-red-500 text-red-500' : '') ?>">Accept</a>
       <a href="?step=Shipped" class="py-2 px-4 text-gray-600 hover:text-red-500 <?= ($defaultStep == 'Shipped' ? 'border-b-2 border-red-500 text-red-500' : '') ?>">Shipped</a>
       <a href="?step=Delivered" class="py-2 px-4 text-gray-600 hover:text-red-500 <?= ($defaultStep == 'Delivered' ? 'border-b-2 border-red-500 text-red-500' : '') ?>">Delivered</a>
       <a href="?step=Canceled" class="py-2 px-4 text-gray-600 hover:text-red-500 <?= ($defaultStep == 'Canceled' ? 'border-b-2 border-red-500 text-red-500' : '') ?>">Cancelled</a>
     </div>
-
-<div class="overflow-x-auto bg-white shadow-md rounded-lg p-6" >
-    <h2 class="text-xl font-semibold text-gray-700 mb-4"></h2>
-
- 
 
     <!-- border-b-2 border-red-500 text-red-500 -->
     <!-- Search Box and Table -->
@@ -57,7 +55,7 @@ if (isset($_GET['step'])) {
                 <th class="px-6 py-3 text-left text-sm font-semibold text-gray-600">Status</th>
             </tr>
         </thead>
-        <tbody id="recordTable">
+        <tbody>
         </tbody>
     </table>
 </div>

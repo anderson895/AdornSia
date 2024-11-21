@@ -151,8 +151,10 @@ $(document).ready(function() {
 
                 if(response.status == "Added To Cart!") {
                     alertify.success('Item successfully added to the cart!');
+                    location.reload();
                 } else if(response.status == "Cart Updated!") {
                     alertify.success('Cart updated successfully!');
+                    location.reload();
                 } else {
                     alertify.error(response.status);
                 }

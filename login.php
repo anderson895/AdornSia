@@ -14,7 +14,7 @@
 
     <!-- Logo -->
     <div class="flex justify-center mb-6">
-      <img src="admin/assets/logo1.png" alt="ADORN SIA Logo" class="w-25 h-25 object-contain">
+      <img src="admin/assets/logo1.png" alt="ADORN SIA Logo" class="w-23 h-23 object-contain">
     </div>
 
     

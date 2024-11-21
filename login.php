@@ -1,22 +1,22 @@
+
+
 <?php include "header.php"?>
+
+
 
 <div class="bg-gray-100 flex items-center justify-center min-h-screen">
 
   <!-- Login Area -->
-  <div class="w-full max-w-md bg-white p-8 rounded-lg shadow-lg relative">
+  <div class="w-full max-w-md bg-white p-8 rounded-lg shadow-lg">
 
-    <!-- Spinner -->
-    <div id="spinner" style="display:none;">
-      <div class="absolute inset-0 bg-white bg-opacity-75 flex items-center justify-center">
-        <div class="w-10 h-10 border-4 border-indigo-500 border-t-transparent rounded-full animate-spin"></div>
-      </div>
-    </div>
+  <!-- Spinner -->
+  <div id="spinner" style="display:none;">
+        <div class=" absolute inset-0 bg-white bg-opacity-75 flex items-center justify-center">
+          <div class="w-10 h-10 border-4 border-indigo-500 border-t-transparent rounded-full animate-spin"></div>
+        </div>
+     </div>
 
-    <!-- Logo -->
-    <div class="flex justify-center mb-6">
-      <img src="admin/assets/logo1.png" alt="ADORN SIA Logo" class="w-20 h-20 object-contain">
-    </div>
-
+    <h2 class="text-2xl font-bold text-center text-gray-800 mb-6">Login to ADORN SIA</h2>
     
     <form id="frmLogin" class="space-y-6">
       <div>

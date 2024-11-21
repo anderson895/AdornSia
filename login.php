@@ -16,7 +16,7 @@
         </div>
      </div>
 
-    <h2 class="text-2xl font-bold text-center text-gray-800 mb-6">ADORN SIA</h2>
+     <img src="assets/logo1.png" alt="Company Logo" class="w-30 h-30 object-contain">
     
     <form id="frmLogin" class="space-y-6">
       <div>

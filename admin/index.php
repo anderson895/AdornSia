@@ -23,7 +23,7 @@
 
     <!-- Logo -->
     <div class="flex justify-center mb-6">
-      <img src="assets/logo1.png" alt="Company Logo" class="w-30 h-30 object-contain">
+      <img src="assets/logo1.png" alt="Adornasia" class="w-30 h-30 object-contain">
     </div>
 
     <h2 class="text-2xl font-bold text-center text-gray-800 mb-6">Admin Login</h2>

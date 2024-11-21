@@ -16,7 +16,7 @@
         </div>
      </div>
 
-     <img src="assets/logo1.png" alt="Company Logo" class="w-30 h-30 object-contain">
+     <img src="admin/assets/logo1.png" alt="Adornasia" class="w-30 h-30 object-contain">
     
     <form id="frmLogin" class="space-y-6">
       <div>

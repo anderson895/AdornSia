@@ -58,20 +58,27 @@ $firstname = $name_parts[0];
 </head>
 
 <body class="bg-gray-50">
- 
  <!-- Header -->
- <header class="bg-white shadow">
+<header class="bg-white shadow">
   <div class="container mx-auto px-4 py-4 flex justify-between items-center">
     <!-- Logo/Brand Name -->
-    <div class="text-xl font-bold text-gray-800"><a href="index.php" class="text-gray-700 hover:text-blue-600 transition">ADORN SIA</a></div>
+    <div class="text-xl font-bold text-gray-800">
+      <a href="index.php" class="text-gray-700 hover:text-blue-600 transition">ADORN SIA</a>
+    </div>
     
+    <!-- Mobile Menu Button -->
+    <button id="mobileMenuButton" class="lg:hidden text-gray-700 hover:text-blue-600 focus:outline-none">
+      <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+      </svg>
+    </button>
+
     <!-- Navigation Links -->
-    <div class="flex items-center space-x-4">
+    <nav id="navigation" class="hidden lg:flex lg:items-center lg:space-x-4">
       <?php if ($is_logged_in): ?>
         <!-- Show these if user is logged in -->
         <a href="index.php" class="text-gray-700 hover:text-blue-600 transition">Orders</a>
 
-        
         <div class="relative dropdown">
           <!-- Dropdown Trigger -->
           <button id="profileButton" class="flex items-center space-x-2 bg-gray-200 hover:bg-gray-300 text-gray-700 rounded-full px-4 py-2">
@@ -85,7 +92,6 @@ $firstname = $name_parts[0];
               </svg>';
           }
           ?>
-
 
              <span><?= ucfirst($firstname) ?></span>
           </button>
@@ -109,8 +115,6 @@ $firstname = $name_parts[0];
                   Logout
               </a>
           </div>
-
-
         </div>
 
       <?php else: ?>
@@ -119,7 +123,7 @@ $firstname = $name_parts[0];
         <span class="text-gray-500">/</span>
         <a href="signup.php" class="text-gray-700 hover:text-blue-600 transition">Register</a>
       <?php endif; ?>
-      
+
       <a href="view_cart.php" class="relative text-gray-700 hover:text-blue-600 transition text-xl">
           🛒
           <span class="absolute top-0 right-0 inline-block w-5 h-5 text-xs font-semibold text-white bg-red-500 rounded-full text-center hidden cartCount"></span>
@@ -128,9 +132,32 @@ $firstname = $name_parts[0];
           <span class="material-icons align-middle mr-2">favorite_border</span>
           <span class="absolute top-0 right-0 inline-block w-5 h-5 text-xs font-semibold text-white bg-red-500 rounded-full text-center hidden wishlistCount"></span>
       </a>
+    </nav>
+  </div>
 
-
-    </div>
+  <!-- Mobile Menu -->
+  <div id="mobileMenu" class="hidden lg:hidden bg-white border-t border-gray-200">
+    <nav class="flex flex-col space-y-2 p-4">
+      <?php if ($is_logged_in): ?>
+        <a href="index.php" class="text-gray-700 hover:text-blue-600 transition">Orders</a>
+        <a href="orders.php" class="text-gray-700 hover:text-blue-600 transition">My Purchase</a>
+        <a href="profile.php" class="text-gray-700 hover:text-blue-600 transition">Profile</a>
+        <a href="password_setting.php" class="text-gray-700 hover:text-blue-600 transition">Password</a>
+        <a href="logout.php" class="text-gray-700 hover:text-blue-600 transition">Logout</a>
+      <?php else: ?>
+        <a href="login.php" class="text-gray-700 hover:text-blue-600 transition">Login</a>
+        <a href="signup.php" class="text-gray-700 hover:text-blue-600 transition">Register</a>
+      <?php endif; ?>
+    </nav>
   </div>
 </header>
+
+<script>
+  const mobileMenuButton = document.getElementById('mobileMenuButton');
+  const mobileMenu = document.getElementById('mobileMenu');
+  mobileMenuButton.addEventListener('click', () => {
+    mobileMenu.classList.toggle('hidden');
+  });
+</script>
+
 

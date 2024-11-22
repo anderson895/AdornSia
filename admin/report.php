@@ -33,13 +33,13 @@ $salesReport = $db->SalesReport();
             <!-- Submit Button -->
             <button type="submit" class="rounded bg-blue-500 text-white px-4 py-2 flex items-center space-x-2">
                 <span class="material-icons">download</span>
-                <span>Export to Excel</span>
+                <span>Export</span>
             </button>
 
 
             <button onclick="printReport()" class="px-4 py-2 bg-green-500 text-white rounded-md flex items-center space-x-2">
                 <span class="material-icons">print</span>
-                <span>Print Report</span>
+                <span>Print</span>
             </button>
         </form>
     </div>

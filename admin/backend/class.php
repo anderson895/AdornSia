@@ -133,6 +133,7 @@ class global_class extends db_connect
                 'prod_name' => $row['prod_name'],
                 'product_stocks' => $row['product_stocks'],
                 'prod_critical' => $row['prod_critical'],
+                'prod_image' => $row['prod_image'],
                 'stock_status' => $stockStatus,
             ];
         }

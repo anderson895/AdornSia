@@ -112,6 +112,7 @@ class global_class extends db_connect
         $query = "
             SELECT 
                 p.*,
+                o.*,
                 SUM(oi.item_total) AS total_revenue, 
                 SUM(oi.item_qty) AS total_quantity_sold
             FROM orders_item oi

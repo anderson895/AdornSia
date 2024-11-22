@@ -1,7 +1,7 @@
 <?php 
 include "components/header.php";
 
-$orders = $db->salesReport();
+$salesReport = $db->salesReport();
 ?>
 
 <div class="flex justify-between items-center bg-white p-4 mb-6 rounded-md shadow-md">
@@ -47,17 +47,25 @@ $orders = $db->salesReport();
             </tr>
         </thead>
         <tbody>
-            <!-- Example Row, Replace this with dynamic PHP data -->
+            <?php 
+
+            if ($salesReport) {
+                foreach ($salesReport as $report) {
+            ?>
             <tr>
-                <td class="py-2 px-4 border-b">2024-11-22</td>
-                <td class="py-2 px-4 border-b">Car Model A</td>
-                <td class="py-2 px-4 border-b">10</td>
-                <td class="py-2 px-4 border-b">$500</td>
-                <td class="py-2 px-4 border-b">
-                    <button class="text-blue-500 hover:text-blue-700">View</button>
-                </td>
+                <td class="py-2 px-4 border-b"><?=$reportp['order_date']?></td>
+                <td class="py-2 px-4 border-b"><?=$reportp['product']?></td>
+                <td class="py-2 px-4 border-b"><?=$reportp['item_qty']?></td>
+                <td class="py-2 px-4 border-b">Php <?=$reportp['total']?></td>
+                
             </tr>
-            
+            <?php 
+                }
+            }else{
+                echo "No Record Found";
+            }
+            ?>
+
         </tbody>
     </table>
 </div>

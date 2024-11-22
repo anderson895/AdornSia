@@ -4,6 +4,8 @@
         method: 'GET',            
         dataType: 'json',           
         success: function(data) {
+            console.log(data);
+
             const productList = $('#bestSellingProducts');
             if (data.error) {
                 productList.html('<li class="text-sm text-red-600">' + data.error + '</li>');

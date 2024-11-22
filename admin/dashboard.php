@@ -46,7 +46,7 @@
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 min-w-[600px]">
         
        <!-- Best Selling Products -->
-        <div class="bg-white p-6 rounded-lg shadow-lg h-96">
+        <div class="bg-white p-6 rounded-lg shadow-lg h-48">
           <h3 class="text-gray-700 font-semibold text-lg mb-4">Best Selling Products</h3>
             <div class="bg-white p-6 rounded-lg shadow-lg h-96 overflow-y-auto" id="bestSellingProducts">
                 
@@ -54,7 +54,7 @@
             </div>
         </div>
         <!-- New Products Card -->
-        <div class="bg-white p-6 rounded-lg shadow-lg h-96">
+        <div class="bg-white p-6 rounded-lg shadow-lg h-48">
             <h3 class="text-gray-700 font-semibold text-lg mb-4">New Products</h3>
                 <div class="bg-white p-6 rounded-lg shadow-lg h-96 overflow-y-auto" id="NewProduct">
                     

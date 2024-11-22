@@ -3,7 +3,7 @@ const getDataAnalytics = () => {
     $.ajax({
       url: 'backend/end-points/getDataAnalytics.php', 
       type: 'GET',
-      // dataType: 'json',
+      dataType: 'json',
       success: function(response) {
           // console.log(response); 
           let userCount = response.userCount;

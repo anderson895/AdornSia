@@ -2,7 +2,7 @@
 $.ajax({
     url: 'backend/end-points/top5bestSelling.php',  // Your PHP endpoint for weekly sales data
     type: 'GET',
-    dataType: 'json',
+    // dataType: 'json',
     success: function(data) {
         
         // Loop through the response data and prepare the arrays

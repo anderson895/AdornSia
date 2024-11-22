@@ -205,12 +205,11 @@ if ($response['status'] === 'success') {
     
     $orderId = $response['order_id'];
 
-    // Insert order items if selected products are valid
     if (is_array($selectedProductsArray) && !empty($selectedProductsArray)) {
         foreach ($selectedProductsArray as $product) {
             $itemProductId = $product['productId'];
-            $itemQty = intval($product['qty']);  // Converts to integer
-            $itemTotalPrice =$product['price'];  // Converts to float
+            $itemQty = intval($product['qty']);  
+            $itemTotalPrice = floatval($product['price']);  // Ensure price is a float
             $originalPrice = $product['originalPrice'];
             $itemSize = $product['size'];
         
@@ -220,7 +219,6 @@ if ($response['status'] === 'success') {
                 'promoRate' => $product['promoRate']
             ]);
         
-            
             // Prepare the SQL query to insert each product into orders_item
             $insertQuery = "INSERT INTO orders_item (item_order_id, item_product_id, item_size, item_qty, item_product_price, promo_discount, item_total) 
                             VALUES (?, ?, ?, ?, ?, ?, ?)";
@@ -230,19 +228,19 @@ if ($response['status'] === 'success') {
             $stmt->bind_param("iisisss", $orderId, $itemProductId, $itemSize, $itemQty, $originalPrice, $itemDiscountDetails, $itemTotalPrice);
             
             $user_id = $_SESSION['user_id'];
-
-            $response = $db->RemoveItem($user_id,$itemProductId,$itemSize);
+    
+            $response = $db->RemoveItem($user_id, $itemProductId, $itemSize);
             // Execute the query for each product
             if (!$stmt->execute()) {
                 echo json_encode(['status' => 'error', 'message' => 'Failed to insert product into orders_item.']);
                 exit;
             }
         }
-        
     } else {
         echo json_encode(['status' => 'error', 'message' => 'Selected products data is invalid.']);
         exit;
     }
+    
 
     // Create the directory if it doesn't exist
     if ($selectedFilePath && !is_dir($uploadDir)) {

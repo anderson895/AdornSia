@@ -114,7 +114,7 @@ class global_class extends db_connect
             FROM product 
             WHERE prod_status = 1
             ORDER BY prod_added DESC
-            LIMIT 10
+            LIMIT 5
         ";
         
         $result = $this->conn->query($query);

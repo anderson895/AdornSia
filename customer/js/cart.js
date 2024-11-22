@@ -112,6 +112,10 @@ $(document).ready(function() {
             var subtotal = $('#sub-total').text();
             var vat = $('#vat').text();
             var total = $('#total').text();
+
+            console.log();
+
+            return;
         
             // Retrieve selected payment method and file input
             var selectedPaymentMethod = $("#paymentMethod option:selected").data('ename');

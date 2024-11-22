@@ -227,7 +227,7 @@ if ($response['status'] === 'success') {
             $stmt = $db->conn->prepare($insertQuery);
             
             // Bind parameters with correct data types
-            $stmt->bind_param("iisissd", $orderId, $itemProductId, $itemSize, $itemQty, $originalPrice, $itemDiscountDetails, $itemTotalPrice);
+            $stmt->bind_param("iisisss", $orderId, $itemProductId, $itemSize, $itemQty, $originalPrice, $itemDiscountDetails, $itemTotalPrice);
             
             $user_id = $_SESSION['user_id'];
 

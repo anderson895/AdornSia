@@ -203,9 +203,7 @@ if ($orderStatus === "Canceled") {
         echo 'Insufficient stock for the following products: ' . implode(", ", $insufficientStockProducts);
     }
 } else {
-    // For other order statuses (assuming you need the same validation for non-Cancel/Accept statuses)
-    $stockSufficient = $db->validateStockSufficiency($orderId);
-
+    
     if ($stockSufficient === true) {
         // Proceed to update order status
         $order = $db->updateOrderStatus($orderId, $orderStatus);

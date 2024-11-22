@@ -35,16 +35,14 @@ $salesReport = $db->SalesReport();
                 <span class="material-icons">download</span>
                 <span>Export to Excel</span>
             </button>
+
+
+            <button onclick="printReport()" class="px-4 py-2 bg-green-500 text-white rounded-md flex items-center space-x-2">
+                <span class="material-icons">print</span>
+                <span>Print Report</span>
+            </button>
         </form>
     </div>
-</div>
-
-<!-- Print Button -->
-<div class="flex justify-end mb-4">
-    <button onclick="printReport()" class="px-4 py-2 bg-green-500 text-white rounded-md flex items-center space-x-2">
-        <span class="material-icons">print</span>
-        <span>Print Report</span>
-    </button>
 </div>
 
 <!-- Sales Overview Table -->

@@ -11,13 +11,23 @@ include "components/header.php";
 
 <!-- Card for Table -->
 <div class="bg-white rounded-lg shadow-lg p-6">
-    <div class="flex justify-between items-center mb-4">
-        <h3 class="text-xl font-semibold text-gray-700">Product List</h3>
-        <!-- Add Product Button -->
-        <button id="addProductButton" class="px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50">
-            Add Product
-        </button>
+    <div class="flex justify-end mb-4">
+        <form method="GET" action="../function/export_report.php">
+
+        <input hidden type="text" name="carID" value="<?=$carId?>">
+
+            <select name="report_type" class="px-4 py-2">
+
+                <option value="daily">Daily Report</option>
+                <option value="weekly">Weekly Report</option>
+                <option value="monthly">Monthly Report</option>
+                <option value="yearly">Yearly Report</option>
+            </select>
+            <button type="submit" class="bg-blue-500 text-white px-4 py-2">Export to Excel</button>
+        </form>
     </div>
+
+</div>
 
 
 

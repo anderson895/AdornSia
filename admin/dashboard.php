@@ -44,21 +44,24 @@
 
 
 <!-- Horizontal Scrollable Cards for Product Categories -->
-<div class="mt-8 px-4 w-full lg:w-3/4 mx-auto">
+<div class="mt-8 px-4">
     <div class="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-        <!-- Best Selling Products Card -->
-        <div class="bg-white p-6 rounded-lg shadow-lg w-full" id="bestSellingProducts">
+        
+        
+        <div class="bg-white p-6 rounded-lg shadow-lg" id="bestSellingProducts">
             <!-- AJAX response content will be inserted here -->
         </div>
 
+
         <!-- New Products Card -->
-        <div class="bg-white p-6 rounded-lg shadow-lg w-full" id="NewProduct">
-            <!-- New Products Content -->
+        <div class="bg-white p-6 rounded-lg shadow-lg" id="NewProduct">
+           
         </div>
 
         <!-- Inventory Status Low Stock Card -->
-        <div class="bg-white p-6 rounded-lg shadow-lg w-full">
+        <div class="bg-white p-6 rounded-lg shadow-lg">
             <h3 class="text-gray-700 font-semibold text-lg mb-4">Inventory Status (Low Stock)</h3>
+            <!-- Placeholder for items -->
             <ul>
                 <li class="text-sm text-gray-600">Item X</li>
                 <li class="text-sm text-gray-600">Item Y</li>
@@ -67,8 +70,9 @@
         </div>
 
         <!-- Out of Stock Products Card -->
-        <div class="bg-white p-6 rounded-lg shadow-lg w-full">
+        <div class="bg-white p-6 rounded-lg shadow-lg">
             <h3 class="text-gray-700 font-semibold text-lg mb-4">Out of Stock</h3>
+            <!-- Placeholder for items -->
             <ul>
                 <li class="text-sm text-gray-600">Item 1</li>
                 <li class="text-sm text-gray-600">Item 2</li>

@@ -105,7 +105,7 @@ class global_class extends db_connect
 
 
 
-    public function salesReport()
+    public function getSalesReport()
     {
         // SQL query to get total revenue and quantity sold
         $query = "

@@ -1,87 +1,64 @@
 <?php
-require '../vendor/autoload.php'; // Ensure you have installed PhpSpreadsheet
+// Include the necessary files and instantiate the SalesReport class
+include "../components/db.php"; // Make sure this includes the database connection
+include "../classes/SalesReport.php"; // Adjust path if needed
 
-use PhpOffice\PhpSpreadsheet\Spreadsheet;
-use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
-use PhpOffice\PhpSpreadsheet\Style\NumberFormat;
+// Create an instance of the SalesReport class
+$salesReport = new SalesReport($db);
 
-include('../backend/class.php');
-$db = new global_class();
+// Get the report type from the query parameter
+$reportType = isset($_GET['report_type']) ? $_GET['report_type'] : 'daily';
 
-$report_type = $_GET['report_type'];
-$carId = $_GET['carID'];
+// Define a function to fetch the sales report data based on the report type
+function getSalesReportData($reportType) {
+    global $salesReport;
 
-// Fetch data based on report type
-switch ($report_type) {
-    case 'daily':
-        $data = $db->fetch_daily_logHistory($carId);
-        break;
-    case 'weekly':
-        $data = $db->fetch_weekly_logHistory($carId);
-        break;
-    case 'monthly':
-        $data = $db->fetch_monthly_logHistory($carId);
-        break;
-    case 'yearly':
-        $data = $db->fetch_yearly_logHistory($carId);
-        break;
-    default:
-        $data = [];
-        break;
+    switch ($reportType) {
+        case 'daily':
+            // Modify the query or filtering logic in the SalesReport class as needed
+            return $salesReport->getSalesReport(); // Get all sales (customize for the report type if needed)
+            break;
+        case 'weekly':
+            // You can modify your SQL query to filter by weekly data
+            return $salesReport->getSalesReport(); // Modify as needed
+            break;
+        case 'monthly':
+            // Modify your query for monthly data
+            return $salesReport->getSalesReport(); // Modify as needed
+            break;
+        case 'yearly':
+            // Modify your query for yearly data
+            return $salesReport->getSalesReport(); // Modify as needed
+            break;
+        default:
+            return $salesReport->getSalesReport(); // Default to all sales
+    }
 }
 
-// Create a new Spreadsheet
-$spreadsheet = new Spreadsheet();
-$sheet = $spreadsheet->getActiveSheet();
-$sheet->setTitle('Report');
+// Get the sales report data based on the selected report type
+$salesReportData = getSalesReportData($reportType);
 
-// Set the title for the report
-$sheet->setCellValue('A1', ucfirst($report_type) . ' Report'); // Title based on report type
-$sheet->mergeCells('A1:H1'); // Merge title cell across the entire header row
-$sheet->getStyle('A1')->getFont()->setBold(true)->setSize(14); // Bold and increase font size for title
-$sheet->getStyle('A1')->getAlignment()->setHorizontal(\PhpOffice\PhpSpreadsheet\Style\Alignment::HORIZONTAL_CENTER); // Center align the title
+// Create a file pointer connected to the output stream
+header('Content-Type: text/csv');
+header('Content-Disposition: attachment; filename="sales_report.csv"');
+$output = fopen('php://output', 'w');
 
-// Set the headers for the columns
-$headers = ['Date', 'Car Owner\'s Name', 'Vehicle Model', 'Plate Number', 'Condo Unit Number', 'RFID Number', 'Time In', 'Time Out'];
-$sheet->fromArray($headers, NULL, 'A2'); // Start header from row 2 (below the title)
+// Add CSV headers
+fputcsv($output, ['Date', 'Product', 'Quantity Sold', 'Revenue']);
 
-// Apply bold and centered style to headers
-$sheet->getStyle('A2:H2')->getFont()->setBold(true);
-$sheet->getStyle('A2:H2')->getAlignment()->setHorizontal(\PhpOffice\PhpSpreadsheet\Style\Alignment::HORIZONTAL_CENTER);
-
-// Set column widths to auto-size based on content
-$columns = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H'];
-foreach ($columns as $col) {
-    $sheet->getColumnDimension($col)->setAutoSize(true); // Auto size columns based on content
+// Add data rows to the CSV
+if ($salesReportData) {
+    foreach ($salesReportData as $report) {
+        fputcsv($output, [
+            (new DateTime($report['order_date']))->format('F j, Y, g:i a'),
+            $report['product'],
+            $report['total_quantity_sold'],
+            number_format($report['total_revenue'], 2)
+        ]);
+    }
 }
 
-// Adjust row height for better spacing (optional)
-$sheet->getRowDimension('1')->setRowHeight(30); // Title row height
-$sheet->getRowDimension('2')->setRowHeight(25); // Header row height
-
-// Fill the data
-$row = 3; // Start row for data (after the header)
-foreach ($data as $log) {
-    $sheet->setCellValue("A$row", $log['time_date']);
-    $sheet->setCellValue("B$row", $log['carName']);
-    $sheet->setCellValue("C$row", $log['carType']);
-    $sheet->setCellValue("D$row", $log['plateNumber']);
-    $sheet->setCellValue("E$row", $log['condo']);
-    $sheet->setCellValue("F$row", $log['RFID']);
-    $sheet->setCellValue("G$row", $log['time_in']);
-    $sheet->setCellValue("H$row", $log['time_out'] ?: 'No Time Out');
-    $row++;
-}
-
-// Set the filename for the download
-$filename = ucfirst($report_type) . '_Report_' . date('Y-m-d') . '.xlsx';
-
-// Set headers for download
-header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
-header('Content-Disposition: attachment;filename="' . $filename . '"');
-header('Cache-Control: max-age=0');
-
-// Write the file to output
-$writer = new Xlsx($spreadsheet);
-$writer->save('php://output');
-exit;
+// Close the file pointer
+fclose($output);
+exit();
+?>

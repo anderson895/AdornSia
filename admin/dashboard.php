@@ -121,6 +121,7 @@
 </div>
 
 <?php include "components/footer.php";?>
+<script src="js/topNewProduct.js"></script>
 <script src="js/top5bestSelling.js"></script>
 <script src="js/analytics.js"></script>
 <script src="js/daily_sales.js"></script>

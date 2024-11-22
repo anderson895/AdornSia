@@ -102,6 +102,30 @@ class global_class extends db_connect
         }
     }
     
+
+
+
+
+    public function topNewProduct()
+    {
+        $query = "
+        ";
+        
+        $result = $this->conn->query($query);
+        
+        if ($result) {
+            $topProducts = [];
+            while ($row = $result->fetch_assoc()) {
+                $topProducts[] = $row;
+            }
+            return $topProducts;
+        } else {
+            // Log the error for debugging
+            error_log('Database query failed: ' . $this->conn->error);
+            echo json_encode(['error' => 'Failed to retrieve data']);
+        }
+    }
+    
     
   public function getWeeklySalesData()
     {

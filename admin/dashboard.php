@@ -50,10 +50,11 @@
     </div>
 </div>
 
+
 <!-- Sales Performance Cards -->
 <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mt-8">
     <!-- Daily Sales Performance Card -->
-    <div class="bg-white p-6 rounded-lg shadow-lg">
+    <div class="bg-white p-6 rounded-lg shadow-lg w-full">
         <h3 class="text-gray-700 font-semibold text-lg mb-4">Sales Performance (Daily)</h3>
         <!-- Placeholder for Daily Chart -->
         <div class="w-full h-90 bg-gray-100 rounded-lg flex justify-center items-center" style="position: relative; overflow: hidden;">
@@ -62,7 +63,7 @@
     </div>
 
     <!-- Weekly Sales Performance Card -->
-    <div class="bg-white p-6 rounded-lg shadow-lg">
+    <div class="bg-white p-6 rounded-lg shadow-lg w-full">
         <h3 class="text-gray-700 font-semibold text-lg mb-4">Sales Performance (Weekly)</h3>
         <!-- Placeholder for Weekly Chart -->
         <div class="w-full h-90 bg-gray-100 rounded-lg flex justify-center items-center" style="position: relative; overflow: hidden;">
@@ -71,7 +72,7 @@
     </div>
 
     <!-- Monthly Sales Performance Card -->
-    <div class="bg-white p-6 rounded-lg shadow-lg">
+    <div class="bg-white p-6 rounded-lg shadow-lg w-full">
         <h3 class="text-gray-700 font-semibold text-lg mb-4">Sales Performance (Monthly)</h3>
         <!-- Placeholder for Monthly Chart -->
         <div class="w-full h-90 bg-gray-100 rounded-lg flex justify-center items-center" style="position: relative; overflow: hidden;">
@@ -79,6 +80,7 @@
         </div>
     </div>
 </div>
+
 
 <?php include "components/footer.php";?>
 

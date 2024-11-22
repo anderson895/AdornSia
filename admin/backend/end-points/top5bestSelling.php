@@ -8,12 +8,9 @@ $orders = $db->top5bestSelling();
 header('Content-Type: application/json');
 
 if ($orders) {
-    echo json_encode($orders);
+    echo json_encode($orders);  // Return product list as JSON
 } else {
-    // Log the error message to a file
-    error_log('Error in top5bestSelling: ' . $db->conn->error);
-
-    // Return the error message to the client
+    // Only output one error JSON object, not an extra message
     echo json_encode(['error' => 'No data available or an error occurred']);
 }
 ?>

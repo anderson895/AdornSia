@@ -9,8 +9,8 @@ $(document).ready(function() {
         $('.product-checkbox:checked').each(function() {
 
             const productId = parseFloat($(this).data('product-id'));
-            const priceString = $(this).data('price'); 
-            const price = parseFloat(priceString.replace(/,/g, ''));
+            const price = $(this).data('price'); 
+            // const price = parseFloat(priceString.replace(/,/g, ''));
             
 
             const originalprice = parseFloat($(this).data('originalprice'));

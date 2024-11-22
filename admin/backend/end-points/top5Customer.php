@@ -16,7 +16,7 @@ if ($orders) {
                     <img src="../../../upload/' . $order['Profile_images'] . '" alt="' . $order['Profile_images'] . '" class="w-full h-full object-cover rounded-lg">
                 </div>
                 <div class="flex-1 mt-2 sm:mt-0">
-                    <h4 class="text-gray-700 font-semibold text-lg">' . ucfirst($order['Fullname']) . '</h4>
+                    <h4 class="text-gray-700 font-semibold text-lg">' . ucfirst($order['Fullname']) . ' Total order '.$order['total_orders'].'</h4>
                 </div>
                 
             </li>

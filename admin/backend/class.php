@@ -105,39 +105,33 @@ class global_class extends db_connect
 
 
 
-
     public function salesReport()
     {
         // SQL query to get total revenue and quantity sold
         $query = "
             SELECT 
-                p.*,
-                o.*,
+                p.prod_name AS product,   -- Assuming 'prod_name' is the product name field
+                o.order_date,
                 SUM(oi.item_total) AS total_revenue, 
                 SUM(oi.item_qty) AS total_quantity_sold
             FROM orders_item oi
             JOIN orders o ON oi.item_order_id = o.order_id
             LEFT JOIN product p ON oi.item_product_id = p.prod_id
             WHERE o.order_status = 'Delivered'
-            GROUP BY p.prod_id
-
+            GROUP BY p.prod_id, o.order_date
         ";
     
         // Execute the query
         $result = $this->conn->query($query);
     
         if ($result) {
-            $reportData = [];
-            if ($row = $result->fetch_assoc()) {
-                // Store the total revenue and quantity sold
-                $reportData['total_revenue'] = $row['total_revenue'];
-                $reportData['total_quantity_sold'] = $row['total_quantity_sold'];
-            }
-            return $reportData;
+            // Fetch all the rows and return them as an array
+            return $result->fetch_all(MYSQLI_ASSOC);
         } else {
             // Log the error for debugging
             error_log('Database query failed: ' . $this->conn->error);
             echo json_encode(['error' => 'Failed to retrieve data']);
+            return [];  // Return an empty array in case of error
         }
     }
     

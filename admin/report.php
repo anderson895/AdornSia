@@ -31,42 +31,36 @@ $salesReport = $db->salesReport();
 
     <h1 class="text-lg font-semibold text-gray-700 mb-4">Sales Overview</h1>
     <table class="min-w-full bg-white border border-gray-300 rounded-md shadow-md">
-        <thead>
-            <tr class="bg-gray-100">
-                <th class="py-2 px-4 border-b text-left">Date</th>
-                <th class="py-2 px-4 border-b text-left">Product</th>
-                <th class="py-2 px-4 border-b text-left">Quantity Sold</th>
-                <th class="py-2 px-4 border-b text-left">Revenue</th>
-                <th class="py-2 px-4 border-b text-left">Action</th>
-            </tr>
-        </thead>
-        <tbody>
+    <thead>
+        <tr class="bg-gray-100">
+            <th class="py-2 px-4 border-b text-left">Date</th>
+            <th class="py-2 px-4 border-b text-left">Product</th>
+            <th class="py-2 px-4 border-b text-left">Quantity Sold</th>
+            <th class="py-2 px-4 border-b text-left">Revenue</th>
+            <th class="py-2 px-4 border-b text-left">Action</th>
+        </tr>
+    </thead>
+    <tbody>
         <?php 
 
-if (is_array($salesReport) && count($salesReport) > 0) {
-    foreach ($salesReport as $report) {
-        // Ensure that $report is an array before accessing its keys
-        if (is_array($report)) {
-?>
-            <tr>
-                <td class="py-2 px-4 border-b"><?= htmlspecialchars($report['order_date']) ?></td>
-                <td class="py-2 px-4 border-b"><?= htmlspecialchars($report['product']) ?></td>
-                <td class="py-2 px-4 border-b"><?= htmlspecialchars($report['item_qty']) ?></td>
-                <td class="py-2 px-4 border-b">Php <?= number_format($report['total'], 2) ?></td>
-            </tr>
-<?php 
+        if ($salesReport && count($salesReport) > 0) {
+            foreach ($salesReport as $report) {
+        ?>
+        <tr>
+            <td class="py-2 px-4 border-b"><?= htmlspecialchars($report['order_date']) ?></td>
+            <td class="py-2 px-4 border-b"><?= htmlspecialchars($report['product']) ?></td>
+            <td class="py-2 px-4 border-b"><?= htmlspecialchars($report['total_quantity_sold']) ?></td>
+            <td class="py-2 px-4 border-b">Php <?= number_format($report['total_revenue'], 2) ?></td>
+        </tr>
+        <?php 
+            }
         } else {
-            // Handle the case where $report is not an array
-            echo "<tr><td colspan='5' class='py-2 px-4 border-b text-center'>Invalid data format.</td></tr>";
+            echo "<tr><td colspan='5' class='py-2 px-4 border-b text-center'>No records found.</td></tr>";
         }
-    }
-} else {
-    echo "<tr><td colspan='5' class='py-2 px-4 border-b text-center'>No records found.</td></tr>";
-}
-?>
+        ?>
+    </tbody>
+</table>
 
-        </tbody>
-    </table>
 </div>
 
 <?php include "components/footer.php"; ?>

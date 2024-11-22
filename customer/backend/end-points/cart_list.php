@@ -29,11 +29,10 @@ $totalSavings = 0;
                 $originalPrice = $cart['prod_currprice'];
 
                 if ($cart['prod_promo_id']) {
-                    $price = ($cart['prod_currprice'] * $cart['cart_Qty'] * (1 - $cart['promo_rate'])) . " - " . ($cart['promo_rate'] * 100) . "%";
+                    $price = number_format($cart['prod_currprice'] * $cart['cart_Qty'] * (1 - $cart['promo_rate']), 2) . " - " . ($cart['promo_rate'] * 100) . "%";
                 } else {
-                    $price = $cart['prod_currprice'] * $cart['cart_Qty'];
+                    $price = number_format($cart['prod_currprice'] * $cart['cart_Qty'], 2);
                 }
-                
             ?>
             <!-- Product Item -->
             <div class="flex flex-col lg:flex-row items-center border-t border-gray-200 pt-6 relative lg:space-x-6">
@@ -48,7 +47,7 @@ $totalSavings = 0;
                     class="product-checkbox mr-4 text-red-500" 
                     data-product-id="<?=$cart['cart_prod_id']?>" 
                     data-Originalprice="<?=$originalPrice?>" 
-                    data-price='<?=$price?>'
+                    data-price="<?=$price?>"
                     data-size="<?=$cart['cart_prod_size']?>" 
                     data-qty="<?=$cart['cart_Qty']?>" 
                     data-promoName="<?=$cart['promo_name']?>" 

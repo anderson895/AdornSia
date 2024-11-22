@@ -59,7 +59,7 @@
         </div>
 
         <!-- Inventory Status Low Stock Card -->
-        <div class="bg-white p-6 rounded-lg shadow-lg">
+        <div class="bg-white p-6 rounded-lg shadow-lg" id="stock_status">
             <h3 class="text-gray-700 font-semibold text-lg mb-4">Inventory Status (Low Stock)</h3>
             <!-- Placeholder for items -->
             <ul>
@@ -127,3 +127,4 @@
 <script src="js/daily_sales.js"></script>
 <script src="js/weekly_sales.js"></script>
 <script src="js/monthly_sales.js"></script>
+<script src="js/stock_status.js"></script>

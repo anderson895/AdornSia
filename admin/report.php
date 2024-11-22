@@ -16,13 +16,13 @@ include "components/header.php";
 
         <input hidden type="text" name="carID" value="<?=$carId?>">
 
-            <select name="report_type" class="px-4 py-2">
+        <select name="report_type" class="px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
+            <option value="daily">Daily Report</option>
+            <option value="weekly">Weekly Report</option>
+            <option value="monthly">Monthly Report</option>
+            <option value="yearly">Yearly Report</option>
+        </select>
 
-                <option value="daily">Daily Report</option>
-                <option value="weekly">Weekly Report</option>
-                <option value="monthly">Monthly Report</option>
-                <option value="yearly">Yearly Report</option>
-            </select>
             <button type="submit" class="rounded bg-blue-500 text-white px-4 py-2">Export to Excel</button>
         </form>
     </div>

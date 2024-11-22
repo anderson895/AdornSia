@@ -39,23 +39,6 @@
 
 <!-- Sales Performance Cards -->
 <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mt-8">
-
-<!-- Horizontal Scrollable Cards for Product Categories -->
-<div class="mt-8 px-4">
-    <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-6">
-        <div class="bg-white p-6 rounded-lg shadow-lg" id="bestSellingProducts">
-        </div>
-
-        <!-- New Products Card -->
-        <div class="bg-white p-6 rounded-lg shadow-lg" id="NewProduct">
-        </div>
-
-        <!-- Inventory Status Low Stock Card -->
-        <div class="bg-white p-6 rounded-lg shadow-lg" id="stock_status">
-        </div>
-    </div>
-</div>
-
     <!-- Daily Sales Performance Card -->
     <div class="bg-white p-6 rounded-lg shadow-lg w-full">
         <h3 class="text-gray-700 font-semibold text-lg mb-4">Sales Performance (Daily)</h3>
@@ -80,6 +63,23 @@
         <!-- Placeholder for Monthly Chart -->
         <div class="w-full h-90 bg-gray-100 rounded-lg flex justify-center items-center" style="position: relative; overflow: hidden;">
             <div id="monthly_sales_chart" style="width: 100%; height: 100%;"></div>
+        </div>
+    </div>
+</div>
+
+
+<!-- Horizontal Scrollable Cards for Product Categories -->
+<div class="mt-8 px-4">
+    <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-6">
+        <div class="bg-white p-6 rounded-lg shadow-lg" id="bestSellingProducts">
+        </div>
+
+        <!-- New Products Card -->
+        <div class="bg-white p-6 rounded-lg shadow-lg" id="NewProduct">
+        </div>
+
+        <!-- Inventory Status Low Stock Card -->
+        <div class="bg-white p-6 rounded-lg shadow-lg" id="stock_status">
         </div>
     </div>
 </div>

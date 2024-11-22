@@ -15,9 +15,9 @@ if ($orders) {
                     <img src="../../../upload/' . $order['Profile_images'] . '" alt="' . $order['Profile_images'] . '" class="w-full h-full object-cover rounded-lg">
                 </div>
                 <div class="flex-1 mt-3 sm:mt-0">
-                    <h4 class="text-gray-700 font-semibold text-lg sm:text-xl">' . ucfirst($order['Fullname']) . '</h4>
-                    <p class="text-gray-500 text-sm sm:text-base">Total Orders: ' . $order['total_orders'] . '</p>
-                    <p class="text-gray-500 text-sm sm:text-base">Total Spent: PHP ' . number_format($order['total_spent'], 2) . '</p>
+                    <h4 class="text-gray-700 font-semibold text-lg sm:text-xl text-center sm:text-left">' . ucfirst($order['Fullname']) . '</h4>
+                    <p class="text-gray-500 text-sm sm:text-base text-center sm:text-left">Total Orders: ' . $order['total_orders'] . '</p>
+                    <p class="text-gray-500 text-sm sm:text-base text-center sm:text-left">Total Spent: PHP ' . number_format($order['total_spent'], 2) . '</p>
                 </div>
             </li>
         ';

@@ -6,7 +6,7 @@ $orders = $db->topNewProduct();
 
 if ($orders) {
     $response = "
-    <h3 class='text-gray-700 font-semibold text-lg mb-4'>New Products</h3>
+    <h3 class='text-center text-gray-700 font-semibold text-lg mb-4'>New Products</h3>
     <ul class='space-y-4'>"; 
     $rank = 1;
     foreach ($orders as $order) {

@@ -4,28 +4,30 @@ $db = new global_class();
 
 $orders = $db->StockLevel();
 
-// Define the color classes based on the stock status
-$colorClass = '';
-switch ($order['stock_status']) {
-    case 'Out of Stock':
-        $colorClass = 'text-red-600';
-        break;
-    case 'Critical':
-        $colorClass = 'text-yellow-600';
-        break;
-    case 'Normal':
-        $colorClass = 'text-green-600';
-        break;
-    default:
-        $colorClass = 'text-gray-600';
-        break;
-}
+
 if ($orders) {
     $response = "
     <h3 class='text-center text-gray-700 font-semibold text-lg mb-4'>Inventory Status (Low Stock)</h3>
     <ul class='space-y-4'>"; 
  
     foreach ($orders as $order) {
+
+        $colorClass = '';
+        switch ($order['stock_status']) {
+            case 'Out of Stock':
+                $colorClass = 'text-red-600';
+                break;
+            case 'Critical':
+                $colorClass = 'text-yellow-600';
+                break;
+            case 'Normal':
+                $colorClass = 'text-green-600';
+                break;
+            default:
+                $colorClass = 'text-gray-600';
+                break;
+        }
+
         $response .= '
             <li class="flex flex-col sm:flex-row items-center sm:space-x-4 bg-white p-4 rounded-lg shadow-md">
                 <div class="w-16 h-16 sm:w-20 sm:h-20">

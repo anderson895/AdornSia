@@ -92,8 +92,11 @@ function displayOrders(orders) {
                         data-initial-status="${orderItem.order_status}">
                         
                         ${orderItem.order_status == "Pending" ? 
-                            '<option value="" selected>Pending</option><option value="Accept">Accept</option>' : ''
-                        }
+                            '<option value="" selected>Pending</option>' +
+                            '<option value="Accept">Accept</option>' +
+                            '<option value="Canceled" ' + (orderItem.order_status == "Canceled" ? 'selected' : '') + '>Canceled</option>' 
+                        : ''}
+                        
 
                         ${orderItem.order_status == "Accept" ? 
                             `<option value="Accept" selected>Accept</option>

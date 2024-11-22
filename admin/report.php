@@ -2,7 +2,7 @@
 include "components/header.php";
 
 
-$salesReport = $db->salesReport();
+$salesReport = $db->getSalesReport();
 ?>
 
 <div class="flex justify-between items-center bg-white p-4 mb-6 rounded-md shadow-md">

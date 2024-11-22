@@ -11,10 +11,13 @@ if ($orders) {
         $response .= '
             <li class="flex items-center space-x-4">
                 <div class="w-16 h-16">
-                    <img src="../../../upload/' . $order['prod_image'] . '" alt="' . $order['prod_name'] . '" class="w-full h-full object-cover rounded-lg">
+                  ' . $rank . '.   <img src="../../../upload/' . $order['prod_image'] . '" alt="' . $order['prod_name'] . '" class="w-full h-full object-cover rounded-lg">
                 </div>
                 <div class="flex-1">
-                    <h4 class="text-gray-700 font-semibold">' . $rank . '. ' . $order['prod_name'] . '</h4>
+                    <h4 class="text-gray-700 font-semibold">' . $order['prod_name'] . '</h4>
+                </div>
+                 <div class="flex-1">
+                    <h4 class="text-gray-700 font-semibold">' . $order['total_quantity_sold'] . ' Sold </h4>
                 </div>
             </li>
         ';

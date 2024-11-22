@@ -1,5 +1,4 @@
 <?php
-include "../admin/backend/db.php"; 
 include "../admin/backend/class.php";
 
 // Create an instance of the SalesReport class

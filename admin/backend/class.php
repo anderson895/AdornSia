@@ -261,8 +261,8 @@ public function getDailySalesData()
         $orderItemsResult = mysqli_query($this->conn, $orderItemsQuery);
     
         if (!$orderItemsResult) {
-            // Handle query error
-            die('Error fetching order items: ' . mysqli_error($this->conn));
+            // Return error message if the query fails
+            return 'Error fetching order items: ' . mysqli_error($this->conn);
         }
     
         // Step 2: Deduct stock for each item
@@ -275,8 +275,8 @@ public function getDailySalesData()
             $checkStockResult = mysqli_query($this->conn, $checkStockQuery);
     
             if (!$checkStockResult) {
-                // Handle query error
-                die('Error checking stock: ' . mysqli_error($this->conn));
+                // Return error message if the stock query fails
+                return 'Error checking stock for product ' . $productId . ': ' . mysqli_error($this->conn);
             }
     
             $stock = mysqli_fetch_assoc($checkStockResult);
@@ -292,15 +292,19 @@ public function getDailySalesData()
                 $updateStockResult = mysqli_query($this->conn, $updateStockQuery);
     
                 if (!$updateStockResult) {
-                    // Handle update failure
-                    die('Failed to update stock for product ' . $productId . ': ' . mysqli_error($this->conn));
+                    // Return error message if stock update fails
+                    return 'Failed to update stock for product ' . $productId . ': ' . mysqli_error($this->conn);
                 }
             } else {
-                // Handle insufficient stock
-                echo "Not enough stock for product " . $productId;
+                // Return message if there's not enough stock
+                return 'Not enough stock for product ' . $productId;
             }
         }
+    
+        // Return success message if everything is successful
+        return true;
     }
+    
     
     
     

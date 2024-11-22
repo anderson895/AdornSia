@@ -168,55 +168,59 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }else if($_POST['requestType'] =='UpdateOrderStatus'){
 
         $orderId = $_POST['orderId'];
-        $orderStatus = $_POST['orderStatus']; 
-        
-        if ($orderStatus === "Canceled") {
-            $order = $db->updateOrderStatus($orderId, $orderStatus);
-        
-            if ($order) {
-                echo 200; 
+$orderStatus = $_POST['orderStatus'];
+
+if ($orderStatus === "Canceled") {
+    // Cancel the order
+    $order = $db->updateOrderStatus($orderId, $orderStatus);
+
+    if ($order) {
+        echo 200; 
+    } else {
+        echo 'Failed to update order in the database.';
+    }
+} elseif ($orderStatus === "Accept") {
+    // Check stock sufficiency for the order
+    $insufficientStockProducts = $db->validateStockSufficiency($orderId);
+
+    if ($insufficientStockProducts === true) {
+        // Proceed with updating the order status and deducting stock
+        $order = $db->updateOrderStatus($orderId, $orderStatus);
+
+        if ($order) {
+            $stockout = $db->stockout($orderId);
+
+            if ($stockout === true) {
+                echo '200';
             } else {
-                echo 'Failed to update order in the database.';
+                echo 'Failed to update stock in the database: ' . $stockout;  // Displaying detailed error if stockout fails
             }
-        } elseif ($orderStatus === "Accept") {
-            $insufficientStockProducts = $db->validateStockSufficiency($orderId);
-
-            if ($insufficientStockProducts === true) {
-                // Proceed to update order status
-                $order = $db->updateOrderStatus($orderId, $orderStatus);
-
-                if ($order) {
-                    // Proceed with stock deduction
-                    $stockout = $db->stockout($orderId);
-                    if ($stockout) {
-                        echo '200';
-                    } else {
-                        echo 'Failed to update stock in the database.';
-                    }
-                } else {
-                    echo 'Failed to update order status in the database.';
-                }
-            } else {
-                // Handle insufficient stock scenario
-                echo 'Insufficient stock for the following products: ' . implode(", ", $insufficientStockProducts);
-            }
-
-        
         } else {
-            $stockSufficient = $db->validateStockSufficiency($orderId);
-        
-            if ($stockSufficient === true) {
-                $order = $db->updateOrderStatus($orderId, $orderStatus);
-        
-                if ($order) {
-                    echo 200;
-                } else {
-                    echo 'Failed to update order in the database.';
-                }
-            } else {
-                echo 'Insufficient stock for the following products: ' . implode(", ", $stockSufficient);
-            }
+            echo 'Failed to update order status in the database.';
         }
+    } else {
+        // Handle insufficient stock scenario
+        echo 'Insufficient stock for the following products: ' . implode(", ", $insufficientStockProducts);
+    }
+} else {
+    // For other order statuses (assuming you need the same validation for non-Cancel/Accept statuses)
+    $stockSufficient = $db->validateStockSufficiency($orderId);
+
+    if ($stockSufficient === true) {
+        // Proceed to update order status
+        $order = $db->updateOrderStatus($orderId, $orderStatus);
+
+        if ($order) {
+            echo 200;  // Success
+        } else {
+            echo 'Failed to update order in the database.';
+        }
+    } else {
+        // Handle insufficient stock scenario
+        echo 'Insufficient stock for the following products: ' . implode(", ", $stockSufficient);
+    }
+}
+
         
 
         

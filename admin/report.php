@@ -31,15 +31,26 @@ $salesReport = $db->SalesReport();
             </div>
 
             <!-- Submit Button -->
-            <button type="submit" class="rounded bg-blue-500 text-white px-4 py-2">Export to Excel</button>
+           <!-- Print Button with Material Icon -->
+                <div class="flex justify-end mb-4">
+                    <button onclick="printReport()" class="px-4 py-2 bg-green-500 text-white rounded-md flex items-center space-x-2">
+                        <span class="material-icons">print</span> <!-- Material Icon for Print -->
+                        <span>Print Report</span>
+                    </button>
+                </div>
+
+                <!-- Export Button with Material Icon -->
+                <div class="flex justify-end mb-4">
+                    <button type="submit" class="rounded bg-blue-500 text-white px-4 py-2 flex items-center space-x-2">
+                        <span class="material-icons">download</span> <!-- Material Icon for Export/Download -->
+                        <span>Export to Excel</span>
+                    </button>
+                </div>
+
         </form>
     </div>
 </div>
 
-<!-- Print Button -->
-<div class="flex justify-end mb-4">
-    <button onclick="printReport()" class="px-4 py-2 bg-green-500 text-white rounded-md">Print Report</button>
-</div>
 
 <!-- Sales Overview Table -->
 <div class="bg-white rounded-lg shadow-lg p-6 mb-6" id="printableArea">

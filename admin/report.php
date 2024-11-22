@@ -41,23 +41,30 @@ $salesReport = $db->salesReport();
             </tr>
         </thead>
         <tbody>
-            <?php 
+        <?php 
 
-            if ($salesReport && count($salesReport) > 0) {
-                foreach ($salesReport as $report) {
-            ?>
+if (is_array($salesReport) && count($salesReport) > 0) {
+    foreach ($salesReport as $report) {
+        // Ensure that $report is an array before accessing its keys
+        if (is_array($report)) {
+?>
             <tr>
                 <td class="py-2 px-4 border-b"><?= htmlspecialchars($report['order_date']) ?></td>
                 <td class="py-2 px-4 border-b"><?= htmlspecialchars($report['product']) ?></td>
                 <td class="py-2 px-4 border-b"><?= htmlspecialchars($report['item_qty']) ?></td>
                 <td class="py-2 px-4 border-b">Php <?= number_format($report['total'], 2) ?></td>
             </tr>
-            <?php 
-                }
-            } else {
-                echo "<tr><td colspan='5' class='py-2 px-4 border-b text-center'>No records found.</td></tr>";
-            }
-            ?>
+<?php 
+        } else {
+            // Handle the case where $report is not an array
+            echo "<tr><td colspan='5' class='py-2 px-4 border-b text-center'>Invalid data format.</td></tr>";
+        }
+    }
+} else {
+    echo "<tr><td colspan='5' class='py-2 px-4 border-b text-center'>No records found.</td></tr>";
+}
+?>
+
         </tbody>
     </table>
 </div>

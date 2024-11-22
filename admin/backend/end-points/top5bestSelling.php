@@ -8,10 +8,10 @@ if ($orders) {
     $response = "
     <h3 class='text-gray-700 font-semibold text-lg mb-4'>Top 5 Best Selling Products</h3>
     <ul class='space-y-4'>"; 
-    $rank = 1;
+ 
     foreach ($orders as $order) {
         $response .= '
-            <li class="flex flex-col sm:flex-row items-center sm:space-x-4 bg-white p-4 rounded-lg shadow-md">
+          <li class="flex flex-col sm:flex-row items-center sm:space-x-4 bg-white p-4 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300">
                 <div class="w-16 h-16 sm:w-20 sm:h-20">
                     <img src="../../../upload/' . $order['prod_image'] . '" alt="' . $order['prod_name'] . '" class="w-full h-full object-cover rounded-lg">
                 </div>
@@ -23,7 +23,6 @@ if ($orders) {
                 </div>
             </li>
         ';
-        $rank++;
     }
     $response .= "</ul>"; 
     echo $response;

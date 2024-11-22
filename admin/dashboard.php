@@ -53,10 +53,11 @@
         </div>
 
 
-        <!-- New Products Card -->
-        <div class="bg-white p-6 rounded-lg shadow-lg" id="NewProduct">
-           
+            <!-- New Products Card -->
+        <div class="bg-white p-6 rounded-lg shadow-lg max-h-96 overflow-y-auto" id="NewProduct">
+        
         </div>
+
 
         <!-- Inventory Status Low Stock Card -->
         <div class="bg-white p-6 rounded-lg shadow-lg">

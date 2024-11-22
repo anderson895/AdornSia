@@ -11,7 +11,7 @@ if ($orders) {
         $response .= '
             <li class="text-sm text-gray-600 mb-2">
                 <strong>' . $rank . '. ' . $order['prod_name'] . '</strong><br>
-                <img src="' . $order['prod_image'] . '" alt="' . $order['prod_name'] . '" class="w-16 h-16 object-cover mt-2">
+                <img src="../../../upload/' . $order['prod_image'] . '" alt="' . $order['prod_name'] . '" class="w-16 h-16 object-cover mt-2">
             </li>
         ';
         $rank++;

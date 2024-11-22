@@ -13,26 +13,27 @@
 <!-- Dashboard Cards -->
 <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-6">
     <!-- Card for Total Customer -->
-    <div class="bg-white p-6 rounded-lg shadow-lg flex flex-col items-center">
+    <div class="bg-white p-6 rounded-lg shadow-lg w-full max-w-md mx-auto">
         <img src="assets/service.png" alt="students icon" class="mb-4 w-12 max-w-full" />
         <h3 class="text-gray-700 font-semibold text-lg">Total Customer</h3>
         <p class="text-blue-500 text-2xl font-bold count_users">3</p>
     </div>
 
     <!-- Card for Total Sales -->
-    <div class="bg-white p-6 rounded-lg shadow-lg flex flex-col items-center">
+    <div class="bg-white p-6 rounded-lg shadow-lg w-full max-w-md mx-auto">
         <img src="assets/sales.png" alt="students icon" class="mb-4 w-12 max-w-full" />
         <h3 class="text-gray-700 font-semibold text-lg">Total Sales</h3>
         <p class="text-blue-500 text-2xl font-bold totalSales">0</p>
     </div>
 
     <!-- Card for No of Orders -->
-    <div class="bg-white p-6 rounded-lg shadow-lg flex flex-col items-center">
+    <div class="bg-white p-6 rounded-lg shadow-lg w-full max-w-md mx-auto">
         <img src="assets/cargo.png" alt="students icon" class="mb-4 w-12 max-w-full" />
         <h3 class="text-gray-700 font-semibold text-lg">No of Orders</h3>
         <p class="text-blue-500 text-2xl font-bold numOrders" id="numOrders">0</p>
     </div>
 </div>
+
 
 <!-- Horizontal Scrollable Cards for Product Categories -->
 <div class="mt-8 px-4">
@@ -54,7 +55,7 @@
 <!-- Sales Performance Cards -->
 <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mt-8">
     <!-- Daily Sales Performance Card -->
-    <div class="bg-white p-6 rounded-lg shadow-lg w-full">
+    <div class="bg-white p-6 rounded-lg shadow-lg w-full max-w-md mx-auto">
         <h3 class="text-gray-700 font-semibold text-lg mb-4">Sales Performance (Daily)</h3>
         <!-- Placeholder for Daily Chart -->
         <div class="w-full h-90 bg-gray-100 rounded-lg flex justify-center items-center" style="position: relative; overflow: hidden;">
@@ -63,7 +64,7 @@
     </div>
 
     <!-- Weekly Sales Performance Card -->
-    <div class="bg-white p-6 rounded-lg shadow-lg w-full">
+    <div class="bg-white p-6 rounded-lg shadow-lg w-full max-w-md mx-auto">
         <h3 class="text-gray-700 font-semibold text-lg mb-4">Sales Performance (Weekly)</h3>
         <!-- Placeholder for Weekly Chart -->
         <div class="w-full h-90 bg-gray-100 rounded-lg flex justify-center items-center" style="position: relative; overflow: hidden;">
@@ -72,7 +73,7 @@
     </div>
 
     <!-- Monthly Sales Performance Card -->
-    <div class="bg-white p-6 rounded-lg shadow-lg w-full">
+    <div class="bg-white p-6 rounded-lg shadow-lg w-full max-w-md mx-auto">
         <h3 class="text-gray-700 font-semibold text-lg mb-4">Sales Performance (Monthly)</h3>
         <!-- Placeholder for Monthly Chart -->
         <div class="w-full h-90 bg-gray-100 rounded-lg flex justify-center items-center" style="position: relative; overflow: hidden;">
@@ -80,6 +81,7 @@
         </div>
     </div>
 </div>
+
 
 
 <?php include "components/footer.php";?>

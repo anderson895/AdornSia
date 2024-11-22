@@ -1,18 +1,17 @@
-
 <?php include "components/header.php";?>
+
 <!-- Top bar with user profile -->
 <div class="flex justify-between items-center bg-white p-4 mb-6 rounded-md shadow-md">
     <h2 class="text-lg font-semibold text-gray-700">Dashboard</h2>
     <div class="w-10 h-10 bg-gray-300 rounded-full flex items-center justify-center text-lg font-bold text-white">
-    <?php
-   
-    echo substr(ucfirst($_SESSION['admin_username']), 0, 1);
-    ?>
+        <?php
+        echo substr(ucfirst($_SESSION['admin_username']), 0, 1);
+        ?>
     </div>
 </div>
 
 <!-- Dashboard Cards -->
-<div class="grid grid-cols-1 sm:grid-cols-3 gap-6">
+<div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-6">
     <!-- Card for Total Customer -->
     <div class="bg-white p-6 rounded-lg shadow-lg flex flex-col items-center">
         <img src="assets/service.png" alt="students icon" class="mb-4 w-12 max-w-full" />
@@ -29,56 +28,30 @@
 
     <!-- Card for No of Orders -->
     <div class="bg-white p-6 rounded-lg shadow-lg flex flex-col items-center">
-         <img src="assets/cargo.png" alt="students icon" class="mb-4 w-12 max-w-full" />
+        <img src="assets/cargo.png" alt="students icon" class="mb-4 w-12 max-w-full" />
         <h3 class="text-gray-700 font-semibold text-lg">No of Orders</h3>
         <p class="text-blue-500 text-2xl font-bold numOrders" id="numOrders">0</p>
     </div>
 </div>
 
-
-
-
-
-
-
-
-
 <!-- Horizontal Scrollable Cards for Product Categories -->
 <div class="mt-8 px-4">
-    <div class="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-        
-        
+    <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-6">
         <div class="bg-white p-6 rounded-lg shadow-lg" id="bestSellingProducts">
-            <!-- AJAX response content will be inserted here -->
         </div>
-
 
         <!-- New Products Card -->
         <div class="bg-white p-6 rounded-lg shadow-lg" id="NewProduct">
-           
         </div>
 
         <!-- Inventory Status Low Stock Card -->
         <div class="bg-white p-6 rounded-lg shadow-lg" id="stock_status">
-            
-           
         </div>
-
-        
     </div>
 </div>
 
-
-
-
-
-
-
-
-
-
 <!-- Sales Performance Cards -->
-<div class="grid grid-cols-1 sm:grid-cols-3 gap-6 mt-8">
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mt-8">
     <!-- Daily Sales Performance Card -->
     <div class="bg-white p-6 rounded-lg shadow-lg">
         <h3 class="text-gray-700 font-semibold text-lg mb-4">Sales Performance (Daily)</h3>
@@ -108,6 +81,7 @@
 </div>
 
 <?php include "components/footer.php";?>
+
 <script src="js/topNewProduct.js"></script>
 <script src="js/top5bestSelling.js"></script>
 <script src="js/analytics.js"></script>

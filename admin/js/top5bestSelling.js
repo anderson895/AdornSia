@@ -1,7 +1,7 @@
 $.ajax({
     url: 'backend/end-points/top5bestSelling.php',
     method: 'GET',
-    dataType: 'json',
+    // dataType: 'json',
     success: function(data) {
         const productList = $('#bestSellingProducts');
         if (data.error) {

@@ -180,19 +180,27 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             }
         } elseif ($orderStatus === "Accept") {
             $insufficientStockProducts = $db->validateStockSufficiency($orderId);
-        
+
             if ($insufficientStockProducts === true) {
+                // Proceed to update order status
                 $order = $db->updateOrderStatus($orderId, $orderStatus);
-        
+
                 if ($order) {
-                    $stockout = $db->stockout($orderId, $orderStatus);
-                    echo $stockout; 
+                    // Proceed with stock deduction
+                    $stockout = $db->stockout($orderId);
+                    if ($stockout) {
+                        echo '200';
+                    } else {
+                        echo 'Failed to update stock in the database.';
+                    }
                 } else {
-                    echo 'Failed to update order in the database.';
+                    echo 'Failed to update order status in the database.';
                 }
             } else {
+                // Handle insufficient stock scenario
                 echo 'Insufficient stock for the following products: ' . implode(", ", $insufficientStockProducts);
             }
+
         
         } else {
             $stockSufficient = $db->validateStockSufficiency($orderId);

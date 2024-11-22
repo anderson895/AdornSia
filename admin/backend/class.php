@@ -255,96 +255,54 @@ public function getDailySalesData()
     }
 
 
-    public function stockout($orderId, $newStatus) {
-        // Start transaction
-        mysqli_query($this->conn, "START TRANSACTION");
-        $insufficientStockProducts = [];
+    public function stockout($orderId) {
+        // Step 1: Fetch order items
+        $orderItemsQuery = "SELECT item_product_id, item_qty FROM orders_item WHERE item_order_id = $orderId";
+        $orderItemsResult = mysqli_query($this->conn, $orderItemsQuery);
     
-        try {
-            // Step 1: Fetch order items
-            $orderItemsQuery = "SELECT item_product_id, item_qty FROM orders_item WHERE item_order_id = ?";
-            $stmt = mysqli_prepare($this->conn, $orderItemsQuery);
-            mysqli_stmt_bind_param($stmt, 'i', $orderId);
-            mysqli_stmt_execute($stmt);
-            $orderItemsResult = mysqli_stmt_get_result($stmt);
+        if (!$orderItemsResult) {
+            // Handle query error
+            die('Error fetching order items: ' . mysqli_error($this->conn));
+        }
     
-            if (!$orderItemsResult || mysqli_num_rows($orderItemsResult) === 0) {
-                throw new Exception("No items found for order ID: $orderId.");
+        // Step 2: Deduct stock for each item
+        while ($item = mysqli_fetch_assoc($orderItemsResult)) {
+            $productId = $item['item_product_id'];
+            $itemQty = $item['item_qty'];
+    
+            // Step 3: Check if sufficient stock is available
+            $checkStockQuery = "SELECT product_stocks FROM product WHERE prod_id = $productId";
+            $checkStockResult = mysqli_query($this->conn, $checkStockQuery);
+    
+            if (!$checkStockResult) {
+                // Handle query error
+                die('Error checking stock: ' . mysqli_error($this->conn));
             }
     
-            // Step 2: Deduct stock for each item
-            while ($item = mysqli_fetch_assoc($orderItemsResult)) {
-                $productId = $item['item_product_id'];
-                $itemQty = $item['item_qty'];
+            $stock = mysqli_fetch_assoc($checkStockResult);
     
-                // Deduct stock with validation to prevent negative stocks
+            // If stock is sufficient, proceed with the update
+            if ($stock && $stock['product_stocks'] >= $itemQty) {
                 $updateStockQuery = "
-                    UPDATE product 
-                    SET product_stocks = product_stocks - ? 
-                    WHERE prod_id = ? AND product_stocks >= ?
+                    UPDATE product
+                    SET product_stocks = product_stocks - $itemQty
+                    WHERE prod_id = $productId
                 ";
-                $stmtUpdate = mysqli_prepare($this->conn, $updateStockQuery);
-                mysqli_stmt_bind_param($stmtUpdate, 'iii', $itemQty, $productId, $itemQty);
-                mysqli_stmt_execute($stmtUpdate);
     
-                if (mysqli_stmt_affected_rows($stmtUpdate) === 0) {
-                    // Fetch product name for insufficient stock
-                    $productQuery = "SELECT prod_name FROM product WHERE prod_id = ?";
-                    $stmtProduct = mysqli_prepare($this->conn, $productQuery);
-                    mysqli_stmt_bind_param($stmtProduct, 'i', $productId);
-                    mysqli_stmt_execute($stmtProduct);
-                    $resultProduct = mysqli_stmt_get_result($stmtProduct);
-                    $product = mysqli_fetch_assoc($resultProduct);
+                $updateStockResult = mysqli_query($this->conn, $updateStockQuery);
     
-                    // Add product name and ID to the insufficient stock list
-                    $insufficientStockProducts[] = $product['prod_name'] . " (ID: $productId)";
+                if (!$updateStockResult) {
+                    // Handle update failure
+                    die('Failed to update stock for product ' . $productId . ': ' . mysqli_error($this->conn));
                 }
+            } else {
+                // Handle insufficient stock
+                echo "Not enough stock for product " . $productId;
             }
-    
-            // If there were insufficient stocks, throw an exception
-            if (!empty($insufficientStockProducts)) {
-                throw new Exception("Insufficient stock for products: " . implode(", ", $insufficientStockProducts));
-            }
-    
-            // Step 3: Update order status
-            $updateOrderStatusQuery = "UPDATE orders SET order_status = ? WHERE order_id = ?";
-            $stmtUpdateOrder = mysqli_prepare($this->conn, $updateOrderStatusQuery);
-            mysqli_stmt_bind_param($stmtUpdateOrder, 'si', $newStatus, $orderId);
-            mysqli_stmt_execute($stmtUpdateOrder);
-    
-            if (mysqli_stmt_affected_rows($stmtUpdateOrder) === 0) {
-                throw new Exception("Failed to update order status for order ID: $orderId.");
-            }
-    
-            // Commit transaction
-            mysqli_query($this->conn, "COMMIT");
-    
-            // Clean up
-            mysqli_free_result($orderItemsResult);
-            mysqli_stmt_close($stmt);
-            mysqli_stmt_close($stmtUpdate);
-            mysqli_stmt_close($stmtUpdateOrder);
-    
-            // Return success with status code 200
-            return json_encode([
-                'status' => 200,
-                'message' => 'Order status updated successfully.',
-            ]);
-        } catch (Exception $e) {
-            // Rollback transaction on error
-            mysqli_query($this->conn, "ROLLBACK");
-    
-            // Log the error (include the message)
-            error_log("Stockout failed for order ID: $orderId - " . $e->getMessage());
-    
-            // Return error response with status code 400
-            return json_encode([
-                'status' => 400,
-                'message' => 'Error: ' . $e->getMessage(),
-                'insufficient_stock' => $insufficientStockProducts,
-            ]);
         }
     }
+    
+    
     
     
     

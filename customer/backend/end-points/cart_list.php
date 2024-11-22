@@ -80,13 +80,12 @@ $totalSavings = 0;
                     </div>
                 </div>
                 <div class="text-right">
-                <?php if ($cart['prod_promo_id']): ?>
-                    <p class="text-red-600 font-semibold">Php <?=($cart['prod_currprice'] - ($cart['prod_currprice'] - $discounted_price)) * $cart['cart_Qty']?></p>
-                    <p class="text-xs line-through text-gray-400 has-promo">Php <?=$cart['prod_currprice'] * $cart['cart_Qty']?> - <?=($cart['promo_rate'] * 100)?>%</p>
-                <?php else: ?>
-                    <p class="text-red-600 font-semibold itemPrice">Php <?=$cart['prod_currprice'] * $cart['cart_Qty']?></p>
-                <?php endif; ?>
-
+                    <?php if ($cart['prod_promo_id']): ?>
+                        <p class="text-red-600 font-semibold">Php <?=number_format(($cart['prod_currprice'] - ($cart['prod_currprice'] - $discounted_price)) * $cart['cart_Qty'], 2)?></p>
+                        <p class="text-xs line-through text-gray-400 has-promo">Php <?=number_format($cart['prod_currprice'] * $cart['cart_Qty'])?> - <?=($cart['promo_rate'] * 100)?>%</p>
+                    <?php else: ?>
+                        <p class="text-red-600 font-semibold itemPrice">Php <?=number_format($cart['prod_currprice'] * $cart['cart_Qty'], 2)?></p>
+                    <?php endif; ?>
                 </div>
             </div>
             <?php endforeach; ?>

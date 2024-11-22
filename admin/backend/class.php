@@ -112,7 +112,7 @@ class global_class extends db_connect
             SELECT 
                 p.prod_name AS product,   -- Assuming 'prod_name' is the product name field
                 o.order_date,
-                SUM(oi.item_total) AS total_revenue, 
+                o.total AS total_revenue, 
                 SUM(oi.item_qty) AS total_quantity_sold
             FROM orders_item oi
             JOIN orders o ON oi.item_order_id = o.order_id

@@ -1,4 +1,8 @@
 <?php
+// Disable error reporting temporarily to avoid unwanted output
+error_reporting(0);  // Turn off all PHP error reporting
+ini_set('display_errors', 0);  // Prevent errors from being displayed
+
 include('../class.php');
 $db = new global_class();
 
@@ -8,9 +12,10 @@ $orders = $db->top5bestSelling();
 header('Content-Type: application/json');
 
 if ($orders) {
-    echo json_encode($orders);  // Return product list as JSON
+    // Output the products in a valid JSON format
+    echo json_encode($orders);
 } else {
-    // Only output one error JSON object, not an extra message
+    // Output a valid JSON error message
     echo json_encode(['error' => 'No data available or an error occurred']);
 }
 ?>

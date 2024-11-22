@@ -164,18 +164,15 @@ $(document).ready(function() {
                 });
             
                 // Log the 'originalprice' for the current checkbox
-                console.log(selectedProducts);  // Logs the 'data-originalprice' value of the selected checkbox
+                console.log($(this).data('originalprice'));  // Logs the 'data-originalprice' value of the selected checkbox
             });
             
-
-         
-
             // Ensure at least one product is selected
             if (selectedProducts.length === 0) {
                 alertify.error('Please select at least one product.');
                 return;
             }
-            return; 
+        
             // Prepare form data for AJAX
             var formData = new FormData();
             formData.append("selectedAddress", selectedAddress);

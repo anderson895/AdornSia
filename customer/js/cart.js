@@ -168,13 +168,14 @@ $(document).ready(function() {
             });
             
 
-            return; 
+         
+
             // Ensure at least one product is selected
             if (selectedProducts.length === 0) {
                 alertify.error('Please select at least one product.');
                 return;
             }
-        
+            return; 
             // Prepare form data for AJAX
             var formData = new FormData();
             formData.append("selectedAddress", selectedAddress);

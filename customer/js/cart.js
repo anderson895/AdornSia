@@ -9,8 +9,7 @@ $(document).ready(function() {
         $('.product-checkbox:checked').each(function() {
 
             const productId = parseFloat($(this).data('product-id'));
-            const priceString = $(this).data('price'); // Halimbawa: '1,000'
-            const price = parseFloat(priceString.replace(/,/g, ''));
+            const price = $(this).data('price');
             
 
             const originalprice = parseFloat($(this).data('originalprice'));

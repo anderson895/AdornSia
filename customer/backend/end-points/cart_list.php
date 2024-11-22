@@ -48,7 +48,7 @@ $totalSavings = 0;
                     class="product-checkbox mr-4 text-red-500" 
                     data-product-id="<?=$cart['cart_prod_id']?>" 
                     data-Originalprice="<?=$originalPrice?>" 
-                    data-price="<?=$price?>"
+                    data-price='<?=$price?>'
                     data-size="<?=$cart['cart_prod_size']?>" 
                     data-qty="<?=$cart['cart_Qty']?>" 
                     data-promoName="<?=$cart['promo_name']?>" 

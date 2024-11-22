@@ -6,7 +6,7 @@ $orders = $db->topNewProduct();
 
 if ($orders) {
     $response = "
-    <h3 class='text-gray-700 font-semibold text-lg mb-4'>Top 5 Best Selling Products</h3>
+    <h3 class='text-gray-700 font-semibold text-lg mb-4'>New Products</h3>
     <ul class='space-y-4'>"; 
     $rank = 1;
     foreach ($orders as $order) {
@@ -18,9 +18,7 @@ if ($orders) {
                 <div class="flex-1 mt-2 sm:mt-0">
                     <h4 class="text-gray-700 font-semibold text-lg">' . $rank . '. ' . $order['prod_name'] . '</h4>
                 </div>
-                <div class="flex-1 mt-2 sm:mt-0">
-                    <h4 class="text-gray-600 text-sm">' . $order['total_quantity_sold'] . ' Sold</h4>
-                </div>
+                
             </li>
         ';
         $rank++;

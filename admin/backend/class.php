@@ -105,6 +105,48 @@ class global_class extends db_connect
 
 
 
+    public function StockLevel()
+{
+    // SQL query to get product details including the stock level
+    $query = "SELECT prod_id, prod_name, product_stocks, prod_critical FROM product WHERE prod_status = 1"; // Ensuring only active products are considered
+    
+    $result = $this->conn->query($query);
+    
+    if ($result) {
+        $productLevels = [];
+        
+        while ($row = $result->fetch_assoc()) {
+            // Classify stock level based on product_stocks and prod_critical
+            $stockStatus = '';
+
+            if ($row['product_stocks'] <= 0) {
+                $stockStatus = 'Out of Stock';
+            } elseif ($row['product_stocks'] <= $row['prod_critical']) {
+                $stockStatus = 'Critical';
+            } else {
+                $stockStatus = 'Normal';
+            }
+
+            // Add product data with stock level classification
+            $productLevels[] = [
+                'prod_id' => $row['prod_id'],
+                'prod_name' => $row['prod_name'],
+                'product_stocks' => $row['product_stocks'],
+                'prod_critical' => $row['prod_critical'],
+                'stock_status' => $stockStatus,
+            ];
+        }
+        
+        return $productLevels;
+    } else {
+        // Log the error for debugging
+        error_log('Database query failed: ' . $this->conn->error);
+        echo json_encode(['error' => 'Failed to retrieve data']);
+    }
+}
+
+
+
 
     public function topNewProduct()
     {

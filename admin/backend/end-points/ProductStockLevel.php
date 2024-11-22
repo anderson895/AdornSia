@@ -2,13 +2,13 @@
 include('../class.php');
 $db = new global_class();
 
-$orders = $db->topNewProduct();
+$orders = $db->StockLevel();
 
 if ($orders) {
     $response = "
-    <h3 class='text-center text-gray-700 font-semibold text-lg mb-4'>Top 5 New Products</h3>
+    <h3 class='text-center text-gray-700 font-semibold text-lg mb-4'>Top 5 Best Selling Products</h3>
     <ul class='space-y-4'>"; 
-    $rank = 1;
+ 
     foreach ($orders as $order) {
         $response .= '
             <li class="flex flex-col sm:flex-row items-center sm:space-x-4 bg-white p-4 rounded-lg shadow-md">
@@ -18,10 +18,11 @@ if ($orders) {
                 <div class="flex-1 mt-2 sm:mt-0">
                     <h4 class="text-gray-700 font-semibold text-lg">' . ucfirst($order['prod_name']) . '</h4>
                 </div>
-                
+                <div class="flex-1 mt-2 sm:mt-0">
+                    <h4 class="text-gray-600 text-sm">' . $order['product_stocks'] . '</h4>
+                </div>
             </li>
         ';
-        $rank++;
     }
     $response .= "</ul>"; 
     echo $response;

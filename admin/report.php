@@ -23,7 +23,7 @@ include "components/header.php";
                 <option value="monthly">Monthly Report</option>
                 <option value="yearly">Yearly Report</option>
             </select>
-            <button type="submit" class="bg-blue-500 text-white px-4 py-2">Export to Excel</button>
+            <button type="submit" class="rounded bg-blue-500 text-white px-4 py-2">Export to Excel</button>
         </form>
     </div>
 

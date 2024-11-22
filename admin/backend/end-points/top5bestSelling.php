@@ -11,7 +11,7 @@ if ($orders) {
  
     foreach ($orders as $order) {
         $response .= '
-          <li class="flex flex-col sm:flex-row items-center sm:space-x-4 bg-white p-4 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300">
+            <li class="flex flex-col sm:flex-row items-center sm:space-x-4 bg-white p-4 rounded-lg shadow-md">
                 <div class="w-16 h-16 sm:w-20 sm:h-20">
                     <img src="../../../upload/' . $order['prod_image'] . '" alt="' . $order['prod_name'] . '" class="w-full h-full object-cover rounded-lg">
                 </div>

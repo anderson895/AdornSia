@@ -325,7 +325,11 @@ public function getDailySalesData()
             mysqli_stmt_close($stmtUpdate);
             mysqli_stmt_close($stmtUpdateOrder);
     
-            return true;
+            // Return success with status code 200
+            return json_encode([
+                'status' => 200,
+                'message' => 'Order status updated successfully.',
+            ]);
         } catch (Exception $e) {
             // Rollback transaction on error
             mysqli_query($this->conn, "ROLLBACK");
@@ -333,10 +337,15 @@ public function getDailySalesData()
             // Log the error (include the message)
             error_log("Stockout failed for order ID: $orderId - " . $e->getMessage());
     
-            // Return the list of products with insufficient stock
-            return $insufficientStockProducts;
+            // Return error response with status code 400
+            return json_encode([
+                'status' => 400,
+                'message' => 'Error: ' . $e->getMessage(),
+                'insufficient_stock' => $insufficientStockProducts,
+            ]);
         }
     }
+    
     
     
     public function validateStockSufficiency($orderId) {

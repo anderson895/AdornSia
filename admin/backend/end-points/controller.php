@@ -186,7 +186,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         
                 if ($order) {
                     $stockout = $db->stockout($orderId, $orderStatus);
-                    echo 200; 
+                    echo $stockout; 
                 } else {
                     echo 'Failed to update order in the database.';
                 }

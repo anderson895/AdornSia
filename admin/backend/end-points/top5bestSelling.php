@@ -5,20 +5,20 @@ $db = new global_class();
 $orders = $db->top5bestSelling();
 
 if ($orders) {
-    echo "<ul>";  // Start the list here
-    
+    $response = "<ul class='list-disc pl-5'>";  // Start list
     $rank = 1;
     foreach ($orders as $order) {
-        echo '
-            <li class="text-sm text-gray-600">
-                ' . $order['prod_name'] . ' - ' . $order['prod_image'] . '
+        $response .= '
+            <li class="text-sm text-gray-600 mb-2">
+                <strong>' . $rank . '. ' . $order['prod_name'] . '</strong><br>
+                <img src="' . $order['prod_image'] . '" alt="' . $order['prod_name'] . '" class="w-16 h-16 object-cover mt-2">
             </li>
         ';
         $rank++;
     }
-
-    echo "</ul>";  // End the list here
+    $response .= "</ul>";  // End list
+    echo $response;
 } else {
-    echo "<p>No data available or an error occurred.</p>";
+    echo "<p class='text-gray-500'>No data available or an error occurred.</p>";
 }
 ?>

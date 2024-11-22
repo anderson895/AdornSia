@@ -9,7 +9,7 @@ $(document).ready(function() {
         $('.product-checkbox:checked').each(function() {
 
             const productId = parseFloat($(this).data('product-id'));
-            const priceString = $(this).data('price'); // Halimbawa: '1,000'
+            const priceString = $(this).data('price'); 
             const price = parseFloat(priceString.replace(/,/g, ''));
             
 
@@ -35,6 +35,8 @@ $(document).ready(function() {
         $('#sub-total').text(subTotal.toFixed(2));
         $('#vat').text(vat.toFixed(2));
         $('#total').text(total.toFixed(2));
+
+       
     }
 
     $('#check-all').click(function() {

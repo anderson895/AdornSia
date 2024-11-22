@@ -37,7 +37,6 @@ $salesReport = $db->salesReport();
             <th class="py-2 px-4 border-b text-left">Product</th>
             <th class="py-2 px-4 border-b text-left">Quantity Sold</th>
             <th class="py-2 px-4 border-b text-left">Revenue</th>
-            <th class="py-2 px-4 border-b text-left">Action</th>
         </tr>
     </thead>
     <tbody>

@@ -69,7 +69,7 @@
 
 
 <!-- Horizontal Scrollable Cards for Product Categories -->
-<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mt-8">
+<div class="mt-8">
     <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-6 w-full">
         <!-- Best Selling Products Card -->
         <div class="bg-white p-6 rounded-lg shadow-lg w-full" id="bestSellingProducts">

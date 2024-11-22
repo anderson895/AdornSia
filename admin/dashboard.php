@@ -49,15 +49,11 @@
         <!-- Top 5 Best Selling Products Card -->
         <div class="bg-white p-6 rounded-lg shadow-lg">
             <h3 class="text-gray-700 font-semibold text-lg mb-4">Top 5 Best Selling Products</h3>
-            <!-- Placeholder for products -->
-            <ul>
-                <li class="text-sm text-gray-600">Product 1</li>
-                <li class="text-sm text-gray-600">Product 2</li>
-                <li class="text-sm text-gray-600">Product 3</li>
-                <li class="text-sm text-gray-600">Product 4</li>
-                <li class="text-sm text-gray-600">Product 5</li>
+            <ul id="bestSellingProducts">
+                <!-- Products will be loaded here dynamically -->
             </ul>
         </div>
+
 
         <!-- New Products Card -->
         <div class="bg-white p-6 rounded-lg shadow-lg">

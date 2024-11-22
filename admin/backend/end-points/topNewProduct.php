@@ -16,7 +16,7 @@ if ($orders) {
                     <img src="../../../upload/' . $order['prod_image'] . '" alt="' . $order['prod_name'] . '" class="w-full h-full object-cover rounded-lg">
                 </div>
                 <div class="flex-1 mt-2 sm:mt-0">
-                    <h4 class="text-gray-700 font-semibold text-lg">' . $order['prod_name'] . '</h4>
+                    <h4 class="text-gray-700 font-semibold text-lg">' . ucfirst($order['prod_name']) . '</h4>
                 </div>
                 
             </li>

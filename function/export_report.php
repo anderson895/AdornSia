@@ -4,19 +4,21 @@ include "../admin/backend/class.php";
 // Create an instance of the SalesReport class
 $db = new global_class();
 
-// Get the report type from the query parameter
+// Get the report type and year range from the query parameters
 $reportType = isset($_GET['report_type']) ? $_GET['report_type'] : 'daily';
+$startYear = isset($_GET['start_year']) ? $_GET['start_year'] : null;
+$endYear = isset($_GET['end_year']) ? $_GET['end_year'] : null;
 
 // Define a function to fetch the sales report data based on the report type
-function getSalesReportData($reportType) {
+function getSalesReportData($reportType, $startYear, $endYear) {
     global $db;
 
-    // Pass the report type to the getSalesReport function
-    return $db->getSalesReport($reportType); 
+    // Modify query based on the report type and year range
+    return $db->getSalesReport($reportType, $startYear, $endYear); 
 }
 
-// Get the sales report data based on the selected report type
-$salesReportData = getSalesReportData($reportType);
+// Get the sales report data based on the selected report type and year range
+$salesReportData = getSalesReportData($reportType, $startYear, $endYear);
 
 // Create a file pointer connected to the output stream
 header('Content-Type: text/csv');
@@ -57,7 +59,7 @@ switch ($reportType) {
         $dateRange = 'Date Range: ' . date('F, Y');
         break;
     case 'yearly':
-        $dateRange = 'Date Range: ' . date('Y');
+        $dateRange = 'Date Range: ' . $startYear . ' - ' . $endYear;
         break;
 }
 fputcsv($output, [$dateRange]);

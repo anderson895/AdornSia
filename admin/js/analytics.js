@@ -5,7 +5,7 @@ const getDataAnalytics = () => {
       type: 'GET',
       dataType: 'json',
       success: function(response) {
-          console.log(response); 
+          // console.log(response); 
           let userCount = response.userCount;
           let totalSales = response.totalSales;
           let pendingOrders = response.pendingOrders;

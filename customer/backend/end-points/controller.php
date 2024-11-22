@@ -221,21 +221,19 @@ if ($response['status'] === 'success') {
         
             // Prepare the SQL query to insert each product into orders_item
             $insertQuery = "INSERT INTO orders_item (item_order_id, item_product_id, item_size, item_qty, item_product_price, promo_discount, item_total) 
-                            VALUES (?, ?, ?, ?, ?, ?, ?)";
-            $stmt = $db->conn->prepare($insertQuery);
-            
-            // Bind parameters with correct data types
-            $stmt->bind_param("iisisss", $orderId, $itemProductId, $itemSize, $itemQty, $originalPrice, $itemDiscountDetails, $itemTotalPrice);
+                            VALUES ('$orderId', '$itemProductId', '$itemSize', '$itemQty', '$originalPrice', '$itemDiscountDetails', '$itemTotalPrice')";
             
             $user_id = $_SESSION['user_id'];
-    
+            
             $response = $db->RemoveItem($user_id, $itemProductId, $itemSize);
+            
             // Execute the query for each product
-            if (!$stmt->execute()) {
+            if (!$db->conn->query($insertQuery)) {
                 echo json_encode(['status' => 'error', 'message' => 'Failed to insert product into orders_item.']);
                 exit;
             }
         }
+        
     } else {
         echo json_encode(['status' => 'error', 'message' => 'Selected products data is invalid.']);
         exit;

@@ -11,52 +11,8 @@ $reportType = isset($_GET['report_type']) ? $_GET['report_type'] : 'daily';
 function getSalesReportData($reportType) {
     global $db;
 
-    // Prepare the query with a date range filter
-    $dateFilter = '';
-    $currentDate = date('Y-m-d'); // Get today's date
-
-    switch ($reportType) {
-        case 'daily':
-            $dateFilter = "WHERE DATE(o.order_date) = CURDATE()"; // Get today's data
-            break;
-        case 'weekly':
-            $dateFilter = "WHERE YEARWEEK(o.order_date, 1) = YEARWEEK(CURDATE(), 1)"; // Get the current week's data
-            break;
-        case 'monthly':
-            $dateFilter = "WHERE MONTH(o.order_date) = MONTH(CURDATE()) AND YEAR(o.order_date) = YEAR(CURDATE())"; // Get this month's data
-            break;
-        case 'yearly':
-            $dateFilter = "WHERE YEAR(o.order_date) = YEAR(CURDATE())"; // Get this year's data
-            break;
-    }
-
-    // SQL query to get total revenue and quantity sold with date filtering
-    $query = "
-        SELECT 
-            p.prod_name AS product, 
-            o.order_date,
-            SUM(oi.item_total) AS total_revenue, 
-            SUM(oi.item_qty) AS total_quantity_sold
-        FROM orders_item oi
-        JOIN orders o ON oi.item_order_id = o.order_id
-        LEFT JOIN product p ON oi.item_product_id = p.prod_id
-        WHERE o.order_status = 'Delivered'
-        $dateFilter
-        GROUP BY p.prod_id, o.order_date
-    ";
-
-    // Execute the query
-    $result = $db->conn->query($query);
-
-    if ($result) {
-        // Fetch all the rows and return them as an array
-        return $result->fetch_all(MYSQLI_ASSOC);
-    } else {
-        // Log the error for debugging
-        error_log('Database query failed: ' . $db->conn->error);
-        echo json_encode(['error' => 'Failed to retrieve data']);
-        return [];  // Return an empty array in case of error
-    }
+    // Pass the report type to the getSalesReport function
+    return $db->getSalesReport($reportType); 
 }
 
 // Get the sales report data based on the selected report type
@@ -88,7 +44,7 @@ switch ($reportType) {
 // Add the title row to the CSV
 fputcsv($output, [$reportTitle]);
 
-// Add a label row with the report period (optional: customize further)
+// Add a label row with the report period
 $dateRange = '';
 switch ($reportType) {
     case 'daily':

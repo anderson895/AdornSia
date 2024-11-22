@@ -105,7 +105,7 @@ class global_class extends db_connect
 
 
 
-    public function getSalesReport()
+    public function SalesReport()
     {
         // SQL query to get total revenue and quantity sold
         $query = "
@@ -134,6 +134,57 @@ class global_class extends db_connect
             return [];  // Return an empty array in case of error
         }
     }
+
+
+    public function getSalesReport($reportType)
+{
+    // Determine the date range based on the report type
+    $dateFilter = '';
+    switch ($reportType) {
+        case 'daily':
+            $dateFilter = "DATE(o.order_date) = CURDATE()"; // Filter for today's date
+            break;
+        case 'weekly':
+            $dateFilter = "YEARWEEK(o.order_date, 1) = YEARWEEK(CURDATE(), 1)"; // Filter for this week
+            break;
+        case 'monthly':
+            $dateFilter = "MONTH(o.order_date) = MONTH(CURDATE()) AND YEAR(o.order_date) = YEAR(CURDATE())"; // Filter for this month
+            break;
+        case 'yearly':
+            $dateFilter = "YEAR(o.order_date) = YEAR(CURDATE())"; // Filter for this year
+            break;
+        default:
+            $dateFilter = '1'; // No filter (default to all records)
+            break;
+    }
+
+    // SQL query to get total revenue and quantity sold, with the date filter
+    $query = "
+        SELECT 
+            p.prod_name AS product, 
+            o.order_date,
+            SUM(oi.item_total) AS total_revenue, 
+            SUM(oi.item_qty) AS total_quantity_sold
+        FROM orders_item oi
+        JOIN orders o ON oi.item_order_id = o.order_id
+        LEFT JOIN product p ON oi.item_product_id = p.prod_id
+        WHERE o.order_status = 'Delivered' AND $dateFilter
+        GROUP BY p.prod_id, o.order_date
+    ";
+
+    // Execute the query
+    $result = $this->conn->query($query);
+
+    if ($result) {
+        // Fetch all the rows and return them as an array
+        return $result->fetch_all(MYSQLI_ASSOC);
+    } else {
+        // Log the error for debugging
+        error_log('Database query failed: ' . $this->conn->error);
+        return []; // Return an empty array in case of error
+    }
+}
+
     
 
 

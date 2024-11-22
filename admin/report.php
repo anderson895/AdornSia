@@ -35,11 +35,9 @@ $salesReport = $db->SalesReport();
         <button type="submit" class="rounded bg-blue-500 text-white px-4 py-2">Export to Excel</button>
     </form>
 </div>
-
-
-
-
-    <h1 class="text-lg font-semibold text-gray-700 mb-4">Sales Overview</h1>
+</div>
+<div class="bg-white rounded-lg shadow-lg p-6 mb-6"></div>
+<h1 class="text-lg font-semibold text-gray-700 mb-4">Sales Overview</h1>
     <table class="min-w-full bg-white border border-gray-300 rounded-md shadow-md">
     <thead>
         <tr class="bg-gray-100">
@@ -73,7 +71,6 @@ $salesReport = $db->SalesReport();
     </tbody>
 </table>
 
-</div>
 
 <?php include "components/footer.php"; ?>
 <script src="js/generate_report.js"></script>

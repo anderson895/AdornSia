@@ -1,7 +1,6 @@
 <?php 
 include "components/header.php";
 
-
 $salesReport = $db->SalesReport();
 ?>
 
@@ -14,8 +13,8 @@ $salesReport = $db->SalesReport();
 
 <!-- Card for Report Filter & Export -->
 <div class="bg-white rounded-lg shadow-lg p-6 mb-6">
-    <div class="flex justify-end items-center mb-4">
-        <form method="GET" action="../function/export_report.php" class="flex items-center space-x-4">
+    <div class="flex justify-between items-center space-x-4 mb-4">
+        <form method="GET" action="../function/export_report.php" class="flex items-center space-x-4 w-full md:w-auto">
             
             <!-- Report Type Selector -->
             <select name="report_type" id="report_type" class="px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
@@ -37,42 +36,43 @@ $salesReport = $db->SalesReport();
     </div>
 </div>
 
-
+<!-- Sales Overview Table -->
 <div class="bg-white rounded-lg shadow-lg p-6 mb-6">
-<h1 class="text-lg font-semibold text-gray-700 mb-4">Sales Overview</h1>
-    <table class="min-w-full bg-white border border-gray-300 rounded-md shadow-md">
-    <thead>
-        <tr class="bg-gray-100">
-            <th class="py-2 px-4 border-b text-left">Date</th>
-            <th class="py-2 px-4 border-b text-left">Product</th>
-            <th class="py-2 px-4 border-b text-left">Quantity Sold</th>
-            <th class="py-2 px-4 border-b text-left">Revenue</th>
-        </tr>
-    </thead>
-    <tbody>
-        <?php 
-
-        if ($salesReport && count($salesReport) > 0) {
-            foreach ($salesReport as $report) {
-        ?>
-        <tr>
-            <td class="py-2 px-4 border-b">
-                <?= htmlspecialchars((new DateTime($report['order_date']))->format('F j, Y, g:i a')) ?>
-            </td>
-
-            <td class="py-2 px-4 border-b"><?= htmlspecialchars($report['product']) ?></td>
-            <td class="py-2 px-4 border-b"><?= htmlspecialchars($report['total_quantity_sold']) ?></td>
-            <td class="py-2 px-4 border-b">Php <?= number_format($report['total_revenue'], 2) ?></td>
-        </tr>
-        <?php 
-            }
-        } else {
-            echo "<tr><td colspan='5' class='py-2 px-4 border-b text-center'>No records found.</td></tr>";
-        }
-        ?>
-    </tbody>
-</table>
-
+    <h1 class="text-lg font-semibold text-gray-700 mb-4">Sales Overview</h1>
+    <div class="overflow-x-auto">
+        <table class="min-w-full bg-white border border-gray-300 rounded-md shadow-md">
+            <thead>
+                <tr class="bg-gray-100">
+                    <th class="py-2 px-4 border-b text-left">Date</th>
+                    <th class="py-2 px-4 border-b text-left">Product</th>
+                    <th class="py-2 px-4 border-b text-left">Quantity Sold</th>
+                    <th class="py-2 px-4 border-b text-left">Revenue</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php 
+                if ($salesReport && count($salesReport) > 0) {
+                    foreach ($salesReport as $report) {
+                ?>
+                <tr>
+                    <td class="py-2 px-4 border-b">
+                        <?= htmlspecialchars((new DateTime($report['order_date']))->format('F j, Y, g:i a')) ?>
+                    </td>
+                    <td class="py-2 px-4 border-b"><?= htmlspecialchars($report['product']) ?></td>
+                    <td class="py-2 px-4 border-b"><?= htmlspecialchars($report['total_quantity_sold']) ?></td>
+                    <td class="py-2 px-4 border-b">Php <?= number_format($report['total_revenue'], 2) ?></td>
+                </tr>
+                <?php 
+                    }
+                } else {
+                    echo "<tr><td colspan='4' class='py-2 px-4 border-b text-center'>No records found.</td></tr>";
+                }
+                ?>
+            </tbody>
+        </table>
+    </div>
+</div>
 
 <?php include "components/footer.php"; ?>
+
 <script src="js/generate_report.js"></script>

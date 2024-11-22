@@ -51,10 +51,9 @@
             <p class="text-sm text-gray-600">Placeholder for content...</p>
         </div>
 
-        <!-- New Products Card -->
-        <div class="bg-white p-6 rounded-lg shadow-lg h-96 overflow-y-auto" id="NewProduct">
+        <div class="bg-white p-6 rounded-lg shadow-lg h-96" id="NewProduct">
             <h3 class="text-gray-700 font-semibold text-lg mb-4">New Products</h3>
-            <ul>
+            <ul class="overflow-y-auto max-h-[calc(100%-4rem)]">
                 <li class="text-sm text-gray-600">Product A</li>
                 <li class="text-sm text-gray-600">Product B</li>
                 <li class="text-sm text-gray-600">Product C</li>
@@ -63,6 +62,7 @@
                 <li class="text-sm text-gray-600">Product F</li>
             </ul>
         </div>
+
 
         <!-- Inventory Status Low Stock Card -->
         <div class="bg-white p-6 rounded-lg shadow-lg">

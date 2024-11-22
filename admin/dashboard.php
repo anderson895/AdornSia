@@ -47,11 +47,9 @@
 <div class="mt-8 px-4">
     <div class="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-6">
         <!-- Top 5 Best Selling Products Card -->
-        <div class="bg-white p-6 rounded-lg shadow-lg">
+        <div class="bg-white p-6 rounded-lg shadow-lg" id="bestSellingProducts">
             <h3 class="text-gray-700 font-semibold text-lg mb-4">Top 5 Best Selling Products</h3>
-            <ul id="bestSellingProducts">
-                <!-- Products will be loaded here dynamically -->
-            </ul>
+            
         </div>
 
 

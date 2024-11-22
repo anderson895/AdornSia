@@ -1,6 +1,7 @@
 <?php 
 include "components/header.php";
 
+
 $salesReport = $db->salesReport();
 ?>
 
@@ -15,7 +16,7 @@ $salesReport = $db->salesReport();
 <div class="bg-white rounded-lg shadow-lg p-6 mb-6">
     <div class="flex justify-end items-center mb-4">
         <form method="GET" action="../function/export_report.php" class="flex items-center space-x-4">
-            <input hidden type="text" name="carID" value="<?=$carId?>">
+          
 
             <select name="report_type" class="px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
                 <option value="daily">Daily Report</option>
@@ -27,13 +28,6 @@ $salesReport = $db->salesReport();
             <button type="submit" class="rounded bg-blue-500 text-white px-4 py-2">Export to Excel</button>
         </form>
     </div>
-
-
-
-
-
-
-
 
     <h1 class="text-lg font-semibold text-gray-700 mb-4">Sales Overview</h1>
     <table class="min-w-full bg-white border border-gray-300 rounded-md shadow-md">
@@ -49,26 +43,23 @@ $salesReport = $db->salesReport();
         <tbody>
             <?php 
 
-            if ($salesReport) {
+            if ($salesReport && count($salesReport) > 0) {
                 foreach ($salesReport as $report) {
             ?>
             <tr>
-                <td class="py-2 px-4 border-b"><?=$report['order_date']?></td>
-                <td class="py-2 px-4 border-b"><?=$report['product']?></td>
-                <td class="py-2 px-4 border-b"><?=$report['item_qty']?></td>
-                <td class="py-2 px-4 border-b">Php <?=$report['total']?></td>
-                
+                <td class="py-2 px-4 border-b"><?= htmlspecialchars($report['order_date']) ?></td>
+                <td class="py-2 px-4 border-b"><?= htmlspecialchars($report['product']) ?></td>
+                <td class="py-2 px-4 border-b"><?= htmlspecialchars($report['item_qty']) ?></td>
+                <td class="py-2 px-4 border-b">Php <?= number_format($report['total'], 2) ?></td>
             </tr>
             <?php 
                 }
-            }else{
-                echo "No Record Found";
+            } else {
+                echo "<tr><td colspan='5' class='py-2 px-4 border-b text-center'>No records found.</td></tr>";
             }
             ?>
-
         </tbody>
     </table>
 </div>
-
 
 <?php include "components/footer.php"; ?>

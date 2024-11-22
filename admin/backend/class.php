@@ -119,7 +119,7 @@ class global_class extends db_connect
             JOIN orders o ON oi.item_order_id = o.order_id
             LEFT JOIN product p ON oi.item_product_id = p.prod_id
             WHERE o.order_status = 'Delivered'
-            GROUP BY p.prod_id;
+            GROUP BY p.prod_id
 
         ";
     

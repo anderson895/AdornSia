@@ -45,15 +45,14 @@
 <div class="mt-8 px-4 overflow-x-auto">
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 min-w-[600px]">
         
-        <!-- Best Selling Products -->
-        <div class="bg-white p-6 rounded-lg shadow-lg" id="bestSellingProducts">
-            <!-- AJAX response content will be inserted here -->
+       <!-- Best Selling Products -->
+        <div class="bg-white p-6 rounded-lg shadow-lg h-96" id="bestSellingProducts">
             <h3 class="text-gray-700 font-semibold text-lg mb-4">Best Selling Products</h3>
             <p class="text-sm text-gray-600">Placeholder for content...</p>
         </div>
 
         <!-- New Products Card -->
-        <div class="bg-white p-6 rounded-lg shadow-lg max-h-96 overflow-y-auto" id="NewProduct">
+        <div class="bg-white p-6 rounded-lg shadow-lg h-96 overflow-y-auto" id="NewProduct">
             <h3 class="text-gray-700 font-semibold text-lg mb-4">New Products</h3>
             <ul>
                 <li class="text-sm text-gray-600">Product A</li>

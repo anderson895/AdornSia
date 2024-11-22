@@ -46,7 +46,10 @@ $salesReport = $db->salesReport();
             foreach ($salesReport as $report) {
         ?>
         <tr>
-            <td class="py-2 px-4 border-b"><?= htmlspecialchars($report['order_date']) ?></td>
+            <td class="py-2 px-4 border-b">
+                <?= htmlspecialchars((new DateTime($report['order_date']))->format('F j, Y, g:i a')) ?>
+            </td>
+
             <td class="py-2 px-4 border-b"><?= htmlspecialchars($report['product']) ?></td>
             <td class="py-2 px-4 border-b"><?= htmlspecialchars($report['total_quantity_sold']) ?></td>
             <td class="py-2 px-4 border-b">Php <?= number_format($report['total_revenue'], 2) ?></td>

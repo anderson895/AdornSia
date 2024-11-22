@@ -33,7 +33,7 @@ include "components/header.php";
 
 
 
-    <h2 class="text-lg font-semibold text-gray-700 mb-4">Sales Overview</h2>
+    <h1 class="text-lg font-semibold text-gray-700 mb-4">Sales Overview</h1>
     <table class="min-w-full bg-white border border-gray-300 rounded-md shadow-md">
         <thead>
             <tr class="bg-gray-100">

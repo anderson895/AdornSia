@@ -5,7 +5,9 @@ $db = new global_class();
 $orders = $db->top5bestSelling();
 
 if ($orders) {
-    $response = "<ul class='space-y-4'>";  // Add some spacing between list items
+    $response = "
+    <h3 class='text-gray-700 font-semibold text-lg mb-4'>Top 5 Best Selling Products</h3>
+    <ul class='space-y-4'>"; 
     $rank = 1;
     foreach ($orders as $order) {
         $response .= '
@@ -23,7 +25,7 @@ if ($orders) {
         ';
         $rank++;
     }
-    $response .= "</ul>";  // Close the list
+    $response .= "</ul>"; 
     echo $response;
 } else {
     echo "<p class='text-gray-500'>No data available or an error occurred.</p>";

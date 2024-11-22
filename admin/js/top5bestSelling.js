@@ -17,8 +17,8 @@ $.ajax({
         }
     },
     error: function(xhr, status, error) {
-        console.error('AJAX Error:', status, error);  // Log error details
-        console.log('Response Text:', xhr.responseText); // Log the raw response
+        console.error('AJAX Error:', status, error); 
+        console.log('Response Text:', xhr.responseText); 
         $('#bestSellingProducts').html('<li class="text-sm text-red-600">An error occurred while fetching data.</li>');
     }
 });

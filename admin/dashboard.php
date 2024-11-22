@@ -46,23 +46,28 @@
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 min-w-[600px]">
         
        <!-- Best Selling Products -->
-        <div class="bg-white p-6 rounded-lg shadow-lg h-96 overflow-y-auto" id="bestSellingProducts">
-            <h3 class="text-gray-700 font-semibold text-lg mb-4">Best Selling Products</h3>
-            <p class="text-sm text-gray-600">Placeholder for content...</p>
+        <div class="bg-white p-6 rounded-lg shadow-lg h-96">
+          <h3 class="text-gray-700 font-semibold text-lg mb-4">Best Selling Products</h3>
+            <div class="bg-white p-6 rounded-lg shadow-lg h-96 overflow-y-auto" id="bestSellingProducts">
+                
+                <p class="text-sm text-gray-600">Placeholder for content...</p>
+            </div>
         </div>
-
-        <div class="bg-white p-6 rounded-lg shadow-lg h-96" id="NewProduct">
+        <!-- New Products Card -->
+        <div class="bg-white p-6 rounded-lg shadow-lg h-96">
             <h3 class="text-gray-700 font-semibold text-lg mb-4">New Products</h3>
-            <ul class="overflow-y-auto max-h-[calc(100%-4rem)]">
-                <li class="text-sm text-gray-600">Product A</li>
-                <li class="text-sm text-gray-600">Product B</li>
-                <li class="text-sm text-gray-600">Product C</li>
-                <li class="text-sm text-gray-600">Product D</li>
-                <li class="text-sm text-gray-600">Product E</li>
-                <li class="text-sm text-gray-600">Product F</li>
-            </ul>
+                <div class="bg-white p-6 rounded-lg shadow-lg h-96 overflow-y-auto" id="NewProduct">
+                    
+                    <ul>
+                        <li class="text-sm text-gray-600">Product A</li>
+                        <li class="text-sm text-gray-600">Product B</li>
+                        <li class="text-sm text-gray-600">Product C</li>
+                        <li class="text-sm text-gray-600">Product D</li>
+                        <li class="text-sm text-gray-600">Product E</li>
+                        <li class="text-sm text-gray-600">Product F</li>
+                    </ul>
+                </div>
         </div>
-
 
         <!-- Inventory Status Low Stock Card -->
         <div class="bg-white p-6 rounded-lg shadow-lg">

@@ -39,20 +39,28 @@
 <div class="mt-8">
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 w-full mx-auto justify-center">
         <!-- Best Selling Products Card -->
-        <div class="bg-white p-6 rounded-lg shadow-lg w-full" id="bestSellingProducts">
-        </div>
+        <a href="product.php">
+            <div class="bg-white p-6 rounded-lg shadow-lg w-full" id="bestSellingProducts">
+            </div>
+        </a>
 
         <!-- New Products Card -->
-        <div class="bg-white p-6 rounded-lg shadow-lg w-full" id="NewProduct">
-        </div>
+        <a href="product.php">
+            <div class="bg-white p-6 rounded-lg shadow-lg w-full" id="NewProduct">
+            </div>
+        </a>
 
         <!-- Inventory Status Low Stock Card -->
-        <div class="bg-white p-6 rounded-lg shadow-lg w-full" id="stock_status">
-        </div>
+        <a href="product.php">
+            <div class="bg-white p-6 rounded-lg shadow-lg w-full" id="stock_status">
+            </div>
+        </a>
 
         <!-- Empty Column for Layout Consistency -->
-        <div class="bg-white p-6 rounded-lg shadow-lg w-full" id="top_customer">
-        </div>
+        <a href="product.php">
+            <div class="bg-white p-6 rounded-lg shadow-lg w-full" id="top_customer">
+            </div>
+        </a>
     </div>
 </div>
 

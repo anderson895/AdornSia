@@ -210,9 +210,8 @@ if ($response['status'] === 'success') {
         foreach ($selectedProductsArray as $product) {
             $itemProductId = $product['productId'];
             $itemQty = intval($product['qty']);  // Converts to integer
-            $itemTotalPrice = doubleval($product['price']);  // Converts to double
-            $originalPrice = doubleval($product['originalPrice']);  // Converts to double
-            
+            $itemTotalPrice =$product['price'];  // Converts to float
+            $originalPrice = $product['originalPrice'];
             $itemSize = $product['size'];
         
             // Encode promo details as JSON

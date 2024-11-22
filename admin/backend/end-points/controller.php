@@ -204,7 +204,6 @@ if ($orderStatus === "Canceled") {
     }
 } else {
     
-    if ($stockSufficient === true) {
         // Proceed to update order status
         $order = $db->updateOrderStatus($orderId, $orderStatus);
 
@@ -213,10 +212,7 @@ if ($orderStatus === "Canceled") {
         } else {
             echo 'Failed to update order in the database.';
         }
-    } else {
-        // Handle insufficient stock scenario
-        echo 'Insufficient stock for the following products: ' . implode(", ", $stockSufficient);
-    }
+   
 }
 
         

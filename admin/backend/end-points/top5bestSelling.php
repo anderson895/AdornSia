@@ -9,15 +9,15 @@ if ($orders) {
     $rank = 1;
     foreach ($orders as $order) {
         $response .= '
-            <li class="flex items-center space-x-4">
-                <div class="w-16 h-16">
-                  ' . $rank . '.   <img src="../../../upload/' . $order['prod_image'] . '" alt="' . $order['prod_name'] . '" class="w-full h-full object-cover rounded-lg">
+            <li class="flex flex-col sm:flex-row items-center sm:space-x-4 bg-white p-4 rounded-lg shadow-md">
+                <div class="w-16 h-16 sm:w-20 sm:h-20">
+                    <img src="../../../upload/' . $order['prod_image'] . '" alt="' . $order['prod_name'] . '" class="w-full h-full object-cover rounded-lg">
                 </div>
-                <div class="flex-1">
-                    <h4 class="text-gray-700 font-semibold">' . $order['prod_name'] . '</h4>
+                <div class="flex-1 mt-2 sm:mt-0">
+                    <h4 class="text-gray-700 font-semibold text-lg">' . $rank . '. ' . $order['prod_name'] . '</h4>
                 </div>
-                 <div class="flex-1">
-                    <h4 class="text-gray-700 font-semibold">' . $order['total_quantity_sold'] . ' Sold </h4>
+                <div class="flex-1 mt-2 sm:mt-0">
+                    <h4 class="text-gray-600 text-sm">' . $order['total_quantity_sold'] . ' Sold</h4>
                 </div>
             </li>
         ';

@@ -34,6 +34,29 @@
     </div>
 </div>
 
+
+<!-- Horizontal Scrollable Cards for Product Categories -->
+<div class="mt-8">
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 w-full mx-auto justify-center">
+        <!-- Best Selling Products Card -->
+        <div class="bg-white p-6 rounded-lg shadow-lg w-full" id="bestSellingProducts">
+        </div>
+
+        <!-- New Products Card -->
+        <div class="bg-white p-6 rounded-lg shadow-lg w-full" id="NewProduct">
+        </div>
+
+        <!-- Inventory Status Low Stock Card -->
+        <div class="bg-white p-6 rounded-lg shadow-lg w-full" id="stock_status">
+        </div>
+
+        <!-- Empty Column for Layout Consistency -->
+        <div class="bg-white p-6 rounded-lg shadow-lg w-full" id="top_customer">
+        </div>
+    </div>
+</div>
+
+
 <!-- Sales Performance Cards -->
 <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mt-8">
     <!-- Daily Sales Performance Card -->
@@ -64,26 +87,7 @@
     </div>
 </div>
 
-<!-- Horizontal Scrollable Cards for Product Categories -->
-<div class="mt-8">
-    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 w-full mx-auto justify-center">
-        <!-- Best Selling Products Card -->
-        <div class="bg-white p-6 rounded-lg shadow-lg w-full" id="bestSellingProducts">
-        </div>
 
-        <!-- New Products Card -->
-        <div class="bg-white p-6 rounded-lg shadow-lg w-full" id="NewProduct">
-        </div>
-
-        <!-- Inventory Status Low Stock Card -->
-        <div class="bg-white p-6 rounded-lg shadow-lg w-full" id="stock_status">
-        </div>
-
-        <!-- Empty Column for Layout Consistency -->
-        <div class="bg-white p-6 rounded-lg shadow-lg w-full" id="top_customer">
-        </div>
-    </div>
-</div>
 
 
 

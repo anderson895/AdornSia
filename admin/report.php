@@ -1,5 +1,7 @@
 <?php 
 include "components/header.php";
+
+$orders = $db->salesReport();
 ?>
 
 <div class="flex justify-between items-center bg-white p-4 mb-6 rounded-md shadow-md">
@@ -55,16 +57,7 @@ include "components/header.php";
                     <button class="text-blue-500 hover:text-blue-700">View</button>
                 </td>
             </tr>
-            <tr>
-                <td class="py-2 px-4 border-b">2024-11-21</td>
-                <td class="py-2 px-4 border-b">Car Model B</td>
-                <td class="py-2 px-4 border-b">5</td>
-                <td class="py-2 px-4 border-b">$300</td>
-                <td class="py-2 px-4 border-b">
-                    <button class="text-blue-500 hover:text-blue-700">View</button>
-                </td>
-            </tr>
-            <!-- Dynamic rows will be inserted here from the database -->
+            
         </tbody>
     </table>
 </div>

@@ -29,10 +29,11 @@ $totalSavings = 0;
                 $originalPrice = $cart['prod_currprice'];
 
                 if ($cart['prod_promo_id']) {
-                    $price = number_format($cart['prod_currprice'] * $cart['cart_Qty'] * (1 - $cart['promo_rate']), 2) . " - " . ($cart['promo_rate'] * 100) . "%";
+                    $price = ($cart['prod_currprice'] * $cart['cart_Qty'] * (1 - $cart['promo_rate'])) . " - " . ($cart['promo_rate'] * 100) . "%";
                 } else {
-                    $price = number_format($cart['prod_currprice'] * $cart['cart_Qty'], 2);
+                    $price = $cart['prod_currprice'] * $cart['cart_Qty'];
                 }
+                
             ?>
             <!-- Product Item -->
             <div class="flex flex-col lg:flex-row items-center border-t border-gray-200 pt-6 relative lg:space-x-6">

@@ -54,7 +54,7 @@
 
 
         <!-- New Products Card -->
-        <div class="bg-white p-6 rounded-lg shadow-lg" id="bestSellingProducts">
+        <div class="bg-white p-6 rounded-lg shadow-lg" id="NewProduct">
            
         </div>
 

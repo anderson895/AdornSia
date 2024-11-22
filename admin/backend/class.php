@@ -108,7 +108,7 @@ class global_class extends db_connect
     public function StockLevel()
 {
     // SQL query to get product details including the stock level
-    $query = "SELECT prod_id, prod_name, product_stocks, prod_critical FROM product WHERE prod_status = 1"; // Ensuring only active products are considered
+    $query = "SELECT * FROM product WHERE prod_status = 1"; // Ensuring only active products are considered
     
     $result = $this->conn->query($query);
     

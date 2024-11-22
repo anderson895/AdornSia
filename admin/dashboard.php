@@ -11,7 +11,7 @@
 </div>
 
 <!-- Dashboard Cards -->
-<div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-6">
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
     <!-- Card for Total Customer -->
     <div class="bg-white p-6 rounded-lg shadow-lg flex flex-col items-center">
         <img src="assets/service.png" alt="students icon" class="mb-4 w-12 max-w-full" />
@@ -33,9 +33,6 @@
         <p class="text-blue-500 text-2xl font-bold numOrders" id="numOrders">0</p>
     </div>
 </div>
-
-
-
 
 <!-- Sales Performance Cards -->
 <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mt-8">
@@ -67,10 +64,9 @@
     </div>
 </div>
 
-
 <!-- Horizontal Scrollable Cards for Product Categories -->
 <div class="mt-8">
-    <div class="grid grid-cols-4 gap-6 w-full mx-auto justify-center">
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 w-full mx-auto justify-center">
         <!-- Best Selling Products Card -->
         <div class="bg-white p-6 rounded-lg shadow-lg w-full" id="bestSellingProducts">
         </div>
@@ -88,7 +84,6 @@
         </div>
     </div>
 </div>
-
 
 
 

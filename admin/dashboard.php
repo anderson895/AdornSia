@@ -46,7 +46,7 @@
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 min-w-[600px]">
         
        <!-- Best Selling Products -->
-        <div class="bg-white p-6 rounded-lg shadow-lg h-96" id="bestSellingProducts">
+        <div class="bg-white p-6 rounded-lg shadow-lg h-96 overflow-y-auto" id="bestSellingProducts">
             <h3 class="text-gray-700 font-semibold text-lg mb-4">Best Selling Products</h3>
             <p class="text-sm text-gray-600">Placeholder for content...</p>
         </div>

@@ -112,8 +112,6 @@ $(document).ready(function() {
             var subtotal = $('#sub-total').text();
             var vat = $('#vat').text();
             var total = $('#total').text();
-
-           
         
             // Retrieve selected payment method and file input
             var selectedPaymentMethod = $("#paymentMethod option:selected").data('ename');
@@ -155,8 +153,6 @@ $(document).ready(function() {
             // Collect selected products' data from checkboxes
             var selectedProducts = [];
             $('.product-checkbox:checked').each(function() {
-
-                
                 selectedProducts.push({
                     productId: $(this).data('product-id'),
                     originalPrice: $(this).data('originalprice'),  // Use $(this) to get data for the current checkbox
@@ -168,9 +164,11 @@ $(document).ready(function() {
                 });
             
                 // Log the 'originalprice' for the current checkbox
-                console.log($(this).data('originalprice'));  // Logs the 'data-originalprice' value of the selected checkbox
+                console.log(selectedProducts);  // Logs the 'data-originalprice' value of the selected checkbox
             });
             
+
+            return; 
             // Ensure at least one product is selected
             if (selectedProducts.length === 0) {
                 alertify.error('Please select at least one product.');

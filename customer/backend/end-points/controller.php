@@ -209,7 +209,7 @@ if ($response['status'] === 'success') {
         foreach ($selectedProductsArray as $product) {
             $itemProductId = $product['productId'];
             $itemQty = intval($product['qty']);  
-            $itemTotalPrice = floatval($product['price']);  // Ensure price is a float
+            $itemTotalPrice =$product['price'];  // Ensure price is a float
             $originalPrice = $product['originalPrice'];
             $itemSize = $product['size'];
         

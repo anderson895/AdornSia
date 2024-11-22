@@ -3,34 +3,34 @@ include "../admin/backend/db.php";
 include "../admin/backend/class.php";
 
 // Create an instance of the SalesReport class
-$salesReport = new SalesReport($db);
+$db =new global_class();
 
 // Get the report type from the query parameter
 $reportType = isset($_GET['report_type']) ? $_GET['report_type'] : 'daily';
 
 // Define a function to fetch the sales report data based on the report type
 function getSalesReportData($reportType) {
-    global $salesReport;
+    global $db;
 
     switch ($reportType) {
         case 'daily':
             // Modify the query or filtering logic in the SalesReport class as needed
-            return $salesReport->getSalesReport(); // Get all sales (customize for the report type if needed)
+            return $db->getSalesReport(); // Get all sales (customize for the report type if needed)
             break;
         case 'weekly':
             // You can modify your SQL query to filter by weekly data
-            return $salesReport->getSalesReport(); // Modify as needed
+            return $db->getSalesReport(); // Modify as needed
             break;
         case 'monthly':
             // Modify your query for monthly data
-            return $salesReport->getSalesReport(); // Modify as needed
+            return $db->getSalesReport(); // Modify as needed
             break;
         case 'yearly':
             // Modify your query for yearly data
-            return $salesReport->getSalesReport(); // Modify as needed
+            return $db->getSalesReport(); // Modify as needed
             break;
         default:
-            return $salesReport->getSalesReport(); // Default to all sales
+            return $db->getSalesReport(); // Default to all sales
     }
 }
 

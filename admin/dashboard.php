@@ -61,12 +61,7 @@
         <!-- Inventory Status Low Stock Card -->
         <div class="bg-white p-6 rounded-lg shadow-lg" id="stock_status">
             <h3 class="text-gray-700 font-semibold text-lg mb-4">Inventory Status (Low Stock)</h3>
-            <!-- Placeholder for items -->
-            <ul>
-                <li class="text-sm text-gray-600">Item X</li>
-                <li class="text-sm text-gray-600">Item Y</li>
-                <li class="text-sm text-gray-600">Item Z</li>
-            </ul>
+           
         </div>
 
         <!-- Out of Stock Products Card -->

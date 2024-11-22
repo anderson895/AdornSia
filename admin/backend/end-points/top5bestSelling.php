@@ -1,21 +1,26 @@
 <?php
-// Disable error reporting temporarily to avoid unwanted output
-error_reporting(0);  // Turn off all PHP error reporting
-ini_set('display_errors', 0);  // Prevent errors from being displayed
-
 include('../class.php');
 $db = new global_class();
 
-// Fetch the top 5 best-selling products
 $orders = $db->top5bestSelling();
 
-header('Content-Type: application/json');
-
 if ($orders) {
-    // Output the products in a valid JSON format
-    echo json_encode($orders);
+    echo "<h1>Top 5 Best-Selling Products</h1>";
+    echo "<table border='1'>";
+    echo "<tr><th>Rank</th><th>Product Name</th><th>Quantity Sold</th></tr>";
+    
+    $rank = 1;
+    foreach ($orders as $order) {
+        echo "<tr>";
+        echo "<td>" . $rank . "</td>";
+        echo "<td>" . htmlspecialchars($order['prod_name']) . "</td>";
+        echo "<td>" . htmlspecialchars($order['total_quantity_sold']) . "</td>";
+        echo "</tr>";
+        $rank++;
+    }
+
+    echo "</table>";
 } else {
-    // Output a valid JSON error message
-    echo json_encode(['error' => 'No data available or an error occurred']);
+    echo "<p>No data available or an error occurred.</p>";
 }
 ?>

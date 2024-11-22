@@ -30,10 +30,10 @@ $(document).ready(function() {
 
         
         
-        $('#shipping-fee').text(sf);
-        $('#sub-total').text(subTotal);
-        $('#vat').text(vat);
-        $('#total').text(total);
+        $('#shipping-fee').text(sf.toFixed(2));
+        $('#sub-total').text(subTotal.toFixed(2));
+        $('#vat').text(vat.toFixed(2));
+        $('#total').text(total.toFixed(2));
     }
 
     $('#check-all').click(function() {

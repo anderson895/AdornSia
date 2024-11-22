@@ -21,6 +21,6 @@ if ($fetch_all_students): ?>
     <?php endforeach; ?>
 <?php else: ?>
     <tr>
-        <td colspan="5" class="p-2">No students found.</td>
+        <td colspan="5" class="p-2">No record found.</td>
     </tr>
 <?php endif; ?>

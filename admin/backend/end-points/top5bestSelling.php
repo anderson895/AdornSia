@@ -5,6 +5,7 @@ $db = new global_class();
 $orders = $db->top5bestSelling();
 
 if ($orders) {
+    echo "<table border='1'>";
     
     $rank = 1;
     foreach ($orders as $order) {

@@ -41,6 +41,10 @@
 
 
 
+
+
+<!-- Horizontal Scrollable Cards for Product Categories -->
+<div class="mt-8 px-4">
     <div class="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-6">
         
         
@@ -62,6 +66,8 @@
 
         
     </div>
+</div>
+
 
 
 

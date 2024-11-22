@@ -113,7 +113,7 @@ $(document).ready(function() {
             var vat = $('#vat').text();
             var total = $('#total').text();
 
-            console.log();
+            console.log(total);
 
             return;
         

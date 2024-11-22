@@ -113,9 +113,7 @@ $(document).ready(function() {
             var vat = $('#vat').text();
             var total = $('#total').text();
 
-            console.log(total);
-
-            return;
+           
         
             // Retrieve selected payment method and file input
             var selectedPaymentMethod = $("#paymentMethod option:selected").data('ename');
@@ -157,6 +155,8 @@ $(document).ready(function() {
             // Collect selected products' data from checkboxes
             var selectedProducts = [];
             $('.product-checkbox:checked').each(function() {
+
+                
                 selectedProducts.push({
                     productId: $(this).data('product-id'),
                     originalPrice: $(this).data('originalprice'),  // Use $(this) to get data for the current checkbox

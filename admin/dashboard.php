@@ -64,15 +64,7 @@
            
         </div>
 
-        <!-- Out of Stock Products Card -->
-        <div class="bg-white p-6 rounded-lg shadow-lg">
-            <h3 class="text-gray-700 font-semibold text-lg mb-4">Out of Stock</h3>
-            <!-- Placeholder for items -->
-            <ul>
-                <li class="text-sm text-gray-600">Item 1</li>
-                <li class="text-sm text-gray-600">Item 2</li>
-            </ul>
-        </div>
+        
     </div>
 </div>
 

@@ -36,17 +36,7 @@ $salesReport = $db->SalesReport();
     </form>
 </div>
 
-<script>
-// Show year range fields only for Yearly Report
-document.getElementById('report_type').addEventListener('change', function() {
-    var yearRangeDiv = document.getElementById('year_range');
-    if (this.value === 'yearly') {
-        yearRangeDiv.classList.remove('hidden');
-    } else {
-        yearRangeDiv.classList.add('hidden');
-    }
-});
-</script>
+
 
 
     <h1 class="text-lg font-semibold text-gray-700 mb-4">Sales Overview</h1>
@@ -86,3 +76,4 @@ document.getElementById('report_type').addEventListener('change', function() {
 </div>
 
 <?php include "components/footer.php"; ?>
+<script src="js/generate_report.js"></script>

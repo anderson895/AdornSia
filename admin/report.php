@@ -53,10 +53,10 @@ $salesReport = $db->salesReport();
                 foreach ($salesReport as $report) {
             ?>
             <tr>
-                <td class="py-2 px-4 border-b"><?=$reportp['order_date']?></td>
-                <td class="py-2 px-4 border-b"><?=$reportp['product']?></td>
-                <td class="py-2 px-4 border-b"><?=$reportp['item_qty']?></td>
-                <td class="py-2 px-4 border-b">Php <?=$reportp['total']?></td>
+                <td class="py-2 px-4 border-b"><?=$report['order_date']?></td>
+                <td class="py-2 px-4 border-b"><?=$report['product']?></td>
+                <td class="py-2 px-4 border-b"><?=$report['item_qty']?></td>
+                <td class="py-2 px-4 border-b">Php <?=$report['total']?></td>
                 
             </tr>
             <?php 

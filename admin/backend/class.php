@@ -109,8 +109,10 @@ class global_class extends db_connect
 {
     // SQL query to get the top 5 customers by total amount spent
     $query = "
-        SELECT order_user_id, SUM(total) AS total_spent
+        SELECT user.* ,order_user_id, SUM(total) AS total_spent
         FROM orders
+        LEFT JOIN 
+                user ON user.user_id = orders.order_user_id
         GROUP BY order_user_id
         ORDER BY total_spent DESC
         LIMIT 5

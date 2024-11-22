@@ -1,7 +1,6 @@
 <?php
-// Include the necessary files and instantiate the SalesReport class
-include "../components/db.php"; // Make sure this includes the database connection
-include "../classes/SalesReport.php"; // Adjust path if needed
+include "../admin/backend/db.php"; 
+include "../admin/backend/class.php";
 
 // Create an instance of the SalesReport class
 $salesReport = new SalesReport($db);

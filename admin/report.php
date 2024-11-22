@@ -36,8 +36,13 @@ $salesReport = $db->SalesReport();
     </div>
 </div>
 
+<!-- Print Button -->
+<div class="flex justify-end mb-4">
+    <button onclick="printReport()" class="px-4 py-2 bg-green-500 text-white rounded-md">Print Report</button>
+</div>
+
 <!-- Sales Overview Table -->
-<div class="bg-white rounded-lg shadow-lg p-6 mb-6">
+<div class="bg-white rounded-lg shadow-lg p-6 mb-6" id="printableArea">
     <h1 class="text-lg font-semibold text-gray-700 mb-4">Sales Overview</h1>
     <div class="overflow-x-auto">
         <table class="min-w-full bg-white border border-gray-300 rounded-md shadow-md">
@@ -76,3 +81,15 @@ $salesReport = $db->SalesReport();
 <?php include "components/footer.php"; ?>
 
 <script src="js/generate_report.js"></script>
+
+<script>
+    // Function to print the content
+    function printReport() {
+        var printContent = document.getElementById('printableArea').innerHTML;
+        var originalContent = document.body.innerHTML;
+
+        document.body.innerHTML = printContent;
+        window.print();
+        document.body.innerHTML = originalContent;
+    }
+</script>

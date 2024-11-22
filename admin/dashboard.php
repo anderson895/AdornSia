@@ -84,7 +84,7 @@
         </div>
 
         <!-- Empty Column for Layout Consistency -->
-        <div class="bg-white p-6 rounded-lg shadow-lg w-full">
+        <div class="bg-white p-6 rounded-lg shadow-lg w-full" id="top_customer">
         </div>
     </div>
 </div>

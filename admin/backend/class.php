@@ -105,6 +105,35 @@ class global_class extends db_connect
 
 
 
+    public function top5Customer()
+{
+    // SQL query to get the top 5 customers by total amount spent
+    $query = "
+        SELECT order_user_id, SUM(total) AS total_spent
+        FROM orders
+        GROUP BY order_user_id
+        ORDER BY total_spent DESC
+        LIMIT 5
+    ";
+    
+    // Execute the query
+    $result = $this->conn->query($query);
+    
+    if ($result) {
+        $topCustomers = [];
+        while ($row = $result->fetch_assoc()) {
+            $topCustomers[] = $row;
+        }
+        return $topCustomers;
+    } else {
+        // Log the error for debugging
+        error_log('Database query failed: ' . $this->conn->error);
+        echo json_encode(['error' => 'Failed to retrieve data']);
+    }
+}
+
+    
+
     public function StockLevel()
 {
     // SQL query to get product details including the stock level

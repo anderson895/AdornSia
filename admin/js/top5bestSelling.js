@@ -8,3 +8,6 @@ $.ajax({
         $('#bestSellingProducts').html('<p class="text-sm text-red-600">An error occurred while fetching data.</p>');
     }
 });
+
+
+

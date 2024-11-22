@@ -2,7 +2,7 @@
     $.ajax({
         url: 'backend/end-points/top5bestSelling.php',
         method: 'GET',            
-        dataType: 'json',           
+        // dataType: 'json',           
         success: function(data) {
             console.log(data);
 

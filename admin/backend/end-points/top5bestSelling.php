@@ -27,6 +27,6 @@ if ($orders) {
     $response .= "</ul>"; 
     echo $response;
 } else {
-    echo "<p class='text-gray-500'>No data available or an error occurred.</p>";
+    echo "<p class='text-gray-500'>No data available</p>";
 }
 ?>

@@ -108,7 +108,13 @@ class global_class extends db_connect
 
     public function topNewProduct()
     {
+        // SQL query to get the latest products
         $query = "
+            SELECT prod_id, prod_code, prod_name, prod_currprice, prod_image, prod_added 
+            FROM product 
+            WHERE prod_status = 1
+            ORDER BY prod_added DESC
+            LIMIT 10
         ";
         
         $result = $this->conn->query($query);
@@ -125,6 +131,7 @@ class global_class extends db_connect
             echo json_encode(['error' => 'Failed to retrieve data']);
         }
     }
+    
     
     
   public function getWeeklySalesData()

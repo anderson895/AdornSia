@@ -54,16 +54,8 @@
 
 
         <!-- New Products Card -->
-        <div class="bg-white p-6 rounded-lg shadow-lg">
-            <h3 class="text-gray-700 font-semibold text-lg mb-4">New Products</h3>
-            <!-- Placeholder for products -->
-            <ul>
-                <li class="text-sm text-gray-600">Product A</li>
-                <li class="text-sm text-gray-600">Product B</li>
-                <li class="text-sm text-gray-600">Product C</li>
-                <li class="text-sm text-gray-600">Product D</li>
-                <li class="text-sm text-gray-600">Product E</li>
-            </ul>
+        <div class="bg-white p-6 rounded-lg shadow-lg" id="bestSellingProducts">
+           
         </div>
 
         <!-- Inventory Status Low Stock Card -->

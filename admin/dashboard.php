@@ -48,7 +48,7 @@
     <div class="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-6">
         
         
-        <div class="bg-white p-6 rounded-lg shadow-lg" id="bestSellingProducts">
+        <div class="bg-white p-8 rounded-lg shadow-lg" id="bestSellingProducts">
             <!-- AJAX response content will be inserted here -->
         </div>
 

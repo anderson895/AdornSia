@@ -2,7 +2,7 @@
 include "../admin/backend/class.php";
 
 // Create an instance of the SalesReport class
-$db =new global_class();
+$db = new global_class();
 
 // Get the report type from the query parameter
 $reportType = isset($_GET['report_type']) ? $_GET['report_type'] : 'daily';
@@ -13,21 +13,17 @@ function getSalesReportData($reportType) {
 
     switch ($reportType) {
         case 'daily':
-            // Modify the query or filtering logic in the SalesReport class as needed
-            return $db->getSalesReport(); // Get all sales (customize for the report type if needed)
-            break;
+            // Get daily sales
+            return $db->getSalesReport(); 
         case 'weekly':
             // You can modify your SQL query to filter by weekly data
-            return $db->getSalesReport(); // Modify as needed
-            break;
+            return $db->getSalesReport(); 
         case 'monthly':
             // Modify your query for monthly data
-            return $db->getSalesReport(); // Modify as needed
-            break;
+            return $db->getSalesReport(); 
         case 'yearly':
             // Modify your query for yearly data
-            return $db->getSalesReport(); // Modify as needed
-            break;
+            return $db->getSalesReport(); 
         default:
             return $db->getSalesReport(); // Default to all sales
     }
@@ -41,7 +37,46 @@ header('Content-Type: text/csv');
 header('Content-Disposition: attachment; filename="sales_report.csv"');
 $output = fopen('php://output', 'w');
 
-// Add CSV headers
+// Add a title based on the report type
+switch ($reportType) {
+    case 'daily':
+        $reportTitle = "Daily Sales Report";
+        break;
+    case 'weekly':
+        $reportTitle = "Weekly Sales Report";
+        break;
+    case 'monthly':
+        $reportTitle = "Monthly Sales Report";
+        break;
+    case 'yearly':
+        $reportTitle = "Yearly Sales Report";
+        break;
+    default:
+        $reportTitle = "Sales Report";
+}
+
+// Add the title row to the CSV
+fputcsv($output, [$reportTitle]);
+
+// Add a label row with the report period (optional: customize further)
+$dateRange = '';
+switch ($reportType) {
+    case 'daily':
+        $dateRange = 'Date Range: ' . date('F j, Y');
+        break;
+    case 'weekly':
+        $dateRange = 'Date Range: ' . date('F j, Y', strtotime('last Sunday')) . ' - ' . date('F j, Y');
+        break;
+    case 'monthly':
+        $dateRange = 'Date Range: ' . date('F, Y');
+        break;
+    case 'yearly':
+        $dateRange = 'Date Range: ' . date('Y');
+        break;
+}
+fputcsv($output, [$dateRange]);
+
+// Add column headers for the CSV
 fputcsv($output, ['Date', 'Product', 'Quantity Sold', 'Revenue']);
 
 // Add data rows to the CSV

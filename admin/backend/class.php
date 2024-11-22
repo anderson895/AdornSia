@@ -94,7 +94,7 @@ class global_class extends db_connect
             while ($row = $result->fetch_assoc()) {
                 $topProducts[] = $row;
             }
-            echo json_encode($topProducts);
+            return $topProducts;
         } else {
             // Log the error for debugging
             error_log('Database query failed: ' . $this->conn->error);

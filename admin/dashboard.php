@@ -109,3 +109,4 @@
 <script src="js/monthly_sales.js"></script>
 <script src="js/stock_status.js"></script>
 <script src="js/top5Customer.js"></script>
+<script src="js/generate_report.js"></script>

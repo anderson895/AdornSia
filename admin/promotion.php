@@ -20,7 +20,7 @@ include "components/header.php";
         <table id="userTable" class="display table-auto w-full text-sm text-left text-gray-500 dark:text-gray-400">
             <thead class="bg-gray-100 text-gray-700">
                 <tr>
-                    <th class="p-2">PROMO ID</th>
+                    <th class="p-2">#</th>
                     <th class="p-2">Promo</th>
                     <th class="p-2">Description</th>
                     <th class="p-2">Rate</th>

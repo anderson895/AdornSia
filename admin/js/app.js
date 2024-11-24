@@ -409,7 +409,7 @@ $(document).click(function(event) {
             processData: false, 
             contentType: false,
             success: function(response) {
-                alert("Promo updated successfully!");
+                alertify.success("Promo updated successfully!");
                 $("#promoModal").fadeOut();
             },
             error: function(error) {
@@ -445,7 +445,7 @@ $(document).click(function(event) {
               success: function(response) {
                       console.log(response);
                       if (response == "200") {
-                          alert("Promo deleted successfully!");
+                          alertify.success("Promo deleted successfully!");
                           location.reload(); // Reload the page to reflect changes
                       } else {
                         console.log(response);

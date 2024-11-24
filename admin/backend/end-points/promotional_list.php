@@ -10,7 +10,7 @@ if ($fetch_all_promotion): ?>
             <td class="p-2"><?= $promotion['promo_id']; ?></td>
             <td class="p-2"><?= $promotion['promo_name']; ?></td>
             <td class="p-2"><?= $promotion['promo_description']; ?></td>
-            <td class="p-2"><?= $promotion['promo_rate']; ?></td>
+            <td class="p-2"><?= ($promotion['promo_rate']*100)/2; ?></td>
             <td class="p-2"><?= $promotion['promo_expiration']; ?></td>
             <td class="p-2">
                 <button class="bg-blue-500 text-white py-1 px-3 rounded-md togglerUpdateUser" data-user_id=<?=$promotion['promo_id']?>>View</button>

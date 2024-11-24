@@ -43,6 +43,7 @@ class global_class extends db_connect
             LEFT JOIN promo ON promo.promo_id = product.prod_promo_id
             LEFT JOIN product_sizes AS sizes ON sizes.size_prod_id = product.prod_id
             WHERE cart.cart_user_id = '$userID'
+            AND promo.promo_status = 1
             GROUP BY cart.cart_id, product.prod_id;
             ";
     
@@ -76,6 +77,7 @@ class global_class extends db_connect
             LEFT JOIN promo
                 ON promo.promo_id = product.prod_promo_id
         where prod_id ='$product_id'
+        AND promo.promo_status = 1
         "    
     );
 
@@ -107,6 +109,7 @@ class global_class extends db_connect
             LEFT JOIN wishlist
                 ON wishlist.wish_prod_id = product.prod_id 
             where wishlist.wish_user_id ='$userID'
+            AND promo.promo_status = 1
         "    
     );
         if ($query->execute()) {
@@ -663,6 +666,7 @@ public function AddToWish($userId, $productId)
                 ON product.prod_category_id = category.category_id
             LEFT JOIN promo
                 ON promo.promo_id = product.prod_promo_id
+                AND promo.promo_status = 1
         ");
     
         if ($query->execute()) {

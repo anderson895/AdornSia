@@ -3,6 +3,9 @@
 $orderId = $_GET['orderId'];
 $fetch_item_orders = $db->fetch_item_orders($orderId);
 
+echo "<pre>";
+print_r($fetch_item_orders);
+echo "</pre>";
 if ($fetch_item_orders->num_rows>0): 
     // Format the order date
     $orderDate = new DateTime($fetch_item_orders[0]['order_date']);

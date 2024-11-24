@@ -9,7 +9,7 @@
 
     foreach ($fetch_all_product as $product):
 
-        if($product['prod_promo_id']==null){
+        if($product['prod_promo_id']!=null){
             echo "promo id is null";
         }
         $promo_rate_percentage = $product['promo_rate'] * 100; // Assuming promo_rate is a decimal (e.g., 0.20 for 20%)

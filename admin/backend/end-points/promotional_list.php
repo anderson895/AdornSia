@@ -8,7 +8,7 @@ $fetch_all_promotion = $db->fetch_all_promotion();
 echo "<pre>";
 print_r($fetch_all_promotion);
 echo "</pre>";
-if ($fetch_all_promotion): ?>
+if ($result->num_rows > 0): ?>
   
     <?php foreach ($fetch_all_promotion as $promotion): 
         // Get the current date in Asia/Manila timezone

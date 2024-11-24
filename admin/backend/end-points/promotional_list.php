@@ -28,7 +28,7 @@ if ($fetch_all_promotion): ?>
 
             <td class="p-2">
                 <button class="bg-blue-500 text-white py-1 px-3 rounded-md togglerUpdatePromo" 
-                data-user_id="<?= $promotion['promo_id'] ?>"
+                data-promo_id="<?= $promotion['promo_id'] ?>"
                 data-promo_name="<?= $promotion['promo_name'] ?>"
                 data-promo_description="<?= $promotion['promo_description'] ?>"
                 data-promo_rate="<?= $promotion['promo_rate'] ?>"

@@ -63,19 +63,24 @@ class global_class extends db_connect
 
     public function fetch_product_info($product_id){
         $query = $this->conn->prepare("SELECT 
-                product.*, 
-                category.*, 
-                promo.*, 
-                CASE 
-                    WHEN promo.promo_expiration < NOW() THEN NULL
-                    ELSE product.prod_promo_id
-                END AS prod_promo_id
-            FROM product
-            LEFT JOIN category
-                ON product.prod_category_id = category.category_id
-            LEFT JOIN promo
-                ON promo.promo_id = product.prod_promo_id
-        where prod_id ='$product_id'
+    product.*, 
+    category.*, 
+    promo.*, 
+    CASE 
+        WHEN promo.promo_expiration < NOW() THEN NULL
+        ELSE product.prod_promo_id
+    END AS prod_promo_id
+FROM 
+    product
+LEFT JOIN 
+    category ON product.prod_category_id = category.category_id
+LEFT JOIN 
+    promo ON promo.promo_id = product.prod_promo_id
+WHERE 
+    prod_id = '$product_id' 
+    AND (promo.promo_status = 1 OR promo.promo_status IS NULL)
+    AND (promo.promo_expiration >= NOW() OR promo.promo_expiration IS NULL);
+
         "    
     );
 

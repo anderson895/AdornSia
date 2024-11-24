@@ -444,7 +444,7 @@ $(document).click(function(event) {
               data: { promo_id: promo_id, requestType:'RemovePromo'},
               success: function(response) {
                       console.log(response);
-                      if (response == "success") {
+                      if (response == "200") {
                           alert("Promo deleted successfully!");
                           location.reload(); // Reload the page to reflect changes
                       } else {

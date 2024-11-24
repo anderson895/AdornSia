@@ -17,7 +17,7 @@ class global_class extends db_connect
         ON product.prod_category_id = category.category_id
         LEFT JOIN promo
         ON promo.promo_id  = product.prod_promo_id
-        AND (promo.promo_status = 1 OR promo.promo_status IS NULL)
+        AND promo.promo_status = 1
         "    
     );
 

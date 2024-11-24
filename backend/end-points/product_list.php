@@ -26,7 +26,7 @@
             <!-- Product Description -->
             <p class="text-gray-600 transition-colors hover:text-gray-800"><?= substr($product['prod_description'], 0, 20) . (strlen($product['prod_description']) > 20 ? '...' : '') ?></p>
 
-            <?php if ($product['prod_promo_id']): ?>
+            <?php if ($product['promo_id']): ?>
                 <!-- Price with discount -->
                 <p class="text-lg font-bold text-red-600">PHP <?=number_format($discounted_price, 2);?></p>
                 <p class="text-sm text-gray-500 line-through">PHP <?=$product['prod_currprice']?></p>

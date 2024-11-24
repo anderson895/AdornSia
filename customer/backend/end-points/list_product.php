@@ -8,6 +8,10 @@
     $fetch_all_product = $db->fetch_all_product();  // Fetch all products
 
     foreach ($fetch_all_product as $product):
+
+        if($product['prod_promo_id']==null){
+            echo "promo id is null";
+        }
         $promo_rate_percentage = $product['promo_rate'] * 100; // Assuming promo_rate is a decimal (e.g., 0.20 for 20%)
         $discount_amount = $product['prod_currprice'] * $product['promo_rate']; // Calculate the discount amount
         $discounted_price = $product['prod_currprice'] - $discount_amount; 

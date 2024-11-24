@@ -80,14 +80,38 @@ class global_class extends db_connect
         WHERE product.prod_id = $product_id
         "    
     );
-
-    
         if ($query->execute()) {
             $result = $query->get_result();
             return $result;
         }
     }
 
+
+
+    
+    public function fetch_all_product() {
+        $query = $this->conn->prepare("SELECT 
+                product.*, 
+                category.*, 
+                promo.*, 
+                CASE 
+                    WHEN promo.promo_expiration < NOW() THEN NULL
+                    WHEN promo.promo_status = '0' THEN NULL
+                    ELSE product.prod_promo_id
+                END AS prod_promo_id
+            FROM product
+            LEFT JOIN category
+                ON product.prod_category_id = category.category_id
+            LEFT JOIN promo
+                ON promo.promo_id = product.prod_promo_id
+        ");
+    
+        if ($query->execute()) {
+            $result = $query->get_result();
+            return $result;
+        }
+    }
+    
 
 
 
@@ -651,30 +675,6 @@ public function AddToWish($userId, $productId)
    
 
 
-    public function fetch_all_product() {
-        $query = $this->conn->prepare("
-            SELECT 
-                product.*, 
-                category.*, 
-                promo.*, 
-                CASE 
-                    WHEN promo.promo_expiration < NOW() THEN NULL
-                    WHEN promo.promo_status = '0' THEN NULL
-                    ELSE product.prod_promo_id
-                END AS prod_promo_id
-            FROM product
-            LEFT JOIN category
-                ON product.prod_category_id = category.category_id
-            LEFT JOIN promo
-                ON promo.promo_id = product.prod_promo_id
-        ");
-    
-        if ($query->execute()) {
-            $result = $query->get_result();
-            return $result;
-        }
-    }
-    
 
 
     public function fetch_all_categories(){

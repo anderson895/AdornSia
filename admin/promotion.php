@@ -29,7 +29,7 @@ include "components/header.php";
                 </tr>
             </thead>
             <tbody>
-                <!-- <?php include "backend/end-points/customers_list.php"; ?> -->
+                <?php include "backend/end-points/promotional_list.php"; ?>
             </tbody>
         </table>
     </div>

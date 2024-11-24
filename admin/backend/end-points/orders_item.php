@@ -1,12 +1,8 @@
 <?php 
 
-
 $orderId = $_GET['orderId'];
 $fetch_item_orders = $db->fetch_item_orders($orderId);
 
-echo "<pre>";
-print_r($fetch_item_orders);
-echo "</pre>";
 if ($fetch_item_orders->num_rows>0): 
     // Format the order date
     $orderDate = new DateTime($fetch_item_orders[0]['order_date']);
@@ -133,8 +129,3 @@ if ($fetch_item_orders->num_rows>0):
 <?php endif; ?>
 
     </div>
-<?php else: ?>
-    <div class="container mx-auto p-6">
-        <p class="text-center text-gray-500 text-lg">No record found.</p>
-    </div>
-<?php endif; ?>

@@ -27,8 +27,15 @@ if ($fetch_all_promotion): ?>
             </td>
 
             <td class="p-2">
-                <button class="bg-blue-500 text-white py-1 px-3 rounded-md togglerUpdateUser" data-user_id="<?= $promotion['promo_id'] ?>">Update</button>
-                <button class="bg-red-500 text-white py-1 px-3 rounded-md" data-user_id="<?= $promotion['promo_id'] ?>">Remove</button>
+                <button class="bg-blue-500 text-white py-1 px-3 rounded-md togglerUpdatePromo" 
+                data-user_id="<?= $promotion['promo_id'] ?>"
+                data-promo_name="<?= $promotion['promo_name'] ?>"
+                data-promo_description="<?= $promotion['promo_description'] ?>"
+                data-promo_rate="<?= $promotion['promo_rate'] ?>"
+                data-promo_expiration="<?= $promotion['promo_expiration'] ?>"
+                
+                >Update</button>
+                <button class="bg-red-500 text-white py-1 px-3 rounded-md togglerRemovePromo" data-user_id="<?= $promotion['promo_id'] ?>">Remove</button>
             </td>
         </tr>
     <?php endforeach; ?>

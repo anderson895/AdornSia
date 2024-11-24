@@ -15,6 +15,12 @@ include "components/header.php";
 <div class="bg-white rounded-lg shadow-lg p-6">
     <h3 class="text-xl font-semibold text-gray-700 mb-4">Customer List</h3>
 
+    <div class="legend">
+        <ul>
+            <li><span style="color: green;">&#8226;</span> Active Promotions</li>
+            <li><span style="color: red;">&#8226;</span> Expired Promotions</li>
+        </ul>
+    </div>
     <!-- Table Wrapper for Responsiveness -->
     <div class="overflow-x-auto">
         <table id="userTable" class="display table-auto w-full text-sm text-left text-gray-500 dark:text-gray-400">

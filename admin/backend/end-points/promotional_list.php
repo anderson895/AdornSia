@@ -6,15 +6,6 @@ date_default_timezone_set('Asia/Manila');
 $fetch_all_promotion = $db->fetch_all_promotion();
 
 if ($fetch_all_promotion): ?>
-    <!-- Legend for the guide -->
-    <div class="legend">
-        <p><strong>Legend:</strong></p>
-        <ul>
-            <li><span style="color: green;">&#8226;</span> Active Promotions</li>
-            <li><span style="color: red;">&#8226;</span> Expired Promotions</li>
-        </ul>
-    </div>
-
   
             <?php foreach ($fetch_all_promotion as $promotion): 
                 // Get the current date in Asia/Manila timezone

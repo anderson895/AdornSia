@@ -78,7 +78,7 @@ include "components/header.php";
             
             <!-- Buttons -->
             <div class="flex justify-between mt-4">
-                <button type="button" class="bg-gray-500 text-white py-2 px-4 rounded-md">Close</button>
+                <button type="button" class="closeModal bg-gray-500 text-white py-2 px-4 rounded-md">Close</button>
                 <button type="submit" id="savePromo" class="bg-blue-500 text-white py-2 px-4 rounded-md">Save</button>
             </div>
         </form>

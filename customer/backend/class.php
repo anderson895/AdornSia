@@ -79,14 +79,19 @@ class global_class extends db_connect
             WHERE prod_id = '$product_id'
               AND (promo.promo_status = 1 OR promo.promo_expiration >= NOW())
         ";
-
     
-        if ($query->execute()) {
-            $result = $query->get_result();
-            return $result;
+        // Execute the query
+        $result = $this->conn->query($query);
+    
+        // Check for execution success and return the result
+        if ($result) {
+            return $result->fetch_assoc(); // Return a single row as an associative array
+        } else {
+            // Handle error appropriately (e.g., log the error, throw an exception, etc.)
+            die("Database query failed: " . $this->conn->error);
         }
     }
-
+    
 
 
 

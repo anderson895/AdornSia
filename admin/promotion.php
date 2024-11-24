@@ -4,10 +4,7 @@ include "components/header.php";
 <div class="flex justify-between items-center bg-white p-6 mb-8 rounded-lg shadow-lg">
     <h2 class="text-2xl font-semibold text-gray-800">Marketing Promotions</h2>
     <div class="flex items-center gap-4">
-        <!-- Add Promo Button -->
-        <button id="addPromoBtn" class="bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded-md shadow-md">
-            + Add Promo
-        </button>
+       
         <!-- Profile Icon -->
         <div class="w-12 h-12 bg-gray-300 rounded-full flex items-center justify-center text-xl font-bold text-white">
             <?php
@@ -20,7 +17,10 @@ include "components/header.php";
 <!-- Card for Table -->
 <div class="bg-white rounded-lg shadow-lg p-8">
     <h3 class="text-2xl font-semibold text-gray-800 mb-6">Promo List</h3>
-    
+     <!-- Add Promo Button -->
+     <button id="addPromoBtn" class="bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded-md shadow-md">
+            + Add Promo
+        </button>
     <div class="legend mb-4 text-sm text-gray-600">
         <ul>
             <li><span class="text-green-600 text-xl">&#8226;</span> Active Promotions</li>

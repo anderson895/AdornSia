@@ -234,6 +234,24 @@ if ($orderStatus === "Canceled") {
         }
 
 
+    }else if($_POST['requestType'] =='updatePromo'){
+
+      
+        $promo_id=$_POST['promo_id'];
+        $promo_name=$_POST['promo_name'];
+        $promo_description=$_POST['promo_description'];
+        $promo_rate=$_POST['promo_rate'];
+        $promo_expiration=$_POST['promo_expiration'];
+
+        $order = $db->updatePromo($promo_id, $promo_name,$promo_description,$promo_rate,$promo_expiration);
+
+        if ($order=="success") {
+            echo 200; 
+        } else {
+            echo 'Failed to update order in the database.';
+        }
+
+
     }else{
         echo 'Invalid request type.';
     }

@@ -389,44 +389,35 @@ $(document).click(function(event) {
     });
 
     // Close modal when "Close" button is clicked
-    $("#closeModal").on("click", function() {
-      $("#closeModal").fadeOut();
+    $(".closeModal").on("click", function() {
+      $("#promoModal").fadeOut();
     });
 
     // Handle form submission (Save Promo)
     $("#promoUpdateForm").on("submit", function(e) {
-      e.preventDefault();
-
-      // Get updated values from the form
-      var updatedPromoName = $("#promo_name").val();
-      var updatedPromoDescription = $("#promo_description").val();
-      var updatedPromoRate = $("#promo_rate").val();
-      var updatedPromoExpiration = $("#promo_expiration").val();
-      var promoId = $("#promoModal").val(); // Get the promo ID from the modal data
-
-      // Optionally, you can send these values to the server with AJAX to update the promotion
-      $.ajax({
-          url: 'path_to_your_backend_script',  // Replace with your backend URL
-          method: 'POST',
-          data: {
-              promo_id: promoId,  // Send the promo ID
-              promo_name: updatedPromoName,
-              promo_description: updatedPromoDescription,
-              promo_rate: updatedPromoRate,
-              promo_expiration: updatedPromoExpiration
-          },
-          success: function(response) {
-              // Handle the response (e.g., show a success message, update the table, etc.)
-              alert("Promo updated successfully!");
-              $("#promoModal").addClass("hidden");  // Close the modal
-              // Optionally update the row in the table with the new data
-              // Example: $("#row_" + promoId).find("td").eq(1).text(updatedPromoName);
-          },
-          error: function(error) {
-              alert("Error updating promo.");
-          }
-      });
+      e.preventDefault(); 
+  
+        var formData = new FormData(this); 
+    
+        formData.append("requestType", 'updatePromo');  
+    
+        // Send the form data via AJAX
+        $.ajax({
+            url: "backend/end-points/controller.php", 
+            method: 'POST',
+            data: formData,
+            processData: false, 
+            contentType: false,
+            success: function(response) {
+                alert("Promo updated successfully!");
+                $("#promoModal").fadeOut();
+            },
+            error: function(error) {
+                alert("Error updating promo.");
+            }
+        });
     });
+  
   
   });
   

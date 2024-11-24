@@ -755,6 +755,30 @@ public function getDailySalesData()
     }
 
 
+
+    public function updatePromo($promo_id, $promo_name, $promo_description, $promo_rate, $promo_expiration) {
+        $query = $this->conn->prepare(
+            "UPDATE `promo` 
+             SET `promo_name` = ?, 
+                 `promo_description` = ?, 
+                 `promo_rate` = ?, 
+                 `promo_expiration` = ? 
+             WHERE `promo_id` = ?"
+        );
+        
+        // Bind parameters (s = string, i = integer, d = double)
+        $query->bind_param("ssdsi", $promo_name, $promo_description, $promo_rate, $promo_expiration, $promo_id);
+        
+        // Execute the query and check for success
+        if ($query->execute()) {
+            return 'success';
+        } else {
+            return false;
+        }
+    }
+    
+
+    
     public function fetch_all_refund() {
         $sql = "SELECT * FROM refund
         LEFT JOIN orders_item

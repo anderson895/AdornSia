@@ -443,8 +443,8 @@ $(document).click(function(event) {
               type: "POST",
               data: { promo_id: promo_id, requestType:'RemovePromo'},
               success: function(response) {
-                 
-                      if (result.status === "success") {
+                      console.log(response);
+                      if (response === "success") {
                           alert("Promo deleted successfully!");
                           location.reload(); // Reload the page to reflect changes
                       } else {

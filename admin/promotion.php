@@ -18,10 +18,11 @@ include "components/header.php";
 
     <div class="legend mb-4 text-sm text-gray-600">
         <ul>
-            <li><span class="text-green-600">&#8226;</span> Active Promotions</li>
-            <li><span class="text-red-600">&#8226;</span> Expired Promotions</li>
+            <li><span class="text-green-600 text-xl">&#8226;</span> Active Promotions</li>
+            <li><span class="text-red-600 text-xl">&#8226;</span> Expired Promotions</li>
         </ul>
     </div>
+
 
     <!-- Table Wrapper for Responsiveness -->
     <div class="overflow-x-auto">

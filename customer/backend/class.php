@@ -36,6 +36,7 @@ class global_class extends db_connect
         $query = "SELECT cart.*, product.*, promo.*, GROUP_CONCAT(sizes.size_id) AS sizes,
         CASE 
                     WHEN promo.promo_expiration < NOW() THEN NULL
+                    WHEN promo.promo_status = '0' THEN NULL
                     ELSE product.prod_promo_id
                 END AS prod_promo_id
             FROM `cart`
@@ -98,6 +99,7 @@ class global_class extends db_connect
                 wishlist.*, 
                 CASE 
                     WHEN promo.promo_expiration < NOW() THEN NULL
+                    WHEN promo.promo_status = '0' THEN NULL
                     ELSE product.prod_promo_id
                 END AS prod_promo_id
             FROM product
@@ -657,6 +659,7 @@ public function AddToWish($userId, $productId)
                 promo.*, 
                 CASE 
                     WHEN promo.promo_expiration < NOW() THEN NULL
+                    WHEN promo.promo_status = '0' THEN NULL
                     ELSE product.prod_promo_id
                 END AS prod_promo_id
             FROM product

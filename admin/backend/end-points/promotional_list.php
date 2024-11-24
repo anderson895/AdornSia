@@ -16,13 +16,13 @@ if ($fetch_all_promotion): ?>
                 $is_expired = strtotime($promo_expiration_date) < strtotime($current_date); 
             ?>
                 <tr>
-                    <td class="p-2"><?= $promotion['promo_id']; ?></td>
-                    <td class="p-2"><?= $promotion['promo_name']; ?></td>
-                    <td class="p-2"><?= $promotion['promo_description']; ?></td>
-                    <td class="p-2"><?= ($promotion['promo_rate'] * 100) / 2; ?>%</td>
+                    <td class="p-2 text-dark"><?= $promotion['promo_id']; ?></td>
+                    <td class="p-2 text-dark"><?= $promotion['promo_name']; ?></td>
+                    <td class="p-2 text-dark"><?= $promotion['promo_description']; ?></td>
+                    <td class="p-2 text-dark"><?= ($promotion['promo_rate'] * 100) / 2; ?>%</td>
 
                     <!-- Conditional font color for promo expiration -->
-                    <td class="p-2" style="color: <?= $is_expired ? 'red' : 'green'; ?>;">
+                    <td class="p-2 text-dark" style="color: <?= $is_expired ? 'red' : 'green'; ?>;">
                         <?= $promotion['promo_expiration']; ?>
                     </td>
 

@@ -427,7 +427,30 @@ $('#addPromoBtn').click(function(){
 
 
 
+ // Handle form submission (Save Promo)
+ $("#addPromoForm").on("submit", function(e) {
+  e.preventDefault(); 
 
+    var formData = new FormData(this); 
+
+    formData.append("requestType", 'addPromo');  
+
+    // Send the form data via AJAX
+    $.ajax({
+        url: "backend/end-points/controller.php", 
+        method: 'POST',
+        data: formData,
+        processData: false, 
+        contentType: false,
+        success: function(response) {
+            alertify.success("Promo Added successfully!");
+            $("#addPromoModal").fadeOut();
+        },
+        error: function(error) {
+            alert("Error updating promo.");
+        }
+    });
+});
 
 
 

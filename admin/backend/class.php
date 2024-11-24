@@ -777,6 +777,31 @@ public function getDailySalesData()
         }
     }
 
+    public function addPromo($promo_name, $promo_description, $promo_rate, $promo_expiration) {
+        // Prepare the SQL query
+        $query = $this->conn->prepare(
+            "INSERT INTO `promo` (`promo_name`, `promo_description`, `promo_rate`, `promo_expiration`, `promo_status`) 
+             VALUES (?, ?, ?, ?, 1)" // Assuming `promo_status` is defaulted to 1 for active promotions
+        );
+    
+        // Check if the query was prepared successfully
+        if (!$query) {
+            return 'Error: ' . $this->conn->error;
+        }
+    
+        // Bind parameters (s = string, d = double for rate)
+        $query->bind_param("ssds", $promo_name, $promo_description, $promo_rate, $promo_expiration);
+    
+        // Execute the query and check for success
+        if ($query->execute()) {
+            return 'success';
+        } else {
+            return 'Error: ' . $query->error;
+        }
+    }
+    
+ 
+
     public function updatePromoStatus($promo_id) {
        
             $query = "UPDATE `promo` 

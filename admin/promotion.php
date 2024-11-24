@@ -51,7 +51,7 @@ include "components/header.php";
 <div id="addPromoModal" class="fixed inset-0 bg-gray-900 bg-opacity-50 hidden flex items-center justify-center">
     <div class="bg-white rounded-lg shadow-lg w-96 p-6">
         <h3 class="text-lg font-semibold text-gray-800 mb-4">Add New Promo</h3>
-        <form id="addPromoForm" method="POST" action="backend/end-points/add_promo.php">
+        <form id="addPromoForm">
             <div class="mb-4">
                 <label for="promoName" class="block text-sm font-medium text-gray-700">Promo Name</label>
                 <input type="text" id="promoName" name="promo_name" class="w-full p-2 border rounded-md" required>

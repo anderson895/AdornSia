@@ -418,6 +418,46 @@ $(document).click(function(event) {
         });
     });
   
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    $(".togglerRemovePromo").on("click", function() {
+       var promo_id = $(this).data("promo_id"); 
+      
+      // Confirm before deleting
+      if (confirm("Are you sure you want to delete this promo?")) {
+          // Send AJAX request
+          $.ajax({
+              url: "backend/end-points/controller.php", 
+              type: "POST",
+              data: { promo_id: promo_id, requestType:'RemovePromo'},
+              success: function(response) {
+                 
+                      if (result.status === "success") {
+                          alert("Promo deleted successfully!");
+                          location.reload(); // Reload the page to reflect changes
+                      } else {
+                          alert("Error deleting promo: " + result.message);
+                      }
+                
+              },
+              error: function(xhr, status, error) {
+                  alert("AJAX error: " + error);
+              }
+          });
+      }
+  });
   
   });
   

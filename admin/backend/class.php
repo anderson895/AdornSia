@@ -776,6 +776,21 @@ public function getDailySalesData()
             return false;
         }
     }
+
+    public function updatePromoStatus($promo_id) {
+       
+            $query = "UPDATE `promo` 
+                      SET `promo_status` = 1
+                      WHERE `promo_id` = $promo_id";
+    
+            // Execute the query
+            if ($this->conn->query($query)) {
+                return 'success';
+            } else {
+                return 'Error: ' . $this->conn->error;
+            }
+    }
+    
     
 
     

@@ -250,6 +250,18 @@ if ($orderStatus === "Canceled") {
         } else {
             echo 'Failed to update order in the database.';
         }
+    }else if($_POST['requestType'] =='RemovePromo'){
+
+      
+        $promo_id=$_POST['promo_id'];
+
+        $order = $db->updatePromoStatus($promo_id);
+
+        if ($order=="success") {
+            echo 200; 
+        } else {
+            echo 'Failed to update order in the database.';
+        }
 
 
     }else{

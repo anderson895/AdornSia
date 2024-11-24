@@ -19,7 +19,7 @@ if ($fetch_all_promotion): ?>
             <td class="p-2 text-gray-900"><?= $promotion['promo_id']; ?></td>
             <td class="p-2 text-gray-900"><?= $promotion['promo_name']; ?></td>
             <td class="p-2 text-gray-900"><?= $promotion['promo_description']; ?></td>
-            <td class="p-2 text-gray-900"><?= ($promotion['promo_rate'] * 100) / 2; ?>%</td>
+            <td class="p-2 text-gray-900"><?= $promotion['promo_rate'] * 100; ?>%</td>
 
             <!-- Conditional font color for promo expiration using Tailwind classes -->
             <td class="p-2 <?= $is_expired ? 'text-red-600' : 'text-green-600'; ?>">
@@ -35,7 +35,7 @@ if ($fetch_all_promotion): ?>
                 data-promo_expiration="<?= $promotion['promo_expiration'] ?>"
                 
                 >Update</button>
-                <button class="bg-red-500 text-white py-1 px-3 rounded-md togglerRemovePromo" data-user_id="<?= $promotion['promo_id'] ?>">Remove</button>
+                <button class="bg-red-500 text-white py-1 px-3 rounded-md togglerRemovePromo" data-promo_id="<?= $promotion['promo_id'] ?>">Remove</button>
             </td>
         </tr>
     <?php endforeach; ?>

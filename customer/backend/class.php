@@ -68,7 +68,7 @@ class global_class extends db_connect
                 category.*, 
                 promo.*, 
                 CASE 
-                    WHEN promo.promo_expiration < NOW() THEN NULL
+                    WHEN promo.promo_status = 0 AND promo.promo_expiration < NOW() THEN NULL 
                     ELSE product.prod_promo_id
                 END AS prod_promo_id
             FROM product

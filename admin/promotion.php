@@ -65,7 +65,7 @@ include "components/header.php";
             </div>
             <div class="mb-4">
                 <label for="promo_description" class="block text-gray-700">Description</label>
-                <input type="text" id="promo_description" name="promo_description" class="mt-1 p-2 w-full border border-gray-300 rounded-md" required>
+                <input type="text" id="promo_description" name="promo_description" class="mt-1 p-2 w-full border border-gray-300 rounded-md">
             </div>
             <div class="mb-4">
                 <label for="promo_rate" class="block text-gray-700">Promo Rate (%)</label>

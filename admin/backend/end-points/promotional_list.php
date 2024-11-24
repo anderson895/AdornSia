@@ -16,18 +16,7 @@ if ($fetch_all_promotion): ?>
     </div>
 
     <!-- Table displaying the promotions -->
-    <table>
-        <thead>
-            <tr>
-                <th>Promo ID</th>
-                <th>Promo Name</th>
-                <th>Description</th>
-                <th>Rate</th>
-                <th>Expiration</th>
-                <th>Actions</th>
-            </tr>
-        </thead>
-        <tbody>
+  
             <?php foreach ($fetch_all_promotion as $promotion): 
                 // Get the current date in Asia/Manila timezone
                 $current_date = date('Y-m-d'); // Current date in YYYY-MM-DD format
@@ -48,8 +37,7 @@ if ($fetch_all_promotion): ?>
                     </td>
                 </tr>
             <?php endforeach; ?>
-        </tbody>
-    </table>
+        
 <?php else: ?>
     <tr>
         <td colspan="5" class="p-2">No record found.</td>

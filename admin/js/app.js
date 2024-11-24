@@ -405,7 +405,7 @@ $(document).click(function(event) {
       var updatedPromoDescription = $("#promo_description").val();
       var updatedPromoRate = $("#promo_rate").val();
       var updatedPromoExpiration = $("#promo_expiration").val();
-      var promoId = $("#promoModal").data("promo_id"); // Get the promo ID from the modal data
+      var promoId = $("#promoModal").val(); // Get the promo ID from the modal data
 
       // Optionally, you can send these values to the server with AJAX to update the promotion
       $.ajax({

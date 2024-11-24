@@ -16,7 +16,9 @@ class global_class extends db_connect
         LEFT JOIN category
         ON product.prod_category_id = category.category_id
         LEFT JOIN promo
-        ON promo.promo_id  = product.prod_promo_id"    
+        ON promo.promo_id  = product.prod_promo_id
+        AND promo.promo_status = 1
+        "    
     );
 
         if ($query->execute()) {

@@ -5,10 +5,7 @@ date_default_timezone_set('Asia/Manila');
 
 $fetch_all_promotion = $db->fetch_all_promotion();
 
-echo "<pre>";
-print_r($fetch_all_promotion);
-echo "</pre>";
-if ($result->num_rows > 0): ?>
+if ($fetch_all_promotion->num_rows > 0): ?>
   
     <?php foreach ($fetch_all_promotion as $promotion): 
         // Get the current date in Asia/Manila timezone

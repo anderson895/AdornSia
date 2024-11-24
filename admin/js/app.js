@@ -355,6 +355,9 @@ $(document).click(function(event) {
 
 
 
+$('#addPromoBtn').click(function(){
+  $('#addPromoModal').fadeIn()
+});
 
 
 

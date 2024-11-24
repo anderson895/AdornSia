@@ -1,14 +1,18 @@
 <?php 
 include "components/header.php";
 ?>
-
-<!-- Header Section -->
 <div class="flex justify-between items-center bg-white p-6 mb-8 rounded-lg shadow-lg">
     <h2 class="text-2xl font-semibold text-gray-800">Marketing Promotions</h2>
-    <div class="w-12 h-12 bg-gray-300 rounded-full flex items-center justify-center text-xl font-bold text-white">
-        <?php
-        echo substr(ucfirst($_SESSION['admin_username']), 0, 1);
-        ?>
+    <div class="flex items-center gap-4">
+        <!-- Add Promo Button -->
+        <button id="addPromoBtn" class="bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded-md shadow-md">
+            + Add Promo
+        </button>
+        <div class="w-12 h-12 bg-gray-300 rounded-full flex items-center justify-center text-xl font-bold text-white">
+            <?php
+            echo substr(ucfirst($_SESSION['admin_username']), 0, 1);
+            ?>
+        </div>
     </div>
 </div>
 
@@ -22,7 +26,6 @@ include "components/header.php";
             <li><span class="text-red-600 text-xl">&#8226;</span> Expired Promotions</li>
         </ul>
     </div>
-
 
     <!-- Table Wrapper for Responsiveness -->
     <div class="overflow-x-auto">
@@ -41,6 +44,35 @@ include "components/header.php";
                 <?php include "backend/end-points/promotional_list.php"; ?>
             </tbody>
         </table>
+    </div>
+</div>
+
+<!-- Modal for Adding Promo -->
+<div id="addPromoModal" class="fixed inset-0 bg-gray-900 bg-opacity-50 hidden flex items-center justify-center">
+    <div class="bg-white rounded-lg shadow-lg w-96 p-6">
+        <h3 class="text-lg font-semibold text-gray-800 mb-4">Add New Promo</h3>
+        <form id="addPromoForm" method="POST" action="backend/end-points/add_promo.php">
+            <div class="mb-4">
+                <label for="promoName" class="block text-sm font-medium text-gray-700">Promo Name</label>
+                <input type="text" id="promoName" name="promo_name" class="w-full p-2 border rounded-md" required>
+            </div>
+            <div class="mb-4">
+                <label for="promoDescription" class="block text-sm font-medium text-gray-700">Description</label>
+                <textarea id="promoDescription" name="promo_description" class="w-full p-2 border rounded-md" required></textarea>
+            </div>
+            <div class="mb-4">
+                <label for="promoRate" class="block text-sm font-medium text-gray-700">Rate (%)</label>
+                <input type="number" id="promoRate" name="promo_rate" class="w-full p-2 border rounded-md" required>
+            </div>
+            <div class="mb-4">
+                <label for="promoExpiration" class="block text-sm font-medium text-gray-700">Expiration Date</label>
+                <input type="date" id="promoExpiration" name="promo_expiration" class="w-full p-2 border rounded-md" required>
+            </div>
+            <div class="flex justify-end gap-2">
+                <button type="button" id="closeModal" class="bg-gray-500 hover:bg-gray-600 text-white py-1 px-3 rounded-md">Cancel</button>
+                <button type="submit" class="bg-blue-500 hover:bg-blue-600 text-white py-1 px-3 rounded-md">Add Promo</button>
+            </div>
+        </form>
     </div>
 </div>
 

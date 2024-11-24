@@ -14,9 +14,7 @@
             $discount_amount = $product['prod_currprice'] * $product['promo_rate']; // Calculate the discount amount
             $discounted_price = $product['prod_currprice'] - $discount_amount; 
         }else{
-            $promo_rate_percentage=0;
-            $discount_amount=0;
-            $discounted_price=0;
+            $discounted_price=$product['prod_currprice'];
         }
         
     ?>

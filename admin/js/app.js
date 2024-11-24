@@ -445,6 +445,7 @@ $('#addPromoBtn').click(function(){
         success: function(response) {
             alertify.success("Promo Added successfully!");
             $("#addPromoModal").fadeOut();
+            location.reload();
         },
         error: function(error) {
             alert("Error updating promo.");

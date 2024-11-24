@@ -69,7 +69,7 @@ include "components/header.php";
             </div>
             <div class="mb-4">
                 <label for="promo_rate" class="block text-gray-700">Promo Rate (%)</label>
-                <input type="number" id="promo_rate" name="promo_rate" class="mt-1 p-2 w-full border border-gray-300 rounded-md" required>
+                <input type="text" id="promo_rate" name="promo_rate" class="mt-1 p-2 w-full border border-gray-300 rounded-md" required>
             </div>
             <div class="mb-4">
                 <label for="promo_expiration" class="block text-gray-700">Expiration Date</label>

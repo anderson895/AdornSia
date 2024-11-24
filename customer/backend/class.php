@@ -77,7 +77,6 @@ class global_class extends db_connect
             LEFT JOIN promo
                 ON promo.promo_id = product.prod_promo_id
         where prod_id ='$product_id'
-        AND promo.promo_status = 1
         "    
     );
 
@@ -493,6 +492,7 @@ public function OrderRequest($address, $paymentMethod, $proofOfPayment, $fileNam
             SELECT 
                 (SELECT COUNT(*) FROM `cart` WHERE cart_user_id = $userID) AS cartCount,
                 (SELECT COUNT(*) FROM `wishlist` WHERE wish_user_id = $userID) AS wishlistCount
+            
         ";
 
         $result = $this->conn->query($query);

@@ -14,7 +14,6 @@ include "components/header.php";
 
 <!-- Card for Table -->
 <div class="bg-white rounded-lg shadow-lg p-8">
-    <h3 class="text-2xl font-semibold text-gray-800 mb-6">Customer List</h3>
 
     <div class="legend mb-4 text-sm text-gray-600">
         <ul>

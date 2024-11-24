@@ -5,6 +5,9 @@ date_default_timezone_set('Asia/Manila');
 
 $fetch_all_promotion = $db->fetch_all_promotion();
 
+echo "<pre>";
+print_r($fetch_all_promotion);
+echo "</pre>";
 if ($fetch_all_promotion): ?>
   
     <?php foreach ($fetch_all_promotion as $promotion): 

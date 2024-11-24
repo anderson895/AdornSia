@@ -384,9 +384,6 @@ $(document).click(function(event) {
       $("#promo_rate").val(promo_rate);
       $("#promo_expiration").val(promo_expiration);
 
-      // Store promoId in the modal for later use (you'll need it when saving)
-      $("#promoModal").data("promo_id", promoId);
-
       // Show the modal
       $("#promoModal").fadeIn();
     });

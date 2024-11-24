@@ -780,7 +780,7 @@ public function getDailySalesData()
     public function updatePromoStatus($promo_id) {
        
             $query = "UPDATE `promo` 
-                      SET `promo_status` = 1
+                      SET `promo_status` = 0
                       WHERE `promo_id` = $promo_id";
     
             // Execute the query

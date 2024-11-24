@@ -3,7 +3,7 @@ include "components/header.php";
 ?>
 
 <div class="flex justify-between items-center bg-white p-4 mb-6 rounded-md shadow-md">
-    <h2 class="text-lg font-semibold text-gray-700">Customer</h2>
+    <h2 class="text-lg font-semibold text-gray-700">Marketing Promotions</h2>
     <div class="w-10 h-10 bg-gray-300 rounded-full flex items-center justify-center text-lg font-bold text-white">
         <?php
         echo substr(ucfirst($_SESSION['admin_username']), 0, 1);
@@ -20,16 +20,16 @@ include "components/header.php";
         <table id="userTable" class="display table-auto w-full text-sm text-left text-gray-500 dark:text-gray-400">
             <thead class="bg-gray-100 text-gray-700">
                 <tr>
-                    <th class="p-2">ID</th>
-                    <th class="p-2">Fullname</th>
-                    <th class="p-2">Email</th>
-                    <th class="p-2">Phone</th>
+                    <th class="p-2">PROMO ID</th>
+                    <th class="p-2">Promo</th>
+                    <th class="p-2">Description</th>
+                    <th class="p-2">Rate</th>
                     <th class="p-2">Status</th>
-                    <th class="p-2">Action</th>
+                    <th class="p-2">Expiration</th>
                 </tr>
             </thead>
             <tbody>
-                <?php include "backend/end-points/customers_list.php"; ?>
+                <!-- <?php include "backend/end-points/customers_list.php"; ?> -->
             </tbody>
         </table>
     </div>

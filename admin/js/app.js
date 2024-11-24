@@ -366,6 +366,9 @@ $(document).click(function(event) {
 
     // Open modal when "Update" button is clicked
     $(".togglerUpdatePromo").on("click", function() {
+
+      console.log('ok');
+
       var promo_id = $(this).data("promo_id"); 
       var promo_name = $(this).data("promo_name"); 
       var promo_description = $(this).data("promo_description"); 

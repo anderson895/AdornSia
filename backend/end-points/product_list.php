@@ -8,9 +8,13 @@
     $fetch_all_product = $db->fetch_all_product();  // Fetch all products
 
     foreach ($fetch_all_product as $product):
-        $promo_rate_percentage = $product['promo_rate'] * 100; // Assuming promo_rate is a decimal (e.g., 0.20 for 20%)
-        $discount_amount = $product['prod_currprice'] * $product['promo_rate']; // Calculate the discount amount
-        $discounted_price = $product['prod_currprice'] - $discount_amount; 
+        if($product['prod_promo_id']){
+            $promo_rate_percentage = $product['promo_rate'] * 100; // Assuming promo_rate is a decimal (e.g., 0.20 for 20%)
+            $discount_amount = $product['prod_currprice'] * $product['promo_rate']; // Calculate the discount amount
+            $discounted_price = $product['prod_currprice'] - $discount_amount; 
+        }else{
+            $discounted_price=$product['prod_currprice'];
+        }
     ?>
     
     <!-- Product Card -->
@@ -26,7 +30,7 @@
             <!-- Product Description -->
             <p class="text-gray-600 transition-colors hover:text-gray-800"><?= substr($product['prod_description'], 0, 20) . (strlen($product['prod_description']) > 20 ? '...' : '') ?></p>
 
-            <?php if ($product['promo_id']): ?>
+            <?php if ($product['prod_promo_id']): ?>
                 <!-- Price with discount -->
                 <p class="text-lg font-bold text-red-600">PHP <?=number_format($discounted_price, 2);?></p>
                 <p class="text-sm text-gray-500 line-through">PHP <?=$product['prod_currprice']?></p>

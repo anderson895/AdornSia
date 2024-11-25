@@ -1,6 +1,8 @@
 <?php
 include ('db.php');
 date_default_timezone_set('Asia/Manila');
+$getDateToday = date('Y-m-d H:i:s'); 
+
 
 class global_class extends db_connect
 {
@@ -420,36 +422,24 @@ public function getDailySalesData()
         $product_Image,
         $product_Stocks
     ) {
-        // Get today's date
-        $getDateToday = date('Y-m-d H:i:s'); // Or use any other format as needed
         
-        // Prepare the SQL query with placeholders for bound parameters
-        $query = $this->conn->prepare("INSERT INTO `product` (`prod_code`, `prod_name`, `prod_currprice`, `prod_category_id`, `prod_critical`, `prod_description`, `prod_promo_id`, `prod_image`, `prod_added`, `prod_status`, `product_stocks`) 
-        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, '1', ?)");
-        
-        // Bind the parameters
-        $query->bind_param("ssssssssss", 
-            $product_Code, 
-            $product_Name, 
-            $product_Price, 
-            $product_Category, 
-            $critical_Level, 
-            $product_Description, 
-            $product_Promo, 
-            $product_Image, 
-            $getDateToday, 
-            $product_Stocks
-        );
-        
+   
+    
+        $query = "INSERT INTO `product` 
+                    (`prod_code`, `prod_name`, `prod_currprice`, `prod_category_id`, `prod_critical`, `prod_description`, `prod_promo_id`, `prod_image`, `prod_added`, `prod_status`, `product_stocks`) 
+                  VALUES 
+                    ('$product_Code', '$product_Name', '$product_Price', '$product_Category', '$critical_Level', '$product_Description', '$product_Promo', '$product_Image', '$getDateToday', '1', '$product_Stocks')";
+    
+       
         // Execute the query
-        if ($query->execute()) {
-            // Get the product ID of the last inserted product
-            $prod_id = $this->conn->insert_id; // Get the last inserted product ID
-            return $prod_id; // Return the product ID to use in adding sizes
+        if ($this->conn->query($query)) {
+            $prod_id = $this->conn->insert_id; 
+            return $prod_id; 
         } else {
-            return false; // Return false if insertion fails
+            return false; 
         }
     }
+    
     
 
   
@@ -469,7 +459,10 @@ public function getDailySalesData()
 
     public function stockout($orderId) {
         // Step 1: Fetch order items
-        $orderItemsQuery = "SELECT item_product_id, item_qty FROM orders_item WHERE item_order_id = $orderId";
+        $orderItemsQuery = "SELECT p.prod_name ,oi.item_product_id, oi.item_qty FROM orders_item as oi
+        LEFT JOIN product as p
+        ON p.prod_id = oi.item_product_id
+        WHERE oi.item_order_id = $orderId";
         $orderItemsResult = mysqli_query($this->conn, $orderItemsQuery);
     
         if (!$orderItemsResult) {
@@ -481,6 +474,7 @@ public function getDailySalesData()
         while ($item = mysqli_fetch_assoc($orderItemsResult)) {
             $productId = $item['item_product_id'];
             $itemQty = $item['item_qty'];
+            $prod_name = $item['prod_name'];
     
             // Step 3: Check if sufficient stock is available
             $checkStockQuery = "SELECT product_stocks FROM product WHERE prod_id = $productId";
@@ -502,11 +496,15 @@ public function getDailySalesData()
                 ";
     
                 $updateStockResult = mysqli_query($this->conn, $updateStockQuery);
-    
-                if (!$updateStockResult) {
-                    // Return error message if stock update fails
-                    return 'Failed to update stock for product ' . $productId . ': ' . mysqli_error($this->conn);
-                }
+
+                 //Start Activity Logs
+                session_start();
+                $admin_username=$_SESSION['admin_username'];
+                $getDateToday = date('Y-m-d H:i:s'); 
+                $logs = "INSERT INTO `activity_logs` (`log_name`, `log_role`, `log_date`, `log_activity`)  VALUES ('$admin_username', 'Administrator', '$getDateToday', '$prod_name Deduct - $itemQty')";
+                $this->conn->query($logs);
+                //End Activity Logs
+
             } else {
                 // Return message if there's not enough stock
                 return 'Not enough stock for product ' . $productId;
@@ -636,19 +634,28 @@ public function getDailySalesData()
     
         // Bind parameters dynamically
         $query->bind_param($paramTypes, ...$params);
-    
+        
+        //Start Activity Logs
+        session_start();
+        $admin_username=$_SESSION['admin_username'];
+        $logs = "INSERT INTO `activity_logs` (`log_name`, `log_role`, `log_date`, `log_activity`)  VALUES ('$admin_username', 'Administrator', '$getDateToday', 'Update $product_Name')";
+        $this->conn->query($logs);
+        //End Activity Logs
         // Execute the query
         if ($query->execute()) {
             return "success";
         } else {
             return false; 
         }
+
+       
+
     }
     
     
     public function Login($username, $password)
     {
-        $query = $this->conn->prepare("SELECT * FROM `admin` WHERE `admin_username` = ? AND `admin_password` = ?");
+        $query = $this->conn->prepare("SELECT * FROM `admin` WHERE `admin_username` = ? AND `admin_password` = ? AND admin_status='1'");
         $query->bind_param("ss", $username, $password);
         
         if ($query->execute()) {
@@ -678,6 +685,16 @@ public function getDailySalesData()
         }
     }
 
+
+    public function fetch_all_user(){
+        $query = $this->conn->prepare("SELECT * FROM `admin` where admin_status='1'");
+
+        if ($query->execute()) {
+            $result = $query->get_result();
+            return $result;
+        }
+    }
+    
 
     public function fetch_all_promotion(){
         $query = $this->conn->prepare("SELECT * FROM `promo` where promo_status='1'");
@@ -792,6 +809,9 @@ public function getDailySalesData()
         // Bind parameters (s = string, d = double for rate)
         $query->bind_param("ssds", $promo_name, $promo_description, $promo_rate, $promo_expiration);
     
+
+        
+
         // Execute the query and check for success
         if ($query->execute()) {
             return 'success';
@@ -799,8 +819,60 @@ public function getDailySalesData()
             return 'Error: ' . $query->error;
         }
     }
+
+
+    public function Adduser($admin_fullname,$admin_username,$admin_password) {
+        // Prepare the SQL query
+        $query = $this->conn->prepare(
+            "INSERT INTO `admin` (`admin_username`, `admin_password`, `admin_fullname`) 
+             VALUES (?, ?, ?)" 
+        );
     
- 
+        // Check if the query was prepared successfully
+        if (!$query) {
+            return 'Error: ' . $this->conn->error;
+        }
+    
+        // Bind parameters (s = string, d = double for rate)
+        $query->bind_param("sss", $admin_fullname,$admin_username,$admin_password);
+    
+        // Execute the query and check for success
+        if ($query->execute()) {
+            return 'success';
+        } else {
+            return 'Error: ' . $query->error;
+        }
+    }
+
+
+    public function Updateuser($update_admin_id, $update_admin_fullname, $update_admin_username, $update_admin_password) {
+       
+    
+        // Prepare the SQL query directly
+        $query = "UPDATE `admin` SET `admin_username`='$update_admin_username', `admin_password`='$update_admin_password', `admin_fullname`='$update_admin_fullname' WHERE `admin_id`='$update_admin_id'";
+    
+        // Execute the query and check for success
+        if ($this->conn->query($query)) {
+            return 'success';
+        } else {
+            return 'Error: ' . $this->conn->error;
+        }
+    }
+
+    public function DeleteUser($remove_admin_id) {
+       
+    
+        // Prepare the SQL query directly
+        $query = "UPDATE `admin` SET admin_status='0' WHERE `admin_id`='$remove_admin_id'";
+    
+        // Execute the query and check for success
+        if ($this->conn->query($query)) {
+            return 'success';
+        } else {
+            return 'Error: ' . $this->conn->error;
+        }
+    }
+    
 
     public function updatePromoStatus($promo_id) {
        

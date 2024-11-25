@@ -47,7 +47,7 @@ $totalSavings = 0;
            <!-- Product Item -->
 <div class="flex flex-col lg:flex-row items-center border-t border-gray-200 pt-6 relative lg:space-x-6">
     <!-- Wrapper for checkbox and close button -->
-    <div class="flex items-center justify-between w-full absolute top-0 left-0 right-0 px-4">
+    <div class="flex items-center justify-between w-full absolute top-0 left-0 right-0 px-4 mt-3">
         <!-- Checkbox (left) -->
         <input type="checkbox" 
                class="product-checkbox mr-4 text-red-500" 

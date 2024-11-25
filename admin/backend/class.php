@@ -724,6 +724,17 @@ public function getDailySalesData()
         }
     }
 
+    public function fetch_all_activity(){
+        $query = $this->conn->prepare("SELECT * FROM `activity_logs`");
+
+        if ($query->execute()) {
+            $result = $query->get_result();
+            return $result;
+        }
+    }
+
+    
+
     
     public function getProductImageById($product_id) {
         $sql = "SELECT prod_image FROM product WHERE prod_id = ?";

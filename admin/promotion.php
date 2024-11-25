@@ -89,7 +89,7 @@ include "components/header.php";
         <!-- Promo Update Form -->
         <form id="promoUpdateForm">
 
-            <div class="mb-4">
+            <div class="mb-4" hidden >
                 <label for="promo_id" class="block text-gray-700">Promo Id</label>
                 <input type="text" id="promo_id" name="promo_id" class="mt-1 p-2 w-full border border-gray-300 rounded-md" required>
             </div>

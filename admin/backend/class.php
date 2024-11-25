@@ -500,6 +500,7 @@ public function getDailySalesData()
                  //Start Activity Logs
                 session_start();
                 $admin_username=$_SESSION['admin_username'];
+                $getDateToday = date('Y-m-d H:i:s'); 
                 $logs = "INSERT INTO `activity_logs` (`log_name`, `log_role`, `log_date`, `log_activity`)  VALUES ('$admin_username', 'Administrator', '$getDateToday', '$prod_name Deduct - $itemQty')";
                 $this->conn->query($logs);
                 //End Activity Logs

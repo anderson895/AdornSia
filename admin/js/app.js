@@ -1,5 +1,16 @@
 $(document).ready(function () {
 
+  
+  $('#togglerUpdateUser').click(function (e) { 
+    e.preventDefault();
+    $('#updateUserModal').fadeIn();
+  });  
+
+  $('.togglerUpdateUserClose').click(function (e) { 
+    e.preventDefault();
+    $('#updateUserModal').fadeOut();
+  });  
+
 
 
   

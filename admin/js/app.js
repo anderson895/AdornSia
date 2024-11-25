@@ -8,7 +8,7 @@ $(document).ready(function () {
     $('#deleteUserModal').fadeIn();
   });  
 
-  $('.togglerUpdateUserClose').click(function (e) { 
+  $('.togglerremoveUserClose').click(function (e) { 
     e.preventDefault();
     $('#deleteUserModal').fadeOut();
   });  

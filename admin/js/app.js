@@ -5,6 +5,7 @@ $(document).ready(function () {
     var admin_id =$(this).data('admin_id');
     var admin_username =$(this).data('admin_username');
     var admin_fullname =$(this).data('admin_fullname');
+    console.log(admin_id);
 
     $('#update_admin_id').val(admin_id)
     $('#update_admin_fullname').val(admin_fullname)

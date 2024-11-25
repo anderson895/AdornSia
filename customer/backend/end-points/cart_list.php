@@ -38,9 +38,9 @@ $totalSavings = 0;
             <!-- Product Item -->
             <div class="flex flex-col lg:flex-row items-center border-t border-gray-200 pt-6 relative lg:space-x-6">
                 <!-- Delete Button (X) -->
-                <div class="flex items-center">
+                <div class="flex items-center space-x-4 relative">
                     <!-- Delete Button (X) -->
-                    <button class="text-red-600 text-lg p-1 hover:bg-gray-200 rounded-full TogglerRemoveItem" 
+                    <button class="text-red-600 text-lg p-1 hover:bg-gray-200 rounded-full TogglerRemoveItem absolute top-0 right-0"
                             data-cart_id="<?=$cart['cart_prod_id']?>"
                             data-size='<?=$cart['cart_prod_size']?>'>
                         <span class="material-icons">close</span>
@@ -48,10 +48,10 @@ $totalSavings = 0;
 
                     <!-- Checkbox -->
                     <input type="checkbox" 
-                        class="product-checkbox ml-4 text-red-500" 
+                        class="product-checkbox text-red-500" 
                         data-product-id="<?=$cart['cart_prod_id']?>" 
                         data-Originalprice="<?=$originalPrice?>" 
-                        data-price=<?=$price?>
+                        data-price="<?=$price?>"
                         data-size="<?=$cart['cart_prod_size']?>" 
                         data-qty="<?=$cart['cart_Qty']?>" 
                         data-promoName="<?=$cart['promo_name']?>" 

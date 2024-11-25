@@ -21,15 +21,13 @@ include "components/header.php";
             <thead class="bg-gray-100 text-gray-700">
                 <tr>
                     <th class="p-2">ID</th>
+                    <th class="p-2">Username</th>
                     <th class="p-2">Fullname</th>
-                    <th class="p-2">Email</th>
-                    <th class="p-2">Phone</th>
-                    <th class="p-2">Status</th>
                     <th class="p-2">Action</th>
                 </tr>
             </thead>
             <tbody>
-                <?php include "backend/end-points/customers_list.php"; ?>
+                <?php include "backend/end-points/user_list.php"; ?>
             </tbody>
         </table>
     </div>

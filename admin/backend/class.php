@@ -679,6 +679,16 @@ public function getDailySalesData()
     }
 
 
+    public function fetch_all_user(){
+        $query = $this->conn->prepare("SELECT * FROM `admin`");
+
+        if ($query->execute()) {
+            $result = $query->get_result();
+            return $result;
+        }
+    }
+    
+
     public function fetch_all_promotion(){
         $query = $this->conn->prepare("SELECT * FROM `promo` where promo_status='1'");
 

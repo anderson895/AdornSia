@@ -680,7 +680,7 @@ public function getDailySalesData()
 
 
     public function fetch_all_user(){
-        $query = $this->conn->prepare("SELECT * FROM `admin`");
+        $query = $this->conn->prepare("SELECT * FROM `admin` where admin_status='1'");
 
         if ($query->execute()) {
             $result = $query->get_result();

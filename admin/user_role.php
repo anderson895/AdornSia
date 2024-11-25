@@ -15,11 +15,11 @@ include "components/header.php";
 
 <!-- Card for Table -->
 <div class="bg-white rounded-lg shadow-lg p-6">
-
-<button class="bg-blue-500 text-white py-1 px-3 text-sm rounded-lg flex items-center hover:bg-blue-600 transition duration-300 mb-3">
-    <span class="material-icons mr-2 text-base">person_add</span>
-    Add New
-</button>
+    <h3 class="text-xl font-semibold text-gray-700">Admin List</h3>
+        <button class="bg-blue-500 text-white py-1 px-3 text-sm rounded-lg flex items-center hover:bg-blue-600 transition duration-300 mb-3">
+            <span class="material-icons mr-2 text-base">person_add</span>
+            Add New
+        </button>
 
     <!-- Table Wrapper for Responsiveness -->
     <div class="overflow-x-auto">

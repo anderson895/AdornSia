@@ -1,6 +1,5 @@
 <?php 
 include "components/header.php";
-print_r($_SESSION);
 ?>
 
 <!-- Admin Card -->

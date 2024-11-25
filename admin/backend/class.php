@@ -754,6 +754,16 @@ public function getDailySalesData()
     public function updateStock($stockin_qty, $product_id) {
         $query = $this->conn->prepare("UPDATE `product` SET `product_stocks` = `product_stocks` + ? WHERE `prod_id` = ?");
         $query->bind_param("ii", $stockin_qty, $product_id); 
+
+
+          //Start Activity Logs
+          session_start();
+          $admin_username=$_SESSION['admin_username'];
+          $getDateToday = date('Y-m-d H:i:s'); 
+          $logs = "INSERT INTO `activity_logs` (`log_name`, `log_role`, `log_date`, `log_activity`)  VALUES ('$admin_username', 'Administrator', '$getDateToday', '$prod_name StockIn + $stockin_qty')";
+          $this->conn->query($logs);
+          //End Activity Logs
+
         if ($query->execute()) {
             return 'success'; 
         } else {

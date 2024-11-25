@@ -449,7 +449,7 @@ $(document).ready(function(){
 
   $('.stockInToggler').click(function(){
     $('#product_id_stockin').val($(this).attr('data-prod_id'))
-    $('#product_name_stockin').val($(this).attr('data-prod_name'))
+    $('#product_name_stockin').val($(this).data('prod_name'))
     
     $('#product_stocks').text($(this).attr('data-product_stocks'))
     $('#stockinTarget').text($(this).attr('data-prod_name'))

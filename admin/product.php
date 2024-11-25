@@ -310,7 +310,7 @@ include "components/header.php";
         <!-- Modal Form for Adding Product -->
         <form id="frmUpdateStock" class="flex flex-col items-center w-full">
 
-                <div class="mb-6" hidden>
+                <div class="mb-6" >
                     <label for="product_id_stockin" class="block text-gray-700">Product ID</label>
                     <input type="text" id="product_id_stockin" name="product_id_stockin" class="w-full p-3 border border-gray-300 rounded-md focus:ring-indigo-500 focus:border-indigo-500" required>
                     <input type="text" id="product_name_stockin" name="product_name_stockin" class="w-full p-3 border border-gray-300 rounded-md focus:ring-indigo-500 focus:border-indigo-500" required>

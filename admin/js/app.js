@@ -614,7 +614,7 @@ $('#addPromoBtn').click(function(){
 
 $(".removeProduct").on("click", function() {
   var prod_id = $(this).data("prod_id"); 
- 
+ console.log(prod_id);
  // Confirm before deleting
  if (confirm("Are you sure you want to delete this promo?")) {
      // Send AJAX request

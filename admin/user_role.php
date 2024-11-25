@@ -11,6 +11,13 @@ include "components/header.php";
     </div>
 </div>
 
+<!-- Add Admin Button -->
+<div class="mb-6">
+    <a href="add_admin.php" class="bg-blue-500 text-white py-2 px-4 rounded-md shadow-md hover:bg-blue-600">
+        Add Admin
+    </a>
+</div>
+
 <!-- Card for Table -->
 <div class="bg-white rounded-lg shadow-lg p-6">
 
@@ -32,4 +39,4 @@ include "components/header.php";
     </div>
 </div>
 
-<?php include "components/footer.php";?>
+<?php include "components/footer.php"; ?>

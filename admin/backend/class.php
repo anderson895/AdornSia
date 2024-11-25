@@ -459,7 +459,10 @@ public function getDailySalesData()
 
     public function stockout($orderId) {
         // Step 1: Fetch order items
-        $orderItemsQuery = "SELECT item_product_id, item_qty FROM orders_item WHERE item_order_id = $orderId";
+        $orderItemsQuery = "SELECT p.prod_name ,oi.item_product_id, oi.item_qty FROM orders_item as oi
+        LEFT JOIN product as p
+        ON product.prod_id = orders_item.item_product_id
+        WHERE item_order_id = $orderId";
         $orderItemsResult = mysqli_query($this->conn, $orderItemsQuery);
     
         if (!$orderItemsResult) {
@@ -471,6 +474,7 @@ public function getDailySalesData()
         while ($item = mysqli_fetch_assoc($orderItemsResult)) {
             $productId = $item['item_product_id'];
             $itemQty = $item['item_qty'];
+            $prod_name = $item['prod_name'];
     
             // Step 3: Check if sufficient stock is available
             $checkStockQuery = "SELECT product_stocks FROM product WHERE prod_id = $productId";
@@ -492,11 +496,14 @@ public function getDailySalesData()
                 ";
     
                 $updateStockResult = mysqli_query($this->conn, $updateStockQuery);
-    
-                if (!$updateStockResult) {
-                    // Return error message if stock update fails
-                    return 'Failed to update stock for product ' . $productId . ': ' . mysqli_error($this->conn);
-                }
+
+                 //Start Activity Logs
+                session_start();
+                $admin_username=$_SESSION['admin_username'];
+                $logs = "INSERT INTO `activity_logs` (`log_name`, `log_role`, `log_date`, `log_activity`)  VALUES ('$admin_username', 'Administrator', '$getDateToday', '$prod_name Deduct - $itemQty')";
+                $this->conn->query($logs);
+                //End Activity Logs
+
             } else {
                 // Return message if there's not enough stock
                 return 'Not enough stock for product ' . $productId;
@@ -627,10 +634,12 @@ public function getDailySalesData()
         // Bind parameters dynamically
         $query->bind_param($paramTypes, ...$params);
         
+        //Start Activity Logs
         session_start();
         $admin_username=$_SESSION['admin_username'];
         $logs = "INSERT INTO `activity_logs` (`log_name`, `log_role`, `log_date`, `log_activity`)  VALUES ('$admin_username', 'Administrator', '$getDateToday', 'Update $product_Name')";
         $this->conn->query($logs);
+        //End Activity Logs
         // Execute the query
         if ($query->execute()) {
             return "success";
@@ -799,6 +808,9 @@ public function getDailySalesData()
         // Bind parameters (s = string, d = double for rate)
         $query->bind_param("ssds", $promo_name, $promo_description, $promo_rate, $promo_expiration);
     
+
+        
+
         // Execute the query and check for success
         if ($query->execute()) {
             return 'success';

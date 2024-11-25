@@ -25,7 +25,6 @@ include "components/header.php";
                     <th class="p-2">Email</th>
                     <th class="p-2">Phone</th>
                     <th class="p-2">Status</th>
-                    <th class="p-2">Action</th>
                 </tr>
             </thead>
             <tbody>

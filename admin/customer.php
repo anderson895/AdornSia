@@ -15,6 +15,11 @@ include "components/header.php";
 <div class="bg-white rounded-lg shadow-lg p-6">
     <h3 class="text-xl font-semibold text-gray-700 mb-4">Customer List</h3>
 
+    <!-- Search Input -->
+    <div class="mb-4">
+        <input type="text" id="searchInput" class="p-2 border rounded-md" placeholder="Search customers...">
+    </div>
+
     <!-- Table Wrapper for Responsiveness -->
     <div class="overflow-x-auto">
         <table id="userTable" class="display table-auto w-full text-sm text-left text-gray-500 dark:text-gray-400">
@@ -35,3 +40,16 @@ include "components/header.php";
 </div>
 
 <?php include "components/footer.php";?>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    $(document).ready(function() {
+        // Search functionality
+        $('#searchInput').on('input', function() {
+            var value = $(this).val().toLowerCase();
+            $('#userTable tbody tr').filter(function() {
+                $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1);
+            });
+        });
+    });
+</script>

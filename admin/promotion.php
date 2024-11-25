@@ -18,9 +18,10 @@ include "components/header.php";
 <div class="bg-white rounded-lg shadow-lg p-8">
     <h3 class="text-2xl font-semibold text-gray-800 mb-6">Promo List</h3>
      <!-- Add Promo Button -->
-     <button id="addPromoBtn" class="bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded-md shadow-md">
-            + Add Promo
-        </button>
+     <button id="addPromoBtn" class="bg-blue-500 hover:bg-blue-600 text-white py-1 px-3 text-sm rounded-md">
+        + Add Promo
+    </button>
+
     <div class="legend mb-4 text-sm text-gray-600">
         <ul>
             <li><span class="text-green-600 text-xl">&#8226;</span> Active Promotions</li>

@@ -906,7 +906,20 @@ public function getDailySalesData()
             }
     }
     
-    
+    public function updateProductStatus($prod_id) {
+       
+        $query = "UPDATE `product` 
+                  SET `prod_status` = 0
+                  WHERE `prod_id` = $prod_id";
+
+        // Execute the query
+        if ($this->conn->query($query)) {
+            return 'success';
+        } else {
+            return 'Error: ' . $this->conn->error;
+        }
+}
+
 
     
     public function fetch_all_refund() {

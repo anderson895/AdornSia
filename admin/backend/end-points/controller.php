@@ -265,6 +265,20 @@ if ($orderStatus === "Canceled") {
         }
 
 
+    }else if($_POST['requestType'] =='removeProduct'){
+
+      
+        $prod_id=$_POST['prod_id'];
+
+        $order = $db->updateProductStatus($prod_id);
+
+        if ($order=="success") {
+            echo 200; 
+        } else {
+            echo 'Failed to update order in the database.';
+        }
+
+
     }else if($_POST['requestType'] =='addPromo'){
 
       

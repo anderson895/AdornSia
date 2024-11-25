@@ -611,6 +611,35 @@ $('#addPromoBtn').click(function(){
 
 
 
+
+$(".removeProduct").on("click", function() {
+  var prod_id = $(this).data("prod_id"); 
+ 
+ // Confirm before deleting
+ if (confirm("Are you sure you want to delete this promo?")) {
+     // Send AJAX request
+     $.ajax({
+         url: "backend/end-points/controller.php", 
+         type: "POST",
+         data: { prod_id: prod_id, requestType:'removeProduct'},
+         success: function(response) {
+                 console.log(response);
+                 if (response == "200") {
+                     alertify.success("Product deleted successfully!");
+                     location.reload(); // Reload the page to reflect changes
+                 } else {
+                   console.log(response);
+                 }
+           
+         },
+         error: function(xhr, status, error) {
+             alert("AJAX error: " + error);
+         }
+     });
+ }
+});
+
+
     $(".togglerRemovePromo").on("click", function() {
        var promo_id = $(this).data("promo_id"); 
       

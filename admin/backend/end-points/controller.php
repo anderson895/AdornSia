@@ -307,6 +307,16 @@ if ($orderStatus === "Canceled") {
         } else {
             echo 'Failed to update order in the database.';
         }
+    }else if($_POST['requestType'] =='DeleteUser'){
+        $update_admin_id=$_POST['update_admin_id'];
+
+        $result = $db->DeleteUser($update_admin_id);
+
+        if ($result=="success") {
+            echo 200; 
+        } else {
+            echo 'Failed to update order in the database.';
+        }
     }else{
         echo 'Invalid request type.';
     }

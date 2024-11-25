@@ -1,5 +1,46 @@
 $(document).ready(function () {
 
+  $('.togglerDeleteUserAdmin').click(function (e) { 
+    var admin_id =$(this).data('admin_id');
+    
+    e.preventDefault();
+    $('#deleteUserModal').fadeIn();
+  });  
+
+  $('.togglerUpdateUserClose').click(function (e) { 
+    e.preventDefault();
+    $('#deleteUserModal').fadeOut();
+  });  
+
+
+  $("#deleteuserForm").submit(function (e) {
+    e.preventDefault();
+    
+    var formData = $(this).serializeArray();
+    formData.push({ name: 'requestType', value: 'DeleteUser' });
+    var serializedData = $.param(formData);
+  
+    $.ajax({
+      type: "POST",
+      url: "backend/end-points/controller.php",
+      data: serializedData,
+      success: function (response) {
+        if (response == "200") {
+          alertify.success('Delete Account Successful');
+          $('#deleteUserModal').fadeOut();
+          setTimeout(function () {
+            location.reload(); 
+          }, 1000); 
+        } else {
+          console.log(response);
+          alertify.error('Delete Failed. Please check the details.');
+        }
+      },
+    });
+    
+  });
+
+
   
   $('.togglerUpdateUserAdmin').click(function (e) { 
     var admin_id =$(this).data('admin_id');
@@ -79,6 +120,7 @@ $(document).ready(function () {
 
 
 
+  
 
 
 

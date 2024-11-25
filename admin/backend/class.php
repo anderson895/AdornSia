@@ -848,6 +848,20 @@ public function getDailySalesData()
             return 'Error: ' . $this->conn->error;
         }
     }
+
+    public function DeleteUser($update_admin_id) {
+       
+    
+        // Prepare the SQL query directly
+        $query = "UPDATE `admin` SET admin_status='0' WHERE `admin_id`='$update_admin_id'";
+    
+        // Execute the query and check for success
+        if ($this->conn->query($query)) {
+            return 'success';
+        } else {
+            return 'Error: ' . $this->conn->error;
+        }
+    }
     
 
     public function updatePromoStatus($promo_id) {

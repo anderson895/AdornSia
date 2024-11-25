@@ -47,6 +47,29 @@ include "components/header.php";
 
 
 
+<!-- Modal for Adding Promo -->
+<div id="deleteUserModal" class="fixed inset-0 bg-gray-900 bg-opacity-50 flex items-center justify-center" style="display:none;">
+    <div class="bg-white rounded-lg shadow-lg w-96 p-6">
+        <h3 class="text-lg font-semibold text-gray-800 mb-4">Delete</h3>
+        <form id="deleteuserForm">
+
+            <div hidden class="mb-4">
+                <label for="remove_admin_id" class="block text-sm font-medium text-gray-700">ID</label>
+                <input type="text" id="remove_admin_id" name="remove_admin_id" class="w-full p-2 border rounded-md" required>
+            </div>
+
+
+           
+
+            <div class="flex justify-end gap-2">
+                <button type="button" class="togglerremoveUserClose bg-gray-500 hover:bg-gray-600 text-white py-1 px-3 rounded-md">Cancel</button>
+                <button type="submit" class="bg-blue-500 hover:bg-blue-600 text-white py-1 px-3 rounded-md">Delete</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+
 
 <!-- Modal for Adding Promo -->
 <div id="updateUserModal" class="fixed inset-0 bg-gray-900 bg-opacity-50 flex items-center justify-center" style="display:none;">

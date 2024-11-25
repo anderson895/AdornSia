@@ -735,14 +735,15 @@ public function getDailySalesData()
         }
     }
 
-    public function fetch_all_activity(){
-        $query = $this->conn->prepare("SELECT * FROM `activity_logs`");
-
+    public function fetch_all_activity() {
+        $query = $this->conn->prepare("SELECT * FROM `activity_logs` ORDER BY `log_id` DESC");
+    
         if ($query->execute()) {
             $result = $query->get_result();
             return $result;
         }
     }
+    
 
     
 

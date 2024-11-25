@@ -3,6 +3,17 @@ $(document).ready(function () {
 
 
   
+  $('#adduserButton').click(function (e) { 
+    e.preventDefault();
+    $('#addUserModal').fadeIn();
+  });  
+
+
+  $('#addUserModalClose').click(function (e) { 
+    e.preventDefault();
+    $('#addUserModal').fadeOut();
+  });  
+
 
   $('.togglerApproveRefund').click(function (e) { 
     e.preventDefault();

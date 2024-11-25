@@ -16,7 +16,7 @@ include "components/header.php";
 <!-- Card for Table -->
 <div class="bg-white rounded-lg shadow-lg p-6">
 
-<button class="bg-blue-500 text-white py-1 px-3 text-sm rounded-lg flex items-center hover:bg-blue-600 transition duration-300 mb-3">
+<button id="adduserButton" class="bg-blue-500 text-white py-1 px-3 text-sm rounded-lg flex items-center hover:bg-blue-600 transition duration-300 mb-3">
     <span class="material-icons mr-2 text-base">person_add</span>
     Add New
 </button>
@@ -38,5 +38,48 @@ include "components/header.php";
         </table>
     </div>
 </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- Modal for Adding Promo -->
+<div id="addUserModal" class="fixed inset-0 bg-gray-900 bg-opacity-50 flex items-center justify-center" style="display:none;">
+    <div class="bg-white rounded-lg shadow-lg w-96 p-6">
+        <h3 class="text-lg font-semibold text-gray-800 mb-4">Add New User</h3>
+        <form id="adduserForm">
+
+            <div class="mb-4">
+                <label for="admin_fullname" class="block text-sm font-medium text-gray-700">Fullname</label>
+                <textarea id="admin_fullname" name="admin_fullname" class="w-full p-2 border rounded-md" required></textarea>
+            </div>
+
+            <div class="mb-4">
+                <label for="admin_username" class="block text-sm font-medium text-gray-700">User Name</label>
+                <input type="text" id="admin_username" name="admin_username" class="w-full p-2 border rounded-md" required>
+            </div>
+            
+            <div class="mb-4">
+                <label for="admin_password" class="block text-sm font-medium text-gray-700">Password</label>
+                <input type="text" id="admin_password" name="admin_password" class="w-full p-2 border rounded-md" required>
+            </div>
+
+
+            <div class="flex justify-end gap-2">
+                <button type="button" class="addUserModalClose bg-gray-500 hover:bg-gray-600 text-white py-1 px-3 rounded-md">Cancel</button>
+                <button type="submit" class="bg-blue-500 hover:bg-blue-600 text-white py-1 px-3 rounded-md">Add User</button>
+            </div>
+        </form>
+    </div>
+</div>
+
 
 <?php include "components/footer.php";?>

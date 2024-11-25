@@ -423,6 +423,7 @@ public function getDailySalesData()
         $product_Stocks
     ) {
         
+        $getDateToday = date('Y-m-d H:i:s'); 
    
     
         $query = "INSERT INTO `product` 
@@ -430,6 +431,16 @@ public function getDailySalesData()
                   VALUES 
                     ('$product_Code', '$product_Name', '$product_Price', '$product_Category', '$critical_Level', '$product_Description', '$product_Promo', '$product_Image', '$getDateToday', '1', '$product_Stocks')";
     
+
+    
+                 //Start Activity Logs
+                 session_start();
+                 $admin_username=$_SESSION['admin_username'];
+                 $getDateToday = date('Y-m-d H:i:s'); 
+                 $logs = "INSERT INTO `activity_logs` (`log_name`, `log_role`, `log_date`, `log_activity`)  VALUES ('$admin_username', 'Administrator', '$getDateToday', '$prod_name StockOut - $itemQty')";
+                 $this->conn->query($logs);
+                 //End Activity Logs
+ 
        
         // Execute the query
         if ($this->conn->query($query)) {

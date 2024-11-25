@@ -1,7 +1,7 @@
 $(document).ready(function () {
 
   
-  $('#togglerUpdateUser').click(function (e) { 
+  $('.togglerUpdateUser').click(function (e) { 
     e.preventDefault();
     $('#updateUserModal').fadeIn();
   });  

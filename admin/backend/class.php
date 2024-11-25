@@ -831,7 +831,7 @@ public function getDailySalesData()
     }
 
 
-    public function Adduser($admin_fullname,$new_admin_username,$admin_password) {
+    public function Adduser($admin_fullname,$admin_username,$admin_password) {
         // Prepare the SQL query
         $query = $this->conn->prepare(
             "INSERT INTO `admin` (`admin_username`, `admin_password`, `admin_fullname`) 
@@ -841,14 +841,8 @@ public function getDailySalesData()
        
     
         // Bind parameters (s = string, d = double for rate)
-        $query->bind_param("sss",$new_admin_username,$admin_password, $admin_fullname);
+        $query->bind_param("sss",$admin_username,$admin_password, $admin_fullname);
     
-          //Start Activity Logs
-          session_start();
-          $admin_username=$_SESSION['admin_username'];
-          $logs = "INSERT INTO `activity_logs` (`log_name`, `log_role`, `log_date`, `log_activity`)  VALUES ('$admin_username', 'Administrator', '$getDateToday', 'Added $new_admin_username as Administrator')";
-          $this->conn->query($logs);
-          //End Activity Logs
         // Execute the query and check for success
         if ($query->execute()) {
             return 'success';

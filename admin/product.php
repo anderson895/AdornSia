@@ -313,6 +313,7 @@ include "components/header.php";
                 <div class="mb-6" hidden>
                     <label for="product_id_stockin" class="block text-gray-700">Product ID</label>
                     <input type="text" id="product_id_stockin" name="product_id_stockin" class="w-full p-3 border border-gray-300 rounded-md focus:ring-indigo-500 focus:border-indigo-500" required>
+                    <input type="text" id="product_name_stockin" name="product_name_stockin" class="w-full p-3 border border-gray-300 rounded-md focus:ring-indigo-500 focus:border-indigo-500" required>
                 </div>
 
             <div class="mb-6 w-full flex justify-center">

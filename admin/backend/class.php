@@ -751,7 +751,7 @@ public function getDailySalesData()
 
 
 
-    public function updateStock($stockin_qty, $product_id) {
+    public function updateStock($stockin_qty, $product_id,$prod_name) {
         $query = $this->conn->prepare("UPDATE `product` SET `product_stocks` = `product_stocks` + ? WHERE `prod_id` = ?");
         $query->bind_param("ii", $stockin_qty, $product_id); 
 

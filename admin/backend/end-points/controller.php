@@ -151,13 +151,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         
     }else if($_POST['requestType'] =='StockIn'){
-
+        $prod_name = $_POST['prod_name'];
         $stockin_qty = $_POST['stockin_qty'];
         $product_id_stockin = $_POST['product_id_stockin'];
 
         $user = $db->updateStock(
             $stockin_qty,
-            $product_id_stockin
+            $product_id_stockin,
+            $prod_name
         );
 
         if ($user === 'success') {

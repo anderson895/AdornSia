@@ -1,6 +1,8 @@
 <?php
 include ('db.php');
 date_default_timezone_set('Asia/Manila');
+$getDateToday = date('Y-m-d H:i:s'); 
+
 
 class global_class extends db_connect
 {
@@ -420,20 +422,15 @@ public function getDailySalesData()
         $product_Image,
         $product_Stocks
     ) {
-        session_start();
-        $admin_username=$_SESSION['admin_username'];
-        // Get today's date
-        $getDateToday = date('Y-m-d H:i:s'); // Or use any other format as needed
+        
+   
     
-        // Create the SQL query string directly without using bind_param
         $query = "INSERT INTO `product` 
                     (`prod_code`, `prod_name`, `prod_currprice`, `prod_category_id`, `prod_critical`, `prod_description`, `prod_promo_id`, `prod_image`, `prod_added`, `prod_status`, `product_stocks`) 
                   VALUES 
                     ('$product_Code', '$product_Name', '$product_Price', '$product_Category', '$critical_Level', '$product_Description', '$product_Promo', '$product_Image', '$getDateToday', '1', '$product_Stocks')";
     
-        $logs = "INSERT INTO `activity_logs` (`log_name`, `log_role`, `log_date`, `log_activity`)  VALUES ('$admin_username', 'Administrator', '$getDateToday', 'Adding Product')";
-        $this->conn->query($logs);
-
+       
         // Execute the query
         if ($this->conn->query($query)) {
             $prod_id = $this->conn->insert_id; 
@@ -636,6 +633,12 @@ public function getDailySalesData()
         } else {
             return false; 
         }
+
+        session_start();
+        $admin_username=$_SESSION['admin_username'];
+        $logs = "INSERT INTO `activity_logs` (`log_name`, `log_role`, `log_date`, `log_activity`)  VALUES ('$admin_username', 'Administrator', '$getDateToday', 'Update $product_Name')";
+        $this->conn->query($logs);
+
     }
     
     

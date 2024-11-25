@@ -38,8 +38,8 @@ include "components/header.php";
                     <th class="p-3">Promo</th>
                     <th class="p-3">Description</th>
                     <th class="p-3">Rate</th>
-                    <th class="p-3">Status</th>
                     <th class="p-3">Expiration</th>
+                    <th class="p-3">Actions</th>
                 </tr>
             </thead>
             <tbody>

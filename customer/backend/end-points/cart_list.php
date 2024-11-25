@@ -38,26 +38,21 @@ $totalSavings = 0;
             <!-- Product Item -->
             <div class="flex flex-col lg:flex-row items-center border-t border-gray-200 pt-6 relative lg:space-x-6">
                 <!-- Delete Button (X) -->
-                <div class="flex items-center space-x-4">
-                    <!-- Delete Button (X) -->
-                    <button class="text-red-600 text-lg p-1 hover:bg-gray-200 rounded-full TogglerRemoveItem" 
-                            data-cart_id="<?=$cart['cart_prod_id']?>"
-                            data-size='<?=$cart['cart_prod_size']?>'>
-                        <span class="material-icons">close</span>
-                    </button>
+                <button class="absolute top-0 right-0 text-red-600 text-lg p-1 hover:bg-gray-200 rounded-full TogglerRemoveItem" 
+                        data-cart_id="<?=$cart['cart_prod_id']?>"
+                        data-size='<?=$cart['cart_prod_size']?>'>
+                    <span class="material-icons">close</span>
+                </button>
 
-                    <!-- Checkbox -->
-                    <input type="checkbox" 
-                        class="product-checkbox text-red-500" 
-                        data-product-id="<?=$cart['cart_prod_id']?>" 
-                        data-Originalprice="<?=$originalPrice?>" 
-                        data-price=<?=$price?>
-                        data-size="<?=$cart['cart_prod_size']?>" 
-                        data-qty="<?=$cart['cart_Qty']?>" 
-                        data-promoName="<?=$cart['promo_name']?>" 
-                        data-promoRate="<?=$cart['promo_rate']?>">
-                </div>
-
+                <input type="checkbox" 
+                    class="product-checkbox mr-4 text-red-500" 
+                    data-product-id="<?=$cart['cart_prod_id']?>" 
+                    data-Originalprice="<?=$originalPrice?>" 
+                    data-price=<?=$price?>
+                    data-size="<?=$cart['cart_prod_size']?>" 
+                    data-qty="<?=$cart['cart_Qty']?>" 
+                    data-promoName="<?=$cart['promo_name']?>" 
+                    data-promoRate="<?=$cart['promo_rate']?>">
 
                 <img src="../upload/<?=$cart['prod_image']?>" alt="Product Image" class="w-20 h-20 object-cover rounded-md shadow-lg mr-6 mb-4 lg:mb-0">
 

@@ -9,7 +9,7 @@ $(document).ready(function () {
   });  
 
 
-  $('#addUserModalClose').click(function (e) { 
+  $('.addUserModalClose').click(function (e) { 
     e.preventDefault();
     $('#addUserModal').fadeOut();
   });  

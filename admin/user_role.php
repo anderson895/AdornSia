@@ -59,7 +59,7 @@ include "components/header.php";
 
             <div class="mb-4">
                 <label for="admin_fullname" class="block text-sm font-medium text-gray-700">Fullname</label>
-                <textarea id="admin_fullname" name="admin_fullname" class="w-full p-2 border rounded-md" required></textarea>
+                <input type="text" id="admin_fullname" name="admin_fullname" class="w-full p-2 border rounded-md" required>
             </div>
 
             <div class="mb-4">

@@ -37,6 +37,24 @@ include "components/header.php";
             </tbody>
         </table>
     </div>
+
+
+    <div class="overflow-x-auto">
+        <table id="activityLogTable" class="table-auto w-full text-sm text-left text-gray-500 dark:text-gray-400">
+            <thead class="bg-gray-100 text-gray-700">
+                <tr>
+                    <th class="p-2">Log ID</th>
+                    <th class="p-2">Action</th>
+                    <th class="p-2">User</th>
+                    <th class="p-2">Date</th>
+                    <th class="p-2">Details</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php include "backend/end-points/activity_log_list.php"; ?>
+            </tbody>
+        </table>
+    </div>
 </div>
 
 

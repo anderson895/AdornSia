@@ -844,7 +844,7 @@ public function getDailySalesData()
         }
     
         // Bind parameters (s = string, d = double for rate)
-        $query->bind_param("sss", $admin_fullname,$admin_username,$admin_password);
+        $query->bind_param("sss",$admin_username,$admin_password, $admin_fullname);
     
         // Execute the query and check for success
         if ($query->execute()) {

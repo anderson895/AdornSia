@@ -23,22 +23,21 @@ $(document).ready(function() {
         $('#total').text(total.toFixed(2));
     }
 
-    $('#check-all').on('click touchstart', function () {
+    $('#check-all').click(function() {
         var isChecked = $(this).prop('checked');
         $('.product-checkbox').prop('checked', isChecked);
         updateOrderSummary();
     });
-    
-    $('.product-checkbox').on('click touchstart', function () {
+
+    $('.product-checkbox').click(function() {
         updateOrderSummary();
-    
-        if ($('.product-checkbox:checked').length === $('.product-checkbox').length) {
+
+        if($('.product-checkbox:checked').length === $('.product-checkbox').length) {
             $('#check-all').prop('checked', true);
         } else {
             $('#check-all').prop('checked', false);
         }
     });
-    
 
 
 

@@ -44,15 +44,16 @@ $totalSavings = 0;
                     <span class="material-icons">close</span>
                 </button>
 
-                <input type="checkbox" 
-                    class="product-checkbox mr-4 text-red-500" 
-                    data-product-id="<?=$cart['cart_prod_id']?>" 
-                    data-Originalprice="<?=$originalPrice?>" 
-                    data-price=<?=$price?>
-                    data-size="<?=$cart['cart_prod_size']?>" 
-                    data-qty="<?=$cart['cart_Qty']?>" 
-                    data-promoName="<?=$cart['promo_name']?>" 
-                    data-promoRate="<?=$cart['promo_rate']?>">
+                <input 
+        type="checkbox" 
+        class="product-checkbox mr-4" 
+        data-product-id="<?=$cart['cart_prod_id']?>" 
+        data-Originalprice="<?=$originalPrice?>" 
+        data-price="<?=$price?>"
+        data-size="<?=$cart['cart_prod_size']?>" 
+        data-qty="<?=$cart['cart_Qty']?>" 
+        data-promoName="<?=$cart['promo_name']?>" 
+        data-promoRate="<?=$cart['promo_rate']?>">
 
                 <img src="../upload/<?=$cart['prod_image']?>" alt="Product Image" class="w-20 h-20 object-cover rounded-md shadow-lg mr-6 mb-4 lg:mb-0">
 

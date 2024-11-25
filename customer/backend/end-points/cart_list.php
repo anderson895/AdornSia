@@ -62,7 +62,7 @@ $totalSavings = 0;
             data-promoName="<?=$cart['promo_name']?>" 
             data-promoRate="<?=$cart['promo_rate']?>">
 
-            <div class="flex justify-center items-center">
+            <div class="flex justify-center lg:justify-start">
                 <img src="../upload/<?=$cart['prod_image']?>" alt="Product Image" 
                     class="w-20 h-20 object-cover rounded-md shadow-lg">
             </div>

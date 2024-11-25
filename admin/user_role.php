@@ -43,24 +43,28 @@ include "components/header.php";
 
     <h3 class="text-lg font-semibold text-gray-700 mb-4">Activity Logs</h3>
 
-    <div >
-        <!-- Wrapper for vertical scrolling -->
-        <div class="max-h-96 overflow-y-auto">
-            <table id="activityLogTable" class="table-auto w-full text-sm text-left text-gray-500 dark:text-gray-400">
-                <thead class="bg-gray-100 text-gray-700">
-                    <tr>
-                        <th class="p-3">Log ID</th>
-                        <th class="p-3">Username</th>
-                        <th class="p-3">Role</th>
-                        <th class="p-3">Date</th>
-                        <th class="p-3">Activity</th>
-                    </tr>
-                </thead>
-                <tbody class="overflow-x-auto">
-                    <?php include "backend/end-points/activity_log_list.php"; ?>
-                </tbody>
-            </table>
-        </div>
+    <!-- Table header (fixed outside of scrollable container) -->
+    <div class="overflow-x-auto">
+        <table class="table-auto w-full text-sm text-left text-gray-500 dark:text-gray-400">
+            <thead class="bg-gray-100 text-gray-700">
+                <tr>
+                    <th class="p-3">Log ID</th>
+                    <th class="p-3">Username</th>
+                    <th class="p-3">Role</th>
+                    <th class="p-3">Date</th>
+                    <th class="p-3">Activity</th>
+                </tr>
+            </thead>
+        </table>
+    </div>
+
+    <!-- Scrollable table body -->
+    <div class="overflow-x-auto max-h-96 overflow-y-auto">
+        <table class="table-auto w-full text-sm text-left text-gray-500 dark:text-gray-400">
+            <tbody>
+                <?php include "backend/end-points/activity_log_list.php"; ?>
+            </tbody>
+        </table>
     </div>
 </div>
 

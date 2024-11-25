@@ -567,7 +567,7 @@ $('#addPromoBtn').click(function(){
               // Add delay before reload
               setTimeout(function() {
                   location.reload();
-              }, 2000); // Delay in milliseconds (2000 ms = 2 seconds)
+              }, 1000); // Delay in milliseconds (2000 ms = 2 seconds)
           },
           error: function(error) {
               alert("Error updating promo.");

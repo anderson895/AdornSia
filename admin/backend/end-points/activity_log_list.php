@@ -8,11 +8,11 @@ if ($fetch_all_activity): ?>
         $formatted_date = (new DateTime($log['log_date']))->format('Y-m-d H:i:s');
         ?>
         <tr>
-            <td class="p-2"><?php echo $log['log_id']; ?></td>
-            <td class="p-2"><?php echo $log['log_name']; ?></td>
-            <td class="p-2"><?php echo $log['log_role']; ?></td>
-            <td class="p-2"><?php echo $formatted_date; ?></td>
-            <td class="p-2"><?php echo $log['log_activity']; ?></td>
+            <td class="p-2"><?= $log['log_id']; ?></td>
+            <td class="p-2"><?= ucfirst($log['log_name']); ?></td>
+            <td class="p-2"><?= $log['log_role']; ?></td>
+            <td class="p-2"><?= $formatted_date; ?></td>
+            <td class="p-2"><?= $log['log_activity']; ?></td>
         </tr>
     <?php endforeach; ?>
 <?php else: ?>

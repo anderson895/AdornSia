@@ -71,7 +71,7 @@ include "components/header.php";
             </div>
             
             <div class="mb-4">
-                <label for="update_admin_password" class="block text-sm font-medium text-gray-700">Password</label>
+                <label for="update_admin_password" class="block text-sm font-medium text-gray-700">New Password</label>
                 <input type="text" id="update_admin_password" name="update_admin_password" class="w-full p-2 border rounded-md" required>
             </div>
 

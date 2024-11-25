@@ -11,9 +11,11 @@ include "components/header.php";
     </div>
 </div>
 
-<!-- Add Admin Button -->
+<!-- Add Admin Button with Material Icon -->
 <div class="mb-6">
-    <a href="add_admin.php" class="bg-blue-500 text-white py-2 px-4 rounded-md shadow-md hover:bg-blue-600">
+    <a href="add_admin.php" class="bg-blue-500 text-white py-2 px-4 rounded-md shadow-md hover:bg-blue-600 flex items-center">
+        <!-- Material Icon for Add Admin -->
+        <span class="material-icons mr-2">person_add</span>
         Add Admin
     </a>
 </div>

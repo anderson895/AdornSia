@@ -461,8 +461,8 @@ public function getDailySalesData()
         // Step 1: Fetch order items
         $orderItemsQuery = "SELECT p.prod_name ,oi.item_product_id, oi.item_qty FROM orders_item as oi
         LEFT JOIN product as p
-        ON product.prod_id = orders_item.item_product_id
-        WHERE item_order_id = $orderId";
+        ON p.prod_id = oi.item_product_id
+        WHERE oi.item_order_id = $orderId";
         $orderItemsResult = mysqli_query($this->conn, $orderItemsQuery);
     
         if (!$orderItemsResult) {

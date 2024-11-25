@@ -1,5 +1,6 @@
 <?php 
 include "components/header.php";
+print_r($_SESSION);
 ?>
 
 <!-- Admin Card -->
@@ -48,10 +49,10 @@ include "components/header.php";
             <thead class="bg-gray-100 text-gray-700">
                 <tr>
                     <th class="p-3">Log ID</th>
-                    <th class="p-3">Action</th>
-                    <th class="p-3">User</th>
+                    <th class="p-3">Name</th>
+                    <th class="p-3">Role</th>
                     <th class="p-3">Date</th>
-                    <th class="p-3">Details</th>
+                    <th class="p-3">Activity</th>
                 </tr>
             </thead>
             <tbody>

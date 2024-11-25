@@ -409,47 +409,41 @@ public function getDailySalesData()
     
 
 
-    public function addProduct(
-        $product_Code,
-        $product_Name,
-        $product_Price,
-        $critical_Level,
-        $product_Category,
-        $product_Description,
-        $product_Promo,
-        $product_Image,
-        $product_Stocks
-    ) {
-        // Get today's date
-        $getDateToday = date('Y-m-d H:i:s'); // Or use any other format as needed
-        
-        // Prepare the SQL query with placeholders for bound parameters
-        $query = $this->conn->prepare("INSERT INTO `product` (`prod_code`, `prod_name`, `prod_currprice`, `prod_category_id`, `prod_critical`, `prod_description`, `prod_promo_id`, `prod_image`, `prod_added`, `prod_status`, `product_stocks`) 
-        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, '1', ?)");
-        
-        // Bind the parameters
-        $query->bind_param("ssssssssss", 
-            $product_Code, 
-            $product_Name, 
-            $product_Price, 
-            $product_Category, 
-            $critical_Level, 
-            $product_Description, 
-            $product_Promo, 
-            $product_Image, 
-            $getDateToday, 
-            $product_Stocks
-        );
-        
-        // Execute the query
-        if ($query->execute()) {
-            // Get the product ID of the last inserted product
-            $prod_id = $this->conn->insert_id; // Get the last inserted product ID
-            return $prod_id; // Return the product ID to use in adding sizes
-        } else {
-            return false; // Return false if insertion fails
-        }
-    }
+    // public function addProduct(
+    //     $product_Code,
+    //     $product_Name,
+    //     $product_Price,
+    //     $critical_Level,
+    //     $product_Category,
+    //     $product_Description,
+    //     $product_Promo,
+    //     $product_Image,
+    //     $product_Stocks
+    // ) {
+    //     // Get today's date
+    //     $getDateToday = date('Y-m-d H:i:s'); // Or use any other format as needed
+    
+    //     // Create the SQL query string directly without using bind_param
+    //     $query = "INSERT INTO `product` 
+    //                 (`prod_code`, `prod_name`, `prod_currprice`, `prod_category_id`, `prod_critical`, `prod_description`, `prod_promo_id`, `prod_image`, `prod_added`, `prod_status`, `product_stocks`) 
+    //               VALUES 
+    //                 ('$product_Code', '$product_Name', '$product_Price', '$product_Category', '$critical_Level', '$product_Description', '$product_Promo', '$product_Image', '$getDateToday', '1', '$product_Stocks')";
+    
+    //     $logs = "INSERT INTO `activity_logs` 
+    //     (`log_name`, `log_role`, `log_date`, `log_activity`) 
+    // VALUES 
+    //     ('', '$product_Name', '$product_Price', '$product_Category')";
+
+    //     $this->conn->query($logs);
+    //     // Execute the query
+    //     if ($this->conn->query($query)) {
+    //         $prod_id = $this->conn->insert_id; 
+    //         return $prod_id; 
+    //     } else {
+    //         return false; 
+    //     }
+    // }
+    
     
 
   

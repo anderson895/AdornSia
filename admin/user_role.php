@@ -13,7 +13,6 @@ include "components/header.php";
 
 <button class="bg-blue-500 text-white py-2 px-4 rounded-lg hover:bg-blue-600 transition duration-300">
     <span class="material-icons mr-2">person_add</span>
-    Add User
 </button>
 
 <!-- Card for Table -->

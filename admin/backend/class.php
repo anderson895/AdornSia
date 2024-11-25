@@ -648,7 +648,7 @@ public function getDailySalesData()
     
     public function Login($username, $password)
     {
-        $query = $this->conn->prepare("SELECT * FROM `admin` WHERE `admin_username` = ? AND `admin_password` = ?");
+        $query = $this->conn->prepare("SELECT * FROM `admin` WHERE `admin_username` = ? AND `admin_password` = ? AND admin_status='1'");
         $query->bind_param("ss", $username, $password);
         
         if ($query->execute()) {

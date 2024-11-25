@@ -5,6 +5,9 @@ $totalItems = count($getCartlist);
 $subTotal = 0;
 $totalSavings = 0;
 ?>
+
+
+
 <div class="flex flex-col lg:flex-row gap-8">
     <!-- Left Section: Cart Items -->
     <div class="flex-grow">
@@ -54,7 +57,7 @@ $totalSavings = 0;
                     data-promoName="<?=$cart['promo_name']?>" 
                     data-promoRate="<?=$cart['promo_rate']?>">
 
-                <img src="../upload/<?=$cart['prod_image']?>" alt="Product Image" class="w-20 h-20 object-cover rounded-md shadow-lg mr-6 mb-4 lg:mb-0">
+                <img src="../upload/<?=$cart['prod_image']?>" alt="Product Image" class="w-20 h-20 object-cover rounded-md shadow-lg mr-6 mb-4 lg:mb-0 lg:w-32 lg:h-32">
 
                 <div class="flex-grow">
                     <h4 class="font-semibold text-gray-900"><?=$cart['prod_name']?></h4>
@@ -80,7 +83,7 @@ $totalSavings = 0;
                         </button>
                     </div>
                 </div>
-                <div class="text-right">
+                <div class="text-right mt-2 lg:mt-0">
                     <?php if ($cart['prod_promo_id']): ?>
                         <p class="text-red-600 font-semibold">Php <?=number_format(($cart['prod_currprice'] - ($cart['prod_currprice'] - $discounted_price)) * $cart['cart_Qty'], 2)?></p>
                         <p class="text-xs line-through text-gray-400 has-promo">Php <?=number_format($cart['prod_currprice'] * $cart['cart_Qty'])?> - <?=($cart['promo_rate'] * 100)?>%</p>

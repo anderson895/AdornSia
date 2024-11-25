@@ -72,7 +72,7 @@ include "components/header.php";
                 <input type="date" id="promoExpiration" name="promo_expiration" class="w-full p-2 border rounded-md" required>
             </div>
             <div class="flex justify-end gap-2">
-                <button type="button" id="closeModal" class="bg-gray-500 hover:bg-gray-600 text-white py-1 px-3 rounded-md">Cancel</button>
+                <button type="button" class="closeModal bg-gray-500 hover:bg-gray-600 text-white py-1 px-3 rounded-md">Cancel</button>
                 <button type="submit" class="bg-blue-500 hover:bg-blue-600 text-white py-1 px-3 rounded-md">Add Promo</button>
             </div>
         </form>

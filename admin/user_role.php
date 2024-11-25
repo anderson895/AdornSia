@@ -2,34 +2,33 @@
 include "components/header.php";
 ?>
 
-<div class="flex justify-between items-center bg-white p-4 mb-6 rounded-md shadow-md">
-    <h2 class="text-lg font-semibold text-gray-700">Admin</h2>
-    <div class="w-10 h-10 bg-gray-300 rounded-full flex items-center justify-center text-lg font-bold text-white">
+<!-- Admin Card -->
+<div class="flex justify-between items-center bg-white p-6 mb-6 rounded-md shadow-md">
+    <h2 class="text-xl font-semibold text-gray-700">Admin</h2>
+    <div class="w-12 h-12 bg-gray-300 rounded-full flex items-center justify-center text-xl font-bold text-white">
         <?php
         echo substr(ucfirst($_SESSION['admin_username']), 0, 1);
         ?>
     </div>
 </div>
 
+<!-- User Table Card -->
+<div class="bg-white rounded-lg shadow-lg p-6 mb-6">
 
-
-<!-- Card for Table -->
-<div class="bg-white rounded-lg shadow-lg p-6">
-
-<button id="adduserButton" class="bg-blue-500 text-white py-1 px-3 text-sm rounded-lg flex items-center hover:bg-blue-600 transition duration-300 mb-3">
-    <span class="material-icons mr-2 text-base">person_add</span>
-    Add New
-</button>
+    <button id="adduserButton" class="bg-blue-500 text-white py-2 px-4 text-sm rounded-lg flex items-center hover:bg-blue-600 transition duration-300 mb-4">
+        <span class="material-icons mr-2 text-base">person_add</span>
+        Add New
+    </button>
 
     <!-- Table Wrapper for Responsiveness -->
     <div class="overflow-x-auto">
-        <table id="userTable" class="display table-auto w-full text-sm text-left text-gray-500 dark:text-gray-400">
+        <table id="userTable" class="table-auto w-full text-sm text-left text-gray-500 dark:text-gray-400">
             <thead class="bg-gray-100 text-gray-700">
                 <tr>
-                    <th class="p-2">ID</th>
-                    <th class="p-2">Username</th>
-                    <th class="p-2">Fullname</th>
-                    <th class="p-2">Action</th>
+                    <th class="p-3">ID</th>
+                    <th class="p-3">Username</th>
+                    <th class="p-3">Fullname</th>
+                    <th class="p-3">Action</th>
                 </tr>
             </thead>
             <tbody>
@@ -39,24 +38,27 @@ include "components/header.php";
     </div>
 </div>
 
-
+<!-- Activity Log Table Card -->
 <div class="bg-white rounded-lg shadow-lg p-6">
+
+    <h3 class="text-lg font-semibold text-gray-700 mb-4">Activity Logs</h3>
+
     <div class="overflow-x-auto">
-            <table id="activityLogTable" class="table-auto w-full text-sm text-left text-gray-500 dark:text-gray-400">
-                <thead class="bg-gray-100 text-gray-700">
-                    <tr>
-                        <th class="p-2">Log ID</th>
-                        <th class="p-2">Action</th>
-                        <th class="p-2">User</th>
-                        <th class="p-2">Date</th>
-                        <th class="p-2">Details</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <?php include "backend/end-points/activity_log_list.php"; ?>
-                </tbody>
-            </table>
-        </div>
+        <table id="activityLogTable" class="table-auto w-full text-sm text-left text-gray-500 dark:text-gray-400">
+            <thead class="bg-gray-100 text-gray-700">
+                <tr>
+                    <th class="p-3">Log ID</th>
+                    <th class="p-3">Action</th>
+                    <th class="p-3">User</th>
+                    <th class="p-3">Date</th>
+                    <th class="p-3">Details</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php include "backend/end-points/activity_log_list.php"; ?>
+            </tbody>
+        </table>
+    </div>
 </div>
 
 

@@ -13,14 +13,13 @@ include "components/header.php";
 
 
 
-<div class="flex justify-between items-center mb-4">
-        <h3 class="text-xl font-semibold text-gray-700">Product List</h3>
-        <!-- Add Product Button -->
-        <button id="addProductButton" class="px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50">
-        <span class="material-icons mr-2 text-base">person_add</span>
-        Add New
-        </button>
-    </div>
+<!-- Card for Table -->
+<div class="bg-white rounded-lg shadow-lg p-6">
+
+<button class="bg-blue-500 text-white py-1 px-3 text-sm rounded-lg flex items-center hover:bg-blue-600 transition duration-300 mb-3">
+    <span class="material-icons mr-2 text-base">person_add</span>
+    Add New
+</button>
 
     <!-- Table Wrapper for Responsiveness -->
     <div class="overflow-x-auto">

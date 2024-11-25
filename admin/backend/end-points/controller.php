@@ -151,7 +151,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         
     }else if($_POST['requestType'] =='StockIn'){
-        $prod_name = $_POST['prod_name'];
+        $prod_name = $_POST['product_name_stockin'];
         $stockin_qty = $_POST['stockin_qty'];
         $product_id_stockin = $_POST['product_id_stockin'];
 

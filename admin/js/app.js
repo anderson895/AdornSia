@@ -3,6 +3,7 @@ $(document).ready(function () {
   $('.togglerDeleteUserAdmin').click(function (e) { 
     var admin_id =$(this).data('admin_id');
     
+    $('#remove_admin_id').val(admin_id);
     e.preventDefault();
     $('#deleteUserModal').fadeIn();
   });  

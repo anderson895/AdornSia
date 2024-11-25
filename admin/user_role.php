@@ -52,9 +52,9 @@ include "components/header.php";
 <div id="updateUserModal" class="fixed inset-0 bg-gray-900 bg-opacity-50 flex items-center justify-center" style="display:none;">
     <div class="bg-white rounded-lg shadow-lg w-96 p-6">
         <h3 class="text-lg font-semibold text-gray-800 mb-4">Update Information</h3>
-        <form id="adduserForm">
+        <form id="updateuserForm">
 
-            <div class="mb-4">
+            <div hidden class="mb-4">
                 <label for="update_admin_id" class="block text-sm font-medium text-gray-700">ID</label>
                 <input type="text" id="update_admin_id" name="update_admin_id" class="w-full p-2 border rounded-md" required>
             </div>

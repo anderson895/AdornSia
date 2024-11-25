@@ -833,8 +833,22 @@ public function getDailySalesData()
             return 'Error: ' . $query->error;
         }
     }
+
+
+    public function Updateuser($update_admin_id, $update_admin_fullname, $update_admin_username, $update_admin_password) {
+       
     
- 
+        // Prepare the SQL query directly
+        $query = "UPDATE `admin` SET `admin_username`='$update_admin_username', `admin_password`='$update_admin_password', `admin_fullname`='$update_admin_fullname' WHERE `admin_id`='$update_admin_id'";
+    
+        // Execute the query and check for success
+        if ($this->conn->query($query)) {
+            return 'success';
+        } else {
+            return 'Error: ' . $this->conn->error;
+        }
+    }
+    
 
     public function updatePromoStatus($promo_id) {
        

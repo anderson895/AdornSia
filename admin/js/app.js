@@ -85,7 +85,34 @@ $(document).ready(function () {
 
 
 
+// 
 
+$("#updateuserForm").submit(function (e) {
+  e.preventDefault();
+  
+  var formData = $(this).serializeArray();
+  formData.push({ name: 'requestType', value: 'Updateuser' });
+  var serializedData = $.param(formData);
+
+  $.ajax({
+    type: "POST",
+    url: "backend/end-points/controller.php",
+    data: serializedData,
+    success: function (response) {
+      if (response == "200") {
+        alertify.success('Update Successful');
+        $('#addUserModal').fadeOut();
+        setTimeout(function () {
+          location.reload(); 
+        }, 1000); 
+      } else {
+        console.log(response);
+        alertify.error('Update Failed. Please check the details.');
+      }
+    },
+  });
+  
+});
 
 
 
@@ -102,14 +129,14 @@ $(document).ready(function () {
       data: serializedData,
       success: function (response) {
         if (response == "200") {
-          alertify.success('Refund Successful');
+          alertify.success('Added Successful');
           $('#addUserModal').fadeOut();
           setTimeout(function () {
             location.reload(); 
           }, 1000); 
         } else {
           console.log(response);
-          alertify.error('Refund Failed. Please check the details.');
+          alertify.error('Added Failed. Please check the details.');
         }
       },
     });

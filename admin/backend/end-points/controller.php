@@ -294,6 +294,19 @@ if ($orderStatus === "Canceled") {
         } else {
             echo 'Failed to update order in the database.';
         }
+    }else if($_POST['requestType'] =='Updateuser'){
+        $update_admin_id=$_POST['update_admin_id'];
+        $update_admin_fullname=$_POST['update_admin_fullname'];
+        $update_admin_username=$_POST['update_admin_username'];
+        $update_admin_password=$_POST['update_admin_password'];
+
+        $result = $db->Updateuser($update_admin_id,$update_admin_fullname,$update_admin_username,$update_admin_password);
+
+        if ($result=="success") {
+            echo 200; 
+        } else {
+            echo 'Failed to update order in the database.';
+        }
     }else{
         echo 'Invalid request type.';
     }

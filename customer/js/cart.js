@@ -1,59 +1,44 @@
 $(document).ready(function() {
     function updateOrderSummary() {
         let subTotal = 0;
-        let totalSavings = 0;
         let vat = 0;
         let total = 0;
         var sf = 0;
 
         $('.product-checkbox:checked').each(function() {
 
-            const productId = parseFloat($(this).data('product-id'));
             const price = $(this).data('price'); 
-            // const price = parseFloat(priceString.replace(/,/g, ''));
             
-
-            const originalprice = parseFloat($(this).data('originalprice'));
-            
-            const qty = parseInt($(this).data('qty'));
-            const discountRate = parseFloat($(this).data('discount'));
-
-        
             const productTotal = price;
             subTotal += productTotal;
-
-
             sf = 50;
             vat = subTotal * 0.12; 
             total = subTotal + vat + sf;
          
         });
-
-        
         
         $('#shipping-fee').text(sf.toFixed(2));
         $('#sub-total').text(subTotal.toFixed(2));
         $('#vat').text(vat.toFixed(2));
         $('#total').text(total.toFixed(2));
-
-       
     }
 
-    $('#check-all').click(function() {
+    $('#check-all').on('click touchstart', function () {
         var isChecked = $(this).prop('checked');
         $('.product-checkbox').prop('checked', isChecked);
         updateOrderSummary();
     });
-
-    $('.product-checkbox').click(function() {
+    
+    $('.product-checkbox').on('click touchstart', function () {
         updateOrderSummary();
-
-        if($('.product-checkbox:checked').length === $('.product-checkbox').length) {
+    
+        if ($('.product-checkbox:checked').length === $('.product-checkbox').length) {
             $('#check-all').prop('checked', true);
         } else {
             $('#check-all').prop('checked', false);
         }
     });
+    
 
 
 

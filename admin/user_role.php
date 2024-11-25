@@ -11,9 +11,10 @@ include "components/header.php";
     </div>
 </div>
 
-<button class="bg-blue-500 text-white py-2 px-4 rounded-lg hover:bg-blue-600 transition duration-300">
+<button class="bg-blue-500 text-white py-2 px-4 rounded-lg hover:bg-blue-600 transition duration-300 animate-pulse">
     <span class="material-icons mr-2">person_add</span>
 </button>
+
 
 <!-- Card for Table -->
 <div class="bg-white rounded-lg shadow-lg p-6">

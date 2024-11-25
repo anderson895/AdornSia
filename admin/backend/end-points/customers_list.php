@@ -13,10 +13,7 @@ if ($fetch_all_students): ?>
             <td class="p-2"><?php echo htmlspecialchars($student['Email']); ?></td>
             <td class="p-2"><?php echo htmlspecialchars($student['Phone']); ?></td>
             <td class="p-2 <?= $status_color; ?>"><?php echo $status; ?></td>
-            <td class="p-2">
-                <button class="bg-blue-500 text-white py-1 px-3 rounded-md togglerUpdateUser" data-user_id=<?=$student['user_id']?>>View</button>
-                <button class="bg-red-500 text-white py-1 px-3 rounded-md">Disable</button>
-            </td>
+           
         </tr>
     <?php endforeach; ?>
 <?php else: ?>

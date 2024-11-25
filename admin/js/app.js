@@ -521,9 +521,6 @@ $('#addPromoBtn').click(function(){
 
     // Open modal when "Update" button is clicked
     $(".togglerUpdatePromo").on("click", function() {
-
-      console.log('ok');
-
       var promo_id = $(this).data("promo_id"); 
       var promo_name = $(this).data("promo_name"); 
       var promo_description = $(this).data("promo_description"); 
@@ -558,19 +555,25 @@ $('#addPromoBtn').click(function(){
     
         // Send the form data via AJAX
         $.ajax({
-            url: "backend/end-points/controller.php", 
-            method: 'POST',
-            data: formData,
-            processData: false, 
-            contentType: false,
-            success: function(response) {
-                alertify.success("Promo updated successfully!");
-                $("#promoModal").fadeOut();
-            },
-            error: function(error) {
-                alert("Error updating promo.");
-            }
-        });
+          url: "backend/end-points/controller.php", 
+          method: 'POST',
+          data: formData,
+          processData: false, 
+          contentType: false,
+          success: function(response) {
+              alertify.success("Promo updated successfully!");
+              $("#promoModal").fadeOut();
+      
+              // Add delay before reload
+              setTimeout(function() {
+                  location.reload();
+              }, 2000); // Delay in milliseconds (2000 ms = 2 seconds)
+          },
+          error: function(error) {
+              alert("Error updating promo.");
+          }
+      });
+      
     });
   
 

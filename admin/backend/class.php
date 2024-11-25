@@ -763,7 +763,9 @@ public function getDailySalesData()
         $query = $this->conn->prepare("SELECT * 
         FROM `product` 
         LEFT JOIN category
-        ON product.prod_category_id = category.category_id");
+        ON product.prod_category_id = category.category_id
+        where prod_status='1'
+        ");
 
         if ($query->execute()) {
             $result = $query->get_result();

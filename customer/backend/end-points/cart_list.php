@@ -46,16 +46,9 @@ $totalSavings = 0;
            
            <!-- Product Item -->
 <div class="flex flex-col lg:flex-row items-center border-t border-gray-200 pt-6 relative lg:space-x-6">
-    <!-- Wrapper for close button and checkbox -->
-    <div class="flex items-center space-x-4 absolute top-0 right-0">
-        <!-- Delete Button (X) -->
-        <button class="text-red-600 text-lg p-1 hover:bg-gray-200 rounded-full TogglerRemoveItem" 
-                data-cart_id="<?=$cart['cart_prod_id']?>"
-                data-size='<?=$cart['cart_prod_size']?>'>
-            <span class="material-icons">close</span>
-        </button>
-
-        <!-- Checkbox -->
+    <!-- Wrapper for checkbox and close button -->
+    <div class="flex items-center justify-between w-full absolute top-0 left-0 right-0 px-4">
+        <!-- Checkbox (left) -->
         <input type="checkbox" 
                class="product-checkbox mr-4 text-red-500" 
                data-product-id="<?=$cart['cart_prod_id']?>" 
@@ -65,6 +58,13 @@ $totalSavings = 0;
                data-qty="<?=$cart['cart_Qty']?>" 
                data-promoName="<?=$cart['promo_name']?>" 
                data-promoRate="<?=$cart['promo_rate']?>">
+
+        <!-- Delete Button (X) (right) -->
+        <button class="text-red-600 text-lg p-1 hover:bg-gray-200 rounded-full TogglerRemoveItem" 
+                data-cart_id="<?=$cart['cart_prod_id']?>"
+                data-size='<?=$cart['cart_prod_size']?>'>
+            <span class="material-icons">close</span>
+        </button>
     </div>
 
     <img src="../upload/<?=$cart['prod_image']?>" alt="Product Image" class="w-20 h-20 object-cover rounded-md shadow-lg mr-6 mb-4 lg:mb-0">
@@ -109,7 +109,7 @@ $totalSavings = 0;
 
 
 
-
+            
             <?php endforeach; ?>
         <?php endif; ?>
     </div>

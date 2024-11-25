@@ -48,7 +48,7 @@ include "components/header.php";
             <thead class="bg-gray-100 text-gray-700">
                 <tr>
                     <th class="p-3">Log ID</th>
-                    <th class="p-3">Name</th>
+                    <th class="p-3">User Name</th>
                     <th class="p-3">Role</th>
                     <th class="p-3">Date</th>
                     <th class="p-3">Activity</th>

@@ -9,7 +9,7 @@ if ($fetch_all_activity): ?>
         ?>
         <tr>
             <td class="p-2"><?= $log['log_id']; ?></td>
-            <td class="p-2"><?= ucfirst($log['log_name']); ?></td>
+            <td class="p-2"><?= $log['log_name']; ?></td>
             <td class="p-2"><?= $log['log_role']; ?></td>
             <td class="p-2"><?= $formatted_date; ?></td>
             <td class="p-2"><?= $log['log_activity']; ?></td>

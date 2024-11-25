@@ -47,10 +47,10 @@ include "components/header.php";
 
 
 
-<!-- Modal for Adding Promo -->
 <div id="deleteUserModal" class="fixed inset-0 bg-gray-900 bg-opacity-50 flex items-center justify-center" style="display:none;">
     <div class="bg-white rounded-lg shadow-lg w-96 p-6">
-        <h3 class="text-lg font-semibold text-gray-800 mb-4">Delete</h3>
+        <h3 class="text-lg font-semibold text-gray-800 mb-4">Are you sure you want to delete this user ? </h3>
+
         <form id="deleteuserForm">
 
             <div hidden class="mb-4">

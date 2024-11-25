@@ -809,6 +809,30 @@ public function getDailySalesData()
             return 'Error: ' . $query->error;
         }
     }
+
+
+    public function Adduser($admin_fullname,$admin_username,$admin_password) {
+        // Prepare the SQL query
+        $query = $this->conn->prepare(
+            "INSERT INTO `admin` (`admin_username`, `admin_password`, `admin_fullname`) 
+             VALUES (?, ?, ?)" 
+        );
+    
+        // Check if the query was prepared successfully
+        if (!$query) {
+            return 'Error: ' . $this->conn->error;
+        }
+    
+        // Bind parameters (s = string, d = double for rate)
+        $query->bind_param("sss", $admin_fullname,$admin_username,$admin_password);
+    
+        // Execute the query and check for success
+        if ($query->execute()) {
+            return 'success';
+        } else {
+            return 'Error: ' . $query->error;
+        }
+    }
     
  
 

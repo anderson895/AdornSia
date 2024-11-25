@@ -280,7 +280,20 @@ if ($orderStatus === "Canceled") {
             echo 'Failed to update order in the database.';
         }
 
+    }else if($_POST['requestType'] =='Adduser'){
 
+      
+        $admin_fullname=$_POST['admin_fullname'];
+        $admin_username=$_POST['admin_username'];
+        $admin_password=$_POST['admin_password'];
+
+        $result = $db->Adduser($admin_fullname,$admin_username,$admin_password);
+
+        if ($result=="success") {
+            echo 200; 
+        } else {
+            echo 'Failed to update order in the database.';
+        }
     }else{
         echo 'Invalid request type.';
     }

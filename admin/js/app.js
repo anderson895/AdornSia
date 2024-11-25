@@ -57,6 +57,56 @@ $(document).ready(function () {
   
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+  $("#adduserForm").submit(function (e) {
+    e.preventDefault();
+    
+    var formData = $(this).serializeArray();
+    formData.push({ name: 'requestType', value: 'Adduser' });
+    var serializedData = $.param(formData);
+  
+    $.ajax({
+      type: "POST",
+      url: "backend/end-points/controller.php",
+      data: serializedData,
+      success: function (response) {
+        if (response == "200") {
+          alertify.success('Refund Successful');
+          $('#addUserModal').fadeOut();
+          setTimeout(function () {
+            location.reload(); 
+          }, 1000); 
+        } else {
+          console.log(response);
+          alertify.error('Refund Failed. Please check the details.');
+        }
+      },
+    });
+    
+  });
+  
+
+
+
+
+
+
+
+
+
+
+
 $(document).on("change", ".UpdateOrderStatus", function () {
   const $select = $(this); 
   const orderId = $select.data("orderid");

@@ -626,7 +626,11 @@ public function getDailySalesData()
     
         // Bind parameters dynamically
         $query->bind_param($paramTypes, ...$params);
-    
+        
+        session_start();
+        $admin_username=$_SESSION['admin_username'];
+        $logs = "INSERT INTO `activity_logs` (`log_name`, `log_role`, `log_date`, `log_activity`)  VALUES ('$admin_username', 'Administrator', '$getDateToday', 'Update $product_Name')";
+        $this->conn->query($logs);
         // Execute the query
         if ($query->execute()) {
             return "success";
@@ -634,10 +638,7 @@ public function getDailySalesData()
             return false; 
         }
 
-        session_start();
-        $admin_username=$_SESSION['admin_username'];
-        $logs = "INSERT INTO `activity_logs` (`log_name`, `log_role`, `log_date`, `log_activity`)  VALUES ('$admin_username', 'Administrator', '$getDateToday', 'Update $product_Name')";
-        $this->conn->query($logs);
+       
 
     }
     

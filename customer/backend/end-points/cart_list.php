@@ -45,7 +45,7 @@ $totalSavings = 0;
                 </button>
 
                 <input type="checkbox" 
-                    class="product-checkbox top-0 left-0 text-red-500" 
+                    class="product-checkbox mr-4 text-red-500" 
                     data-product-id="<?=$cart['cart_prod_id']?>" 
                     data-Originalprice="<?=$originalPrice?>" 
                     data-price=<?=$price?>

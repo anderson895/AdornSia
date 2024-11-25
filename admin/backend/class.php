@@ -849,11 +849,11 @@ public function getDailySalesData()
         }
     }
 
-    public function DeleteUser($update_admin_id) {
+    public function DeleteUser($remove_admin_id) {
        
     
         // Prepare the SQL query directly
-        $query = "UPDATE `admin` SET admin_status='0' WHERE `admin_id`='$update_admin_id'";
+        $query = "UPDATE `admin` SET admin_status='0' WHERE `admin_id`='$remove_admin_id'";
     
         // Execute the query and check for success
         if ($this->conn->query($query)) {

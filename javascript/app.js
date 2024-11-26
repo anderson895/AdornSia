@@ -62,7 +62,7 @@ $(document).ready(function () {
       data: serializedData,  
       success: function (response) {
 
-console.log(response);
+    console.log(response);
         var data = JSON.parse(response);
 
         if (data.status === "success") {
@@ -123,6 +123,31 @@ console.log(response);
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
   $('#resendLink').click(function() {
     var userId = $(this).attr('data-userId');
     
@@ -163,6 +188,121 @@ console.log(response);
         }
     });
 });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+$("#frmForgotPassword").submit(function (e) {
+  e.preventDefault();
+
+  $('#spinner').show();
+  $('#btnForgotPassword').prop('disabled', true);
+  
+  var formData = $(this).serializeArray(); 
+  formData.push({ name: 'requestType', value: 'ForgotPassword' });
+  var serializedData = $.param(formData);
+
+  // Perform the AJAX request
+  $.ajax({
+    type: "POST",
+    url: "backend/end-points/forgot.php",
+    data: serializedData,  
+    success: function (response) {
+
+  console.log(response);
+      var data = JSON.parse(response);
+
+      if (data.status === "EmailNotExists") {
+
+        alertify.error(data.message);
+
+        $('#spinner').hide();
+        $('#btnForgotPassword').prop('disabled', false);  
+        
+      } else if(data.status==="EmailExist"){
+
+        sendforgotEmail(data.id,data.verificationKey);  
+
+
+
+      }else {
+        $('#spinner').hide();
+        $('#btnForgotPassword').prop('disabled', false);
+        console.error(response); 
+        alertify.error('Registration failed, please try again.');
+      }
+    },
+    error: function () {
+      $('#spinner').hide();
+      $('#btnForgotPassword').prop('disabled', false);
+      alertify.error('An error occurred. Please try again.');
+    }
+  });
+});
+
+
+
+
+function sendforgotEmail(userId,verificationKey) {
+  $.ajax({
+    type: "POST",
+    url: "mailer.php",
+    data: { 
+      user_id: userId,
+      verificationKey:verificationKey
+     },  
+    success: function (emailResponse) {
+
+      console.log(emailResponse)
+      if (emailResponse === "OTPSentSuccessfully") {
+
+        alertify.success('Email has been sent successfully!');
+
+        setTimeout(function () {
+          window.location.href = "verification.php?userId="+userId; 
+        }, 1000);
+      } else {
+        alertify.error('Failed to send the welcome email.');
+      }
+      $('#spinner').hide();
+      $('#btnRegister').prop('disabled', false);
+    },
+    error: function () {
+      $('#spinner').hide();
+      $('#btnRegister').prop('disabled', false);
+      alertify.error('An error occurred while sending the email.');
+    }
+  });
+}
 
 
 

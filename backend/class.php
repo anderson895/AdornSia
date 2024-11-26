@@ -130,6 +130,61 @@ class global_class extends db_connect
 
 
 
+
+
+
+
+
+
+
+    public function UpdateLink_expiration($email)
+    {
+      
+        $link_expiration = date("Y-m-d H:i:s", strtotime("+5 minutes"));
+        
+        // Check if the email already exists
+        $stmt = $this->conn->prepare("SELECT * FROM `user` WHERE `Email` = ?");
+        $stmt->bind_param("s", $email);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        
+        if ($result->num_rows > 0) {
+            // Email already exists, return error response
+            echo json_encode(array('status' => 'EmailExist', 'message' => 'Email already exists'));
+
+
+             // Proceed with insertion if email does not exist
+            $stmt = $this->conn->prepare("UPDATE `user` SET `link_expiration`='$link_expiration' WHERE Email='$email'");
+        
+            if ($stmt->execute()) {
+                session_start();
+                $userId = $this->conn->insert_id;
+                $_SESSION['id'] = $userId;
+                $response = array(
+                    'status' => 'success',
+                    'id' => $userId
+                );
+                echo json_encode($response);
+            } else {
+                echo json_encode(array('status' => 'error', 'message' => 'Unable to register'));
+            }
+
+            return;  
+        }else{
+            echo json_encode(array('status' => 'EmailNotExists', 'message' => 'Email already exists'));
+
+        }  
+        
+       
+    }
+
+
+
+
+
+
+
+
     public function SignUp($name, $email, $phone, $password)
     {
       

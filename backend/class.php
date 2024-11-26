@@ -171,7 +171,7 @@ class global_class extends db_connect
                 'status' => 'EmailExist',
                 'message' => 'Email already exists',
                 'data' => array(
-                    'id' => $userData['user_id '],
+                    'id' => $userData['user_id'],
                     'fullname' => $userData['Fullname'],
                     'email' => $userData['Email']
                 )

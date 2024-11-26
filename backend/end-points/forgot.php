@@ -12,7 +12,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
             $email=$_POST['email'];
 
-            echo $db->UpdateLink_expiration($email);
+            echo $db->CheckEmail($email);
         } else {
             echo 'Else';
         }

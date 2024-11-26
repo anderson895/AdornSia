@@ -250,7 +250,7 @@ $("#frmForgotPassword").submit(function (e) {
         
       } else if(data.status==="EmailExist"){
 
-        sendforgotEmail(data.id,data.verificationKey);  
+        sendforgotEmail(data.id);  
 
 
 
@@ -272,24 +272,23 @@ $("#frmForgotPassword").submit(function (e) {
 
 
 
-function sendforgotEmail(userId,verificationKey) {
+function sendforgotEmail(userId) {
   $.ajax({
     type: "POST",
-    url: "mailer.php",
+    url: "ForgotPasswordMailer.php",
     data: { 
-      user_id: userId,
-      verificationKey:verificationKey
+      user_id: userId
      },  
     success: function (emailResponse) {
 
       console.log(emailResponse)
       if (emailResponse === "OTPSentSuccessfully") {
 
-        alertify.success('Email has been sent successfully!');
+        alertify.success('Your New Password has been sent on your Email successfully!');
 
         setTimeout(function () {
-          window.location.href = "verification.php?userId="+userId; 
-        }, 1000);
+          window.location.href = "login.php"; 
+        }, 2000);
       } else {
         alertify.error('Failed to send the welcome email.');
       }

@@ -135,19 +135,26 @@ class global_class extends db_connect
 
     public function GenerateNewPassword($userId)
     {
-        // Generate a random verification key
+        // Validate and sanitize the user ID
+        $userId = intval($userId); // Ensure user ID is an integer
+
+        // Generate a random password (or token)
         $randomVerification = bin2hex(random_bytes(30)); // Adjust the length as needed
 
-        // Create the SQL query with direct variable insertion
-        $query = "UPDATE `user` SET `Password` = '$randomVerification' WHERE `user_id` = $userId";
+        // Escape the password string to prevent injection
+        $escapedPassword = $this->conn->real_escape_string($randomVerification);
+
+        // Create the SQL query with sanitized inputs
+        $query = "UPDATE `user` SET `Password` = '$escapedPassword' WHERE `user_id` = $userId";
 
         // Execute the query
         if ($this->conn->query($query)) {
-            return $randomVerification;  // Return the generated verification key
+            return $randomVerification; // Return the generated verification key
         } else {
-            return false;  // Return false if the query fails
+            return false; // Return false if the query fails
         }
     }
+
 
 
 

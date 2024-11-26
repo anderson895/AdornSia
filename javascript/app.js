@@ -250,10 +250,7 @@ $("#frmForgotPassword").submit(function (e) {
         
       } else if(data.status==="EmailExist"){
 
-        console.log(data);
-
-        console.log(data.data.id)
-        // sendforgotEmail(data.id,data.id);  
+         sendforgotEmail(data.data.id,data.data.fullname,data.data.email);  
 
 
 
@@ -274,37 +271,49 @@ $("#frmForgotPassword").submit(function (e) {
 
 
 
+function sendforgotEmail(userID, fullName, Email) {
+  // Disable button and show spinner before sending the request
+  $('#btnRegister').prop('disabled', true);
+  $('#spinner').show();
 
-function sendforgotEmail(userId) {
   $.ajax({
     type: "POST",
     url: "ForgotPasswordMailer.php",
     data: { 
-      user_id: userId
-     },  
+      userID: userID,
+      fullName: fullName,
+      Email: Email
+    },
     success: function (emailResponse) {
+      console.log("Response from server:", emailResponse);
 
-      console.log(emailResponse)
-      if (emailResponse === "OTPSentSuccessfully") {
-
-        alertify.success('Your New Password has been sent on your Email successfully!');
-
+      if (emailResponse.trim() === "200") { 
+        // Successful response
+        alertify.success('Your New Password has been sent to your email successfully!');
+        
+        // Redirect to the login page after a short delay
         setTimeout(function () {
-          window.location.href = "login.php"; 
+          window.location.href = "login.php";
         }, 2000);
       } else {
-        alertify.error('Failed to send the welcome email.');
+        // Backend returned a failure response
+        alertify.error('Failed to send the password reset email. Please try again.');
       }
-      $('#spinner').hide();
-      $('#btnRegister').prop('disabled', false);
     },
-    error: function () {
+    error: function (xhr, status, error) {
+      // Handle AJAX error
+      console.error("AJAX Error:", status, error);
+      console.error("Response Text:", xhr.responseText);
+      alertify.error('An error occurred while sending the email. Please check your network connection.');
+    },
+    complete: function () {
+      // Always re-enable button and hide spinner
       $('#spinner').hide();
       $('#btnRegister').prop('disabled', false);
-      alertify.error('An error occurred while sending the email.');
     }
   });
 }
+
 
 
 

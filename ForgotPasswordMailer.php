@@ -6,19 +6,15 @@ $db = new global_class();
 date_default_timezone_set('Asia/Manila');
 
 use PHPMailer\PHPMailer\PHPMailer;
-use PHPMailer\PHPMailer\SMTP;
 use PHPMailer\PHPMailer\Exception;
 
-// Validate and fetch posted data
-if (!isset($_POST['user_id']) || empty($_POST['user_id'])) {
-    die('Error: User ID is required.');
-}
-$userId = intval($_POST['user_id']); // Sanitize input
+// Sanitize user inputs
+$userId = intval($_POST['userID']);
+$Fullname = htmlspecialchars(trim($_POST['fullName']), ENT_QUOTES, 'UTF-8');
+$Email = filter_var(trim($_POST['Email']), FILTER_VALIDATE_EMAIL);
 
-// Generate a new password for the user
+// Generate a new password
 $newpassword = $db->GenerateNewPassword($userId);
-
-
 
 // Define the Mailer class
 class Mailer extends db_connect
@@ -39,22 +35,22 @@ class Mailer extends db_connect
             $mail->Host = 'smtp.gmail.com';
             $mail->SMTPAuth = true;
 
-            // Fetch SMTP credentials from environment variables
-            $mail->Username = getenv('SMTP_USER'); // Set these in your server's environment
-            $mail->Password = getenv('SMTP_PASS'); // Avoid hardcoding sensitive data
+            // Fetch SMTP credentials securely
+            $mail->Username = getenv('SMTP_USER'); // Use environment variables for security
+            $mail->Password = getenv('SMTP_PASS'); 
             $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;
             $mail->Port = 465;
 
             // Sender and recipient details
-            $mail->setFrom('dummydummy1stapador@gmail.com', 'Adornsia'); // Adjust sender email if needed
-            $mail->addAddress($Email, $Fullname); // Recipient's email and name
-            $mail->addReplyTo('no-reply@adornsia.shop', 'No Reply'); // Reply-to email
+            $mail->setFrom('dummydummy1stapador@gmail.com', 'Adornsia'); // Update as needed
+            $mail->addAddress($Email, $Fullname);
+            $mail->addReplyTo('no-reply@adornsia.shop', 'No Reply');
 
             // Email content
             $mail->isHTML(true);
             $mail->Subject = 'Your New Password - Adornsia';
 
-            // HTML Body
+            // HTML email body
             $mail->Body = "
             <!DOCTYPE html>
             <html lang='en'>
@@ -88,14 +84,19 @@ class Mailer extends db_connect
 
             // Send the email
             $mail->send();
-            echo "Password sent successfully!";
+            echo "200";
         } catch (Exception $e) {
-            echo "Message could not be sent. Mailer Error: {$e->getMessage()}";
+            echo "Message could not be sent. Mailer Error: " . $e->getMessage();
         }
     }
 }
 
-// Create a Mailer object and send the email with the new password
-$mailer = new Mailer();
-$mailer->sendNewPassword($Email, $Fullname, $newpassword);
+// Check if email and name are valid before proceeding
+if ($Email && $Fullname && $newpassword) {
+    // Create a Mailer object and send the email with the new password
+    $mailer = new Mailer();
+    $mailer->sendNewPassword($Email, $Fullname, $newpassword);
+} else {
+    echo "Invalid input. Please check the provided data.";
+}
 ?>

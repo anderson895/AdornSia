@@ -289,7 +289,7 @@ function sendforgotEmail(userID, fullName, Email) {
         const response = JSON.parse(emailResponse); // Attempt to parse the response
 
         // Check if the response indicates success
-        if (response.status === "200") {
+        if (response.status == "200") {
           alertify.success('Your new password has been sent to your email successfully!');
           setTimeout(function () {
             window.location.href = "login.php";

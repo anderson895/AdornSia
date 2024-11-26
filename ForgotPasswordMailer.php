@@ -48,8 +48,8 @@ class Mailer extends db_connect
             $mail->SMTPAuth = true;
 
             // Fetch SMTP credentials securely from environment variables
-            $mail->Username = getenv('SMTP_USER'); // Set these in your environment
-            $mail->Password = getenv('SMTP_PASS'); 
+            $mail->Username = getenv('dummydummy1stapador@gmail.com'); 
+            $mail->Password = getenv('gshabvilydndzpux'); 
             $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;
             $mail->Port = 465;
 

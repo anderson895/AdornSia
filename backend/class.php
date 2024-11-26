@@ -104,56 +104,68 @@ class global_class extends db_connect
 
     
     
-    public function Login($email, $password)
-    {
-        $query = $this->conn->prepare("SELECT * FROM `user` WHERE `Email` = ? AND `Password` = ? AND status = '1'");
+public function Login($email, $password)
+{
+    // Hash the input password using SHA-256
+    $hashedPassword = hash('sha256', $password);
 
-        $query->bind_param("ss", $email, $password);
-        
-        if ($query->execute()) {
-            $result = $query->get_result();
-            if ($result->num_rows > 0) {
-                $user = $result->fetch_assoc();
+    // Prepare the SQL query
+    $query = $this->conn->prepare("SELECT * FROM `user` WHERE `Email` = ? AND `Password` = ? AND status = '1'");
 
-                session_start();
-                $_SESSION['Fullname'] = $user['Fullname'];
-                $_SESSION['user_id'] = $user['user_id'];
+    // Bind the email and the hashed password
+    $query->bind_param("ss", $email, $hashedPassword);
+    
+    // Execute the query
+    if ($query->execute()) {
+        $result = $query->get_result();
+        if ($result->num_rows > 0) {
+            $user = $result->fetch_assoc();
 
-                return $user;
-            } else {
-                return false; 
-            }
+            // Start the session and store user info
+            session_start();
+            $_SESSION['Fullname'] = $user['Fullname'];
+            $_SESSION['user_id'] = $user['user_id'];
+
+            return $user;  // Return user data
         } else {
-            return false;
+            return false;  // User not found or incorrect credentials
         }
+    } else {
+        return false;  // Query failed to execute
     }
+}
 
 
 
 
 
 
-    public function GenerateNewPassword($userId)
-    {
-        // Validate and sanitize the user ID
-        $userId = intval($userId); // Ensure user ID is an integer
 
-        // Generate a random password (or token)
-        $randomVerification = bin2hex(random_bytes(30)); // Adjust the length as needed
+public function GenerateNewPassword($userId)
+{
+    // Validate and sanitize the user ID
+    $userId = intval($userId); // Ensure user ID is an integer
 
-        // Escape the password string to prevent injection
-        $escapedPassword = $this->conn->real_escape_string($randomVerification);
+    // Generate a random password (or token)
+    $randomVerification = bin2hex(random_bytes(15)); // Adjust the length as needed
 
-        // Create the SQL query with sanitized inputs
-        $query = "UPDATE `user` SET `Password` = '$escapedPassword' WHERE `user_id` = $userId";
+    // Hash the random password using SHA-256
+    $hashedPassword = hash('sha256', $randomVerification);
 
-        // Execute the query
-        if ($this->conn->query($query)) {
-            return $randomVerification; // Return the generated verification key
-        } else {
-            return false; // Return false if the query fails
-        }
+    // Escape the hashed password string to prevent injection (not strictly necessary here since it's hashed)
+    $escapedPassword = $this->conn->real_escape_string($hashedPassword);
+
+    // Create the SQL query with sanitized inputs
+    $query = "UPDATE `user` SET `Password` = '$escapedPassword' WHERE `user_id` = $userId";
+
+    // Execute the query
+    if ($this->conn->query($query)) {
+        return $randomVerification; // Return the generated verification key (plain text for the user)
+    } else {
+        return false; // Return false if the query fails
     }
+}
+
 
 
 
@@ -205,40 +217,43 @@ class global_class extends db_connect
 
 
     public function SignUp($name, $email, $phone, $password)
-    {
-      
-        $link_expiration = date("Y-m-d H:i:s", strtotime("+5 minutes"));
-        
-        // Check if the email already exists
-        $stmt = $this->conn->prepare("SELECT * FROM `user` WHERE `Email` = ?");
-        $stmt->bind_param("s", $email);
-        $stmt->execute();
-        $result = $stmt->get_result();
-        
-        if ($result->num_rows > 0) {
-            // Email already exists, return error response
-            echo json_encode(array('status' => 'EmailAlreadyExists', 'message' => 'Email already exists'));
-            return;  // Stop further execution
-        }
-        
-        // Proceed with insertion if email does not exist
-        $stmt = $this->conn->prepare("INSERT INTO `user` (`Fullname`, `Email`, `Phone`, `Password`, `link_expiration`) VALUES (?, ?, ?, ?, ?)");
-        $stmt->bind_param("sssss", $name, $email, $phone, $password, $link_expiration);
+{
+    $link_expiration = date("Y-m-d H:i:s", strtotime("+5 minutes"));
+
+    // Check if the email already exists
+    $stmt = $this->conn->prepare("SELECT * FROM `user` WHERE `Email` = ?");
+    $stmt->bind_param("s", $email);
+    $stmt->execute();
+    $result = $stmt->get_result();
     
-        if ($stmt->execute()) {
-            session_start();
-            $userId = $this->conn->insert_id;
-            $_SESSION['id'] = $userId;
-            $response = array(
-                'status' => 'success',
-                'id' => $userId
-            );
-            echo json_encode($response);
-        } else {
-            // Return an error status with the error code
-            echo json_encode(array('status' => 'error', 'message' => 'Unable to register'));
-        }
+    if ($result->num_rows > 0) {
+        // Email already exists, return error response
+        echo json_encode(array('status' => 'EmailAlreadyExists', 'message' => 'Email already exists'));
+        return;  // Stop further execution
     }
+    
+    // Hash the password using SHA-256
+    $hashedPassword = hash('sha256', $password);
+
+    // Proceed with insertion if email does not exist
+    $stmt = $this->conn->prepare("INSERT INTO `user` (`Fullname`, `Email`, `Phone`, `Password`, `link_expiration`) VALUES (?, ?, ?, ?, ?)");
+    $stmt->bind_param("sssss", $name, $email, $phone, $hashedPassword, $link_expiration);
+
+    if ($stmt->execute()) {
+        session_start();
+        $userId = $this->conn->insert_id;
+        $_SESSION['id'] = $userId;
+        $response = array(
+            'status' => 'success',
+            'id' => $userId
+        );
+        echo json_encode($response);
+    } else {
+        // Return an error status with the error code
+        echo json_encode(array('status' => 'error', 'message' => 'Unable to register'));
+    }
+}
+
 
 
 

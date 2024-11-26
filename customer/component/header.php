@@ -84,7 +84,7 @@ $firstname = $name_parts[0];
           <button id="profileButton" class="flex items-center space-x-2 bg-gray-200 hover:bg-gray-300 text-gray-700 rounded-full px-4 py-2">
           <?php
           if ($user_profileImages) {
-            echo "<img src='../upload/$user_profileImages' class='h-[50px] w-[50px] rounded-full'>";
+            echo "<img src='../upload/$user_profileImages' class='h-[6px] w-[6px] rounded-full'>";
 
           } else {
               echo '

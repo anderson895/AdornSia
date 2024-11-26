@@ -46,10 +46,8 @@ class Mailer extends db_connect
             $mail->isSMTP();
             $mail->Host = 'smtp.gmail.com';
             $mail->SMTPAuth = true;
-
-            // Fetch SMTP credentials securely from environment variables
-            $mail->Username = getenv('dummydummy1stapador@gmail.com'); 
-            $mail->Password = getenv('gshabvilydndzpux'); 
+            $mail->Username = 'dummydummy1stapador@gmail.com'; // Sender's email
+            $mail->Password = 'gshabvilydndzpux'; // App password
             $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;
             $mail->Port = 465;
 

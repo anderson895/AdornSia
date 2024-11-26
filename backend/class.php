@@ -87,7 +87,8 @@ class global_class extends db_connect
 
     public function update_verificationKey($userId)
 {
-    $link_expiration = date("Y-m-d H:i:s", strtotime("+5 minutes"));
+    $link_expiration = date("Y-m-d H:i:s", strtotime("+1 hour"));
+
     // Generate a random verification key
     $randomVerification = bin2hex(random_bytes(16)); // Adjust the length as needed
 

@@ -665,27 +665,32 @@ public function getDailySalesData()
     
     
     public function Login($username, $password)
-    {
-        $query = $this->conn->prepare("SELECT * FROM `admin` WHERE `admin_username` = ? AND `admin_password` = ? AND admin_status='1'");
-        $query->bind_param("ss", $username, $password);
-        
-        if ($query->execute()) {
-            $result = $query->get_result();
-            if ($result->num_rows > 0) {
-                $user = $result->fetch_assoc();
+{
+    // Hash the password using SHA-256
+    $hashed_password = hash('sha256', $password);
 
-                session_start();
-                $_SESSION['admin_username'] = $user['admin_username'];
-                $_SESSION['admin_id'] = $user['admin_id'];
+    // Prepare the SQL query to check the username and hashed password
+    $query = $this->conn->prepare("SELECT * FROM `admin` WHERE `admin_username` = ? AND `admin_password` = ? AND admin_status='1'");
+    $query->bind_param("ss", $username, $hashed_password);
 
-                return $user;
-            } else {
-                return false; 
-            }
+    if ($query->execute()) {
+        $result = $query->get_result();
+        if ($result->num_rows > 0) {
+            $user = $result->fetch_assoc();
+
+            session_start();
+            $_SESSION['admin_username'] = $user['admin_username'];
+            $_SESSION['admin_id'] = $user['admin_id'];
+
+            return $user;
         } else {
-            return false;
+            return false; 
         }
+    } else {
+        return false;
     }
+}
+
 
     public function fetch_all_customers(){
         $query = $this->conn->prepare("SELECT * FROM `user`");
@@ -856,17 +861,18 @@ public function getDailySalesData()
     }
 
 
-    public function Adduser($admin_fullname,$admin_username,$admin_password) {
+    public function Adduser($admin_fullname, $admin_username, $admin_password) {
+        // Hash the password using SHA-256
+        $hashed_password = hash('sha256', $admin_password);
+    
         // Prepare the SQL query
         $query = $this->conn->prepare(
             "INSERT INTO `admin` (`admin_username`, `admin_password`, `admin_fullname`) 
-             VALUES (?, ?, ?)" 
+             VALUES (?, ?, ?)"
         );
     
-       
-    
-        // Bind parameters (s = string, d = double for rate)
-        $query->bind_param("sss",$admin_username,$admin_password, $admin_fullname);
+        // Bind parameters (s = string)
+        $query->bind_param("sss", $admin_username, $hashed_password, $admin_fullname);
     
         // Execute the query and check for success
         if ($query->execute()) {
@@ -875,13 +881,15 @@ public function getDailySalesData()
             return 'Error: ' . $query->error;
         }
     }
+    
 
 
     public function Updateuser($update_admin_id, $update_admin_fullname, $update_admin_username, $update_admin_password) {
-       
+        // Hash the password using SHA-256
+        $hashed_password = hash('sha256', $update_admin_password);
     
         // Prepare the SQL query directly
-        $query = "UPDATE `admin` SET `admin_username`='$update_admin_username', `admin_password`='$update_admin_password', `admin_fullname`='$update_admin_fullname' WHERE `admin_id`='$update_admin_id'";
+        $query = "UPDATE `admin` SET `admin_username`='$update_admin_username', `admin_password`='$hashed_password', `admin_fullname`='$update_admin_fullname' WHERE `admin_id`='$update_admin_id'";
     
         // Execute the query and check for success
         if ($this->conn->query($query)) {
@@ -890,6 +898,7 @@ public function getDailySalesData()
             return 'Error: ' . $this->conn->error;
         }
     }
+    
 
     public function DeleteUser($remove_admin_id) {
        

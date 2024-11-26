@@ -89,6 +89,7 @@ class Mailer extends db_connect
             </body>
             </html>";
 
+
             // Plain text body
             $mail->AltBody = "Hello $Fullname, your new password is: $newpassword.\nPlease log in at https://adornsia.shop/login.php and update it immediately.";
 

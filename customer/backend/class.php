@@ -400,7 +400,7 @@ public function OrderRequest($address, $paymentMethod, $proofOfPayment, $fileNam
 
 
     public function update_user_password($userID, $user_NewPassword, $user_CurrentPassword) {
-        // Step 1: Verify if the current password matches the stored password
+        // Step 1: Verify if the current password matches the stored password (hashed)
         $query = "
             SELECT `Password` 
             FROM `user` 
@@ -418,8 +418,8 @@ public function OrderRequest($address, $paymentMethod, $proofOfPayment, $fileNam
                 $stmt->bind_result($storedPassword);
                 $stmt->fetch();
                 
-                // Verify current password (no hashing here, just plain text match)
-                if ($user_CurrentPassword !== $storedPassword) {
+                // Hash the current password and compare with the stored hashed password
+                if (hash('sha256', $user_CurrentPassword) !== $storedPassword) {
                     $stmt->close();
                     return [
                         'success' => false,
@@ -434,7 +434,9 @@ public function OrderRequest($address, $paymentMethod, $proofOfPayment, $fileNam
                 ];
             }
     
-            // Step 2: Update the password (without hashing)
+            // Step 2: Hash the new password and update it
+            $hashedNewPassword = hash('sha256', $user_NewPassword);
+    
             $updateQuery = "
                 UPDATE `user` 
                 SET `Password` = ? 
@@ -443,7 +445,7 @@ public function OrderRequest($address, $paymentMethod, $proofOfPayment, $fileNam
             
             // Prepare the update statement
             if ($updateStmt = $this->conn->prepare($updateQuery)) {
-                $updateStmt->bind_param("si", $user_NewPassword, $userID);
+                $updateStmt->bind_param("si", $hashedNewPassword, $userID);
                 
                 if ($updateStmt->execute()) {
                     $updateStmt->close();
@@ -474,6 +476,7 @@ public function OrderRequest($address, $paymentMethod, $proofOfPayment, $fileNam
             ];
         }
     }
+    
     
     
     

@@ -252,7 +252,7 @@ $("#frmForgotPassword").submit(function (e) {
 
         console.log(data);
 
-        console.log(data.id)
+        console.log(data.data.id)
         // sendforgotEmail(data.id,data.id);  
 
 

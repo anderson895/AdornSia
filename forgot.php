@@ -24,7 +24,7 @@
       </div>
 
       <button type="submit" id="btnForgotPassword" class="w-full py-2 px-4 bg-indigo-600 text-white font-semibold rounded-lg shadow-md hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-opacity-75">
-        Send Reset Link
+        Request New Password
       </button>
     </form>
 

@@ -158,7 +158,7 @@ class global_class extends db_connect
         $link_expiration = date("Y-m-d H:i:s", strtotime("+5 minutes"));
     
         // Check if the email already exists
-        $stmt = $this->conn->prepare("SELECT `user_id `, `Fullname`, `Email` FROM `user` WHERE `Email` = ?");
+        $stmt = $this->conn->prepare("SELECT `user_id`, `Fullname`, `Email` FROM `user` WHERE `Email` = ?");
         $stmt->bind_param("s", $email);
         $stmt->execute();
         $result = $stmt->get_result();

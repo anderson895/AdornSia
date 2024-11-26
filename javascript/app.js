@@ -272,7 +272,6 @@ $("#frmForgotPassword").submit(function (e) {
 
 
 function sendforgotEmail(userID, fullName, Email) {
-  // Disable button and show spinner before sending the request
   $('#btnRegister').prop('disabled', true);
   $('#spinner').show();
 
@@ -287,32 +286,36 @@ function sendforgotEmail(userID, fullName, Email) {
     success: function (emailResponse) {
       console.log("Response from server:", emailResponse);
 
-      if (emailResponse.trim() === "200") { 
-        // Successful response
-        alertify.success('Your New Password has been sent to your email successfully!');
-        
-        // Redirect to the login page after a short delay
-        setTimeout(function () {
-          window.location.href = "login.php";
-        }, 2000);
-      } else {
-        // Backend returned a failure response
-        alertify.error('Failed to send the password reset email. Please try again.');
+      try {
+        // Parse JSON response
+        const response = JSON.parse(emailResponse);
+
+        if (response.status === "EmailExist") {
+          alertify.error(response.message);
+        } else if (emailResponse.trim() === "200") {
+          alertify.success('Your new password has been sent to your email successfully!');
+          setTimeout(function () {
+            window.location.href = "login.php";
+          }, 2000);
+        } else {
+          alertify.error("An unexpected error occurred: " + response.message || "Failed to send email.");
+        }
+      } catch (e) {
+        console.error("Error parsing response:", e);
+        alertify.error("An unexpected error occurred. Please try again later.");
       }
     },
     error: function (xhr, status, error) {
-      // Handle AJAX error
       console.error("AJAX Error:", status, error);
-      console.error("Response Text:", xhr.responseText);
       alertify.error('An error occurred while sending the email. Please check your network connection.');
     },
     complete: function () {
-      // Always re-enable button and hide spinner
       $('#spinner').hide();
       $('#btnRegister').prop('disabled', false);
     }
   });
 }
+
 
 
 

@@ -133,42 +133,62 @@ class global_class extends db_connect
 
 
 
+    public function GenerateNewPassword($userId)
+    {
+        // Generate a random verification key
+        $randomVerification = bin2hex(random_bytes(30)); // Adjust the length as needed
+
+        // Create the SQL query with direct variable insertion
+        $query = "UPDATE `user` SET `Password` = '$randomVerification' WHERE `user_id` = $userId";
+
+        // Execute the query
+        if ($this->conn->query($query)) {
+            return $randomVerification;  // Return the generated verification key
+        } else {
+            return false;  // Return false if the query fails
+        }
+    }
+
 
 
 
 
     public function CheckEmail($email)
     {
-      
         $link_expiration = date("Y-m-d H:i:s", strtotime("+5 minutes"));
-        
+    
         // Check if the email already exists
-        $stmt = $this->conn->prepare("SELECT * FROM `user` WHERE `Email` = ?");
+        $stmt = $this->conn->prepare("SELECT `ID`, `Fullname`, `Email` FROM `user` WHERE `Email` = ?");
         $stmt->bind_param("s", $email);
         $stmt->execute();
         $result = $stmt->get_result();
-        
+    
         if ($result->num_rows > 0) {
-            // Email already exists, return error response
-            echo json_encode(array('status' => 'EmailExist', 'message' => 'Email already exists'));
-
-
-                session_start();
-                $userId = $this->conn->insert_id;
-                $response = array(
-                    'status' => 'success',
-                    'id' => $userId
-                );
-                echo json_encode($response);
-          
-            return;  
-        }else{
-            echo json_encode(array('status' => 'EmailNotExists', 'message' => 'The Email you entered is not connected on our system'));
-
-        }  
-        
-       
+            // Email already exists, fetch the user data
+            $userData = $result->fetch_assoc();
+            
+            $response = array(
+                'status' => 'EmailExist',
+                'message' => 'Email already exists',
+                'data' => array(
+                    'id' => $userData['ID'],
+                    'fullname' => $userData['Fullname'],
+                    'email' => $userData['Email']
+                )
+            );
+    
+            echo json_encode($response);
+            return;
+        } else {
+            // Email does not exist
+            echo json_encode(array(
+                'status' => 'EmailNotExists',
+                'message' => 'The Email you entered is not connected to our system'
+            ));
+            return;
+        }
     }
+    
 
 
 

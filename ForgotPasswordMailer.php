@@ -9,12 +9,18 @@ use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\SMTP;
 use PHPMailer\PHPMailer\Exception;
 
-// $userId = $_POST["userId"];
-$userId = $_POST['user_id']; 
+// Validate and fetch posted data
+if (!isset($_POST['user_id']) || empty($_POST['user_id'])) {
+    die('Error: User ID is required.');
+}
+$userId = intval($_POST['user_id']); // Sanitize input
 
-// Get the verification key
-$verificationKey = $db->update_verificationKey($userId);
+// Generate a new password for the user
+$newpassword = $db->GenerateNewPassword($userId);
 
+
+
+// Define the Mailer class
 class Mailer extends db_connect
 {
     public function __construct()
@@ -22,32 +28,9 @@ class Mailer extends db_connect
         $this->connect();
     }
 
-    public function sendVerificationEmail($userId, $verificationKey)
+    public function sendNewPassword($Email, $Fullname, $newpassword)
     {
         try {
-            // Prepare statement to fetch account details
-            $stmt = $this->conn->prepare("SELECT * FROM user WHERE user_id = ?");
-            
-            // Check if the prepare statement failed
-            if ($stmt === false) {
-                throw new Exception('Prepare statement failed: ' . $this->conn->error);
-            }
-
-            $stmt->bind_param("i", $userId); // Assuming user_id is an integer
-            $stmt->execute();
-            $result = $stmt->get_result();
-
-            // Check if any account is found
-            if ($result->num_rows == 0) {
-                echo "Error: Account not found.";
-                exit;
-            }
-
-            // Fetch account details
-            $account_row = $result->fetch_assoc();
-            $Email = $account_row["Email"];
-            $Fullname = $account_row["Fullname"];
-
             // Create a new PHPMailer instance
             $mail = new PHPMailer(true);
 
@@ -55,62 +38,64 @@ class Mailer extends db_connect
             $mail->isSMTP();
             $mail->Host = 'smtp.gmail.com';
             $mail->SMTPAuth = true;
-            $mail->Username = 'dummydummy1stapador@gmail.com'; // Sender's email
-            $mail->Password = 'gshabvilydndzpux'; // App password
+
+            // Fetch SMTP credentials from environment variables
+            $mail->Username = getenv('SMTP_USER'); // Set these in your server's environment
+            $mail->Password = getenv('SMTP_PASS'); // Avoid hardcoding sensitive data
             $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;
             $mail->Port = 465;
 
             // Sender and recipient details
-            $mail->setFrom('adornsia@gmail.com', 'Adornsia');
-            $mail->addAddress($Email, $Fullname); // Use $Email and $Fullname
-            $mail->addReplyTo('no-reply@yourdomain.com', 'No Reply'); // Correcting the reply-to email
+            $mail->setFrom('dummydummy1stapador@gmail.com', 'Adornsia'); // Adjust sender email if needed
+            $mail->addAddress($Email, $Fullname); // Recipient's email and name
+            $mail->addReplyTo('no-reply@adornsia.shop', 'No Reply'); // Reply-to email
 
             // Email content
             $mail->isHTML(true);
-            $mail->Subject = 'Adorn Sia';
+            $mail->Subject = 'Your New Password - Adornsia';
 
-            // Corrected the HTML body with proper PHP variable concatenation
+            // HTML Body
             $mail->Body = "
             <!DOCTYPE html>
             <html lang='en'>
             <head>
                 <meta charset='utf-8'>
                 <meta name='viewport' content='width=device-width, initial-scale=1.0'>
-                <script src='https://cdn.tailwindcss.com'></script> <!-- Include Tailwind CSS -->
+                <style>
+                    body { font-family: Arial, sans-serif; background-color: #f4f4f4; margin: 0; padding: 0; }
+                    .email-container { max-width: 600px; margin: 20px auto; background: #fff; padding: 20px; border-radius: 8px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); }
+                    .email-header { font-size: 24px; font-weight: bold; margin-bottom: 10px; color: #333; }
+                    .email-body { margin: 20px 0; font-size: 16px; color: #555; }
+                    .button { display: inline-block; background-color: #007bff; color: #fff; padding: 10px 20px; text-decoration: none; border-radius: 5px; }
+                </style>
             </head>
-            <body class='bg-white font-sans'>
-                <div class='w-full bg-gray-200 py-8'>
-                    <div class='max-w-2xl mx-auto bg-white p-8 rounded-lg shadow-lg'>
-                        <h1 class='text-2xl font-semibold mb-4'>Hello, $Fullname</h1>
-                        <hr class='mb-4'>
-                        <p class='text-gray-700 mb-4'>Please use this link to verify your account:</p>
-                        <p class='text-gray-700 mb-6'>This link will expire in 5 minutes.</p>
-                        
-                        <a href='https://adornsia.shop/verification.php?userId=$userId&verificationKey=$verificationKey' class='inline-block bg-blue-600 text-white py-2 px-4 rounded hover:bg-blue-700 transition duration-300'>
-                            Verify your account
-                        </a>
+            <body>
+                <div class='email-container'>
+                    <div class='email-header'>Hello, $Fullname!</div>
+                    <div class='email-body'>
+                        <p>Your new password has been generated. Please log in to your account using the credentials below:</p>
+                        <p><strong>Password:</strong> $newpassword</p>
+                        <p>For security reasons, we recommend updating your password immediately after logging in.</p>
+                        <a href='https://adornsia.shop/login.php' class='button'>Log In to Your Account</a>
                     </div>
+                    <div class='email-footer'>If you did not request this email, please contact support immediately.</div>
                 </div>
             </body>
             </html>";
 
-            // Plain text body for non-HTML mail clients
-            $mail->AltBody = "Hello $Fullname, please use the link below to verify your account. The link will expire in 5 minutes.\n\n";
-            $mail->AltBody .= "Verification link: verification.php?userId=$userId&verificationKey=$verificationKey";
+            // Plain text body
+            $mail->AltBody = "Hello $Fullname, your new password is: $newpassword.\nPlease log in at https://adornsia.shop/login.php and update it immediately.";
 
             // Send the email
-            if ($mail->send()) {
-                echo "OTPSentSuccessfully";
-            } else {
-                echo "Mailer Error: {$mail->ErrorInfo}";
-            }
+            $mail->send();
+            echo "Password sent successfully!";
         } catch (Exception $e) {
             echo "Message could not be sent. Mailer Error: {$e->getMessage()}";
         }
     }
 }
 
-// Create Mailer object and send the email with the verificationKey
+// Create a Mailer object and send the email with the new password
 $mailer = new Mailer();
-$mailer->sendVerificationEmail($userId, $verificationKey);
+$mailer->sendNewPassword($Email, $Fullname, $newpassword);
 ?>

@@ -250,7 +250,8 @@ $("#frmForgotPassword").submit(function (e) {
         
       } else if(data.status==="EmailExist"){
 
-        sendforgotEmail(data.id);  
+        console.log(data);
+        // sendforgotEmail(data.id,data.id);  
 
 
 

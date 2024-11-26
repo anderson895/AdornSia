@@ -282,24 +282,18 @@ function sendforgotEmail(userID, fullName, Email) {
       fullName: fullName,
       Email: Email
     },
+    dataType: "json",  // Set the expected response data type to JSON
     success: function (emailResponse) {
       console.log("Response from server:", emailResponse);
 
-      try {
-        const response = JSON.parse(emailResponse); // Attempt to parse the response
-
-        // Check if the response indicates success
-        if (response.status == "200") {
-          alertify.success('Your new password has been sent to your email successfully!');
-          setTimeout(function () {
-            window.location.href = "login.php";
-          }, 2000);
-        } else {
-          alertify.error('There was an issue sending the email. Please try again.');
-        }
-      } catch (error) {
-        console.error("Error parsing response:", error);
-        alertify.error('There was a problem processing the response.');
+      // Check if the response indicates success
+      if (emailResponse.status == "200") {  // Ensure you're using the correct variable
+        alertify.success('Your new password has been sent to your email successfully!');
+        setTimeout(function () {
+          window.location.href = "login.php";
+        }, 2000);
+      } else {
+        alertify.error('There was an issue sending the email. Please try again.');
       }
     },
     error: function (xhr, status, error) {
@@ -310,7 +304,8 @@ function sendforgotEmail(userID, fullName, Email) {
       $('#spinner').hide();
       $('#btnRegister').prop('disabled', false);
     }
-  });
+});
+
 }
 
 

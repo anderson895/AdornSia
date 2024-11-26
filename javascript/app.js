@@ -270,7 +270,6 @@ $("#frmForgotPassword").submit(function (e) {
 });
 
 
-
 function sendforgotEmail(userID, fullName, Email) {
   $('#btnRegister').prop('disabled', true);
   $('#spinner').show();
@@ -286,14 +285,26 @@ function sendforgotEmail(userID, fullName, Email) {
     success: function (emailResponse) {
       console.log("Response from server:", emailResponse);
 
-        const response = JSON.parse(emailResponse);
+      try {
+        const response = JSON.parse(emailResponse); // Attempt to parse the response
 
-        if (response.trim() === "200") {
+        // Check if the response indicates success
+        if (response.status === "200") {
           alertify.success('Your new password has been sent to your email successfully!');
           setTimeout(function () {
             window.location.href = "login.php";
           }, 2000);
-        } 
+        } else {
+          alertify.error('There was an issue sending the email. Please try again.');
+        }
+      } catch (error) {
+        console.error("Error parsing response:", error);
+        alertify.error('There was a problem processing the response.');
+      }
+    },
+    error: function (xhr, status, error) {
+      console.error("Error in AJAX request:", error);
+      alertify.error('There was an error communicating with the server. Please try again.');
     },
     complete: function () {
       $('#spinner').hide();

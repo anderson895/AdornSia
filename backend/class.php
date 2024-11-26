@@ -171,7 +171,7 @@ class global_class extends db_connect
 
             return;  
         }else{
-            echo json_encode(array('status' => 'EmailNotExists', 'message' => 'Email already exists'));
+            echo json_encode(array('status' => 'EmailNotExists', 'message' => 'The Email you entered is not connected on our system'));
 
         }  
         

@@ -13,8 +13,20 @@ $userId = intval($_POST['userID']);
 $Fullname = htmlspecialchars(trim($_POST['fullName']), ENT_QUOTES, 'UTF-8');
 $Email = filter_var(trim($_POST['Email']), FILTER_VALIDATE_EMAIL);
 
+// Check if inputs are valid
+if (!$Fullname || !$Email) {
+    echo json_encode(["status" => "error", "message" => "Invalid name or email address."]);
+    exit;
+}
+
 // Generate a new password
 $newpassword = $db->GenerateNewPassword($userId);
+
+// Check if new password was generated
+if (!$newpassword) {
+    echo json_encode(["status" => "error", "message" => "Failed to generate a new password."]);
+    exit;
+}
 
 // Define the Mailer class
 class Mailer extends db_connect
@@ -35,14 +47,14 @@ class Mailer extends db_connect
             $mail->Host = 'smtp.gmail.com';
             $mail->SMTPAuth = true;
 
-            // Fetch SMTP credentials securely
-            $mail->Username = getenv('SMTP_USER'); // Use environment variables for security
+            // Fetch SMTP credentials securely from environment variables
+            $mail->Username = getenv('SMTP_USER'); // Set these in your environment
             $mail->Password = getenv('SMTP_PASS'); 
             $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;
             $mail->Port = 465;
 
             // Sender and recipient details
-            $mail->setFrom('dummydummy1stapador@gmail.com', 'Adornsia'); // Update as needed
+            $mail->setFrom('dummydummy1stapador@gmail.com', 'Adornsia');
             $mail->addAddress($Email, $Fullname);
             $mail->addReplyTo('no-reply@adornsia.shop', 'No Reply');
 
@@ -83,20 +95,18 @@ class Mailer extends db_connect
             $mail->AltBody = "Hello $Fullname, your new password is: $newpassword.\nPlease log in at https://adornsia.shop/login.php and update it immediately.";
 
             // Send the email
-            $mail->send();
-            echo "200";
+            if ($mail->send()) {
+                echo json_encode(["status" => "success", "message" => "Email sent successfully."]);
+            } else {
+                throw new Exception("Message could not be sent.");
+            }
         } catch (Exception $e) {
-            echo "Message could not be sent. Mailer Error: " . $e->getMessage();
+            echo json_encode(["status" => "error", "message" => "Mailer Error: " . $e->getMessage()]);
         }
     }
 }
 
-// Check if email and name are valid before proceeding
-if ($Email && $Fullname && $newpassword) {
-    // Create a Mailer object and send the email with the new password
-    $mailer = new Mailer();
-    $mailer->sendNewPassword($Email, $Fullname, $newpassword);
-} else {
-    echo "Invalid input. Please check the provided data.";
-}
+// Create a Mailer object and send the email with the new password
+$mailer = new Mailer();
+$mailer->sendNewPassword($Email, $Fullname, $newpassword);
 ?>

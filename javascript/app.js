@@ -285,9 +285,9 @@ function sendforgotEmail(userID, fullName, Email) {
     dataType: "json",  // Set the expected response data type to JSON
     success: function (emailResponse) {
       console.log("Response from server:", emailResponse);
-
+  
       // Check if the response indicates success
-      if (emailResponse.status == "200") {  // Ensure you're using the correct variable
+      if (emailResponse.status == "success") {  // Update to match the 'success' status from your PHP response
         alertify.success('Your new password has been sent to your email successfully!');
         setTimeout(function () {
           window.location.href = "login.php";
@@ -304,7 +304,8 @@ function sendforgotEmail(userID, fullName, Email) {
       $('#spinner').hide();
       $('#btnRegister').prop('disabled', false);
     }
-});
+  });
+  
 
 }
 

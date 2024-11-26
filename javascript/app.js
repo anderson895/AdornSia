@@ -286,28 +286,14 @@ function sendforgotEmail(userID, fullName, Email) {
     success: function (emailResponse) {
       console.log("Response from server:", emailResponse);
 
-      try {
-        // Parse JSON response
         const response = JSON.parse(emailResponse);
 
-        if (response.status === "EmailExist") {
-          alertify.error(response.message);
-        } else if (emailResponse.trim() === "200") {
+        if (response.trim() === "200") {
           alertify.success('Your new password has been sent to your email successfully!');
           setTimeout(function () {
             window.location.href = "login.php";
           }, 2000);
-        } else {
-          alertify.error("An unexpected error occurred: " + response.message || "Failed to send email.");
-        }
-      } catch (e) {
-        console.error("Error parsing response:", e);
-        alertify.error("An unexpected error occurred. Please try again later.");
-      }
-    },
-    error: function (xhr, status, error) {
-      console.error("AJAX Error:", status, error);
-      alertify.error('An error occurred while sending the email. Please check your network connection.');
+        } 
     },
     complete: function () {
       $('#spinner').hide();

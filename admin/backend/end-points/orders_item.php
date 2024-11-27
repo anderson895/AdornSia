@@ -126,8 +126,8 @@ if (count($fetch_item_orders) > 0):
                         <p class="text-red-600">₱<?= number_format($item['item_product_price'] - ($item['item_product_price'] * $promo_discount['promoRate']), 2); ?></p>
                     <?php endif; ?>
                     
-                    <p class="font-semibold text-gray-700">Original Price:</p>
-                    <p class="text-gray-600 <?= $promo_discount['promoRate'] ? 'line-through' : '' ?>">₱<?= number_format($item['item_product_price'], 2); ?></p>
+                    <p class="font-semibold text-gray-700">Original Price: <span class="text-gray-600 <?= $promo_discount['promoRate'] ? 'line-through' : '' ?>">₱<?= number_format($item['item_product_price'], 2); ?></span></p>
+                    
                     
                     <p class="font-semibold text-gray-700">Quantity:</p>
                     <p class="text-gray-600"><?= $item['item_qty']; ?></p>

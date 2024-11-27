@@ -55,10 +55,8 @@ include "components/header.php";
                     <th class="p-3">Activity</th>
                 </tr>
             </thead>
-        </table>
-   
-        <table class="table-auto w-full text-sm text-left text-gray-500 dark:text-gray-400 overflow-x-auto max-h-96 overflow-y-auto">
-            <tbody>
+        
+            <tbody class="overflow-x-auto max-h-96 overflow-y-auto table-auto w-full text-sm text-left text-gray-500 dark:text-gray-400">
                 <?php include "backend/end-points/activity_log_list.php"; ?>
             </tbody>
         </table>

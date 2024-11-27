@@ -75,7 +75,7 @@ if (count($fetch_item_orders) > 0):
 
 
     <!-- Order Summary Section -->
-    <div class="bg-gray-100 p-6 mt-6 rounded-lg shadow-lg">
+    <div class="bg-white p-6 mt-6 rounded-lg shadow-lg">
         <div class="flex justify-between items-center">
             <p class="font-semibold text-lg text-gray-800">Subtotal:</p>
             <p class="font-semibold text-lg text-gray-800 text-right">₱ <?= number_format($fetch_item_orders[0]['subtotal'], 2); ?></p>
@@ -92,7 +92,7 @@ if (count($fetch_item_orders) > 0):
 
 
     <!-- Delivery Address -->
-    <div class="bg-gray-100 p-6 mt-6 rounded-lg shadow-lg">
+    <div class="bg-white p-6 mt-6 rounded-lg shadow-lg">
         <p class="font-semibold text-lg text-gray-800">Delivery Address:</p>
         <p class="text-gray-600"><?= $fetch_item_orders[0]['delivery_address']; ?></p>
     </div>

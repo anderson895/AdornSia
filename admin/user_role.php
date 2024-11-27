@@ -43,7 +43,7 @@ include "components/header.php";
 
     <h3 class="text-lg font-semibold text-gray-700 mb-4">Activity Logs</h3>
 
-    <!-- Table header (fixed outside of scrollable container) -->
+    <!-- Table container with horizontal scroll -->
     <div class="overflow-x-auto">
         <table class="table-auto w-full text-sm text-left text-gray-500 dark:text-gray-400">
             <thead class="bg-gray-100 text-gray-700">
@@ -56,13 +56,14 @@ include "components/header.php";
                 </tr>
             </thead>
        
-            <tbody class="block overflow-y-auto max-h-96"> <!-- Added classes for scrollability -->
-    
+            <!-- Table body with scroll -->
+            <tbody class="block overflow-y-auto max-h-96">
                 <?php include "backend/end-points/activity_log_list.php"; ?>
             </tbody>
         </table>
     </div>
 </div>
+
 
 
 

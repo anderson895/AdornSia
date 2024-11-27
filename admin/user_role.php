@@ -45,7 +45,7 @@ include "components/header.php";
 
     <!-- Table header (fixed outside of scrollable container) -->
     <div class="overflow-x-auto">
-        <table class="table-auto w-full text-sm text-left text-gray-500 dark:text-gray-400 min-w-full">
+        <table class="table-auto w-full text-sm text-left text-gray-500 dark:text-gray-400">
             <thead class="bg-gray-100 text-gray-700">
                 <tr>
                     <th class="p-3">Log ID</th>
@@ -56,7 +56,7 @@ include "components/header.php";
                 </tr>
             </thead>
        
-            <tbody class="block max-h-[400px] overflow-y-auto">
+            <tbody>
                 <?php include "backend/end-points/activity_log_list.php"; ?>
             </tbody>
         </table>

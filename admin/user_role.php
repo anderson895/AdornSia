@@ -55,11 +55,10 @@ include "components/header.php";
                     <th class="p-3">Activity</th>
                 </tr>
             </thead>
-            <div class="overflow-x-auto max-h-96 overflow-y-auto">
-                <tbody>
-                    <?php include "backend/end-points/activity_log_list.php"; ?>
-                </tbody>
-            </div>
+       
+            <tbody>
+                <?php include "backend/end-points/activity_log_list.php"; ?>
+            </tbody>
         </table>
     </div>
 </div>

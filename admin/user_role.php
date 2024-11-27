@@ -55,12 +55,7 @@ include "components/header.php";
                     <th class="p-3">Activity</th>
                 </tr>
             </thead>
-        </table>
-    </div>
-
-    <!-- Scrollable table body -->
-    <div class="overflow-x-auto max-h-96 overflow-y-auto">
-        <table class="table-auto w-full text-sm text-gray-500 dark:text-gray-400">
+        
             <tbody>
                 <?php include "backend/end-points/activity_log_list.php"; ?>
             </tbody>

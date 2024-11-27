@@ -7,12 +7,12 @@ if ($fetch_all_activity): ?>
         // Format the date and time to a more readable format (e.g., "November 25, 2024 at 2:30 PM")
         $formatted_date = (new DateTime($log['log_date']))->format('F j, Y \a\t g:i A');
         ?>
-        <tr>
-            <td class="p-2"><?= $log['log_id']; ?></td>
-            <td class="p-2"><?= $log['log_name']; ?></td>
-            <td class="p-2"><?= $log['log_role']; ?></td>
-            <td class="p-2"><?= $formatted_date; ?></td>
-            <td class="p-2"><?= $log['log_activity']; ?></td>
+        <tr class="table-row block min-w-full">
+                    <td class="p-2"><?= $log['log_id']; ?></td>
+                    <td class="p-2"><?= $log['log_name']; ?></td>
+                    <td class="p-2"><?= $log['log_role']; ?></td>
+                    <td class="p-2"><?= $formatted_date; ?></td>
+                    <td class="p-2"><?= $log['log_activity']; ?></td>
         </tr>
     <?php endforeach; ?>
 <?php else: ?>

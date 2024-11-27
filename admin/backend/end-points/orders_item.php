@@ -124,7 +124,7 @@ if (count($fetch_item_orders) > 0):
                     <?php if ($promo_discount['promoRate']): ?>
                         <p class="font-semibold text-gray-700">Discounted Price:</p>
                         <p class="text-red-600">
-                         ₱ <?= $item['item_product_price'] - ($item['item_product_price'] * $promo_discount['promoRate']); ?>
+                         ₱<?= $item['item_product_price'] - ($item['item_product_price'] * $promo_discount['promoRate']); ?>
                         </p>
                     <?php endif; ?>
                     

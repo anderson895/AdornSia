@@ -52,15 +52,19 @@ if (count($fetch_item_orders) > 0):
 
     <!-- Payment Section -->
     <div class="bg-white p-6 mt-6 rounded-lg shadow-lg">
-    <p class="font-semibold text-lg text-gray-800">Payment:  <span class="text-lg text-gray-800"><?php 
-            if ($fetch_item_orders[0]['mode_of_payment'] != "cod") {
-                echo ucfirst($fetch_item_orders[0]['mode_of_payment']);
-            } else {
-                echo "Cash on Delivery";
-            }
-        ?>
+    <p class="font-semibold text-lg text-gray-800">
+        Payment:  
+        <span class="text-lg text-gray-800 font-medium">
+            <?php 
+                if ($fetch_item_orders[0]['mode_of_payment'] != "cod") {
+                    echo ucfirst($fetch_item_orders[0]['mode_of_payment']);
+                } else {
+                    echo "Cash on Delivery";
+                }
+            ?>
         </span>
     </p>
+
   
     <?php if ($fetch_item_orders[0]['mode_of_payment'] != "cod"): ?>
         <div class="mt-4 flex justify-center">

@@ -80,10 +80,17 @@ if (count($fetch_item_orders) > 0):
             <p class="font-semibold text-lg text-gray-800">Subtotal:</p>
             <p class="font-semibold text-lg text-gray-800 text-right">₱ <?= number_format($fetch_item_orders[0]['subtotal'], 2); ?></p>
         </div>
+        
         <div class="flex justify-between items-center">
             <p class="font-semibold text-lg text-gray-800">VAT:</p>
             <p class="font-semibold text-lg text-gray-800 text-right">₱ <?= number_format($fetch_item_orders[0]['vat'], 2); ?></p>
         </div>
+
+        <div class="flex justify-between items-center">
+            <p class="font-semibold text-lg text-gray-800">Shipping fee:</p>
+            <p class="font-semibold text-lg text-gray-800 text-right">₱ <?= number_format(50, 2); ?></p>
+        </div>
+
         <div class="flex justify-between items-center">
             <p class="font-semibold text-lg text-gray-800">Total:</p>
             <p class="font-semibold text-lg text-gray-800 text-right">₱ <?= number_format($fetch_item_orders[0]['total'], 2); ?></p>

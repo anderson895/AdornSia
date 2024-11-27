@@ -41,7 +41,7 @@ include "components/header.php";
 <!-- Activity Log Table Card -->
 <div class="bg-white rounded-lg shadow-lg p-6">
     <h3 class="text-lg font-semibold text-gray-700 mb-4">Activity Logs</h3>
-    <div class="overflow-x-auto">
+    <div class="overflow-y-auto max-h-96"> <!-- Added scroll and height limit -->
         <table class="table-auto w-full text-sm text-left text-gray-500 dark:text-gray-400">
             <thead class="bg-gray-100 text-gray-700">
                 <tr>

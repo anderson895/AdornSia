@@ -56,7 +56,8 @@ include "components/header.php";
                 </tr>
             </thead>
        
-            <tbody>
+            <tbody class="block overflow-y-auto max-h-96"> <!-- Added classes for scrollability -->
+    
                 <?php include "backend/end-points/activity_log_list.php"; ?>
             </tbody>
         </table>

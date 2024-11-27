@@ -26,6 +26,8 @@ if (count($fetch_item_orders) > 0):
                     <option value="Shipped" <?= $fetch_item_orders[0]['order_status'] == "Shipped" ? "selected" : "" ?>>Shipped</option>
                     <option value="Delivered" <?= $fetch_item_orders[0]['order_status'] == "Delivered" ? "selected" : "" ?>>Delivered</option>
                     <option value="Canceled" <?= $fetch_item_orders[0]['order_status'] == "Canceled" ? "selected" : "" ?>>Canceled</option>
+                <?php } else if ($fetch_item_orders[0]['order_status'] == "Canceled"){ ?>
+                    <option value="Canceled" <?= $fetch_item_orders[0]['order_status'] == "Canceled" ? "selected" : "" ?>>Canceled</option>   
                 <?php } else { ?>
                     <option value="Shipped" <?= $fetch_item_orders[0]['order_status'] == "Shipped" ? "selected" : "" ?>>Shipped</option>
                     <option value="Delivered" <?= $fetch_item_orders[0]['order_status'] == "Delivered" ? "selected" : "" ?>>Delivered</option>

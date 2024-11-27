@@ -105,10 +105,16 @@ function displayOrders(orders) {
                                 ` : ''
                             }
 
-                            ${["Shipped", "Delivered", "Canceled"].includes(orderItem.order_status) ? 
+                            ${["Shipped", "Delivered"].includes(orderItem.order_status) ? 
                                 `
                                 <option value="Shipped" ${orderItem.order_status == "Shipped" ? "selected" : ""}>Shipped</option>
                                 <option value="Delivered" ${orderItem.order_status == "Delivered" ? "selected" : ""}>Delivered</option>
+                                <option value="Canceled" ${orderItem.order_status == "Canceled" ? "selected" : ""}>Canceled</option>
+                                ` : ''
+                            }
+
+                            ${["Canceled"].includes(orderItem.order_status) ? 
+                                `
                                 <option value="Canceled" ${orderItem.order_status == "Canceled" ? "selected" : ""}>Canceled</option>
                                 ` : ''
                             }

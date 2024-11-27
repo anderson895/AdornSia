@@ -122,18 +122,18 @@ if (count($fetch_item_orders) > 0):
                 <!-- Price and Category -->
                 <div class="space-y-2">
                     <?php if ($promo_discount['promoRate']): ?>
-                        <p class="font-semibold text-gray-700">Discounted Price:</p>
-                        <p class="text-red-600">₱<?= number_format($item['item_product_price'] - ($item['item_product_price'] * $promo_discount['promoRate']), 2); ?></p>
+                        <p class="font-semibold text-gray-700">Discounted Price:  <span class="text-red-600">₱<?= number_format($item['item_product_price'] - ($item['item_product_price'] * $promo_discount['promoRate']), 2); ?></span></p>
+                       
                     <?php endif; ?>
                     
                     <p class="font-semibold text-gray-700">Original Price: <span class="text-gray-600 <?= $promo_discount['promoRate'] ? 'line-through' : '' ?>">₱<?= number_format($item['item_product_price'], 2); ?></span></p>
                     
                     
-                    <p class="font-semibold text-gray-700">Quantity:</p>
-                    <p class="text-gray-600"><?= $item['item_qty']; ?></p>
+                    <p class="font-semibold text-gray-700">Quantity:  <span class="text-gray-600"><?= $item['item_qty']; ?></span></p>
+                   
                     
-                    <p class="font-semibold text-gray-700">Category:</p>
-                    <p class="text-gray-600"><?= $item['category_name']; ?></p>
+                    <p class="font-semibold text-gray-700">Category:  <span class="text-gray-600"><?= $item['category_name']; ?></span></p>
+                   
                 </div>
 
 

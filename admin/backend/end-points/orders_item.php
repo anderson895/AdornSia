@@ -121,8 +121,8 @@ if (count($fetch_item_orders) > 0):
                         </p>
                     <?php endif; ?>
                     
-                    <p class="font-semibold text-gray-700 <?= $promo_discount['promoRate'] ? 'line-through' : '' ?>">Original Price:</p>
-                    <p class="text-gray-600"><?= $item['item_product_price']; ?></p>
+                    <p class="font-semibold text-gray-700">Original Price:</p>
+                    <p class="text-gray-600 <?= $promo_discount['promoRate'] ? 'line-through' : '' ?>"><?= $item['item_product_price']; ?></p>
                     
                     <p class="font-semibold text-gray-700">Quantity:</p>
                     <p class="text-gray-600"><?= $item['item_qty']; ?></p>

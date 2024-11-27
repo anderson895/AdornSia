@@ -8,7 +8,7 @@ if ($fetch_all_activity): ?>
         $formatted_date = (new DateTime($log['log_date']))->format('F j, Y \a\t g:i A');
         ?>
         <tr>
-            <td class="p-2"><?= $log['log_id']; ?></td>
+            <td colspan="5" class="p-2"><?= $log['log_id']; ?></td>
             <td class="p-2"><?= $log['log_name']; ?></td>
             <td class="p-2"><?= $log['log_role']; ?></td>
             <td class="p-2"><?= $formatted_date; ?></td>

@@ -71,12 +71,20 @@ if (count($fetch_item_orders) > 0):
 
     <!-- Order Summary Section -->
     <div class="bg-gray-100 p-6 mt-6 rounded-lg shadow-lg">
-        <p class="font-semibold text-lg text-gray-800">Subtotal: ₱ <?= number_format($fetch_item_orders[0]['subtotal'],2); ?></p>
-        
-        <p class="font-semibold text-lg text-gray-800">VAT: ₱ <?= number_format($fetch_item_orders[0]['vat'],2); ?></p>
-   
-        <p class="font-semibold text-lg text-gray-800">Total: ₱ <?= number_format($fetch_item_orders[0]['total'],2); ?></p>
+        <div class="flex justify-between items-center">
+            <p class="font-semibold text-lg text-gray-800">Subtotal:</p>
+            <p class="font-semibold text-lg text-gray-800 text-right">₱ <?= number_format($fetch_item_orders[0]['subtotal'], 2); ?></p>
+        </div>
+        <div class="flex justify-between items-center">
+            <p class="font-semibold text-lg text-gray-800">VAT:</p>
+            <p class="font-semibold text-lg text-gray-800 text-right">₱ <?= number_format($fetch_item_orders[0]['vat'], 2); ?></p>
+        </div>
+        <div class="flex justify-between items-center">
+            <p class="font-semibold text-lg text-gray-800">Total:</p>
+            <p class="font-semibold text-lg text-gray-800 text-right">₱ <?= number_format($fetch_item_orders[0]['total'], 2); ?></p>
+        </div>
     </div>
+
 
     <!-- Delivery Address -->
     <div class="bg-gray-100 p-6 mt-6 rounded-lg shadow-lg">

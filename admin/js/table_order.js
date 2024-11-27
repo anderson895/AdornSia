@@ -102,6 +102,7 @@ function displayOrders(orders) {
                                 `<option value="Accept" selected>Accept</option>
                                 <option value="Shipped" ${orderItem.order_status == "Shipped" ? "selected" : ""}>Shipped</option>
                                 <option value="Delivered" ${orderItem.order_status == "Delivered" ? "selected" : ""}>Delivered</option>
+                                <option value="Canceled" ${orderItem.order_status == "Canceled" ? "selected" : ""}>Canceled</option>
                                 ` : ''
                             }
 

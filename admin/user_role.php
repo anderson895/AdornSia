@@ -60,7 +60,7 @@ include "components/header.php";
 
     <!-- Scrollable table body -->
     <div class="overflow-x-auto max-h-96 overflow-y-auto">
-        <table class="table-auto w-full text-sm text-left text-gray-500 dark:text-gray-400">
+        <table class="table-auto w-full text-sm text-right text-gray-500 dark:text-gray-400">
             <tbody>
                 <?php include "backend/end-points/activity_log_list.php"; ?>
             </tbody>

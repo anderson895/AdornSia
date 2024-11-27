@@ -116,15 +116,21 @@ if (count($fetch_item_orders) > 0):
                 <div class="space-y-2">
                     <?php if ($promo_discount['promoRate']): ?>
                         <p class="font-semibold text-gray-700">Discounted Price:</p>
-                        <p class="text-red-600"><?= $item['item_product_price'] - ($item['item_product_price'] * $promo_discount['promoRate']); ?></p>
+                        <p class="text-red-600">
+                            <?= $item['item_product_price'] - ($item['item_product_price'] * $promo_discount['promoRate']); ?>
+                        </p>
                     <?php endif; ?>
-                    <p class="font-semibold text-gray-700">Original Price:</p>
+                    
+                    <p class="font-semibold text-gray-700 <?= $promo_discount['promoRate'] ? 'underline' : '' ?>">Original Price:</p>
                     <p class="text-gray-600"><?= $item['item_product_price']; ?></p>
+                    
                     <p class="font-semibold text-gray-700">Quantity:</p>
                     <p class="text-gray-600"><?= $item['item_qty']; ?></p>
+                    
                     <p class="font-semibold text-gray-700">Category:</p>
                     <p class="text-gray-600"><?= $item['category_name']; ?></p>
                 </div>
+
             </div>
         </div>
     <?php endforeach; ?>

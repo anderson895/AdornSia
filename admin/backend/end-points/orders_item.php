@@ -53,7 +53,7 @@ if (count($fetch_item_orders) > 0):
     <!-- Payment Section -->
     <div class="bg-white p-6 mt-6 rounded-lg shadow-lg">
     <p class="font-semibold text-lg text-gray-800">Payment:</p>
-    <p class="text-gray-600 mb-4">
+    <p class="font-semibold text-lg text-gray-800 text-right">
         <?php 
             if ($fetch_item_orders[0]['mode_of_payment'] != "cod") {
                 echo ucfirst($fetch_item_orders[0]['mode_of_payment']);

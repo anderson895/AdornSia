@@ -58,14 +58,12 @@ include "components/header.php";
         </table>
     </div>
 
-    <!-- Scrollable table body -->
-    <div class="overflow-x-auto max-h-96 overflow-y-auto">
-        <table class="table-auto w-full text-sm text-left text-gray-500 dark:text-gray-400">
+   
+        <table class="table-auto w-full text-sm text-left text-gray-500 dark:text-gray-400 overflow-x-auto max-h-96 overflow-y-auto">
             <tbody>
                 <?php include "backend/end-points/activity_log_list.php"; ?>
             </tbody>
         </table>
-    </div>
 </div>
 
 

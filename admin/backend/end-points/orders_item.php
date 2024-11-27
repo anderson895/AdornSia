@@ -56,7 +56,7 @@ if (count($fetch_item_orders) > 0):
     <p class="text-gray-600 mb-4">
         <?php 
             if ($fetch_item_orders[0]['mode_of_payment'] != "cod") {
-                echo $fetch_item_orders[0]['mode_of_payment'];
+                echo ucfirst($fetch_item_orders[0]['mode_of_payment']);
             } else {
                 echo "Cash on Delivery";
             }

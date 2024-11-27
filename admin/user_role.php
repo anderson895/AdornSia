@@ -45,7 +45,7 @@ include "components/header.php";
 
     <!-- Table header (fixed outside of scrollable container) -->
     <div class="overflow-x-auto">
-        <table class="table-auto w-full text-sm text-left text-gray-500 dark:text-gray-400">
+        <table class="table-auto w-full text-sm text-right text-gray-500 dark:text-gray-400">
             <thead class="bg-gray-100 text-gray-700">
                 <tr>
                     <th class="p-3">Log ID</th>

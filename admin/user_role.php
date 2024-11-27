@@ -43,13 +43,17 @@ include "components/header.php";
     <h3 class="text-lg font-semibold text-gray-700 mb-4">Activity Logs</h3>
     <div class="overflow-x-auto">
         <table class="table-auto w-full text-sm text-left text-gray-500 dark:text-gray-400">
-            <thead class="bg-gray-100 text-gray-700 sticky top-0 z-10">
+            <thead class="bg-gray-100 text-gray-700">
                 <tr>
                     <th class="p-3">Log ID</th>
-                    
+                    <th class="p-3">Username</th>
+                    <th class="p-3">Role</th>
+                    <th class="p-3">Date</th>
+                    <th class="p-3">Activity</th>
                 </tr>
             </thead>
-            <tbody class="block max-h-96 overflow-y-auto">
+        
+            <tbody>
                 <?php include "backend/end-points/activity_log_list.php"; ?>
             </tbody>
         </table>

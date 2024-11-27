@@ -46,10 +46,7 @@ include "components/header.php";
             <thead class="bg-gray-100 text-gray-700 sticky top-0 z-10">
                 <tr>
                     <th class="p-3">Log ID</th>
-                    <th class="p-3">Username</th>
-                    <th class="p-3">Role</th>
-                    <th class="p-3">Date</th>
-                    <th class="p-3">Activity</th>
+                    
                 </tr>
             </thead>
             <tbody class="block max-h-96 overflow-y-auto">

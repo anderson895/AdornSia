@@ -52,22 +52,23 @@ if (count($fetch_item_orders) > 0):
 
     <!-- Payment Section -->
     <div class="bg-white p-6 mt-6 rounded-lg shadow-lg">
-        <p class="font-semibold text-lg text-gray-800">Payment:</p>
-        <p class="text-gray-600 mb-4">
-            <?php 
-                if ($fetch_item_orders[0]['mode_of_payment'] != "cod") {
-                    echo $fetch_item_orders[0]['mode_of_payment'];
-                } else {
-                    echo "Cash on Delivery";
-                }
-            ?>
-        </p>
-        <?php if ($fetch_item_orders[0]['mode_of_payment'] != "cod"): ?>
-            <div class="mt-4">
-                <img src="../proofPayment/<?= $fetch_item_orders[0]['proof_of_payment'] ?>" alt="Proof of Payment" class="w-full max-w-sm rounded-lg shadow-md">
-            </div>
-        <?php endif; ?>
-    </div>
+    <p class="font-semibold text-lg text-gray-800">Payment:</p>
+    <p class="text-gray-600 mb-4">
+        <?php 
+            if ($fetch_item_orders[0]['mode_of_payment'] != "cod") {
+                echo $fetch_item_orders[0]['mode_of_payment'];
+            } else {
+                echo "Cash on Delivery";
+            }
+        ?>
+    </p>
+    <?php if ($fetch_item_orders[0]['mode_of_payment'] != "cod"): ?>
+        <div class="mt-4 flex justify-center">
+            <img src="../proofPayment/<?= $fetch_item_orders[0]['proof_of_payment'] ?>" alt="Proof of Payment" class="w-full max-w-sm rounded-lg shadow-md">
+        </div>
+    <?php endif; ?>
+</div>
+
 
     <!-- Order Summary Section -->
     <div class="bg-gray-100 p-6 mt-6 rounded-lg shadow-lg">

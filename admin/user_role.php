@@ -40,10 +40,7 @@ include "components/header.php";
 
 <!-- Activity Log Table Card -->
 <div class="bg-white rounded-lg shadow-lg p-6">
-
     <h3 class="text-lg font-semibold text-gray-700 mb-4">Activity Logs</h3>
-
-    <!-- Table header (fixed outside of scrollable container) -->
     <div class="overflow-x-auto">
         <table class="table-auto w-full text-sm text-left text-gray-500 dark:text-gray-400">
             <thead class="bg-gray-100 text-gray-700">
@@ -55,8 +52,7 @@ include "components/header.php";
                     <th class="p-3">Activity</th>
                 </tr>
             </thead>
-        
-            <tbody>
+            <tbody class="block max-h-96 overflow-y-auto">
                 <?php include "backend/end-points/activity_log_list.php"; ?>
             </tbody>
         </table>

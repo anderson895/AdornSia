@@ -73,7 +73,7 @@
     
 
 
-<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 w-80 mx-auto justify-center">
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 w-full mx-auto justify-center">
     <!-- Best Selling Products Card -->
     <a href="product.php">
         <div class="bg-white p-6 rounded-lg shadow-lg w-full h-80 overflow-y-auto" id="bestSellingProducts">

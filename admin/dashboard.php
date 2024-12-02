@@ -73,31 +73,36 @@
     
 
 
-    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 w-full mx-auto justify-center">
-        <!-- Best Selling Products Card -->
-        <a href="product.php">
-            <div class="bg-white p-6 rounded-lg shadow-lg w-full" id="bestSellingProducts">
-            </div>
-        </a>
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 w-full mx-auto justify-center">
+    <!-- Best Selling Products Card -->
+    <a href="product.php">
+        <div class="bg-white p-6 rounded-lg shadow-lg w-full h-64 overflow-y-auto" id="bestSellingProducts">
+            <!-- Content goes here -->
+        </div>
+    </a>
 
-        <!-- New Products Card -->
-        <a href="product.php">
-            <div class="bg-white p-6 rounded-lg shadow-lg w-full" id="NewProduct">
-            </div>
-        </a>
+    <!-- New Products Card -->
+    <a href="product.php">
+        <div class="bg-white p-6 rounded-lg shadow-lg w-full h-64 overflow-y-auto" id="NewProduct">
+            <!-- Content goes here -->
+        </div>
+    </a>
 
-        <!-- Inventory Status Low Stock Card -->
-        <a href="product.php">
-            <div class="bg-white p-6 rounded-lg shadow-lg w-full" id="stock_status">
-            </div>
-        </a>
+    <!-- Inventory Status Low Stock Card -->
+    <a href="product.php">
+        <div class="bg-white p-6 rounded-lg shadow-lg w-full h-64 overflow-y-auto" id="stock_status">
+            <!-- Content goes here -->
+        </div>
+    </a>
 
-        <!-- Empty Column for Layout Consistency -->
-        <a href="customer.php">
-            <div class="bg-white p-6 rounded-lg shadow-lg w-full" id="top_customer">
-            </div>
-        </a>
-    </div>
+    <!-- Empty Column for Layout Consistency -->
+    <a href="customer.php">
+        <div class="bg-white p-6 rounded-lg shadow-lg w-full h-64 overflow-y-auto" id="top_customer">
+            <!-- Content goes here -->
+        </div>
+    </a>
+</div>
+
 
 
 

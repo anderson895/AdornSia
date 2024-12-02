@@ -71,7 +71,7 @@ $firstname = $name_parts[0];
 
 
 <?php 
-
+echo $_SERVER['REQUEST_URI'];
 if($_SERVER['REQUEST_URI']!="view_cart.php"){
   
   include "../function/PageSpinner.php"; 

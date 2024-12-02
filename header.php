@@ -22,7 +22,8 @@
   <div class="container mx-auto px-4 py-4 flex justify-between items-center">
     <!-- Logo/Brand Name -->
     <div class="flex items-center space-x-3">
-      <img src="admin/assets/logo1.png" alt="Logo" class="w-12 h-12"> <!-- Logo size adjusted here -->
+    <img src="admin/assets/logo1.png" alt="Logo" class="w-12 h-12 hidden sm:block">
+
       <div class="text-xl font-bold text-gray-800"><a href="index.php" class="text-gray-700 hover:text-blue-600 transition">ADORN</a></div>
     </div>
     

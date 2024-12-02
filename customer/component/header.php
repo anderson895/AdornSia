@@ -90,7 +90,8 @@ $firstname = $name_parts[0];
     <!-- Logo/Brand Name -->
     <div class="flex items-center space-x-2">
       <!-- Logo Image -->
-      <img src="assets/logo1.png" alt="Logo" class="h-8 w-8"> <!-- Adjust h-8 and w-8 to control size -->
+      <img src="assets/logo1.png" alt="Logo" class="h-8 w-8 hidden sm:block">
+
       
       <!-- Brand Name -->
       <div class="text-xl font-bold text-gray-800">

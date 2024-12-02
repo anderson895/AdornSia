@@ -40,6 +40,15 @@ if (isset($_SESSION['admin_id'])) {
 
 </head>
 <body class="bg-gray-100 font-sans antialiased">
+
+
+
+<?php include "../function/PageSpinner.php"; ?>
+
+
+
+
+
   <div class="min-h-screen flex flex-col lg:flex-row">
     
   <!-- Sidebar -->

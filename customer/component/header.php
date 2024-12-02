@@ -62,8 +62,14 @@ $firstname = $name_parts[0];
 <header class="bg-white shadow">
   <div class="container mx-auto px-4 py-4 flex justify-between items-center">
     <!-- Logo/Brand Name -->
-    <div class="text-xl font-bold text-gray-800">
-      <a href="index.php" class="text-gray-700 hover:text-blue-600 transition">ADORN</a>
+    <div class="flex items-center space-x-2">
+      <!-- Logo Image -->
+      <img src="assets/logo1.png" alt="Logo" class="h-8 w-8"> <!-- Adjust h-8 and w-8 to control size -->
+      
+      <!-- Brand Name -->
+      <div class="text-xl font-bold text-gray-800">
+        <a href="index.php" class="text-gray-700 hover:text-blue-600 transition">ADORN</a>
+      </div>
     </div>
     
     <!-- Mobile Menu Button -->

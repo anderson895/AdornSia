@@ -2,7 +2,6 @@ $.ajax({
     url: 'backend/end-points/ProductStockLevel.php',
     method: 'GET',
     success: function(data) {
-        console.log(data);
         $('#stock_status').html(data);  // Insert the HTML response into the container
     },
     error: function(xhr, status, error) {

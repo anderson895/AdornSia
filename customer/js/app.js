@@ -143,25 +143,14 @@ $(document).ready(function() {
                 cart_user_id: cart_user_id,
                 cart_prod_id: cart_prod_id,
                 cart_prod_size: cart_prod_size,
-                requestType: "AddToCart" // Corrected here
+                requestType: "AddToCart" 
             },
             dataType: 'json', // Corrected the syntax here
             success: function(response) {
-                // Hide loading spinner
-
-
-                location.reload();
-                // if(response.status == "Added To Cart!") {
-                //     alertify.success('Item successfully added to the cart!');
-                    
-                // } else if(response.status == "Cart Updated!") {
-                //     alertify.success('Cart updated successfully!');
-                //     location.reload();
-                // } else {
-                //     alertify.error(response.status);
-                // }
-                
-               
+                // Hide loading spinner and update flag
+                console.log(response);
+                shouldShowLoading = false;  // Prevent loading screen after reload
+                location.reload();  // Reload the page
             },
             error: function() {
                 alertify.error('Error occurred during the request!');
@@ -186,19 +175,22 @@ $(document).ready(function() {
                 cart_user_id: cart_user_id,
                 cart_prod_id: cart_prod_id,
                 cart_prod_size: cart_prod_size,
-                requestType: "MinusToCart" // Corrected here
+                requestType: "MinusToCart" 
             },
-            // dataType: 'json', // Corrected the syntax here
             success: function(response) {
-                // Hide loading spinner
-                console.log(response)
-                location.reload();
+                // Hide loading spinner and update flag
+                console.log(response);
+                shouldShowLoading = false;  // Prevent loading screen after reload
+                location.reload();  // Reload the page
             },
             error: function() {
                 alertify.error('Error occurred during the request!');
             }
         });
     });
+
+
+    
 
     $('.TogglerRemoveItem').click(function() {
         let cart_id = $(this).data('cart_id');

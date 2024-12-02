@@ -71,13 +71,13 @@ $firstname = $name_parts[0];
 
 
 <?php 
-$url = basename($_SERVER['REQUEST_URI']);
+// $url = basename($_SERVER['REQUEST_URI']);
 
 
-if($url !="view_cart.php"){
+// if($url !="view_cart.php"){
   
   include "../function/PageSpinner.php"; 
-}
+// }
 
 ?>
 

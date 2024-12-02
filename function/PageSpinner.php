@@ -39,10 +39,7 @@
 </div>
 
 <script>
-  let shouldShowLoading = true;
-
-window.onload = function() {
-  if (shouldShowLoading) {
+  window.onload = function() {
     // Set a 1-second delay before hiding the loading screen
     setTimeout(function() {
       document.getElementById('loadingScreen').style.opacity = '0';
@@ -50,6 +47,5 @@ window.onload = function() {
         document.getElementById('loadingScreen').style.display = 'none';
       }, 1000); // Hide after the opacity transition is complete
     }, 1000); // Show for 1 second
-  }
-};
+  };
 </script>

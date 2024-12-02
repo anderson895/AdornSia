@@ -134,19 +134,7 @@ $(document).ready(function() {
         let cart_prod_id = $(this).data('product_id'); 
         let cart_prod_size = $(this).data('cart_prod_size'); 
         
-        let shouldShowLoading = true;
-
-        window.onload = function() {
-        if (shouldShowLoading) {
-            // Set a 1-second delay before hiding the loading screen
-            setTimeout(function() {
-            document.getElementById('loadingScreen').style.opacity = '0';
-            setTimeout(function() {
-                document.getElementById('loadingScreen').style.display = 'none';
-            }, 1000); // Hide after the opacity transition is complete
-            }, 1000); // Show for 1 second
-        }
-        };
+        console.log(cart_prod_size);
         
         $.ajax({
             type: "POST",
@@ -155,14 +143,25 @@ $(document).ready(function() {
                 cart_user_id: cart_user_id,
                 cart_prod_id: cart_prod_id,
                 cart_prod_size: cart_prod_size,
-                requestType: "AddToCart" 
+                requestType: "AddToCart" // Corrected here
             },
             dataType: 'json', // Corrected the syntax here
             success: function(response) {
-                // Hide loading spinner and update flag
-                console.log(response);
-                shouldShowLoading = false;  // Prevent loading screen after reload
-                location.reload();  // Reload the page
+                // Hide loading spinner
+
+
+                location.reload();
+                // if(response.status == "Added To Cart!") {
+                //     alertify.success('Item successfully added to the cart!');
+                    
+                // } else if(response.status == "Cart Updated!") {
+                //     alertify.success('Cart updated successfully!');
+                //     location.reload();
+                // } else {
+                //     alertify.error(response.status);
+                // }
+                
+               
             },
             error: function() {
                 alertify.error('Error occurred during the request!');
@@ -178,19 +177,7 @@ $(document).ready(function() {
         let cart_prod_id = $(this).data('product_id'); 
         let cart_prod_size = $(this).data('cart_prod_size'); 
         
-        let shouldShowLoading = true;
-
-        window.onload = function() {
-        if (shouldShowLoading) {
-            // Set a 1-second delay before hiding the loading screen
-            setTimeout(function() {
-            document.getElementById('loadingScreen').style.opacity = '0';
-            setTimeout(function() {
-                document.getElementById('loadingScreen').style.display = 'none';
-            }, 1000); // Hide after the opacity transition is complete
-            }, 1000); // Show for 1 second
-        }
-        };
+        console.log(cart_prod_size);
         
         $.ajax({
             type: "POST",
@@ -199,22 +186,19 @@ $(document).ready(function() {
                 cart_user_id: cart_user_id,
                 cart_prod_id: cart_prod_id,
                 cart_prod_size: cart_prod_size,
-                requestType: "MinusToCart" 
+                requestType: "MinusToCart" // Corrected here
             },
+            // dataType: 'json', // Corrected the syntax here
             success: function(response) {
-                // Hide loading spinner and update flag
-                console.log(response);
-                shouldShowLoading = false;  // Prevent loading screen after reload
-                location.reload();  // Reload the page
+                // Hide loading spinner
+                console.log(response)
+                location.reload();
             },
             error: function() {
                 alertify.error('Error occurred during the request!');
             }
         });
     });
-
-
-    
 
     $('.TogglerRemoveItem').click(function() {
         let cart_id = $(this).data('cart_id');

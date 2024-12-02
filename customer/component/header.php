@@ -70,7 +70,14 @@ $firstname = $name_parts[0];
 <body class="bg-gray-50">
 
 
-<?php include "../function/PageSpinner.php"; ?>
+<?php 
+
+if($_SERVER['REQUEST_URI']!="view_cart.php"){
+  
+  include "../function/PageSpinner.php"; 
+}
+
+?>
 
 
 

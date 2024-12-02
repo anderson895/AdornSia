@@ -81,13 +81,12 @@ $firstname = $name_parts[0];
     <span class="text-4xl font-medium text-gray-500">Loading...</span>
 </div>
 
-<!-- Your other content goes here -->
 
 <script>
   window.onload = function() {
     setTimeout(function() {
       document.getElementById('loadingScreen').style.display = 'none';
-    }, 3000); // Hides after 3 seconds
+    }, 1000); // Hides after 3 seconds
   };
 </script>
 

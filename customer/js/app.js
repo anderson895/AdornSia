@@ -134,7 +134,19 @@ $(document).ready(function() {
         let cart_prod_id = $(this).data('product_id'); 
         let cart_prod_size = $(this).data('cart_prod_size'); 
         
-        console.log(cart_prod_size);
+        let shouldShowLoading = true;
+
+        window.onload = function() {
+        if (shouldShowLoading) {
+            // Set a 1-second delay before hiding the loading screen
+            setTimeout(function() {
+            document.getElementById('loadingScreen').style.opacity = '0';
+            setTimeout(function() {
+                document.getElementById('loadingScreen').style.display = 'none';
+            }, 1000); // Hide after the opacity transition is complete
+            }, 1000); // Show for 1 second
+        }
+        };
         
         $.ajax({
             type: "POST",
@@ -166,7 +178,19 @@ $(document).ready(function() {
         let cart_prod_id = $(this).data('product_id'); 
         let cart_prod_size = $(this).data('cart_prod_size'); 
         
-        console.log(cart_prod_size);
+        let shouldShowLoading = true;
+
+        window.onload = function() {
+        if (shouldShowLoading) {
+            // Set a 1-second delay before hiding the loading screen
+            setTimeout(function() {
+            document.getElementById('loadingScreen').style.opacity = '0';
+            setTimeout(function() {
+                document.getElementById('loadingScreen').style.display = 'none';
+            }, 1000); // Hide after the opacity transition is complete
+            }, 1000); // Show for 1 second
+        }
+        };
         
         $.ajax({
             type: "POST",

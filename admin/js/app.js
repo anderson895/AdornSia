@@ -84,10 +84,11 @@ $(document).ready(function () {
     $('#new_status').val($(this).data('new_status'));
 
     $('#ordercodeText').text($(this).data('ordercode'))
-    ('#returnActionText').text($(this).data('new_status'))
+    $('#returnActionText').text($(this).data('new_status'))
 
 
     $('#RefundModal').fadeIn();
+
   });  
   
   $('.closeModal').click(function (e) { 

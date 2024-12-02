@@ -7,7 +7,7 @@ $orders = $db->StockLevel();
 
 if ($orders) {
     $response = "
-    <h3 class='text-center text-gray-700 font-semibold text-lg mb-4'>Inventory Status</h3>
+    <h3 class='text-center text-gray-700 font-semibold text-lg mb-4'>Stock Status</h3>
     <ul class='space-y-4'>"; 
  
     foreach ($orders as $order) {
@@ -37,7 +37,7 @@ if ($orders) {
                     <h4 class="text-gray-700 font-semibold text-lg">' . ucfirst($order['prod_name']) . '</h4>
                 </div>
                 <div class="flex-1 mt-2 sm:mt-0">
-                    <h4 class="text-gray-600 text-sm '.$colorClass.'">' . $order['stock_status'] . '</h4>
+                    <h4 class="text-gray-600 text-sm '.$colorClass.'">' . $order['product_stocks'] . '</h4>
                 </div>
             </li>
         ';

@@ -37,7 +37,7 @@ if ($orders) {
                     <h4 class="text-gray-700 font-semibold text-lg">' . ucfirst($order['prod_name']) . '</h4>
                 </div>
                 <div class="flex-1 mt-2 sm:mt-0">
-                    <h4 class="text-gray-600 text-sm '.$colorClass.'">' . $order['stock_status'] . ' '.$order['product_stocks'].'</h4>
+                    <h4 class="text-gray-600 text-sm '.$colorClass.'">' . $order['stock_status'] . ' '.$order['product_stocks'].' pcs </h4>
                 </div>
             </li>
         ';

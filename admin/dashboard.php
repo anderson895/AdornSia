@@ -76,6 +76,7 @@
 <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 w-full mx-auto justify-center">
     <!-- Best Selling Products Card -->
     <a href="product.php">
+        <h3 class='text-center text-gray-700 font-semibold text-lg mb-4'>Top 5 Best Selling Products</h3>
         <div class="bg-white p-6 rounded-lg shadow-lg w-full h-96 overflow-y-auto hide-scrollbar" id="bestSellingProducts">
             <!-- Content goes here -->
         </div>
@@ -83,6 +84,7 @@
 
     <!-- New Products Card -->
     <a href="product.php">
+        <h3 class='text-center text-gray-700 font-semibold text-lg mb-4'>Top 5 New Products</h3>
         <div class="bg-white p-6 rounded-lg shadow-lg w-full h-96 overflow-y-auto hide-scrollbar" id="NewProduct">
             <!-- Content goes here -->
         </div>
@@ -98,6 +100,7 @@
 
     <!-- Empty Column for Layout Consistency -->
     <a href="customer.php">
+        <h3 class='text-center text-gray-700 font-semibold text-lg mb-4'>Top 5 Customers</h3>
         <div class="bg-white p-6 rounded-lg shadow-lg w-full h-96 overflow-y-auto hide-scrollbar" id="top_customer">
             <!-- Content goes here -->
         </div>

@@ -26,6 +26,7 @@ endforeach;
         id="old-password" 
         name="user_CurrentPassword" 
         class="mt-1 w-full p-3  border border-gray-300 rounded-md shadow-sm focus:ring-orange-500 focus:border-orange-500"
+        required
       />
     </div>
 
@@ -37,6 +38,7 @@ endforeach;
         id="newpassword" 
         name="user_NewPassword" 
         class="mt-1 w-full p-3 border border-gray-300 rounded-md shadow-sm"
+        required
       />
     </div>
 
@@ -48,6 +50,7 @@ endforeach;
         id="confirmpassword" 
         name="user_ConfirmPassword" 
         class="mt-1 w-full p-3 border border-gray-300 rounded-md shadow-sm"
+        required
       />
     </div>
 

@@ -38,7 +38,7 @@ if (count($fetch_item_orders) > 0):
     </div>
 
     <!-- Order Information -->
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+    <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
 
         <div class="bg-blue-50 p-4 rounded-lg shadow-md">
             <p class="font-semibold text-gray-700">USER ID:</p>

@@ -47,5 +47,5 @@
         document.getElementById('loadingScreen').style.display = 'none';
       }, 1000); // Hide after the opacity transition is complete
     }, 1000); // Show for 1 second
-  };
+};
 </script>

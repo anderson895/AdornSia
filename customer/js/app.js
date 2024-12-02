@@ -161,7 +161,10 @@ $('.togglerAdd').click(function() {
         },
         dataType: 'json', // Corrected the syntax here
         success: function(response) {
-            location.reload();
+            // Delay page reload to allow the loading screen to hide
+            setTimeout(function() {
+                location.reload();
+            }, 1500); // Adjust the delay if necessary
         },
         error: function() {
             alertify.error('Error occurred during the request!');
@@ -190,7 +193,10 @@ $('.togglerMinus').click(function() {
             requestType: "MinusToCart" // Corrected here
         },
         success: function(response) {
-            location.reload();
+            // Delay page reload to allow the loading screen to hide
+            setTimeout(function() {
+                location.reload();
+            }, 1500); // Adjust the delay if necessary
         },
         error: function() {
             alertify.error('Error occurred during the request!');

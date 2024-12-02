@@ -77,11 +77,16 @@ $(document).ready(function () {
   });  
 
 
-  $('.togglerApproveRefund').click(function (e) { 
+  $('.togglerActionRefund').click(function (e) { 
     e.preventDefault();
-  
+
     $('#ref_id').val($(this).data('ref_id'));
     $('#new_status').val($(this).data('new_status'));
+
+    $('#ordercodeText').text($(this).data('ordercode'))
+    ('#returnActionText').text($(this).data('new_status'))
+
+
     $('#RefundModal').fadeIn();
   });  
   

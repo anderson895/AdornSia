@@ -25,12 +25,12 @@ if ($fetch_all_refund): ?>
 
             echo '
             <td class="p-2">
-                <button class="' . $status_classes[0] . ' text-white py-1 px-3 rounded-md togglerApproveRefund" 
+                <button class="' . $status_classes[0] . ' text-white py-1 px-3 rounded-md togglerActionRefund" 
                     data-new_status="Approve" 
-                    data-ref_id="' . $status_classes[2] . '" ' . ($status_classes[3] ? 'disabled' : '') . '>Approve</button>
-                <button class="' . $status_classes[1] . ' text-white py-1 px-3 rounded-md togglerApproveRefund" 
+                    data-ref_id="' . $status_classes[2] . '" ' . ($status_classes[3] ? 'disabled' : '') . '  data-ordercode='.$refund['order_code'].'>Approve</button>
+                <button class="' . $status_classes[1] . ' text-white py-1 px-3 rounded-md togglerActionRefund" 
                     data-new_status="Canceled" 
-                    data-ref_id="' . $status_classes[2] . '" ' . ($status_classes[3] ? 'disabled' : '') . '>Cancel</button>
+                    data-ref_id="' . $status_classes[2] . '" ' . ($status_classes[3] ? 'disabled' : '') . ' data-ordercode='.$refund['order_code'].'>Cancel</button>
             </td>';
             ?>
 

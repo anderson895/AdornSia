@@ -50,8 +50,6 @@ include "components/header.php";
 <div id="RefundModal" class="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50" style="display:none;">
     <div class="bg-white p-8 rounded-lg shadow-lg w-full sm:w-[600px] max-h-[90vh] overflow-y-auto flex flex-col animate__animated animate__fadeIn">
 
-
-
         <!-- Spinner -->
         <div class="spinner" style="display:none;">
             <div class="absolute inset-0 bg-white bg-opacity-75 flex items-center justify-center">
@@ -59,20 +57,31 @@ include "components/header.php";
             </div>
         </div>
 
-        <h2 class="text-3xl font-semibold text-gray-800 mb-6 text-center"><span id="returnActionText"></span> Request Order Code<span id="ordercodeText"></span></h2>
+        <!-- Modal Title -->
+        <h2 class="text-3xl font-semibold text-gray-800 mb-6 text-center">
+            <span id="returnActionText"></span> Return Request for Order Code: <span id="ordercodeText"></span>
+        </h2>
 
-        <!-- Modal Form for Adding Product -->
+        <!-- Modal Form for Refund -->
         <form id="frmRefund" class="flex flex-col items-center w-full">
 
             <input hidden type="text" id="ref_id" name="ref_id">
             <input hidden type="text" id="new_status" name="new_status">
 
-
+            <!-- Action Buttons -->
             <div class="flex justify-center gap-4 mt-6 w-full">
-                <button type="button" class="px-6 py-3 bg-gray-500 text-white rounded-md hover:bg-gray-600 transition duration-300 ease-in-out w-full sm:w-auto text-lg closeModal">Cancel</button>
-                <button type="submit" class="px-6 py-3 bg-blue-500 text-white rounded-md hover:bg-blue-600 transition duration-300 ease-in-out w-full sm:w-auto text-lg">Confirm</button>
+                <button type="button" class="px-6 py-3 bg-gray-500 text-white rounded-md hover:bg-gray-600 transition duration-300 ease-in-out w-full sm:w-auto text-lg closeModal">
+                    Cancel
+                </button>
+                <button type="submit" class="px-6 py-3 bg-blue-500 text-white rounded-md hover:bg-blue-600 transition duration-300 ease-in-out w-full sm:w-auto text-lg">
+                    Confirm
+                </button>
             </div>
         </form>
     </div>
 </div>
+
+
+
+
 <?php include "components/footer.php";?>

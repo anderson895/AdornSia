@@ -11,6 +11,8 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/AlertifyJS/1.13.1/alertify.min.js" integrity="sha512-JnjG+Wt53GspUQXQhc+c4j8SBERsgJAoHeehagKHlxQN+MtCCmFDghX9/AcbkkNRZptyZU4zC8utK59M5L45Iw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 </head>
 <body class="flex items-center justify-center min-h-screen bg-gray-100">
+  
+<?php include "../function/PageSpinner.php"; ?>
 
   <div class="w-full max-w-md bg-white rounded-lg shadow-md p-8 relative">
 

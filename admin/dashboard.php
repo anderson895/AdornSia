@@ -92,7 +92,7 @@
 
     <!-- Inventory Status Low Stock Card -->
     <a href="product.php">
-        <h3 class='text-center text-gray-700 font-semibold text-lg mb-4'>Stock Status</h3>
+        <h3 class='text-center text-gray-700 font-semibold text-lg mb-4'>Stock Status (Low Stocks)</h3>
         <div class="bg-white p-6 rounded-lg shadow-lg w-full h-96 overflow-y-auto hide-scrollbar" id="stock_status">
             <!-- Content goes here -->
         </div>

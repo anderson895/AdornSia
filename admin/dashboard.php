@@ -77,7 +77,7 @@
     <!-- Best Selling Products Card -->
     <a href="product.php">
         <h3 class='text-center text-gray-700 font-semibold text-lg mb-4'>Top 5 Best Selling Products</h3>
-        <div class="bg-white p-6 rounded-lg shadow-lg w-full h-96 overflow-y-auto hide-scrollbar" id="bestSellingProducts">
+        <div class="bg-white p-6 rounded-lg shadow-lg w-full h-112 overflow-y-auto hide-scrollbar" id="bestSellingProducts">
             <!-- Content goes here -->
         </div>
     </a>
@@ -85,7 +85,7 @@
     <!-- New Products Card -->
     <a href="product.php">
         <h3 class='text-center text-gray-700 font-semibold text-lg mb-4'>Top 5 New Products</h3>
-        <div class="bg-white p-6 rounded-lg shadow-lg w-full h-96 overflow-y-auto hide-scrollbar" id="NewProduct">
+        <div class="bg-white p-6 rounded-lg shadow-lg w-full h-112 overflow-y-auto hide-scrollbar" id="NewProduct">
             <!-- Content goes here -->
         </div>
     </a>
@@ -93,7 +93,7 @@
     <!-- Inventory Status Low Stock Card -->
     <a href="product.php">
         <h3 class='text-center text-gray-700 font-semibold text-lg mb-4'>Stock Status (Low Stocks)</h3>
-        <div class="bg-white p-6 rounded-lg shadow-lg w-full h-96 overflow-y-auto hide-scrollbar" id="stock_status">
+        <div class="bg-white p-6 rounded-lg shadow-lg w-full h-112 overflow-y-auto hide-scrollbar" id="stock_status">
             <!-- Content goes here -->
         </div>
     </a>
@@ -101,11 +101,12 @@
     <!-- Empty Column for Layout Consistency -->
     <a href="customer.php">
         <h3 class='text-center text-gray-700 font-semibold text-lg mb-4'>Top 5 Customers</h3>
-        <div class="bg-white p-6 rounded-lg shadow-lg w-full h-96 overflow-y-auto hide-scrollbar" id="top_customer">
+        <div class="bg-white p-6 rounded-lg shadow-lg w-full h-112 overflow-y-auto hide-scrollbar" id="top_customer">
             <!-- Content goes here -->
         </div>
     </a>
 </div>
+
 
 
 

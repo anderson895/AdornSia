@@ -59,7 +59,7 @@ include "components/header.php";
             </div>
         </div>
 
-        <h2 class="text-3xl font-semibold text-gray-800 mb-6 text-center"><span id="returnActionText"></span> Request Oreder Code<span id="ordercodeText"></span></h2>
+        <h2 class="text-3xl font-semibold text-gray-800 mb-6 text-center"><span id="returnActionText"></span> Request Order Code<span id="ordercodeText"></span></h2>
 
         <!-- Modal Form for Adding Product -->
         <form id="frmRefund" class="flex flex-col items-center w-full">

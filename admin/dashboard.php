@@ -72,31 +72,31 @@
 <div class="mt-8">
 
 
-<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 w-full mx-auto justify-center max-h-[500px] overflow-y-auto">
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 w-full mx-auto justify-center max-h-[500px] overflow-hidden">
     <!-- Best Selling Products Card -->
     <a href="product.php">
-        <div class="bg-white p-6 rounded-lg shadow-lg w-full h-[700px] overflow-y-auto" id="bestSellingProducts">
+        <div class="bg-white p-6 rounded-lg shadow-lg w-full h-[700px] overflow-hidden" id="bestSellingProducts">
             <!-- Content Here -->
         </div>
     </a>
 
     <!-- New Products Card -->
     <a href="product.php">
-        <div class="bg-white p-6 rounded-lg shadow-lg w-full h-[700px] overflow-y-auto" id="NewProduct">
+        <div class="bg-white p-6 rounded-lg shadow-lg w-full h-[700px] overflow-hidden" id="NewProduct">
             <!-- Content Here -->
         </div>
     </a>
 
     <!-- Inventory Status Low Stock Card -->
     <a href="product.php">
-        <div class="bg-white p-6 rounded-lg shadow-lg w-full h-[700px] overflow-y-auto" id="stock_status">
+        <div class="bg-white p-6 rounded-lg shadow-lg w-full h-[700px] overflow-hidden" id="stock_status">
             <!-- Content Here -->
         </div>
     </a>
 
     <!-- Top Customer Card -->
     <a href="customer.php">
-        <div class="bg-white p-6 rounded-lg shadow-lg w-full h-[700px] overflow-y-auto" id="top_customer">
+        <div class="bg-white p-6 rounded-lg shadow-lg w-full h-[700px] overflow-hidden" id="top_customer">
             <!-- Content Here -->
         </div>
     </a>

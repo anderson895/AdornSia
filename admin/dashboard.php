@@ -1,5 +1,5 @@
 <?php include "components/header.php";?>
-
+<link rel="stylesheet" href="css/style.css">
 <!-- Top bar with user profile -->
 <div class="flex justify-between items-center bg-white p-4 mb-6 rounded-md shadow-md">
     <h2 class="text-lg font-semibold text-gray-700">Dashboard</h2>

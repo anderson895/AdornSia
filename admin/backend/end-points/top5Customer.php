@@ -11,7 +11,7 @@ if ($orders) {
     foreach ($orders as $order) {
         // Check if Profile_images is empty or null
         if (!empty($order['Profile_images'])) {
-            $imageTag = '<img src="../../../upload/' . $order['Profile_images'] . '" alt="Profile Image" class="w-full h-full object-cover rounded-lg">';
+            $imageTag = '<img src="../upload/' . $order['Profile_images'] . '" alt="Profile Image" class="w-full h-full object-cover rounded-lg">';
         } else {
             // Use an inline SVG for the fallback image
             $imageTag = '

@@ -82,7 +82,7 @@ class Mailer extends db_connect
                         <p>Your new password has been generated. Please log in to your account using the credentials below:</p>
                         <p><strong>Password:</strong> $newpassword</p>
                         <p>For security reasons, we recommend updating your password immediately after logging in.</p>
-                        <a href='https://adornsia.shop/login.php' class='button'>Log In to Your Account</a>
+                        <a href='http://localhost/Client/Adorn_sia/login.php' class='button'>Log In to Your Account</a>
                     </div>
                     <div class='email-footer'>If you did not request this email, please contact support immediately.</div>
                 </div>
@@ -91,7 +91,7 @@ class Mailer extends db_connect
 
 
             // Plain text body
-            $mail->AltBody = "Hello $Fullname, your new password is: $newpassword.\nPlease log in at https://adornsia.shop/login.php and update it immediately.";
+            $mail->AltBody = "Hello $Fullname, your new password is: $newpassword.\nPlease log in at http://localhost/Client/Adorn_sia/login.php and update it immediately.";
 
             // Send the email
             if ($mail->send()) {

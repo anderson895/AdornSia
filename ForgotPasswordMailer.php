@@ -46,13 +46,13 @@ class Mailer extends db_connect
             $mail->isSMTP();
             $mail->Host = 'smtp.gmail.com';
             $mail->SMTPAuth = true;
-            $mail->Username = 'dummydummy1stapador@gmail.com'; // Sender's email
-            $mail->Password = 'gshabvilydndzpux'; // App password
-            $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;
-            $mail->Port = 465;
+            $mail->Username = 'angeladeniseflores199@gmail.com'; 
+            $mail->Password = 'rpbm yjls katl wcrt'; 
+            $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
+            $mail->Port = 587;
 
             // Sender and recipient details
-            $mail->setFrom('dummydummy1stapador@gmail.com', 'Adornsia');
+            $mail->setFrom('angeladeniseflores199@gmail.com', 'Adornsia');
             $mail->addAddress($Email, $Fullname);
             $mail->addReplyTo('no-reply@adornsia.shop', 'No Reply');
 

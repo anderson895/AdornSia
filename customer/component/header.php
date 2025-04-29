@@ -54,49 +54,16 @@ $firstname = $name_parts[0];
       transition: opacity 0.3s ease;
       z-index: 50; /* Ensure the dropdown appears above other elements */
     }
-
-
-
-
-
-
-
-
-
-
   </style>
 </head>
 
 <body class="bg-gray-50">
-
-
-<?php 
-// $url = basename($_SERVER['REQUEST_URI']);
-
-
-// if($url !="view_cart.php"){
-  
-  include "../function/PageSpinner.php"; 
-// }
-
-?>
-
-
-
-
  <!-- Header -->
 <header class="bg-white shadow">
   <div class="container mx-auto px-4 py-4 flex justify-between items-center">
     <!-- Logo/Brand Name -->
-    <div class="flex items-center space-x-2">
-      <!-- Logo Image -->
-      <img src="assets/logo1.png" alt="Logo" class="h-8 w-8 hidden sm:block">
-
-      
-      <!-- Brand Name -->
-      <div class="text-xl font-bold text-gray-800">
-        <a href="index.php" class="text-gray-700 hover:text-blue-600 transition">ADORN</a>
-      </div>
+    <div class="text-xl font-bold text-gray-800">
+      <a href="index.php" class="text-gray-700 hover:text-blue-600 transition">ADORN</a>
     </div>
     
     <!-- Mobile Menu Button -->

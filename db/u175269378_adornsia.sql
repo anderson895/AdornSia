@@ -2,10 +2,10 @@
 -- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1:3306
--- Generation Time: Nov 25, 2024 at 04:58 PM
--- Server version: 10.11.10-MariaDB
--- PHP Version: 7.2.34
+-- Host: 127.0.0.1
+-- Generation Time: Apr 29, 2025 at 06:59 AM
+-- Server version: 10.4.32-MariaDB
+-- PHP Version: 8.2.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -63,7 +63,10 @@ INSERT INTO `activity_logs` (`log_id`, `log_name`, `log_role`, `log_date`, `log_
 (30, 'admin', 'Administrator', '2024-11-26 00:19:59', 'Added test1'),
 (31, 'admin', 'Administrator', '2024-11-26 00:20:45', 'Added STRAWBERRY HOODIE'),
 (32, 'admin', 'Administrator', '2024-11-26 00:21:40', 'Added test2'),
-(33, 'admin', 'Administrator', '2024-11-26 00:56:29', 'FYP Tee StockOut - 1');
+(33, 'admin', 'Administrator', '2024-11-26 00:56:29', 'FYP Tee StockOut - 1'),
+(34, 'admin', 'Administrator', '2025-04-29 12:57:28', 'LVZ TOTE StockOut - 1'),
+(35, 'admin', 'Administrator', '2025-04-29 12:57:28', 'The 1983 StockOut - 1'),
+(36, 'admin', 'Administrator', '2025-04-29 12:57:44', 'Vultures Tee StockOut - 1');
 
 -- --------------------------------------------------------
 
@@ -109,8 +112,8 @@ CREATE TABLE `admin` (
 --
 
 INSERT INTO `admin` (`admin_id`, `admin_username`, `admin_password`, `admin_fullname`, `admin_status`) VALUES
-(1, 'admin', 'admin', 'Juan Dela Cruz', 1),
-(7, 'andy', 'andy', 'Joshua Padilla', 1);
+(1, 'admin', '8c6976e5b5410415bde908bd4dee15dfb167a9c873fc4bb8a81f6f2ab448a918', 'Juan Dela Cruz', 1),
+(7, 'andy', '6177321eac992341d1ad0823a07e76bfc4ee6909db120e377ea303fdc216756c', 'Joshua Padilla', 1);
 
 -- --------------------------------------------------------
 
@@ -207,11 +210,11 @@ CREATE TABLE `orders` (
 --
 
 INSERT INTO `orders` (`order_id`, `order_code`, `order_user_id`, `mode_of_payment`, `proof_of_payment`, `subtotal`, `vat`, `sf`, `total`, `delivery_address`, `order_date`, `delivered_date`, `order_status`, `reject_reason`, `proof_of_del`) VALUES
-(146, '70C44C0C', 64, 'cod', NULL, 650.00, 78, 50.00, 778.00, 'Region I (Ilocos Region) Ilocos Norte Adams Adams (Pob.) tibagan', '2023-11-22 22:37:00', NULL, 'Pending', NULL, NULL),
+(146, '70C44C0C', 64, 'cod', NULL, 650.00, 78, 50.00, 778.00, 'Region I (Ilocos Region) Ilocos Norte Adams Adams (Pob.) tibagan', '2023-11-22 22:37:00', NULL, 'Shipped', NULL, NULL),
 (156, '673D734B', 64, 'cod', NULL, 19500.00, 2340, 50.00, 21890.00, 'Region I (Ilocos Region) Ilocos Norte Adams Adams (Pob.) tibagan', '2024-11-22 23:42:43', NULL, 'Pending', NULL, NULL),
 (157, 'E83DF642', 67, 'cod', NULL, 7200.00, 864, 50.00, 8114.00, 'Region I (Ilocos Region) Ilocos Norte Bacarra Casilian ', '2024-11-25 09:10:27', NULL, 'Accept', NULL, NULL),
-(159, 'BD39823D', 67, 'cod', NULL, 908.60, 109.03, 50.00, 1067.63, 'Region I (Ilocos Region) Ilocos Norte Bacarra Casilian ', '2024-11-26 00:54:43', NULL, 'Pending', NULL, NULL),
-(160, 'BF417EC8', 67, 'Gcash', 'proof_6744abf417e5f9.68956097.jpg', 559.30, 67.12, 50.00, 676.42, 'Region I (Ilocos Region) Ilocos Norte Bacarra Casilian ', '2024-11-26 00:55:16', NULL, 'Accept', NULL, NULL);
+(159, 'BD39823D', 67, 'cod', NULL, 908.60, 109.03, 50.00, 1067.63, 'Region I (Ilocos Region) Ilocos Norte Bacarra Casilian ', '2024-11-26 00:54:43', NULL, 'Delivered', NULL, NULL),
+(160, 'BF417EC8', 67, 'Gcash', 'proof_6744abf417e5f9.68956097.jpg', 559.30, 67.12, 50.00, 676.42, 'Region I (Ilocos Region) Ilocos Norte Bacarra Casilian ', '2024-11-26 00:55:16', NULL, 'Shipped', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -270,8 +273,8 @@ CREATE TABLE `product` (
 --
 
 INSERT INTO `product` (`prod_id`, `prod_code`, `prod_name`, `prod_currprice`, `prod_category_id`, `prod_critical`, `prod_description`, `prod_promo_id`, `prod_image`, `prod_added`, `prod_status`, `product_stocks`) VALUES
-(15, '0001', 'The 1983', 649.00, 1, 10, 'Unequaled confidence and rebelliousness.', NULL, 'product_67356084abb416.35727954.png', '2024-11-25 22:44:40', 1, 70),
-(16, '0002', 'LVZ TOTE', 649.00, 1, 50, 'Love Yourz; a tribute to authenticity. Embrace who you are.', 1, 'product_673560e2e77e51.22127315.png', '2024-11-25 23:57:04', 1, 17),
+(15, '0001', 'The 1983', 649.00, 1, 10, 'Unequaled confidence and rebelliousness.', NULL, 'product_67356084abb416.35727954.png', '2024-11-25 22:44:40', 1, 69),
+(16, '0002', 'LVZ TOTE', 649.00, 1, 50, 'Love Yourz; a tribute to authenticity. Embrace who you are.', 1, 'product_673560e2e77e51.22127315.png', '2024-11-25 23:57:04', 1, 16),
 (17, '0003', 'WE BE ALRIGHT TOTE', 649.00, 1, 10, '\"Finding strength in unity; embracing resilience. Together, we rise.\"', NULL, 'product_67356121cfe654.79399269.png', '2024-11-25 20:51:33', 1, 20),
 (18, '0004', 'NOIR TOTE BAG', 649.00, 1, 15, '\"NOIR\" Tote bag. For your daily needs.', 1, 'product_6735615876d684.97140108.png', '2024-11-25 20:52:15', 1, 3),
 (19, '0005', 'Suede Large Shell Bag', 749.00, 1, 10, 'A minimalist.', 2, 'product_6735618f606390.62713720.png', '2024-11-25 20:52:40', 1, 39),
@@ -282,7 +285,7 @@ INSERT INTO `product` (`prod_id`, `prod_code`, `prod_name`, `prod_currprice`, `p
 (24, '0010', 'LFFP SHORT', 599.00, 3, 10, 'Losing friends; finding peace. Honestly, never mind', NULL, 'product_67356292281fc9.44794739.png', '2024-11-25 20:57:58', 1, 0),
 (25, '0011', 'HUMAN BEING SHORT', 599.00, 3, 10, '\"Celebrating individuality; embracing our shared journey. Just be you.\"', NULL, 'product_673562b7399d94.75187942.png', '2024-11-25 20:58:22', 1, 66),
 (26, '0012', 'Emblem Crewneck', 1699.00, 4, 50, 'Our emblem logo is the streetwear stamp of approval.', 1, 'product_673562de1eb309.51891056.png', '2024-11-26 00:03:04', 1, 99),
-(27, '0013', 'Vultures Tee', 899.00, 5, 50, 'Destroy culture vultures.', 1, 'product_67356306c468c5.02306630.png', '2024-11-25 21:00:36', 1, 13),
+(27, '0013', 'Vultures Tee', 899.00, 5, 50, 'Destroy culture vultures.', 1, 'product_67356306c468c5.02306630.png', '2024-11-25 21:00:36', 1, 12),
 (28, '0014', 'FYP Tee', 799.00, 5, 10, 'Find the balance, find your peace.', 2, 'product_6735633bc0b540.00223420.png', '2024-11-25 20:59:44', 1, 0),
 (29, '0015', 'LFFP TOTE', 649.00, 1, 10, 'Losing friends; finding peace. Honestly, never mind.', NULL, 'product_674473a7db6de0.35179487.png', '2024-11-25 23:58:02', 1, 50),
 (32, '0016', 'SINNERS HOODIE', 1699.00, 2, 333, 'Within the chambers of introspection, sinners grapple with the resonances of their transgressions, nuanced shadows cast by the complexity of their deeds that persist as spectral echoes within the depths of their souls.', NULL, 'product_6744a0968033f0.97984351.png', '2024-11-26 00:06:46', 1, 33),
@@ -529,7 +532,7 @@ ALTER TABLE `wishlist`
 -- AUTO_INCREMENT for table `activity_logs`
 --
 ALTER TABLE `activity_logs`
-  MODIFY `log_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
+  MODIFY `log_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
 
 --
 -- AUTO_INCREMENT for table `address_user`

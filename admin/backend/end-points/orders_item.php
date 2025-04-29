@@ -38,23 +38,24 @@ if (count($fetch_item_orders) > 0):
     </div>
 
     <!-- Order Information -->
-    <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
 
         <div class="bg-blue-50 p-4 rounded-lg shadow-md">
-            <p class="font-semibold text-gray-700">USER ID:</p>
+            <p class="font-semibold text-gray-700">Customer ID:</p>
             <p class="text-gray-600"><?= $fetch_item_orders[0]['order_user_id']; ?></p>
         </div>
 
+
         <div class="bg-blue-50 p-4 rounded-lg shadow-md">
-            <p class="font-semibold text-gray-700">ORDER CODE:</p>
+            <p class="font-semibold text-gray-700">Order Code:</p>
             <p class="text-gray-600"><?= $fetch_item_orders[0]['order_code']; ?></p>
         </div>
         <div class="bg-blue-50 p-4 rounded-lg shadow-md">
-            <p class="font-semibold text-gray-700">STATUS:</p>
+            <p class="font-semibold text-gray-700">Status:</p>
             <p class="text-gray-600"><?= $fetch_item_orders[0]['order_status']; ?></p>
         </div>
         <div class="bg-blue-50 p-4 rounded-lg shadow-md">
-            <p class="font-semibold text-gray-700">ORDER DATE:</p>
+            <p class="font-semibold text-gray-700">Order Date:</p>
             <p class="text-gray-600"><?= $formattedDate; ?></p>
         </div>
     </div>
@@ -62,7 +63,7 @@ if (count($fetch_item_orders) > 0):
     <!-- Payment Section -->
     <div class="bg-white p-6 mt-6 rounded-lg shadow-lg">
     <p class="font-semibold text-lg text-gray-800">
-        PAYMENT:  
+        Payment:  
         <span class="text-lg text-gray-800 font-medium">
             <?php 
                 if ($fetch_item_orders[0]['mode_of_payment'] != "cod") {

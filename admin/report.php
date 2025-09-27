@@ -1,6 +1,5 @@
 <?php 
 include "components/header.php";
-
 $salesReport = $db->SalesReport();
 ?>
 
